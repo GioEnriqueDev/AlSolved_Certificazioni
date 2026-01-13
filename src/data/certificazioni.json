@@ -1,0 +1,44 @@
+[
+    {
+        "id": "cert-1",
+        "nome": "Certificazione Parità di Genere",
+        "ente": "UNI/PdR 125:2022",
+        "dataOttenimento": "2024-01-15",
+        "descrizione": "Certificazione che attesta l'impegno concreto dell'azienda nel promuovere politiche di parità di genere, inclusione e diversità sul posto di lavoro.",
+        "logoUrl": "/images/certifications/parita-genere.svg",
+        "benefici": [
+            "Sgravi fiscali fino all'1% (max 50k)",
+            "Punteggio premiale nei bandi pubblici",
+            "Miglioramento reputazione aziendale"
+        ],
+        "validitaAnni": 3
+    },
+    {
+        "id": "cert-2",
+        "nome": "ISO 9001:2015",
+        "ente": "Accredia",
+        "dataOttenimento": "2023-06-20",
+        "descrizione": "Standard internazionale per i Sistemi di Gestione per la Qualità (SGQ), dimostra la capacità di fornire regolarmente prodotti e servizi che soddisfano i requisiti del cliente.",
+        "logoUrl": "/images/certifications/iso-9001.svg",
+        "benefici": [
+            "Efficienza operativa",
+            "Soddisfazione del cliente",
+            "Accesso a nuovi mercati"
+        ],
+        "validitaAnni": 3
+    },
+    {
+        "id": "cert-3",
+        "nome": "ISO 14001:2015",
+        "ente": "TÜV Italia",
+        "dataOttenimento": "2023-11-10",
+        "descrizione": "Certificazione ambientale che attesta l'impegno dell'azienda nel minimizzare l'impatto ambientale dei propri processi, prodotti e servizi.",
+        "logoUrl": "/images/certifications/iso-14001.svg",
+        "benefici": [
+            "Riduzione costi energetici",
+            "Conformità legale",
+            "Brand reputation green"
+        ],
+        "validitaAnni": 3
+    }
+]

@@ -1,26 +1,57 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* ALSOLVED Premium Theme: Dark Slate & Vibrant Pink */
+    /* Defaulting to Dark Mode aesthetics for a "Tech" feel */
+
+    --background: 225 6% 7%;
+    /* #0F1116 Deep Charcoal/Black */
+    --foreground: 210 40% 98%;
+    /* White text */
+
+    --card: 222 47% 11%;
+    /* Slightly lighter than bg */
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Primary: Vibrant Pink #ff2e63 */
+    --primary: 345 100% 59%;
+    --primary-foreground: 210 40% 98%;
+
+    /* Secondary: Slate Blue/Grey */
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    /* Muted */
+    --muted: 217 33% 17.5%;
+    --muted-foreground: 215 20% 65%;
+
+    /* Accent: Maybe a secondary teal or keeping pink variants */
+    --accent: 345 100% 59%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 17.5%;
+    --input: 217 33% 17.5%;
+    --ring: 345 100% 59%;
+
+    --radius: 0.5rem;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
 }
