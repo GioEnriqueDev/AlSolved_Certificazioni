@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import AnimatedLogo from "@/components/ui/AnimatedLogo";
+import NeonLogo from "@/components/ui/NeonLogo";
 import { cn } from "@/lib/utils";
 
 const items = [
@@ -50,7 +50,7 @@ export default function Navbar() {
             <div className="container mx-auto px-6 h-20 flex items-center justify-between">
                 {/* Logo */}
                 <Link href="/" className="group">
-                    <AnimatedLogo size="md" />
+                    <NeonLogo size="md" />
                 </Link>
 
                 {/* Desktop Menu */}

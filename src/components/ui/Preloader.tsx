@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import LogoSVG from "./LogoSVG";
+import NeonLogo from "./NeonLogo";
 
 interface PreloaderProps {
     onLoadingComplete?: () => void;
@@ -83,24 +83,14 @@ export default function Preloader({ onLoadingComplete }: PreloaderProps) {
                         transition: { duration: 0.4, ease: "easeOut" },
                     }}
                 >
-                    {/* SVG Logo with Draw Animation */}
+                    {/* Neon Logo - already contains icon and text */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.3 }}
                     >
-                        <LogoSVG isDrawn={isDrawn} />
+                        <NeonLogo size="lg" />
                     </motion.div>
-
-                    {/* Brand Name - appears faster */}
-                    <motion.h1
-                        className="mt-6 text-2xl md:text-3xl font-light tracking-[0.3em] text-white/90"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.5, duration: 0.4 }}
-                    >
-                        ALSOLVED
-                    </motion.h1>
 
                     {/* Minimal Progress Indicator */}
                     <motion.div

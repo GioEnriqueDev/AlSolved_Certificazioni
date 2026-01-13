@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import AnimatedLogo from "@/components/ui/AnimatedLogo";
+import NeonLogo from "@/components/ui/NeonLogo";
 import { Linkedin, Twitter, Instagram } from "lucide-react";
 
 export default function Footer() {
@@ -12,7 +12,7 @@ export default function Footer() {
                     {/* Brand */}
                     <div className="col-span-1 md:col-span-1">
                         <Link href="/" className="inline-block mb-6">
-                            <AnimatedLogo size="md" />
+                            <NeonLogo size="md" />
                         </Link>
                         <p className="text-muted-foreground text-sm leading-relaxed mb-6">
                             Il partner tecnologico per le certificazioni aziendali. Eccellenza, conformità e crescita sostenibile.
