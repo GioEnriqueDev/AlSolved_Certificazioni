@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import TypewriterHero from "@/components/ui/TypewriterHero";
 import SpotlightCard from "@/components/ui/SpotlightCard";
 import AnimatedBackground from "@/components/ui/AnimatedBackground";
@@ -135,13 +136,15 @@ export default function Home() {
             <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl mx-auto">
               Ogni giorno senza una certificazione è una gara persa, un talento sfuggito, un rischio in più. Prenota oggi il tuo check-up gratuito.
             </p>
-            <Button
-              size="lg"
-              className="h-16 px-12 text-xl font-bold rounded-full bg-primary hover:bg-primary/90 text-white shadow-[0_4px_30px_rgba(242,78,107,0.4)] hover:shadow-[0_6px_40px_rgba(242,78,107,0.5)] hover:scale-105 transition-all duration-300"
-            >
-              Prenota il Check-up Gratuito
-              <ArrowRight className="ml-3 w-6 h-6" />
-            </Button>
+            <Link href="/contatti">
+              <Button
+                size="lg"
+                className="h-16 px-12 text-xl font-bold rounded-full bg-primary hover:bg-primary/90 text-white shadow-[0_4px_30px_rgba(242,78,107,0.4)] hover:shadow-[0_6px_40px_rgba(242,78,107,0.5)] hover:scale-105 transition-all duration-300"
+              >
+                Prenota il Check-up Gratuito
+                <ArrowRight className="ml-3 w-6 h-6" />
+              </Button>
+            </Link>
           </FadeIn>
         </div>
       </section>
