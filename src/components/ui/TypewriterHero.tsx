@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 interface TypewriterHeroProps {
     painPoints: string[];
@@ -115,20 +116,24 @@ export default function TypewriterHero({
                                 transition={{ delay: 0.4, duration: 0.5 }}
                                 className="flex flex-col sm:flex-row gap-4 justify-center pt-6"
                             >
-                                <Button
-                                    size="lg"
-                                    className="h-14 px-8 text-lg font-bold rounded-full bg-primary hover:bg-primary/90 text-white shadow-[0_4px_20px_rgba(242,78,107,0.4)]"
-                                >
-                                    Scopri le Certificazioni
-                                    <ArrowRight className="ml-2 w-5 h-5" />
-                                </Button>
-                                <Button
-                                    variant="outline"
-                                    size="lg"
-                                    className="h-14 px-8 text-lg rounded-full border-border hover:bg-secondary/50"
-                                >
-                                    Parla con un Esperto
-                                </Button>
+                                <Link href="/#certificazioni">
+                                    <Button
+                                        size="lg"
+                                        className="h-14 px-8 text-lg font-bold rounded-full bg-primary hover:bg-primary/90 text-white shadow-[0_4px_20px_rgba(242,78,107,0.4)]"
+                                    >
+                                        Scopri le Certificazioni
+                                        <ArrowRight className="ml-2 w-5 h-5" />
+                                    </Button>
+                                </Link>
+                                <Link href="/contatti">
+                                    <Button
+                                        variant="outline"
+                                        size="lg"
+                                        className="h-14 px-8 text-lg rounded-full border-border hover:bg-secondary/50"
+                                    >
+                                        Prenota Check-up Gratuito
+                                    </Button>
+                                </Link>
                             </motion.div>
                         </motion.div>
                     )}

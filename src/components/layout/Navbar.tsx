@@ -66,16 +66,14 @@ export default function Navbar() {
                             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
                         </a>
                     ))}
-                    <Button
-                        variant="default"
-                        className="rounded-full px-6 font-semibold bg-primary hover:bg-primary/90 text-white shadow-[0_0_20px_rgba(242,78,107,0.3)] hover:shadow-[0_0_30px_rgba(242,78,107,0.4)] transition-all"
-                        onClick={() => {
-                            const ctaSection = document.querySelector("#cta");
-                            ctaSection?.scrollIntoView({ behavior: "smooth" });
-                        }}
-                    >
-                        Richiedi Audit
-                    </Button>
+                    <Link href="/contatti">
+                        <Button
+                            variant="default"
+                            className="rounded-full px-6 font-semibold bg-primary hover:bg-primary/90 text-white shadow-[0_0_20px_rgba(242,78,107,0.3)] hover:shadow-[0_0_30px_rgba(242,78,107,0.4)] transition-all"
+                        >
+                            Richiedi Audit
+                        </Button>
+                    </Link>
                 </nav>
 
                 {/* Mobile Toggle */}
@@ -122,6 +120,6 @@ export default function Navbar() {
                     </motion.div>
                 )}
             </AnimatePresence>
-        </header>
+        </header >
     );
 }
