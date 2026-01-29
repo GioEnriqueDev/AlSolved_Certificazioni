@@ -56,7 +56,7 @@ export default function Navbar() {
                 {/* Desktop Menu */}
                 <nav className="hidden md:flex items-center gap-10">
                     {items.map((item) => (
-                        <a
+                        <Link
                             key={item.name}
                             href={item.href}
                             onClick={(e) => handleAnchorClick(e, item.href)}
@@ -64,7 +64,7 @@ export default function Navbar() {
                         >
                             {item.name}
                             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
-                        </a>
+                        </Link>
                     ))}
                     <Link href="/contatti">
                         <Button
@@ -96,14 +96,14 @@ export default function Navbar() {
                     >
                         <div className="flex flex-col p-6 gap-4">
                             {items.map((item) => (
-                                <a
+                                <Link
                                     key={item.name}
                                     href={item.href}
                                     onClick={(e) => handleAnchorClick(e, item.href)}
                                     className="text-lg font-medium text-foreground py-3 border-b border-border/50 last:border-0"
                                 >
                                     {item.name}
-                                </a>
+                                </Link>
                             ))}
                             <Button
                                 className="w-full mt-4 bg-primary text-white"
