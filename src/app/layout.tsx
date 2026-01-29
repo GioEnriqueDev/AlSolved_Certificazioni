@@ -12,11 +12,12 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "it_IT",
-    url: "https://www.alsolved.com",
+    url: "https://www.alsolvedcertificazioni.com",
     title: "ALSOLVED - Certificazioni & Compliance. Risolto.",
     description: "Il partner tecnologico per le aziende moderne.",
     siteName: "ALSOLVED",
-  }
+  },
+  metadataBase: new URL("https://www.alsolvedcertificazioni.com"),
 };
 
 export default function RootLayout({
