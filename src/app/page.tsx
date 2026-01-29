@@ -1,14 +1,11 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import TypewriterHero from "@/components/ui/TypewriterHero";
-import SpotlightCard from "@/components/ui/SpotlightCard";
 import AnimatedBackground from "@/components/ui/AnimatedBackground";
+import ClientLogos from "@/components/sections/ClientLogos";
 import ScrollProgressProcess from "@/components/sections/ScrollProgressProcess";
 import BentoStats from "@/components/sections/BentoStats";
-import ClientLogos from "@/components/sections/ClientLogos";
-import Footer from "@/components/sections/Footer";
+// import SpotlightCard from "@/components/ui/SpotlightCard";
 import FadeIn from "@/components/animations/FadeIn";
 import {
   Settings2,
@@ -69,17 +66,12 @@ const certifications = [
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground overflow-x-hidden relative">
-      {/* Global Animated Background */}
       <AnimatedBackground />
-
-      {/* ===================== HERO SECTION ===================== */}
       <TypewriterHero
         painPoints={painPoints}
         solution="Certificata e Vincente."
         solutionSubtitle="Ottieni le certificazioni che aprono porte, vincono gare e proteggono il tuo business. Con ALSOLVED, la burocrazia diventa un vantaggio competitivo."
       />
-
-      {/* ===================== CLIENT LOGOS (Social Proof) ===================== */}
       <ClientLogos />
 
       {/* ===================== CERTIFICATIONS SECTION ===================== */}
@@ -97,26 +89,31 @@ export default function Home() {
             </p>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {certifications.map((cert, i) => (
-              <SpotlightCard
+              <div
                 key={i}
-                title={cert.title}
-                subtitle={cert.subtitle}
-                description={cert.description}
-                icon={cert.icon}
-              />
+                className="relative overflow-hidden rounded-3xl border border-white/10 bg-secondary/20 p-8 h-full hover:border-primary/30 transition-colors duration-300"
+              >
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-rose-600 flex items-center justify-center mb-6 shadow-lg shadow-primary/20">
+                  <cert.icon className="w-7 h-7 text-white" />
+                </div>
+                <p className="text-xs font-bold text-primary uppercase tracking-widest mb-2">
+                  {cert.subtitle}
+                </p>
+                <h3 className="text-2xl font-bold text-foreground mb-3">
+                  {cert.title}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed text-sm">
+                  {cert.description}
+                </p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ===================== PROCESS SECTION ===================== */}
-      <div id="metodo" className="scroll-mt-20">
-        <ScrollProgressProcess />
-      </div>
-
-      {/* ===================== STATS (Bento Grid) ===================== */}
+      <ScrollProgressProcess />
       <BentoStats />
 
       {/* ===================== FINAL CTA ===================== */}
@@ -139,7 +136,7 @@ export default function Home() {
             <Link href="/contatti">
               <Button
                 size="lg"
-                className="h-16 px-12 text-xl font-bold rounded-full bg-primary hover:bg-primary/90 text-white shadow-[0_4px_30px_rgba(242,78,107,0.4)] hover:shadow-[0_6px_40px_rgba(242,78,107,0.5)] hover:scale-105 transition-all duration-300"
+                className="h-16 px-12 text-xl font-bold rounded-full bg-primary hover:bg-primary/90 text-white shadow-[0_4px_30px_rgba(242,78,107,0.4)] hover:shadow-[0_6px_40px_rgba(242,78,107,0.5)] transition-all duration-300 transform hover:scale-105"
               >
                 Prenota il Check-up Gratuito
                 <ArrowRight className="ml-3 w-6 h-6" />
@@ -148,9 +145,6 @@ export default function Home() {
           </FadeIn>
         </div>
       </section>
-
-      {/* ===================== FOOTER ===================== */}
-      <Footer />
     </div>
   );
 }

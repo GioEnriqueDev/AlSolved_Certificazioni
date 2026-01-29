@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { SplitText } from "@/components/ui/SplitText";
 
 interface TypewriterHeroProps {
     painPoints: string[];
@@ -105,11 +106,11 @@ export default function TypewriterHero({
                             className="space-y-6"
                         >
                             <h1 className="text-5xl md:text-8xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-br from-white via-white to-gray-500 leading-none pb-2">
-                                {solution}
+                                <SplitText text={solution} delay={0.05} />
                             </h1>
-                            <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto font-light">
-                                {solutionSubtitle}
-                            </p>
+                            <div className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto font-light">
+                                <SplitText text={solutionSubtitle} delay={0.02} className="inline" />
+                            </div>
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}

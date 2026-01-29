@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { LoadingProvider } from "@/lib/LoadingContext";
 import Preloader from "@/components/ui/Preloader";
 import Navbar from "@/components/layout/Navbar";
+import FuzzyOverlay from "@/components/ui/FuzzyOverlay";
+// import SmoothScroll from "@/components/ui/SmoothScroll";
 
 interface ClientWrapperProps {
     children: React.ReactNode;
@@ -36,6 +38,8 @@ export default function ClientWrapper({ children }: ClientWrapperProps) {
 
     return (
         <LoadingProvider>
+            {/* <SmoothScroll> */}
+            {/* <FuzzyOverlay /> */}
             {/* Preloader - only shows on first visit */}
             {showPreloader && (
                 <Preloader onLoadingComplete={handleLoadingComplete} />
@@ -48,6 +52,6 @@ export default function ClientWrapper({ children }: ClientWrapperProps) {
                 <Navbar />
                 <main>{children}</main>
             </div>
-        </LoadingProvider>
+        </LoadingProvider >
     );
 }
