@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import abstractWavesImg from "../../public/images/abstract_3d_waves.png";
 import Link from "next/link";
 import TypewriterHero from "@/components/ui/TypewriterHero";
 import AnimatedBackground from "@/components/ui/AnimatedBackground";
@@ -165,7 +166,7 @@ export default function Home() {
           viewport={{ once: true }}
         >
           <Image
-            src="/images/abstract_3d_waves.png"
+            src={abstractWavesImg}
             alt="CTA 3D Background"
             fill
             className="object-cover object-center"
