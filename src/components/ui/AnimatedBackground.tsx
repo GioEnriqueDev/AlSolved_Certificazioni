@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 
 // Darker, subtle particles for the light theme
 const particles = [
@@ -20,6 +21,9 @@ export default function AnimatedBackground() {
     const { scrollYProgress } = useScroll();
 
     // Map scroll progress to massive 3D transformations
+    const bgY = useTransform(scrollYProgress, [0, 1], [0, 300]);
+    const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+
     const gridRotateX = useTransform(scrollYProgress, [0, 1], [80, 50]);
     const gridY = useTransform(scrollYProgress, [0, 1], [0, 1000]);
 
@@ -37,6 +41,24 @@ export default function AnimatedBackground() {
 
     return (
         <div className="fixed inset-0 overflow-hidden pointer-events-none bg-[#FAFAFA] z-[-1]" style={{ perspective: "1500px" }}>
+            {/* 0. Base 3D Rendered Image */}
+            <motion.div
+                className="absolute inset-0 z-[-1] opacity-40 mix-blend-multiply"
+                style={{
+                    y: bgY,
+                    scale: bgScale
+                }}
+            >
+                <Image
+                    src="/images/abstract_3d_glass.png"
+                    alt="Abstract 3D Background"
+                    fill
+                    className="object-cover object-center"
+                    priority
+                    unoptimized
+                />
+            </motion.div>
+
             {/* 1. Volumetric Light Blooms (Background) */}
             <div className="absolute inset-x-0 top-0 h-[60vh]">
                 <div className="absolute top-[-10%] left-[10%] w-[600px] h-[600px] bg-primary/10 rounded-full blur-[140px] mix-blend-multiply opacity-60" />

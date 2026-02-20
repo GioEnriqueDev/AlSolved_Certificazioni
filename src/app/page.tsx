@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import Link from "next/link";
 import TypewriterHero from "@/components/ui/TypewriterHero";
 import AnimatedBackground from "@/components/ui/AnimatedBackground";
@@ -156,15 +157,30 @@ export default function Home() {
 
       {/* ===================== FINAL CTA ===================== */}
       <section id="cta" className="py-32 bg-transparent relative overflow-hidden scroll-mt-20 z-10">
-        <div className="absolute inset-0 bg-gradient-to-t from-white/80 to-transparent pointer-events-none"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[150px] pointer-events-none"></div>
+        <motion.div
+          className="absolute inset-0 z-[-1] opacity-30 mix-blend-multiply"
+          initial={{ scale: 1.1, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 0.3 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
+          <Image
+            src="/images/abstract_3d_waves.png"
+            alt="CTA 3D Background"
+            fill
+            className="object-cover object-center"
+            unoptimized
+          />
+        </motion.div>
+        <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/50 to-transparent pointer-events-none z-[-1]"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[150px] pointer-events-none z-[-1]"></div>
 
         <motion.div
           className="container mx-auto px-6 relative z-10 text-center"
           initial={{ opacity: 0, scale: 0.9, y: 50 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          viewport={{ once: true, margin: "-200px" }}
+          viewport={{ once: true, margin: "-50px" }}
         >
           <p className="text-sm font-bold text-primary uppercase tracking-[0.2em] mb-6">
             Pronto a Iniziare?
