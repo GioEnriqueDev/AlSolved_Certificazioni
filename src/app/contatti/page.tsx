@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import BookingCTA from "@/components/ui/BookingCTA";
 import Footer from "@/components/sections/Footer";
-import AnimatedBackground from "@/components/ui/AnimatedBackground";
+import StaticBackground from "@/components/ui/StaticBackground";
 import {
     Phone,
     Mail,
@@ -40,8 +40,8 @@ const contactInfo = [
 
 export default function ContattiPage() {
     return (
-        <div className="min-h-screen bg-background text-foreground relative">
-            <AnimatedBackground />
+        <div className="min-h-screen bg-transparent text-foreground relative">
+            <StaticBackground />
 
             {/* Hero Section */}
             <section className="pt-32 pb-16 relative">
