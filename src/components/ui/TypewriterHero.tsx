@@ -53,7 +53,9 @@ export default function TypewriterHero({
                 return () => clearTimeout(timeout);
             } else {
                 // All pain points shown, show solution
-                setCycleComplete(true);
+                setTimeout(() => {
+                    setCycleComplete(true);
+                }, 0);
                 setTimeout(() => setShowSolution(true), 500);
                 return;
             }

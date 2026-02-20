@@ -70,13 +70,14 @@ export default function Preloader({ onLoadingComplete }: PreloaderProps) {
             window.removeEventListener("load", handleLoad);
             document.body.style.overflow = "auto";
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [onLoadingComplete, isDrawn]);
 
     return (
         <AnimatePresence>
             {!shouldExit && (
                 <motion.div
-                    className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#16181D]"
+                    className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#FAFAFA]"
                     initial={{ opacity: 1 }}
                     exit={{
                         opacity: 0,
@@ -100,7 +101,7 @@ export default function Preloader({ onLoadingComplete }: PreloaderProps) {
                         transition={{ delay: 0.3, duration: 0.3 }}
                     >
                         {/* Progress Bar - thinner and cleaner */}
-                        <div className="w-32 h-[2px] bg-white/10 rounded-full overflow-hidden">
+                        <div className="w-32 h-[2px] bg-black/10 rounded-full overflow-hidden">
                             <motion.div
                                 className="h-full rounded-full bg-primary"
                                 initial={{ width: "0%" }}
@@ -110,7 +111,7 @@ export default function Preloader({ onLoadingComplete }: PreloaderProps) {
                         </div>
 
                         {/* Simple Percentage */}
-                        <span className="text-xs font-mono text-white/40 tabular-nums">
+                        <span className="text-xs font-mono text-black/40 tabular-nums">
                             {progress}%
                         </span>
                     </motion.div>

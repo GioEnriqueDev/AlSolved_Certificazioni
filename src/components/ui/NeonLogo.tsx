@@ -92,11 +92,11 @@ export default function NeonLogo({
                 {/* Main Text */}
                 <motion.span
                     className={cn(
-                        "font-bold tracking-widest text-white relative z-10",
+                        "font-bold tracking-widest text-foreground relative z-10",
                         sizes[size].text
                     )}
                     style={{
-                        textShadow: "0 0 10px rgba(255,255,255,0.7), 0 0 20px rgba(255,255,255,0.5), 0 0 30px rgba(242,78,107,0.3)"
+                        textShadow: "0 0 10px rgba(0,0,0,0.05)"
                     }}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}

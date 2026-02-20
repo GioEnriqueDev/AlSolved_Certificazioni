@@ -27,7 +27,7 @@ export default function BookingCTA({ googleFormUrl = "#" }: BookingCTAProps) {
 
                 <p className="text-muted-foreground text-lg md:text-xl mb-12 max-w-lg leading-relaxed font-medium">
                     Compila il modulo per richiedere un check-up gratuito della tua azienda.
-                    Verificheremo l'idoneità per le certificazioni ISO e i bandi disponibili.
+                    Verificheremo l&apos;idoneità per le certificazioni ISO e i bandi disponibili.
                 </p>
 
                 {/* Benefits Grid */}
