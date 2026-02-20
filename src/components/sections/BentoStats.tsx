@@ -54,7 +54,7 @@ function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
 
 export default function BentoStats() {
     return (
-        <section className="py-24 bg-secondary/5 relative overflow-hidden">
+        <section className="py-24 bg-white relative overflow-hidden">
             <div className="container mx-auto px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -63,8 +63,8 @@ export default function BentoStats() {
                     transition={{ duration: 0.5 }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-3xl md:text-5xl font-bold mb-4">Numeri che Parlano</h2>
-                    <p className="text-muted-foreground text-lg max-w-xl mx-auto">
+                    <h2 className="text-3xl md:text-5xl font-bold mb-4 text-foreground">Numeri che Parlano</h2>
+                    <p className="text-muted-foreground text-lg max-w-xl mx-auto font-medium">
                         Risultati concreti per le aziende che hanno scelto ALSOLVED.
                     </p>
                 </motion.div>
@@ -78,14 +78,14 @@ export default function BentoStats() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-50px" }}
                             transition={{ duration: 0.5, delay: i * 0.1 }}
-                            className={`relative p-8 rounded-3xl border border-white/5 bg-background overflow-hidden group hover:border-primary/20 transition-colors ${stat.span || ""}`}
+                            className={`relative p-10 rounded-3xl border border-border bg-gray-50/50 overflow-hidden group hover:border-primary/20 hover:shadow-soft-glow hover:bg-white transition-all duration-300 hover:-translate-y-1 ${stat.span || ""}`}
                         >
                             {/* Icon Background */}
-                            <stat.icon className="absolute -bottom-4 -right-4 w-32 h-32 text-white/[0.03] group-hover:text-primary/10 transition-colors" />
+                            <stat.icon className="absolute -bottom-6 -right-6 w-40 h-40 text-black/[0.02] group-hover:text-primary/5 transition-colors duration-500" />
 
                             <div className="relative z-10">
                                 <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-                                <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider mt-2">
+                                <p className="text-sm font-bold text-muted-foreground uppercase tracking-[0.1em] mt-3">
                                     {stat.label}
                                 </p>
                             </div>

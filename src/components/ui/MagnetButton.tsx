@@ -33,6 +33,7 @@ export default function MagnetButton({ children, className, ...props }: MagnetBu
             animate={{ x: position.x * 0.5, y: position.y * 0.5 }}
             transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
             className={cn("relative overflow-hidden", className)}
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             {...(props as any)}
         >
             {children}

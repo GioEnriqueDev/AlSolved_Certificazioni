@@ -52,14 +52,14 @@ export default function ContattiPage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <p className="text-sm font-bold text-primary uppercase tracking-widest mb-4">
+                        <p className="text-sm font-bold text-primary uppercase tracking-[0.2em] mb-4">
                             Contattaci
                         </p>
-                        <h1 className="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                        <h1 className="text-5xl md:text-7xl font-black mb-6 leading-tight text-foreground tracking-tight drop-shadow-sm">
                             Inizia il Tuo Percorso <br />
-                            <span className="text-primary">Verso la Certificazione</span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-400">Verso la Certificazione</span>
                         </h1>
-                        <p className="text-lg text-muted-foreground">
+                        <p className="text-xl md:text-2xl text-muted-foreground font-medium max-w-2xl mx-auto">
                             Prenota una consulenza gratuita. Ti guideremo verso la certificazione più adatta alla tua azienda.
                         </p>
                     </motion.div>
@@ -67,7 +67,7 @@ export default function ContattiPage() {
             </section>
 
             {/* Main Content */}
-            <section className="pb-24 relative">
+            <section className="pb-32 relative">
                 <div className="container mx-auto px-6">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
                         {/* Booking CTA (Replaces Form) */}
@@ -75,6 +75,7 @@ export default function ContattiPage() {
                             initial={{ opacity: 0, x: -30 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.6, delay: 0.2 }}
+                            className="bg-white p-2 rounded-3xl border border-border shadow-[0_8px_30px_rgb(0,0,0,0.04)]"
                         >
                             <BookingCTA googleFormUrl="https://docs.google.com/forms/d/e/1FAIpQLSf_placeholder/viewform" />
                         </motion.div>
@@ -84,24 +85,24 @@ export default function ContattiPage() {
                             initial={{ opacity: 0, x: 30 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.6, delay: 0.3 }}
-                            className="space-y-8"
+                            className="space-y-10 lg:pl-10"
                         >
                             <div>
-                                <h2 className="text-2xl font-bold mb-6">Informazioni di Contatto</h2>
+                                <h2 className="text-3xl font-bold mb-8 text-foreground tracking-tight">Informazioni di Contatto</h2>
                                 <div className="space-y-4">
                                     {contactInfo.map((info, i) => (
                                         <a
                                             key={i}
                                             href={info.href || undefined}
-                                            className={`flex items-center gap-4 p-4 rounded-2xl bg-secondary/10 border border-white/5 transition-all ${info.href ? "hover:border-primary/20 hover:bg-secondary/20 cursor-pointer" : ""
+                                            className={`flex items-center gap-6 p-6 rounded-3xl bg-secondary/20 border border-border transition-all duration-300 ${info.href ? "hover:border-primary/30 hover:bg-white hover:shadow-soft-glow cursor-pointer hover:-translate-y-1" : ""
                                                 }`}
                                         >
-                                            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                                                <info.icon className="w-5 h-5 text-primary" />
+                                            <div className="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center shrink-0">
+                                                <info.icon className="w-6 h-6 text-primary" />
                                             </div>
                                             <div>
-                                                <p className="text-sm text-muted-foreground">{info.label}</p>
-                                                <p className="font-semibold text-foreground">{info.value}</p>
+                                                <p className="text-sm font-bold text-muted-foreground uppercase tracking-widest">{info.label}</p>
+                                                <p className="font-bold text-lg text-foreground mt-1">{info.value}</p>
                                             </div>
                                         </a>
                                     ))}
@@ -109,11 +110,12 @@ export default function ContattiPage() {
                             </div>
 
                             {/* Trust Badge */}
-                            <div className="flex items-center gap-4 p-4 rounded-2xl bg-secondary/5 border border-white/5">
-                                <div className="text-4xl font-bold text-primary">100%</div>
-                                <div>
-                                    <p className="font-semibold">Tasso di Successo</p>
-                                    <p className="text-sm text-muted-foreground">Tutti gli audit superati al primo tentativo</p>
+                            <div className="flex items-center gap-6 p-8 rounded-3xl bg-gradient-to-br from-primary/10 to-orange-400/5 border border-primary/20 shadow-sm relative overflow-hidden">
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-[40px] -translate-y-1/2 translate-x-1/2"></div>
+                                <div className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-primary to-rose-600 shrink-0">100%</div>
+                                <div className="relative z-10">
+                                    <p className="font-bold text-xl text-foreground">Tasso di Successo</p>
+                                    <p className="text-sm font-medium text-muted-foreground mt-1">Tutti gli audit dei nostri clienti superati al primo tentativo</p>
                                 </div>
                             </div>
                         </motion.div>

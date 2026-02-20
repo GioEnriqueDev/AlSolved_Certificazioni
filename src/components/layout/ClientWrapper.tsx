@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { LoadingProvider } from "@/lib/LoadingContext";
 import Preloader from "@/components/ui/Preloader";
 import Navbar from "@/components/layout/Navbar";
-import FuzzyOverlay from "@/components/ui/FuzzyOverlay";
 // import SmoothScroll from "@/components/ui/SmoothScroll";
 
 interface ClientWrapperProps {
@@ -21,11 +20,15 @@ export default function ClientWrapper({ children }: ClientWrapperProps) {
 
         if (hasSeenPreloader) {
             // Skip preloader, show content immediately
-            setShowPreloader(false);
-            setShowContent(true);
+            setTimeout(() => {
+                setShowPreloader(false);
+                setShowContent(true);
+            }, 0);
         } else {
             // Show preloader for first visit
-            setShowPreloader(true);
+            setTimeout(() => {
+                setShowPreloader(true);
+            }, 0);
         }
     }, []);
 

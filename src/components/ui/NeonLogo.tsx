@@ -8,15 +8,17 @@ interface NeonLogoProps {
     size?: "sm" | "md" | "lg";
 }
 
+const sizes = {
+    sm: { icon: 32, text: "text-xl", blur: "blur-[1px]" },
+    md: { icon: 40, text: "text-2xl", blur: "blur-[1.5px]" },
+    lg: { icon: 56, text: "text-4xl", blur: "blur-[2px]" },
+};
+
 export default function NeonLogo({
     className,
     size = "md",
 }: NeonLogoProps) {
-    const sizes = {
-        sm: { icon: 32, text: "text-xl", blur: "blur-[1px]" },
-        md: { icon: 40, text: "text-2xl", blur: "blur-[1.5px]" },
-        lg: { icon: 56, text: "text-4xl", blur: "blur-[2px]" },
-    };
+    // sizes object moved outside
 
     return (
         <div className={cn("flex items-center gap-3 relative group", className)}>

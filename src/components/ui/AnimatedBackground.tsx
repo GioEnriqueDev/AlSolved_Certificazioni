@@ -23,39 +23,26 @@ const particles = [
 
 export default function AnimatedBackground() {
     return (
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {/* Grid Pattern */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none bg-[#FAFAFA]">
+            {/* Very Subtle Grid Pattern */}
             <div
-                className="absolute inset-0 opacity-[0.02]"
+                className="absolute inset-0 opacity-[0.3]"
                 style={{
                     backgroundImage: `
-            linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+            linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px)
           `,
-                    backgroundSize: "60px 60px",
+                    backgroundSize: "80px 80px",
                 }}
             />
 
-            {/* Floating Orbs */}
+            {/* Glowing Mesh Gradients (Light Theme) */}
             <motion.div
-                className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-primary/10 blur-[150px]"
+                className="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] rounded-full bg-primary/5 blur-[120px]"
                 animate={{
-                    x: [0, 50, 0],
-                    y: [0, -30, 0],
+                    x: [0, 100, 0],
+                    y: [0, -50, 0],
                     scale: [1, 1.1, 1],
-                }}
-                transition={{
-                    duration: 20,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                }}
-            />
-            <motion.div
-                className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-blue-500/5 blur-[120px]"
-                animate={{
-                    x: [0, -40, 0],
-                    y: [0, 40, 0],
-                    scale: [1, 1.2, 1],
                 }}
                 transition={{
                     duration: 25,
@@ -63,45 +50,36 @@ export default function AnimatedBackground() {
                     ease: "easeInOut",
                 }}
             />
+            <motion.div
+                className="absolute bottom-[-20%] right-[-10%] w-[900px] h-[900px] rounded-full bg-orange-400/5 blur-[150px]"
+                animate={{
+                    x: [0, -80, 0],
+                    y: [0, 60, 0],
+                    scale: [1, 1.2, 1],
+                }}
+                transition={{
+                    duration: 30,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                }}
+            />
 
-            {/* Animated Lines */}
-            <svg className="absolute inset-0 w-full h-full opacity-[0.03]">
-                <motion.line
-                    x1="0%"
-                    y1="20%"
-                    x2="100%"
-                    y2="80%"
-                    stroke="white"
-                    strokeWidth="1"
-                    initial={{ pathLength: 0 }}
-                    animate={{ pathLength: 1 }}
-                    transition={{ duration: 3, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
-                />
-                <motion.line
-                    x1="100%"
-                    y1="10%"
-                    x2="0%"
-                    y2="90%"
-                    stroke="white"
-                    strokeWidth="1"
-                    initial={{ pathLength: 0 }}
-                    animate={{ pathLength: 1 }}
-                    transition={{ duration: 4, delay: 1, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
-                />
-            </svg>
+            {/* Center Premium Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-white/40 blur-[100px] rounded-full mix-blend-overlay"></div>
 
-            {/* Floating Particles - Fixed positions */}
+            {/* Floating Dust Particles (Darker for light theme) */}
             {particles.map((particle, i) => (
                 <motion.div
                     key={i}
-                    className="absolute w-1 h-1 rounded-full bg-white/20"
+                    className="absolute w-1 h-1 rounded-full bg-black/5"
                     style={{
                         left: `${particle.left}%`,
                         top: `${particle.top}%`,
                     }}
                     animate={{
-                        y: [0, -100, 0],
-                        opacity: [0, 0.5, 0],
+                        y: [0, -150, 0],
+                        opacity: [0, 0.8, 0],
+                        scale: [0, 1, 0]
                     }}
                     transition={{
                         duration: particle.duration,
@@ -112,12 +90,12 @@ export default function AnimatedBackground() {
                 />
             ))}
 
-            {/* Corner Accents */}
-            <div className="absolute top-0 left-0 w-96 h-96 border-l border-t border-white/5 rounded-br-[100px]" />
-            <div className="absolute bottom-0 right-0 w-96 h-96 border-r border-b border-white/5 rounded-tl-[100px]" />
+            {/* Premium Corner Accents */}
+            <div className="absolute top-0 left-0 w-96 h-96 border-l border-t border-black/[0.03] rounded-br-[120px]" />
+            <div className="absolute bottom-0 right-0 w-96 h-96 border-r border-b border-black/[0.03] rounded-tl-[120px]" />
 
-            {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/50" />
+            {/* Fade Out Gradient at Bottom */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/10 to-white/90" />
         </div>
     );
 }

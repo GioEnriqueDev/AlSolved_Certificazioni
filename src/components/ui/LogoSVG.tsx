@@ -13,12 +13,6 @@ export default function LogoSVG({ isDrawn, onDrawComplete }: LogoSVGProps) {
         ease: "easeOut" as const,
     };
 
-    const fillTransition = {
-        duration: 0.8,
-        delay: 1.5,
-        ease: "easeOut",
-    };
-
     return (
         <svg
             width="200"

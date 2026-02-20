@@ -41,9 +41,9 @@ export default function Navbar() {
     return (
         <header
             className={cn(
-                "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent",
+                "fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b border-transparent",
                 scrolled
-                    ? "bg-background/80 backdrop-blur-xl border-border/50 shadow-lg shadow-black/5"
+                    ? "bg-white/70 backdrop-blur-xl border-border/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)]"
                     : "bg-transparent"
             )}
         >
@@ -80,6 +80,7 @@ export default function Navbar() {
                 <button
                     className="md:hidden text-foreground p-2"
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    aria-label="Toggle menu"
                 >
                     {mobileMenuOpen ? <X /> : <Menu />}
                 </button>

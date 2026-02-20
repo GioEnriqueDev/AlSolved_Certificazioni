@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 // Placeholder logos - replace with real client logos
 const logos = [

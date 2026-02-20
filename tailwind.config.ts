@@ -59,9 +59,17 @@ const config: Config = {
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
 				'hero-gradient': 'linear-gradient(to bottom, hsl(var(--background)), hsl(var(--secondary)))',
+				'glass-gradient': 'linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0.4))',
+			},
+			boxShadow: {
+				'soft-glow': '0 10px 40px -10px rgba(0,0,0,0.05), 0 0 20px -5px rgba(255,46,99,0.1)',
+				'glass-border': 'inset 0 1px 0 0 rgba(255,255,255,0.6)',
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [
+		// eslint-disable-next-line @typescript-eslint/no-require-imports
+		require("tailwindcss-animate")
+	],
 };
 export default config;
