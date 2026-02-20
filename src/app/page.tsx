@@ -125,7 +125,7 @@ export default function Home() {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "-10%" }}
           >
             {certifications.map((cert, i) => (
               <motion.div
@@ -181,7 +181,7 @@ export default function Home() {
           initial={{ opacity: 0, scale: 0.9, y: 50 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: true, margin: "-10%" }}
         >
           <p className="text-sm font-bold text-primary uppercase tracking-[0.2em] mb-6">
             Pronto a Iniziare?

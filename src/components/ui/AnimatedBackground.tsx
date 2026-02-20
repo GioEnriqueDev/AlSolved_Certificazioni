@@ -47,7 +47,8 @@ export default function AnimatedBackground() {
                 className="absolute inset-0 z-[-1] opacity-40 mix-blend-multiply"
                 style={{
                     y: bgY,
-                    scale: bgScale
+                    scale: bgScale,
+                    willChange: "transform"
                 }}
             >
                 <Image
@@ -68,13 +69,14 @@ export default function AnimatedBackground() {
             </div>
 
             {/* 2. Architectural 3D Infinite Floor Grid */}
-            <div className="absolute inset-x-0 bottom-[-50%] h-[150vh] origin-top opacity-40">
+            <div className="hidden md:block absolute inset-x-0 bottom-[-50%] h-[150vh] origin-top opacity-40">
                 <motion.div
                     className="w-full h-[200%]"
                     style={{
                         transformStyle: "preserve-3d",
                         rotateX: gridRotateX,
                         y: gridY,
+                        willChange: "transform",
                         backgroundImage: `
               linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px),
               linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px)
@@ -111,6 +113,7 @@ export default function AnimatedBackground() {
                         z: m1Z,
                         rotateX: m1RotateX,
                         rotateY: -25,
+                        willChange: "transform",
                         boxShadow: `
               0 30px 60px rgba(0,0,0,0.08), 
               inset 0 1px 0 rgba(255,255,255,0.8),
@@ -146,13 +149,14 @@ export default function AnimatedBackground() {
 
                 {/* --- MONOLITH 2 (Left, Background) --- */}
                 <motion.div
-                    className="absolute left-[3%] lg:left-[10%] w-56 h-72 rounded-[2rem] bg-white/10 backdrop-blur-xl border border-white/40"
+                    className="hidden md:block absolute left-[3%] lg:left-[10%] w-56 h-72 rounded-[2rem] bg-white/10 backdrop-blur-xl border border-white/40"
                     style={{
                         transformStyle: "preserve-3d",
                         y: m2Y,
                         z: m2Z,
                         rotateX: -10,
                         rotateY: m2RotateY,
+                        willChange: "transform",
                         boxShadow: "0 20px 40px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.4)"
                     }}
                 >
@@ -164,13 +168,14 @@ export default function AnimatedBackground() {
 
                 {/* --- 3D RING / HALO (Center-Right, Far Background) --- */}
                 <motion.div
-                    className="absolute top-1/4 right-[30%] w-96 h-96 rounded-full border-[1px] border-primary/20"
+                    className="hidden md:block absolute top-1/4 right-[30%] w-96 h-96 rounded-full border-[1px] border-primary/20"
                     style={{
                         transformStyle: "preserve-3d",
                         z: haloZ,
                         rotateX: 60,
                         rotateY: 20,
-                        rotateZ: haloRotateZ
+                        rotateZ: haloRotateZ,
+                        willChange: "transform"
                     }}
                 >
                     {/* Inner overlapping rings */}

@@ -112,7 +112,7 @@ export default function CertificazioniPage() {
                                 className={`group relative bg-white/70 backdrop-blur-3xl border border-white/60 p-8 md:p-10 rounded-[2.5rem] shadow-[0_8px_40px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)] transition-all duration-500 overflow-hidden ${cert.colSpan}`}
                                 initial={{ opacity: 0, y: 40 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-100px" }}
+                                viewport={{ once: true, margin: "-10%" }}
                                 transition={{ duration: 0.7, delay: cert.delay, ease: "easeOut" }}
                             >
                                 {/* Hover Gradient Reveal */}
