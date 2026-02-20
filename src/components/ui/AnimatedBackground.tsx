@@ -61,11 +61,11 @@ export default function AnimatedBackground() {
                 />
             </motion.div>
 
-            {/* 1. Volumetric Light Blooms (Background) */}
-            <div className="absolute inset-x-0 top-0 h-[60vh]">
-                <div className="absolute top-[-10%] left-[10%] w-[600px] h-[600px] bg-primary/10 rounded-full blur-[140px] mix-blend-multiply opacity-60" />
-                <div className="absolute top-[5%] right-[10%] w-[800px] h-[800px] bg-orange-200/20 rounded-full blur-[160px] mix-blend-multiply opacity-50" />
-                <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-full max-w-4xl h-[400px] bg-white/80 blur-[100px] rounded-full z-10" />
+            {/* 1. Volumetric Light Blooms (Background) - OPTIMIZED: Replaced CSS blur with performant radial gradients */}
+            <div className="absolute inset-x-0 top-0 h-[60vh] pointer-events-none">
+                <div className="absolute top-[-10%] left-[10%] w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(242,78,107,0.15),transparent_70%)] mix-blend-multiply opacity-60" />
+                <div className="absolute top-[5%] right-[10%] w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,rgba(254,215,170,0.25),transparent_70%)] mix-blend-multiply opacity-50" />
+                <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-full max-w-4xl h-[400px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.8),transparent_60%)] z-10" />
             </div>
 
             {/* 2. Architectural 3D Infinite Floor Grid */}
@@ -104,9 +104,9 @@ export default function AnimatedBackground() {
             {/* 4. Advanced 3D Glass Monoliths (True depth) */}
             <div className="absolute inset-0 z-0 flex items-center justify-center transform-gpu">
 
-                {/* --- MONOLITH 1 (Right, Foreground) --- */}
+                {/* --- MONOLITH 1 (Right, Foreground) - OPTIMIZED: Reduced shadow complexity and blur --- */}
                 <motion.div
-                    className="absolute right-[5%] lg:right-[15%] w-72 h-96 rounded-[2.5rem] bg-white/20 backdrop-blur-2xl border border-white/60"
+                    className="absolute right-[5%] lg:right-[15%] w-72 h-96 rounded-[2.5rem] bg-white/20 backdrop-blur-md border border-white/60"
                     style={{
                         transformStyle: "preserve-3d",
                         y: m1Y,
@@ -114,11 +114,7 @@ export default function AnimatedBackground() {
                         rotateX: m1RotateX,
                         rotateY: -25,
                         willChange: "transform",
-                        boxShadow: `
-              0 30px 60px rgba(0,0,0,0.08), 
-              inset 0 1px 0 rgba(255,255,255,0.8),
-              inset 0 0 40px rgba(255,255,255,0.3)
-            `
+                        boxShadow: "0 20px 40px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.8)"
                     }}
                 >
                     {/* Inner 3D Layers (Pop out of the glass) */}
@@ -149,7 +145,7 @@ export default function AnimatedBackground() {
 
                 {/* --- MONOLITH 2 (Left, Background) --- */}
                 <motion.div
-                    className="hidden md:block absolute left-[3%] lg:left-[10%] w-56 h-72 rounded-[2rem] bg-white/10 backdrop-blur-xl border border-white/40"
+                    className="hidden md:block absolute left-[3%] lg:left-[10%] w-56 h-72 rounded-[2rem] bg-white/10 backdrop-blur-sm border border-white/40"
                     style={{
                         transformStyle: "preserve-3d",
                         y: m2Y,
@@ -157,7 +153,7 @@ export default function AnimatedBackground() {
                         rotateX: -10,
                         rotateY: m2RotateY,
                         willChange: "transform",
-                        boxShadow: "0 20px 40px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.4)"
+                        boxShadow: "0 10px 30px rgba(0,0,0,0.03)"
                     }}
                 >
                     <div className="absolute inset-0" style={{ transformStyle: "preserve-3d" }}>
@@ -186,9 +182,9 @@ export default function AnimatedBackground() {
                 </motion.div>
             </div>
 
-            {/* 5. Fluid Colored Orbs (Interactive feel) */}
+            {/* 5. Fluid Colored Orbs (Interactive feel) - OPTIMIZED: Radial gradient instead of blur */}
             <motion.div
-                className="absolute top-[30%] left-[20%] w-[500px] h-[500px] rounded-full bg-primary/4 blur-[120px]"
+                className="absolute top-[30%] left-[20%] w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle_at_center,rgba(242,78,107,0.08),transparent_70%)]"
                 animate={{
                     x: [0, 120, 0],
                     y: [0, -60, 0],
@@ -231,8 +227,7 @@ export default function AnimatedBackground() {
             {/* Bottom Fade out (Creates the infinite horizon effect) */}
             <div className="absolute inset-x-0 bottom-0 h-[40vh] bg-gradient-to-t from-[#FAFAFA] via-[#FAFAFA]/90 to-transparent z-10" />
 
-            {/* Global grain texture for filmic look */}
-            <div className="absolute inset-0 opacity-[0.25] mix-blend-overlay pointer-events-none" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cfilter id=\"noiseFilter\"%3E%3CfeTurbulence type=\"fractalNoise\" baseFrequency=\"0.85\" numOctaves=\"3\" stitchTiles=\"stitch\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23noiseFilter)\"/%3E%3C/svg%3E')" }}></div>
+            {/* OPTIMIZED: Removed SVG noise filter entirely as it destroys rendering performance on low-end laptops */}
         </div>
     );
 }
