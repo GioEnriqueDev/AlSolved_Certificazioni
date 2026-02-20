@@ -15,12 +15,12 @@ const logos = [
 function LogoPlaceholder({ name, abbrev }: { name: string; abbrev: string }) {
     return (
         <div className="flex items-center gap-3 px-8 group cursor-default">
-            <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-primary/30 group-hover:bg-primary/5 transition-all duration-300">
-                <span className="text-lg font-bold text-white/50 group-hover:text-primary transition-colors">
+            <div className="w-12 h-12 rounded-xl bg-secondary/30 border border-border/60 flex items-center justify-center group-hover:border-primary/40 group-hover:bg-primary/5 transition-all duration-300 shadow-sm">
+                <span className="text-lg font-bold text-muted-foreground group-hover:text-primary transition-colors">
                     {abbrev}
                 </span>
             </div>
-            <span className="text-lg font-semibold text-white/40 group-hover:text-white/70 transition-colors whitespace-nowrap">
+            <span className="text-lg font-semibold text-muted-foreground/70 group-hover:text-foreground transition-colors whitespace-nowrap">
                 {name}
             </span>
         </div>
@@ -29,10 +29,10 @@ function LogoPlaceholder({ name, abbrev }: { name: string; abbrev: string }) {
 
 export default function ClientLogos() {
     return (
-        <section className="py-16 bg-background border-y border-white/5 overflow-hidden">
-            <div className="container mx-auto px-6 text-center mb-10">
+        <section className="py-20 bg-transparent border-y border-border/40 overflow-hidden relative z-10 w-full">
+            <div className="container mx-auto px-6 text-center mb-12">
                 <motion.p
-                    className="text-sm font-bold text-primary uppercase tracking-widest"
+                    className="text-sm font-bold text-primary uppercase tracking-[0.2em]"
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -40,7 +40,7 @@ export default function ClientLogos() {
                     I Nostri Clienti
                 </motion.p>
                 <motion.h3
-                    className="text-2xl md:text-3xl font-bold mt-3 text-white"
+                    className="text-2xl md:text-4xl font-bold mt-4 text-foreground tracking-tight"
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -58,7 +58,7 @@ export default function ClientLogos() {
 
                 {/* Scrolling Container */}
                 <motion.div
-                    className="flex"
+                    className="flex py-4"
                     animate={{ x: [0, -1200] }}
                     transition={{
                         x: {
@@ -78,27 +78,27 @@ export default function ClientLogos() {
 
             {/* Trust Indicators */}
             <motion.div
-                className="container mx-auto px-6 mt-12 flex flex-wrap justify-center gap-8 md:gap-16"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
+                className="container mx-auto px-6 mt-16 flex flex-wrap justify-center gap-10 md:gap-20"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: 0.2 }}
             >
-                <div className="text-center">
-                    <div className="text-3xl font-bold text-white">250+</div>
-                    <div className="text-sm text-muted-foreground">Progetti Completati</div>
+                <div className="text-center group">
+                    <div className="text-4xl font-black text-foreground group-hover:text-primary transition-colors">250+</div>
+                    <div className="text-sm font-medium text-muted-foreground mt-2">Progetti Completati</div>
                 </div>
-                <div className="text-center">
-                    <div className="text-3xl font-bold text-white">98%</div>
-                    <div className="text-sm text-muted-foreground">Clienti Soddisfatti</div>
+                <div className="text-center group">
+                    <div className="text-4xl font-black text-foreground group-hover:text-primary transition-colors">98%</div>
+                    <div className="text-sm font-medium text-muted-foreground mt-2">Clienti Soddisfatti</div>
                 </div>
-                <div className="text-center">
-                    <div className="text-3xl font-bold text-white">15+</div>
-                    <div className="text-sm text-muted-foreground">Anni di Esperienza</div>
+                <div className="text-center group">
+                    <div className="text-4xl font-black text-foreground group-hover:text-primary transition-colors">15+</div>
+                    <div className="text-sm font-medium text-muted-foreground mt-2">Anni di Esperienza</div>
                 </div>
-                <div className="text-center">
-                    <div className="text-3xl font-bold text-primary">100%</div>
-                    <div className="text-sm text-muted-foreground">Audit Superati</div>
+                <div className="text-center group">
+                    <div className="text-4xl font-black text-primary">100%</div>
+                    <div className="text-sm font-medium text-muted-foreground mt-2">Audit Superati</div>
                 </div>
             </motion.div>
         </section>
