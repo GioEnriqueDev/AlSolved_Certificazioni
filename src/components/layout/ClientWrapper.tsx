@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { LoadingProvider } from "@/lib/LoadingContext";
 import Preloader from "@/components/ui/Preloader";
 import Navbar from "@/components/layout/Navbar";
-// import SmoothScroll from "@/components/ui/SmoothScroll";
+import SmoothScroll from "@/components/layout/SmoothScroll";
 
 interface ClientWrapperProps {
     children: React.ReactNode;
@@ -41,20 +41,20 @@ export default function ClientWrapper({ children }: ClientWrapperProps) {
 
     return (
         <LoadingProvider>
-            {/* <SmoothScroll> */}
-            {/* <FuzzyOverlay /> */}
-            {/* Preloader - only shows on first visit */}
-            {showPreloader && (
-                <Preloader onLoadingComplete={handleLoadingComplete} />
-            )}
+            <SmoothScroll>
+                {/* Preloader - only shows on first visit */}
+                {showPreloader && (
+                    <Preloader onLoadingComplete={handleLoadingComplete} />
+                )}
 
-            {/* Main Content */}
-            <div
-                className={`transition-opacity duration-300 ${showContent ? "opacity-100" : "opacity-0"}`}
-            >
-                <Navbar />
-                <main>{children}</main>
-            </div>
+                {/* Main Content */}
+                <div
+                    className={`transition-opacity duration-300 ${showContent ? "opacity-100" : "opacity-0"}`}
+                >
+                    <Navbar />
+                    <main>{children}</main>
+                </div>
+            </SmoothScroll>
         </LoadingProvider >
     );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 // Darker, subtle particles for the light theme
 const particles = [
@@ -17,8 +17,26 @@ const particles = [
 ];
 
 export default function AnimatedBackground() {
+    const { scrollYProgress } = useScroll();
+
+    // Map scroll progress to massive 3D transformations
+    const gridRotateX = useTransform(scrollYProgress, [0, 1], [80, 50]);
+    const gridY = useTransform(scrollYProgress, [0, 1], [0, 1000]);
+
+    // Monoliths flying forward as you scroll down
+    const m1Z = useTransform(scrollYProgress, [0, 1], [50, 800]);
+    const m1Y = useTransform(scrollYProgress, [0, 1], [-30, -300]);
+    const m1RotateX = useTransform(scrollYProgress, [0, 1], [15, 60]);
+
+    const m2Z = useTransform(scrollYProgress, [0, 1], [-100, 600]);
+    const m2Y = useTransform(scrollYProgress, [0, 1], [20, 200]);
+    const m2RotateY = useTransform(scrollYProgress, [0, 1], [20, -40]);
+
+    const haloZ = useTransform(scrollYProgress, [0, 1], [-300, 300]);
+    const haloRotateZ = useTransform(scrollYProgress, [0, 1], [0, 720]);
+
     return (
-        <div className="absolute inset-0 overflow-hidden pointer-events-none bg-[#FAFAFA]" style={{ perspective: "1500px" }}>
+        <div className="fixed inset-0 overflow-hidden pointer-events-none bg-[#FAFAFA] z-[-1]" style={{ perspective: "1500px" }}>
             {/* 1. Volumetric Light Blooms (Background) */}
             <div className="absolute inset-x-0 top-0 h-[60vh]">
                 <div className="absolute top-[-10%] left-[10%] w-[600px] h-[600px] bg-primary/10 rounded-full blur-[140px] mix-blend-multiply opacity-60" />
@@ -32,23 +50,14 @@ export default function AnimatedBackground() {
                     className="w-full h-[200%]"
                     style={{
                         transformStyle: "preserve-3d",
+                        rotateX: gridRotateX,
+                        y: gridY,
                         backgroundImage: `
               linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px),
               linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px)
             `,
                         backgroundSize: "80px 80px",
                         WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 60%)"
-                    }}
-                    animate={{
-                        y: [0, 80], // Move grid one block size down continuously
-                        rotateX: [80, 80], // Keep it flat
-                    }}
-                    transition={{
-                        y: {
-                            duration: 3,
-                            repeat: Infinity,
-                            ease: "linear",
-                        }
                     }}
                 />
             </div>
@@ -75,26 +84,19 @@ export default function AnimatedBackground() {
                     className="absolute right-[5%] lg:right-[15%] w-72 h-96 rounded-[2.5rem] bg-white/20 backdrop-blur-2xl border border-white/60"
                     style={{
                         transformStyle: "preserve-3d",
+                        y: m1Y,
+                        z: m1Z,
+                        rotateX: m1RotateX,
+                        rotateY: -25,
                         boxShadow: `
               0 30px 60px rgba(0,0,0,0.08), 
               inset 0 1px 0 rgba(255,255,255,0.8),
               inset 0 0 40px rgba(255,255,255,0.3)
             `
                     }}
-                    animate={{
-                        y: [-30, 30, -30],
-                        rotateX: [15, 5, 15],
-                        rotateY: [-25, -15, -25],
-                        z: [50, 100, 50] // Moving in and out of Z space
-                    }}
-                    transition={{
-                        duration: 20,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                    }}
                 >
                     {/* Inner 3D Layers (Pop out of the glass) */}
-                    <div className="absolute inset-0 preserve-3d">
+                    <div className="absolute inset-0 " style={{ transformStyle: "preserve-3d" }}>
                         {/* Certificate lines floating above glass */}
                         <div className="absolute top-10 left-8 h-1.5 rounded-full bg-gradient-to-r from-primary/30 to-transparent w-2/3 shadow-sm" style={{ transform: "translateZ(30px)" }} />
                         <div className="absolute top-16 left-8 h-1 rounded-full bg-black/10 w-1/2" style={{ transform: "translateZ(20px)" }} />
@@ -124,22 +126,14 @@ export default function AnimatedBackground() {
                     className="absolute left-[3%] lg:left-[10%] w-56 h-72 rounded-[2rem] bg-white/10 backdrop-blur-xl border border-white/40"
                     style={{
                         transformStyle: "preserve-3d",
+                        y: m2Y,
+                        z: m2Z,
+                        rotateX: -10,
+                        rotateY: m2RotateY,
                         boxShadow: "0 20px 40px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.4)"
                     }}
-                    animate={{
-                        y: [20, -20, 20],
-                        rotateX: [-10, 5, -10],
-                        rotateY: [20, 10, 20],
-                        z: [-100, -50, -100] // Further back
-                    }}
-                    transition={{
-                        duration: 25,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: 2,
-                    }}
                 >
-                    <div className="absolute inset-0 preserve-3d">
+                    <div className="absolute inset-0" style={{ transformStyle: "preserve-3d" }}>
                         <div className="absolute top-8 left-6 h-1 rounded-full bg-black/10 w-3/4" style={{ transform: "translateZ(15px)" }} />
                         <div className="absolute top-14 left-6 h-1 rounded-full bg-black/5 w-1/2" style={{ transform: "translateZ(10px)" }} />
                     </div>
@@ -148,17 +142,12 @@ export default function AnimatedBackground() {
                 {/* --- 3D RING / HALO (Center-Right, Far Background) --- */}
                 <motion.div
                     className="absolute top-1/4 right-[30%] w-96 h-96 rounded-full border-[1px] border-primary/20"
-                    style={{ transformStyle: "preserve-3d" }}
-                    animate={{
-                        rotateX: [60, 70, 60],
-                        rotateY: [20, 40, 20],
-                        rotateZ: [0, 180, 360],
-                        z: [-300, -300, -300]
-                    }}
-                    transition={{
-                        duration: 30,
-                        repeat: Infinity,
-                        ease: "linear",
+                    style={{
+                        transformStyle: "preserve-3d",
+                        z: haloZ,
+                        rotateX: 60,
+                        rotateY: 20,
+                        rotateZ: haloRotateZ
                     }}
                 >
                     {/* Inner overlapping rings */}

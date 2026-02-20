@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import TypewriterHero from "@/components/ui/TypewriterHero";
@@ -5,8 +7,8 @@ import AnimatedBackground from "@/components/ui/AnimatedBackground";
 import ClientLogos from "@/components/sections/ClientLogos";
 import ScrollProgressProcess from "@/components/sections/ScrollProgressProcess";
 import BentoStats from "@/components/sections/BentoStats";
-// import SpotlightCard from "@/components/ui/SpotlightCard";
 import FadeIn from "@/components/animations/FadeIn";
+import { motion } from "framer-motion";
 import {
   Settings2,
   ShieldCheck,
@@ -63,10 +65,37 @@ const certifications = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 50, filter: "blur(10px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 20
+    }
+  }
+};
+
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-background text-foreground overflow-x-hidden relative">
+    <div className="flex flex-col min-h-screen bg-transparent text-foreground overflow-x-hidden relative">
       <AnimatedBackground />
+
+      {/* TypewriterHero already has its own heavy animations */}
       <TypewriterHero
         painPoints={painPoints}
         solution="Certificata e Vincente."
@@ -75,7 +104,7 @@ export default function Home() {
       <ClientLogos />
 
       {/* ===================== CERTIFICATIONS SECTION ===================== */}
-      <section id="certificazioni" className="py-28 bg-white relative scroll-mt-20">
+      <section id="certificazioni" className="py-28 bg-transparent relative scroll-mt-20 z-10">
         <div className="container mx-auto px-6">
           <FadeIn className="text-center mb-20">
             <p className="text-sm font-bold text-primary uppercase tracking-[0.2em] mb-4">
@@ -89,13 +118,20 @@ export default function Home() {
             </p>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+          >
             {certifications.map((cert, i) => (
-              <div
+              <motion.div
                 key={i}
-                className="relative overflow-hidden rounded-3xl border border-border bg-gray-50/50 p-10 h-full hover:border-primary/20 hover:bg-white hover:shadow-soft-glow transition-all duration-300 hover:-translate-y-1 group"
+                variants={itemVariants}
+                className="relative overflow-hidden rounded-3xl border border-border bg-white/60 backdrop-blur-xl p-10 h-full hover:border-primary/30 hover:bg-white/90 hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-500 hover:-translate-y-2 group"
               >
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-orange-400 flex items-center justify-center mb-8 shadow-sm group-hover:scale-110 transition-transform duration-300">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-orange-400 flex items-center justify-center mb-8 shadow-sm group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
                   <cert.icon className="w-8 h-8 text-white" />
                 </div>
                 <p className="text-xs font-bold text-primary uppercase tracking-[0.15em] mb-3">
@@ -107,43 +143,49 @@ export default function Home() {
                 <p className="text-muted-foreground leading-relaxed text-sm font-medium">
                   {cert.description}
                 </p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      <ScrollProgressProcess />
-      <BentoStats />
+      <div className="relative z-10">
+        <ScrollProgressProcess />
+        <BentoStats />
+      </div>
 
       {/* ===================== FINAL CTA ===================== */}
-      <section id="cta" className="py-32 bg-secondary/20 relative overflow-hidden scroll-mt-20">
-        <div className="absolute inset-0 bg-gradient-to-t from-white/40 to-transparent pointer-events-none"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[150px] pointer-events-none"></div>
+      <section id="cta" className="py-32 bg-transparent relative overflow-hidden scroll-mt-20 z-10">
+        <div className="absolute inset-0 bg-gradient-to-t from-white/80 to-transparent pointer-events-none"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[150px] pointer-events-none"></div>
 
-        <div className="container mx-auto px-6 relative z-10 text-center">
-          <FadeIn>
-            <p className="text-sm font-bold text-primary uppercase tracking-[0.2em] mb-6">
-              Pronto a Iniziare?
-            </p>
-            <h2 className="text-5xl md:text-8xl font-black mb-8 leading-tight tracking-tighter text-foreground drop-shadow-sm">
-              Smetti di Perdere <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-400">Opportunità.</span>
-            </h2>
-            <p className="text-xl md:text-3xl text-muted-foreground mb-12 max-w-3xl mx-auto font-medium leading-relaxed">
-              Ogni giorno senza una certificazione è una gara persa, un talento sfuggito, un rischio in più. Prenota oggi il tuo check-up gratuito.
-            </p>
-            <Link href="/contatti">
-              <Button
-                size="lg"
-                className="h-16 px-12 text-xl font-bold rounded-full bg-primary hover:bg-primary/90 text-white shadow-[0_8px_30px_rgba(242,78,107,0.4)] hover:shadow-[0_12px_40px_rgba(242,78,107,0.5)] transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
-              >
-                Prenota il Check-up Gratuito
-                <ArrowRight className="ml-3 w-6 h-6" />
-              </Button>
-            </Link>
-          </FadeIn>
-        </div>
+        <motion.div
+          className="container mx-auto px-6 relative z-10 text-center"
+          initial={{ opacity: 0, scale: 0.9, y: 50 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true, margin: "-200px" }}
+        >
+          <p className="text-sm font-bold text-primary uppercase tracking-[0.2em] mb-6">
+            Pronto a Iniziare?
+          </p>
+          <h2 className="text-5xl md:text-8xl font-black mb-8 leading-tight tracking-tighter text-foreground drop-shadow-sm">
+            Smetti di Perdere <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-400">Opportunità.</span>
+          </h2>
+          <p className="text-xl md:text-3xl text-muted-foreground mb-12 max-w-3xl mx-auto font-medium leading-relaxed">
+            Ogni giorno senza una certificazione è una gara persa, un talento sfuggito, un rischio in più. Prenota oggi il tuo check-up gratuito.
+          </p>
+          <Link href="/contatti">
+            <Button
+              size="lg"
+              className="h-16 px-12 text-xl font-bold rounded-full bg-primary hover:bg-primary/90 text-white shadow-[0_8px_30px_rgba(242,78,107,0.4)] hover:shadow-[0_12px_40px_rgba(242,78,107,0.5)] transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
+            >
+              Prenota il Check-up Gratuito
+              <ArrowRight className="ml-3 w-6 h-6" />
+            </Button>
+          </Link>
+        </motion.div>
       </section>
     </div>
   );
