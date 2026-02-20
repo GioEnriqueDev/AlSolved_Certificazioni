@@ -58,7 +58,7 @@ export default function ClientLogos() {
 
                 {/* Scrolling Container */}
                 <motion.div
-                    className="flex py-4"
+                    className="flex py-4 will-change-transform"
                     animate={{ x: [0, -1200] }}
                     transition={{
                         x: {

@@ -88,8 +88,8 @@ export default function TypewriterHero({
 
     return (
         <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-transparent">
-            {/* Background Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[180px] pointer-events-none"></div>
+            {/* Background Glow - OPTIMIZED: radial gradient instead of blur filter */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,rgba(242,78,107,0.05),transparent_60%)] pointer-events-none z-[-1]"></div>
 
             <div className="container relative z-10 px-6 py-20 flex flex-col items-center text-center max-w-5xl mx-auto">
                 <AnimatePresence mode="wait">
@@ -136,7 +136,7 @@ export default function TypewriterHero({
                                 <Link href="/#certificazioni">
                                     <Button
                                         size="lg"
-                                        className="h-16 px-10 text-xl font-bold rounded-full bg-primary hover:bg-primary/90 text-white shadow-[0_8px_30px_rgba(242,78,107,0.4)] hover:shadow-[0_12px_40px_rgba(242,78,107,0.5)] transition-all hover:-translate-y-1"
+                                        className="h-16 px-10 text-xl font-bold rounded-full bg-primary hover:bg-primary/90 text-white shadow-[0_8px_20px_rgba(242,78,107,0.3)] transition-all hover:-translate-y-1 will-change-transform"
                                     >
                                         Scopri le Certificazioni
                                         <ArrowRight className="ml-3 w-6 h-6" />
@@ -146,7 +146,7 @@ export default function TypewriterHero({
                                     <Button
                                         variant="outline"
                                         size="lg"
-                                        className="h-16 px-10 text-xl font-semibold rounded-full border-2 border-border/80 hover:bg-secondary/50 hover:border-border transition-all hover:-translate-y-1 bg-white/50 backdrop-blur-sm"
+                                        className="h-16 px-10 text-xl font-semibold rounded-full border-2 border-border/80 hover:bg-secondary/50 hover:border-border transition-all hover:-translate-y-1 bg-white/50 backdrop-blur-sm will-change-transform"
                                     >
                                         Prenota Check-up Gratuito
                                     </Button>

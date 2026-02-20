@@ -131,7 +131,7 @@ export default function Home() {
               <motion.div
                 key={i}
                 variants={itemVariants}
-                className="relative overflow-hidden rounded-3xl border border-border bg-white/60 backdrop-blur-xl p-10 h-full hover:border-primary/30 hover:bg-white/90 hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-500 hover:-translate-y-2 group"
+                className="relative overflow-hidden rounded-3xl border border-border bg-white/80 backdrop-blur-sm p-10 h-full hover:border-primary/30 hover:bg-white transition-all duration-300 hover:-translate-y-2 group will-change-transform shadow-sm"
               >
                 <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-orange-400 flex items-center justify-center mb-8 shadow-sm group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
                   <cert.icon className="w-8 h-8 text-white" />
@@ -158,13 +158,7 @@ export default function Home() {
 
       {/* ===================== FINAL CTA ===================== */}
       <section id="cta" className="py-32 bg-transparent relative overflow-hidden scroll-mt-20 z-10">
-        <motion.div
-          className="absolute inset-0 z-[-1] opacity-30 mix-blend-multiply"
-          initial={{ scale: 1.1, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 0.3 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-          viewport={{ once: true }}
-        >
+        <div className="absolute inset-0 z-[-1] opacity-30 mix-blend-multiply">
           <Image
             src={abstractWavesImg}
             alt="CTA 3D Background"
@@ -172,9 +166,11 @@ export default function Home() {
             className="object-cover object-center"
             unoptimized
           />
-        </motion.div>
-        <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/50 to-transparent pointer-events-none z-[-1]"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[150px] pointer-events-none z-[-1]"></div>
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/70 to-transparent pointer-events-none z-[-1]"></div>
+
+        {/* OPTIMIZED: Replaced expensive 150px blur with a lightweight radial gradient */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,rgba(242,78,107,0.08),transparent_60%)] pointer-events-none z-[-1]"></div>
 
         <motion.div
           className="container mx-auto px-6 relative z-10 text-center"

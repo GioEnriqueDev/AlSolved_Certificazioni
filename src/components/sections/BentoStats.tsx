@@ -78,7 +78,7 @@ export default function BentoStats() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-50px" }}
                             transition={{ duration: 0.5, delay: i * 0.1 }}
-                            className={`relative p-10 rounded-3xl border border-border bg-gray-50/50 overflow-hidden group hover:border-primary/20 hover:shadow-soft-glow hover:bg-white transition-all duration-300 hover:-translate-y-1 ${stat.span || ""}`}
+                            className={`relative p-10 rounded-3xl border border-border bg-gray-50/50 overflow-hidden group hover:border-primary/20 hover:shadow-lg hover:bg-white transition-all duration-300 hover:-translate-y-1 will-change-transform ${stat.span || ""}`}
                         >
                             {/* Icon Background */}
                             <stat.icon className="absolute -bottom-6 -right-6 w-40 h-40 text-black/[0.02] group-hover:text-primary/5 transition-colors duration-500" />
