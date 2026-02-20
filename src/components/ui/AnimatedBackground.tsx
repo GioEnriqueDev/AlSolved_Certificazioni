@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
+import abstractGlassImg from "@/assets/images/abstract_3d_glass.png";
 
 // Darker, subtle particles for the light theme
 const particles = [
@@ -50,7 +51,7 @@ export default function AnimatedBackground() {
                 }}
             >
                 <Image
-                    src="/images/abstract_3d_glass.png"
+                    src={abstractGlassImg}
                     alt="Abstract 3D Background"
                     fill
                     className="object-cover object-center"

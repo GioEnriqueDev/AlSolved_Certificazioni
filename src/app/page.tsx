@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import abstractWavesImg from "../../public/images/abstract_3d_waves.png";
+import abstractWavesImg from "@/assets/images/abstract_3d_waves.png";
 import Link from "next/link";
 import TypewriterHero from "@/components/ui/TypewriterHero";
 import AnimatedBackground from "@/components/ui/AnimatedBackground";
