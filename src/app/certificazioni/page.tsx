@@ -122,7 +122,8 @@ export default function CertificazioniPage() {
                                     <div className="flex justify-between items-start mb-8">
                                         <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${cert.color} p-[1px] shadow-sm transform group-hover:scale-110 transition-transform duration-500`}>
                                             <div className="w-full h-full bg-white rounded-2xl flex items-center justify-center">
-                                                <cert.icon className={`w-8 h-8 text-transparent bg-clip-text bg-gradient-to-br ${cert.color}`} />
+                                                {/* FIXED: Removed bg-clip-text from the SVG icon as it causes rendering issues. Using the parent's gradient as a background for a wrapper, or directly applying a solid color */}
+                                                <cert.icon className="w-8 h-8 text-foreground/80 group-hover:text-foreground transition-colors" />
                                             </div>
                                         </div>
                                         <div className="bg-foreground/5 text-foreground px-4 py-1.5 rounded-full text-sm font-bold tracking-widest">
