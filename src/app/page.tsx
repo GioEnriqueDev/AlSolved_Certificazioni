@@ -8,7 +8,6 @@ import TypewriterHero from "@/components/ui/TypewriterHero";
 import AnimatedBackground from "@/components/ui/AnimatedBackground";
 import ClientLogos from "@/components/sections/ClientLogos";
 import ScrollProgressProcess from "@/components/sections/ScrollProgressProcess";
-import BentoStats from "@/components/sections/BentoStats";
 import FaqSection from "@/components/sections/FaqSection";
 import FadeIn from "@/components/animations/FadeIn";
 import { motion, AnimatePresence } from "framer-motion";
@@ -291,7 +290,6 @@ export default function Home() {
 
       <div className="relative z-10">
         <ScrollProgressProcess />
-        <BentoStats />
         <FaqSection />
       </div>
 
