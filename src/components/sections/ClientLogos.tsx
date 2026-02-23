@@ -4,12 +4,14 @@ import { motion } from "framer-motion";
 
 // Placeholder logos - replace with real client logos
 const logos = [
-    { name: "TechCorp Italia", abbrev: "TC" },
-    { name: "Global Logistics", abbrev: "GL" },
-    { name: "Finance Group", abbrev: "FG" },
-    { name: "Innovate Spa", abbrev: "IS" },
-    { name: "Energy Solutions", abbrev: "ES" },
-    { name: "Digital Factory", abbrev: "DF" },
+    { name: "Qualità ISO 9001", abbrev: "9001" },
+    { name: "Cybersecurity ISO 27001", abbrev: "27k" },
+    { name: "Ambiente ISO 14001", abbrev: "ESG" },
+    { name: "Sicurezza ISO 45001", abbrev: "81/08" },
+    { name: "Parità di Genere PdR 125", abbrev: "PdR" },
+    { name: "Compliance GDPR", abbrev: "DPO" },
+    { name: "Direttiva NIS2", abbrev: "NIS2" },
+    { name: "Automotive IATF 16949", abbrev: "IATF" },
 ];
 
 function LogoPlaceholder({ name, abbrev }: { name: string; abbrev: string }) {
@@ -37,7 +39,7 @@ export default function ClientLogos() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                 >
-                    I Nostri Clienti
+                    Standard Protocolli e Framework
                 </motion.p>
                 <motion.h3
                     className="text-2xl md:text-4xl font-bold mt-4 text-foreground tracking-tight"
@@ -46,7 +48,7 @@ export default function ClientLogos() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 }}
                 >
-                    Aziende che si fidano di ALSOLVED
+                    Standard Riconosciuti a Livello Globale
                 </motion.h3>
             </div>
 

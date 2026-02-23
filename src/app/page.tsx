@@ -10,7 +10,8 @@ import ClientLogos from "@/components/sections/ClientLogos";
 import ScrollProgressProcess from "@/components/sections/ScrollProgressProcess";
 import BentoStats from "@/components/sections/BentoStats";
 import FadeIn from "@/components/animations/FadeIn";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import {
   Settings2,
   ShieldCheck,
@@ -22,48 +23,58 @@ import {
 
 // Pain points for typewriter effect
 const painPoints = [
-  "Perde gare d'appalto?",
-  "Subisce controlli fiscali?",
-  "Non rispetta la GDPR?",
-  "Fatica ad attrarre talenti?",
+  "Vuoi accedere a nuovi mercati e appalti strutturati?",
+  "Devi ottimizzare e certificare i tuoi processi aziendali?",
+  "Vuoi garantire la massima sicurezza ai dati dei tuoi clienti?",
+  "Vuoi valorizzare il tuo team con la Parità di Genere?",
 ];
 
 // Certification data
 const certifications = [
   {
+    id: "iso-9001",
     title: "Business OS",
     subtitle: "ISO 9001",
     description:
       "Trasforma il caos in un sistema. Migliora l'efficienza operativa, riduci gli sprechi e aumenta la soddisfazione cliente. Indispensabile per vincere appalti pubblici.",
     icon: Settings2,
+    image: "/AlSolved_Certificazioni/images/certificazioni/business_os_iso_9001_1771842010174.png"
   },
   {
+    id: "iso-27001",
     title: "Cyber Shield",
     subtitle: "ISO 27001",
     description:
       "Proteggi i dati aziendali e quelli dei tuoi clienti. Rispetta GDPR e NIS2, evita sanzioni milionarie e diventa un partner affidabile.",
     icon: ShieldCheck,
+    image: "/AlSolved_Certificazioni/images/certificazioni/cyber_shield_iso_27001_1771842028487.png"
   },
   {
+    id: "iso-14001",
     title: "Green Badge",
     subtitle: "ISO 14001",
     description:
       "Dimostra il tuo impegno ambientale. Accedi a bandi ESG, migliora la reputazione e riduci i costi operativi legati all'energia.",
     icon: Leaf,
+    image: "/AlSolved_Certificazioni/images/certificazioni/green_badge_iso_14001_1771842046151.png"
   },
   {
+    id: "iso-45001",
     title: "Zero Infortuni",
     subtitle: "ISO 45001",
     description:
       "La sicurezza sul lavoro non è un costo, è un investimento. Riduci incidenti, premi assicurativi e rischi legali.",
     icon: HardHat,
+    image: "/AlSolved_Certificazioni/images/certificazioni/zero_infortuni_iso_45001_1771842068650.png"
   },
   {
+    id: "pdr-125",
     title: "Talent Magnet",
     subtitle: "UNI/PdR 125",
     description:
       "La certificazione Parità di Genere. Attrai i migliori talenti, ottieni sgravi fiscali fino a 50k€/anno e punteggi premiali nei bandi.",
     icon: Users,
+    image: "/AlSolved_Certificazioni/images/certificazioni/talent_magnet_pdr_125.png"
   },
 ];
 
@@ -92,6 +103,8 @@ const itemVariants = {
 };
 
 export default function Home() {
+  const [selectedCert, setSelectedCert] = useState<typeof certifications[0] | null>(null);
+
   return (
     <div className="flex flex-col min-h-screen bg-transparent text-foreground overflow-x-hidden relative">
       <AnimatedBackground />
@@ -99,8 +112,8 @@ export default function Home() {
       {/* TypewriterHero already has its own heavy animations */}
       <TypewriterHero
         painPoints={painPoints}
-        solution="Certificata e Vincente."
-        solutionSubtitle="Ottieni le certificazioni che aprono porte, vincono gare e proteggono il tuo business. Con ALSOLVED, la burocrazia diventa un vantaggio competitivo."
+        solution="Il Partner per le Normative."
+        solutionSubtitle="Affidati a un partner tecnologico per l'ottenimento delle certificazioni internazionali. Digitalizziamo la conformità per renderla un vero asset strategico, senza burocrazia inutile."
       />
       <ClientLogos />
 
@@ -126,29 +139,94 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true, margin: "-10%" }}
           >
-            {certifications.map((cert, i) => (
+            {certifications.map((cert) => (
               <motion.div
-                key={i}
+                key={cert.id}
+                layoutId={`cert-${cert.id}`}
+                onClick={() => setSelectedCert(cert)}
                 variants={itemVariants}
-                className="relative overflow-hidden rounded-3xl border border-border bg-white/95 p-10 h-full hover:border-primary/30 hover:bg-white transition-all duration-300 hover:-translate-y-2 group will-change-transform shadow-sm"
+                className="relative overflow-hidden rounded-3xl border border-border bg-white/95 p-10 h-full hover:border-primary/30 hover:bg-white transition-colors duration-300 md:hover:-translate-y-2 group will-change-transform shadow-sm cursor-pointer"
               >
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-orange-400 flex items-center justify-center mb-8 shadow-sm group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+                <motion.div layoutId={`icon-${cert.id}`} className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-orange-400 flex items-center justify-center mb-8 shadow-sm group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
                   <cert.icon className="w-8 h-8 text-white" />
-                </div>
-                <p className="text-xs font-bold text-primary uppercase tracking-[0.15em] mb-3">
+                </motion.div>
+                <motion.p layoutId={`subtitle-${cert.id}`} className="text-xs font-bold text-primary uppercase tracking-[0.15em] mb-3">
                   {cert.subtitle}
-                </p>
-                <h3 className="text-2xl font-bold text-foreground mb-4 tracking-tight">
+                </motion.p>
+                <motion.h3 layoutId={`title-${cert.id}`} className="text-2xl font-bold text-foreground mb-4 tracking-tight">
                   {cert.title}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed text-sm font-medium">
+                </motion.h3>
+                <motion.p layoutId={`desc-${cert.id}`} className="text-muted-foreground leading-relaxed text-sm font-medium">
                   {cert.description}
-                </p>
+                </motion.p>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
+
+      {/* Cinematic Modal for Certifications */}
+      <AnimatePresence>
+        {selectedCert && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedCert(null)}
+              className="fixed inset-0 bg-black/60 backdrop-blur-md z-[100] cursor-pointer"
+            />
+            <motion.div
+              layoutId={`cert-${selectedCert.id}`}
+              className="fixed inset-4 md:inset-10 lg:inset-x-40 lg:inset-y-20 z-[101] flex flex-col md:flex-row bg-white rounded-[2rem] overflow-hidden shadow-2xl"
+            >
+              {/* Image Side */}
+              <div className="w-full md:w-1/2 h-64 md:h-full relative overflow-hidden bg-black">
+                <Image
+                  src={selectedCert.image}
+                  alt={selectedCert.title}
+                  fill
+                  className="object-cover opacity-90 mix-blend-screen"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-transparent via-transparent to-white/10 mix-blend-overlay" />
+              </div>
+
+              {/* Content Side */}
+              <div className="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-center relative bg-white">
+                <button
+                  onClick={() => setSelectedCert(null)}
+                  className="absolute top-6 right-6 w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors"
+                >
+                  <span className="sr-only">Chiudi</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+
+                <motion.div layoutId={`icon-${selectedCert.id}`} className="w-20 h-20 rounded-[2rem] bg-gradient-to-br from-primary to-orange-400 flex items-center justify-center mb-8 shadow-lg">
+                  <selectedCert.icon className="w-10 h-10 text-white" />
+                </motion.div>
+
+                <motion.p layoutId={`subtitle-${selectedCert.id}`} className="text-sm font-bold text-primary uppercase tracking-[0.2em] mb-4">
+                  {selectedCert.subtitle}
+                </motion.p>
+                <motion.h3 layoutId={`title-${selectedCert.id}`} className="text-4xl md:text-5xl font-black text-foreground mb-6 tracking-tight">
+                  {selectedCert.title}
+                </motion.h3>
+                <motion.p layoutId={`desc-${selectedCert.id}`} className="text-lg md:text-xl text-muted-foreground leading-relaxed font-medium mb-10">
+                  {selectedCert.description}
+                  {" "}Affidarsi a una certificazione come {selectedCert.subtitle} significa trasformare gli obblighi normativi in un vantaggio competitivo tangibile.
+                </motion.p>
+
+                <Link href="/contatti" onClick={() => setSelectedCert(null)}>
+                  <Button size="lg" className="w-full md:w-auto h-16 px-10 text-xl font-bold rounded-full bg-primary hover:bg-primary/90 text-white shadow-[0_8px_30px_rgba(242,78,107,0.4)] transition-all transform hover:scale-105">
+                    Richiedi Fattibilità
+                    <ArrowRight className="ml-3 w-6 h-6" />
+                  </Button>
+                </Link>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       <div className="relative z-10">
         <ScrollProgressProcess />
