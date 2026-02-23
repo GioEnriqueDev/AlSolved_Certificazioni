@@ -1,6 +1,6 @@
 1:"$Sreact.fragment"
 3:I[48926,["/AlSolved_Certificazioni/_next/static/chunks/37967059b9668187.js","/AlSolved_Certificazioni/_next/static/chunks/8f0f65bd15cd8ae4.js"],"OutletBoundary"]
 4:"$Sreact.suspense"
-0:{"buildId":"fVU5TrwhfvgLxchcF2Yrp","rsc":["$","$1","c",{"children":["$L2",[["$","script","script-0",{"src":"/AlSolved_Certificazioni/_next/static/chunks/9be5ae79a4e9cf21.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
+0:{"buildId":"UJxrsVdq17ittBRvCp4-I","rsc":["$","$1","c",{"children":["$L2",[["$","script","script-0",{"src":"/AlSolved_Certificazioni/_next/static/chunks/50235482376e8d72.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
 5:null
 2:E{"digest":"NEXT_HTTP_ERROR_FALLBACK;404"}

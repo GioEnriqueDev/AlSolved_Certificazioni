@@ -15,6 +15,9 @@ const nextConfig: NextConfig = {
   },
 
   reactStrictMode: true,
+
+  // Required for proper routing on GitHub Pages static exports (so /certificazioni/[id] resolves to /certificazioni/[id]/index.html)
+  trailingSlash: true,
 };
 
 export default nextConfig;
