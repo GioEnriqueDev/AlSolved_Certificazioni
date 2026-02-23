@@ -1,4 +1,8 @@
-import { Settings2, ShieldCheck, Leaf, HardHat, Users, type LucideIcon } from "lucide-react";
+import {
+    Settings2, ShieldCheck, Leaf, HardHat, Users,
+    HeartHandshake, Scale, Utensils, Zap, Database,
+    Car, Plane, Stethoscope, type LucideIcon
+} from "lucide-react";
 
 export interface Certification {
     id: string;
@@ -19,10 +23,10 @@ export const certifications: Certification[] = [
         title: "Business OS",
         subtitle: "ISO 9001",
         description: "Trasforma il caos in un sistema operativo aziendale infallibile.",
-        target: "Aziende in crescita, B2B, fornitori PA e aziende che partecipano a bandi o gare d'appalto strutturate.",
-        deliverables: ["Gap Analysis completa", "Manuale della Qualità aziendale", "Procedure operative standardizzate (SOP)", "Affiancamento Audit Interno ed Esterno", "Certificato Ufficiale Accreditato"],
+        target: "Aziende in crescita, B2B, fornitori PA e chi partecipa a bandi o gare d'appalto strutturate.",
+        deliverables: ["Gap Analysis completa", "Manuale della Qualità", "Procedure (SOP)", "Affiancamento Audit", "Certificato Ufficiale"],
         timeline: "Da 8 a 12 settimane",
-        whyNow: "Senza la 9001 vieni escluso dalle gare d'appalto sopra certe soglie e perdi affidabilità agli occhi dei grandi committenti.",
+        whyNow: "Senza la 9001 vieni escluso dalle gare d'appalto sopra certe soglie e perdi affidabilità verso grandi committenti.",
         icon: Settings2,
         image: "/AlSolved_Certificazioni/images/certificazioni/business_os_iso_9001_1771842010174.png"
     },
@@ -30,11 +34,11 @@ export const certifications: Certification[] = [
         id: "iso-27001",
         title: "Cyber Shield",
         subtitle: "ISO 27001",
-        description: "Proteggi i dati aziendali e quelli dei tuoi clienti, evitando disastri legali e sanzioni.",
-        target: "Software House, IT, aziende che gestiscono dati medici/bancari o operano in settori critici (Direttiva NIS2).",
-        deliverables: ["Statement of Applicability (SoA)", "Piano di Risk Assessment (RA)", "Policy di Data Breach ed Encryption", "Formazione del personale", "Simulazione Audit di sicurezza"],
+        description: "Proteggi i dati critici, evitando disastri legali, ransomware e multe.",
+        target: "Software House, IT, cliniche, data center o aziende soggette alla Direttiva NIS2.",
+        deliverables: ["Statement of Applicability (SoA)", "Risk Assessment", "Policy Data Breach", "Formazione Staff"],
         timeline: "Da 12 a 16 settimane",
-        whyNow: "La direttiva NIS2 e il GDPR rendono la sicurezza obbligatoria. Un singolo data breach può costare il 4% del fatturato annuo.",
+        whyNow: "La direttiva NIS2 e il GDPR rendono la sicurezza obbligatoria. Un singolo data breach può costare il 4% del fatturato.",
         icon: ShieldCheck,
         image: "/AlSolved_Certificazioni/images/certificazioni/cyber_shield_iso_27001_1771842028487.png"
     },
@@ -42,11 +46,11 @@ export const certifications: Certification[] = [
         id: "iso-14001",
         title: "Green Badge",
         subtitle: "ISO 14001",
-        description: "Dimostra il tuo impegno per l'ambiente e accedi ai fondi ESG.",
-        target: "Aziende manifatturiere, trasporti, logistica, chimica ed edilizia.",
-        deliverables: ["Analisi Ambientale Iniziale", "Registro degli Impatti", "Piano di Gestione Emergenze", "Procedure per la riduzione degli sprechi"],
+        description: "Dimostra il tuo impegno per l'ambiente e accedi ai fondi e rating ESG.",
+        target: "Aziende manifatturiere, logistica, edilizia e industria chimica.",
+        deliverables: ["Analisi Ambientale Iniziale", "Registro degli Impatti", "Piano Emergenze"],
         timeline: "Da 8 a 12 settimane",
-        whyNow: "Il rating ESG è il nuovo standard bancario: senza 14001 sarà sempre più difficile ottenere prestiti agevolati o vincere bandi pubblici.",
+        whyNow: "Il rating ESG è il nuovo standard bancario: senza 14001 è difficile ottenere prestiti agevolati o vincere bandi pubblici.",
         icon: Leaf,
         image: "/AlSolved_Certificazioni/images/certificazioni/green_badge_iso_14001_1771842046151.png"
     },
@@ -54,11 +58,11 @@ export const certifications: Certification[] = [
         id: "iso-45001",
         title: "Zero Infortuni",
         subtitle: "ISO 45001",
-        description: "Trasforma la sicurezza sul lavoro in un investimento per evitare cause e blocchi aziendali.",
-        target: "Imprese edili, manifattura pesante, industria, logistica complessa.",
-        deliverables: ["Valutazione flussi normativi", "Documento di Valutazione Rischi integrato (DVR)", "Piani di sorveglianza sanitaria", "Affiancamento ispettivo"],
+        description: "Trasforma la sicurezza sul lavoro in un investimento per evitare cause.",
+        target: "Imprese edili, manifattura pesante, industria, cantieri complessi.",
+        deliverables: ["Valutazione flussi normativi", "DVR integrato", "Piani sorveglianza", "Affiancamento ispettivo"],
         timeline: "Da 10 a 14 settimane",
-        whyNow: "Un infortunio grave può bloccare il cantiere e portare a responsabilità penali. La 45001 offre inoltre sgravi INAIL (modello OT23).",
+        whyNow: "Un infortunio grave blocca l'azienda e porta a responsabilità penali. La 45001 offre inoltre grandi sgravi INAIL (OT23).",
         icon: HardHat,
         image: "/AlSolved_Certificazioni/images/certificazioni/zero_infortuni_iso_45001_1771842068650.png"
     },
@@ -67,11 +71,107 @@ export const certifications: Certification[] = [
         title: "Talent Magnet",
         subtitle: "UNI/PdR 125",
         description: "La certificazione sulla Parità di Genere per attrarre talenti e ottenere sgravi.",
-        target: "PMI da 15 a 50+ dipendenti interessate al welfare aziendale.",
-        deliverables: ["KPI Assessment Gender Gap", "Policy di Parità e Molestie", "Affiancamento comitato guida", "Pratica per esonero contributivo INPS"],
+        target: "PMI da 15+ dipendenti interessate al welfare aziendale, bandi ed HR.",
+        deliverables: ["KPI Assessment Gender Gap", "Policy di Parità e Molestie", "Pratica esonero INPS"],
         timeline: "Da 6 a 10 settimane",
-        whyNow: "Offre sgravi contributivi INPS fino a 50.000€ l'anno e punteggi premiali imbattibili nelle gare d'appalto pubbliche (PNRR).",
+        whyNow: "Offre sgravi contributivi INPS fino a 50.000€ l'anno e punteggi premiali imbattibili nelle gare d'appalto PNRR.",
         icon: Users,
         image: "/AlSolved_Certificazioni/images/certificazioni/talent_magnet_pdr_125.png"
     },
+    {
+        id: "sa-8000",
+        title: "Ethic Framework",
+        subtitle: "SA8000",
+        description: "Certifica l'impegno etico e la responsabilità sociale verso i lavoratori.",
+        target: "Brand della moda, manifattura etica, food & beverage, fornitori GDO.",
+        deliverables: ["Bilancio Sociale", "Valutazione fornitori (Supply Chain)", "Modello di segnalazione"],
+        timeline: "Da 10 a 14 settimane",
+        whyNow: "I consumatori e le multinazionali esigono etica. Senza SA8000 sei fuori dalla supply chain dei grandi brand.",
+        icon: HeartHandshake,
+        image: "/AlSolved_Certificazioni/images/certificazioni/sa8000_placeholder.png"
+    },
+    {
+        id: "iso-37001",
+        title: "Anti-Bribery",
+        subtitle: "ISO 37001",
+        description: "Combatti la corruzione e blinda la tua azienda da inchieste e reputazione rovinata.",
+        target: "Aziende strutturate, costruttori, società a controllo pubblico o concessionarie.",
+        deliverables: ["Due Diligence partner", "Policy Anti-corruzione", "Integrazione MOG 231"],
+        timeline: "Da 12 a 16 settimane",
+        whyNow: "Obbligatoria per molti contratti governativi. Fornisce un'esimente fortissima per la responsabilità penale d'impresa.",
+        icon: Scale,
+        image: "/AlSolved_Certificazioni/images/certificazioni/iso37001_placeholder.png"
+    },
+    {
+        id: "iso-22000",
+        title: "Food Safe",
+        subtitle: "ISO 22000",
+        description: "Gestione della sicurezza alimentare dall'azienda agricola fino alla tavola.",
+        target: "Produttori alimentari, trasporti refrigerati, packaging per alimenti, GDO.",
+        deliverables: ["Piano HACCP avanzato", "Analisi Pericoli (PRP e OPRP)", "Procedure ritiri/richiami"],
+        timeline: "Da 8 a 14 settimane",
+        whyNow: "Senza uno standard alimentare riconosciuto (ISO 22000, IFS, BRC) non puoi vendere nei grandi supermercati.",
+        icon: Utensils,
+        image: "/AlSolved_Certificazioni/images/certificazioni/iso22000_placeholder.png"
+    },
+    {
+        id: "iso-50001",
+        title: "Energy Saver",
+        subtitle: "ISO 50001",
+        description: "Abbatti i costi dell'energia e migliora l'efficienza degli impianti.",
+        target: "Industrie energivore (acciaierie, plastica, cartiere), grandi impianti, datacenter.",
+        deliverables: ["Diagnosi Energetica", "Baseline e Indicatori (EnPI)", "Piano d'azione risparmio"],
+        timeline: "Da 10 a 16 settimane",
+        whyNow: "In tempi di crisi energetica, la 50001 non è solo un certificato: è vero risparmio sui costi operativi e sblocco incentivi White Certificates.",
+        icon: Zap,
+        image: "/AlSolved_Certificazioni/images/certificazioni/iso50001_placeholder.png"
+    },
+    {
+        id: "iso-20000",
+        title: "IT Excellence",
+        subtitle: "ISO 20000-1",
+        description: "Fornisci servizi IT di qualità superiore che non si bloccano mai.",
+        target: "Managed Service Provider (MSP), cloud provider, dipartimenti IT interni complessi.",
+        deliverables: ["Service Level Agreement (SLA)", "Incident Management", "Change Management workflow"],
+        timeline: "Da 12 a 16 settimane",
+        whyNow: "I clienti IT esigono uptime vicini al 100%. È la dimostrazione che il tuo IT non è artigianale ma ingegneristico.",
+        icon: Database,
+        image: "/AlSolved_Certificazioni/images/certificazioni/iso20000_placeholder.png"
+    },
+    {
+        id: "iatf-16949",
+        title: "Auto Quality",
+        subtitle: "IATF 16949",
+        description: "Il passaporto esclusivo per entrare nella filiera produttiva automotive.",
+        target: "Fornitori di componenti auto, elettronica veicolare, materiali OEM.",
+        deliverables: ["APQP e PPAP", "FMEA di progettazione/processo", "Piani di controllo SPC/MSA"],
+        timeline: "Da 16 a 24 settimane (richiede ISO 9001)",
+        whyNow: "Per vendere a Stellantis, BMW o ai loro fornitori primari, questa certificazione è un requisito tassativo, non opzionale.",
+        icon: Car,
+        image: "/AlSolved_Certificazioni/images/certificazioni/iatf16949_placeholder.png"
+    },
+    {
+        id: "as-9100",
+        title: "Aero Space",
+        subtitle: "AS9100",
+        description: "Zero margine di errore. Rispettare i rigidi standard per l'aerospazio e difesa.",
+        target: "Aziende metalmeccaniche di precisione, elettronica militare, fornitori velivoli.",
+        deliverables: ["Traceability estrema", "Configuration Management", "Gestione parti contraffatte (FOD)"],
+        timeline: "Da 16 a 24 settimane",
+        whyNow: "Senza AS9100 è letteralmente illegale fornire componenti per aerei o per la difesa (es. Leonardo).",
+        icon: Plane,
+        image: "/AlSolved_Certificazioni/images/certificazioni/as9100_placeholder.png"
+    },
+    {
+        id: "iso-13485",
+        title: "Medical Grade",
+        subtitle: "ISO 13485",
+        description: "Requisiti per Dispositivi Medici, software salute (SaMD) e biomedicale.",
+        target: "Produttori di dispositivi medici, sviluppatori app salute, fornitori in outsourcing.",
+        deliverables: ["Fascicolo Tecnico (MDR)", "Gestione Rischio (ISO 14971)", "Sorveglianza Post-Commercializzazione"],
+        timeline: "Da 12 a 20 settimane",
+        whyNow: "Senza 13485 non ottieni la marcatura CE medica, rendendo il tuo prodotto non vendibile negli ospedali o in farmacia.",
+        icon: Stethoscope,
+        image: "/AlSolved_Certificazioni/images/certificazioni/iso13485_placeholder.png"
+    }
 ];

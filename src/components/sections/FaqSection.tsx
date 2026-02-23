@@ -40,7 +40,7 @@ export default function FaqSection() {
     };
 
     return (
-        <section className="py-24 bg-white relative z-10 border-t border-border/40 overflow-hidden">
+        <section className="py-16 md:py-24 bg-white relative z-10 border-t border-border/40 overflow-hidden">
             {/* Ambient Background Glows */}
             <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(242,78,107,0.03),transparent_60%)] pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(254,215,170,0.05),transparent_60%)] pointer-events-none" />
@@ -56,7 +56,7 @@ export default function FaqSection() {
                     <p className="text-sm font-bold text-primary uppercase tracking-[0.2em] mb-4">
                         Risposte Chiare
                     </p>
-                    <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground tracking-tight">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-foreground tracking-tight">
                         Domande Frequenti
                     </h2>
                     <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-medium">

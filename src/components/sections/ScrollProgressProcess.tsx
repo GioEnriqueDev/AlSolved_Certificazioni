@@ -42,7 +42,7 @@ export default function ScrollProgressProcess() {
     const progressWidth = useTransform(scrollYProgress, [0.1, 0.9], ["0%", "100%"]);
 
     return (
-        <section id="metodo" ref={containerRef} className="py-24 bg-secondary/20 relative overflow-hidden">
+        <section id="metodo" ref={containerRef} className="py-16 md:py-24 bg-secondary/20 relative overflow-hidden">
             {/* Progress Bar at Top - now part of section header, not sticky */}
             <div className="container mx-auto px-6">
                 {/* Progress Bar */}
@@ -57,7 +57,7 @@ export default function ScrollProgressProcess() {
                     <p className="text-sm font-bold text-primary uppercase tracking-[0.2em] mb-4">
                         Il Nostro Metodo
                     </p>
-                    <h2 className="text-4xl md:text-6xl font-bold mb-6 text-foreground tracking-tight">
+                    <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 text-foreground tracking-tight">
                         4 Step. Zero Burocrazia.
                     </h2>
                     <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto font-medium">

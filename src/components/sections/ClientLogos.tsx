@@ -42,7 +42,7 @@ export default function ClientLogos() {
                     Standard Protocolli e Framework
                 </motion.p>
                 <motion.h3
-                    className="text-2xl md:text-4xl font-bold mt-4 text-foreground tracking-tight"
+                    className="text-2xl sm:text-3xl md:text-4xl font-bold mt-4 text-foreground tracking-tight px-4"
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}

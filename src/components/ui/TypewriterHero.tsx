@@ -103,7 +103,7 @@ export default function TypewriterHero({
                             <p className="text-sm font-bold text-muted-foreground uppercase tracking-[0.2em]">
                                 La tua azienda...
                             </p>
-                            <h1 className="text-5xl md:text-8xl font-black tracking-tighter text-foreground min-h-[1.2em] leading-tight drop-shadow-sm">
+                            <h1 className="text-4xl sm:text-5xl md:text-8xl font-black tracking-tighter text-foreground min-h-[1.2em] leading-tight drop-shadow-sm">
                                 {displayText}
                                 <motion.span
                                     animate={{ opacity: [1, 0] }}
@@ -121,10 +121,10 @@ export default function TypewriterHero({
                             className="space-y-8"
                         >
                             {/* Premium Google-like gradient for text */}
-                            <h1 className="text-6xl md:text-9xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-br from-gray-900 via-gray-800 to-gray-500 leading-none pb-4 drop-shadow-sm">
+                            <h1 className="text-5xl sm:text-6xl md:text-9xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-br from-gray-900 via-gray-800 to-gray-500 leading-none pb-4 drop-shadow-sm">
                                 <SplitText text={solution} delay={0.03} />
                             </h1>
-                            <div className="text-xl md:text-3xl text-muted-foreground max-w-3xl mx-auto font-medium leading-relaxed">
+                            <div className="text-lg sm:text-xl md:text-3xl text-muted-foreground max-w-3xl mx-auto font-medium leading-relaxed px-4">
                                 <SplitText text={solutionSubtitle} delay={0.01} className="inline" />
                             </div>
                             <motion.div

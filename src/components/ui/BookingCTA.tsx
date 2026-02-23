@@ -3,12 +3,27 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CalendarCheck, FileCheck, ShieldCheck } from "lucide-react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 interface BookingCTAProps {
     googleFormUrl?: string;
 }
 
 export default function BookingCTA({ googleFormUrl = "#" }: BookingCTAProps) {
+    const [finalUrl, setFinalUrl] = useState(googleFormUrl);
+
+    useEffect(() => {
+        // Safe access to window object for static exports
+        if (typeof window !== "undefined") {
+            const params = new URLSearchParams(window.location.search);
+            const certId = params.get("cert");
+            if (certId && googleFormUrl !== "#") {
+                // Replace 'entry.123456789' with the actual field ID from Google Forms
+                // that corresponds to the 'Certificazione Richiesta' dropdown/text field.
+                setFinalUrl(`${googleFormUrl}?usp=pp_url&entry.PLACEHOLDER=${certId}`);
+            }
+        }
+    }, [googleFormUrl]);
     return (
         <div className="w-full max-w-2xl mx-auto p-1 rounded-3xl bg-transparent relative group overflow-hidden">
             {/* Glow Effect */}
@@ -47,7 +62,7 @@ export default function BookingCTA({ googleFormUrl = "#" }: BookingCTAProps) {
                 </div>
 
                 {/* CTA Button */}
-                <Link href={googleFormUrl} target="_blank" className="w-full">
+                <Link href={finalUrl} target="_blank" className="w-full">
                     <Button
                         size="lg"
                         className="w-full h-16 text-xl font-bold rounded-2xl bg-primary hover:bg-primary/90 text-white shadow-[0_8px_30px_rgba(242,78,107,0.4)] hover:shadow-[0_12px_40px_rgba(242,78,107,0.5)] transition-all group-hover:scale-[1.02] hover:-translate-y-1"

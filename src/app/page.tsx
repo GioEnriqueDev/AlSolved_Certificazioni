@@ -78,7 +78,7 @@ export default function Home() {
             <p className="text-sm font-bold text-primary uppercase tracking-[0.2em] mb-4">
               I Nostri Servizi
             </p>
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-foreground tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 leading-tight text-foreground tracking-tight">
               Scegli la Tua <span className="text-primary">Certificazione</span>
             </h2>
             <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto font-medium">
@@ -146,7 +146,7 @@ export default function Home() {
               </div>
 
               {/* Content Side - Cinematic Hero */}
-              <div className="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-center relative bg-white">
+              <div className="w-full md:w-1/2 p-6 sm:p-8 md:p-16 flex flex-col justify-center relative bg-white">
                 <button
                   onClick={() => setSelectedCert(null)}
                   className="absolute top-6 right-6 w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors z-10"
@@ -162,7 +162,7 @@ export default function Home() {
                 <motion.p layoutId={`subtitle-${selectedCert.id}`} className="text-sm font-bold text-primary uppercase tracking-[0.2em] mb-4">
                   {selectedCert.subtitle}
                 </motion.p>
-                <motion.h3 layoutId={`title-${selectedCert.id}`} className="text-4xl md:text-5xl font-black text-foreground mb-6 tracking-tight">
+                <motion.h3 layoutId={`title-${selectedCert.id}`} className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground mb-4 sm:mb-6 tracking-tight">
                   {selectedCert.title}
                 </motion.h3>
                 <motion.p layoutId={`desc-${selectedCert.id}`} className="text-lg md:text-xl text-muted-foreground leading-relaxed font-medium mb-10">
@@ -213,11 +213,11 @@ export default function Home() {
           <p className="text-sm font-bold text-primary uppercase tracking-[0.2em] mb-6">
             Pronto a Iniziare?
           </p>
-          <h2 className="text-5xl md:text-8xl font-black mb-8 leading-tight tracking-tighter text-foreground drop-shadow-sm">
+          <h2 className="text-4xl sm:text-5xl md:text-8xl font-black mb-8 leading-tight tracking-tighter text-foreground drop-shadow-sm">
             Smetti di Perdere <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-400">Opportunità.</span>
           </h2>
-          <p className="text-xl md:text-3xl text-muted-foreground mb-12 max-w-3xl mx-auto font-medium leading-relaxed">
+          <p className="text-lg sm:text-xl md:text-3xl text-muted-foreground mb-12 max-w-3xl mx-auto font-medium leading-relaxed px-4">
             Ogni giorno senza una certificazione è una gara persa, un talento sfuggito, un rischio in più. Prenota oggi il tuo check-up gratuito.
           </p>
           <Link href="/contatti">

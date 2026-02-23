@@ -59,7 +59,7 @@ export default function CertificationPage({ params }: { params: { id: string } }
                                     {cert.description}
                                 </p>
                                 <div className="flex flex-col sm:flex-row gap-4">
-                                    <Link href="/contatti">
+                                    <Link href={`/contatti?cert=${cert.id}`}>
                                         <Button size="lg" className="w-full sm:w-auto h-14 px-8 text-lg font-bold rounded-full shadow-[0_8px_30px_rgba(242,78,107,0.3)] hover:shadow-[0_8px_30px_rgba(242,78,107,0.5)] transition-all">
                                             Richiedi Audit Gratuito
                                         </Button>
@@ -187,7 +187,7 @@ export default function CertificationPage({ params }: { params: { id: string } }
                                                 <p className="text-sm font-medium text-muted-foreground mt-1">Dipende da dimensione aziendale e complessità dei processi.</p>
                                             </div>
 
-                                            <Link href="/contatti" className="block pt-4 border-t mt-4">
+                                            <Link href={`/contatti?cert=${cert.id}`} className="block pt-4 border-t mt-4">
                                                 <Button className="w-full h-14 text-lg font-bold rounded-xl" variant="default">
                                                     Parliamone Ora
                                                 </Button>
@@ -235,7 +235,7 @@ export default function CertificationPage({ params }: { params: { id: string } }
                     <p className="text-xl text-gray-400 font-medium mb-10">
                         Prenota un'analisi iniziale gratuita. In 15 minuti ti diamo chiara la fattibilità e i prossimi passi per la tua azienda.
                     </p>
-                    <Link href="/contatti">
+                    <Link href={`/contatti?cert=${cert.id}`}>
                         <Button size="lg" className="h-16 px-10 text-xl font-bold rounded-full bg-primary hover:bg-primary/90 text-white shadow-[0_0_40px_rgba(242,78,107,0.3)] transition-all transform hover:scale-105">
                             Prenota l'Analisi Gratuita
                         </Button>
