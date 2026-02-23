@@ -40,8 +40,12 @@ export default function FaqSection() {
     };
 
     return (
-        <section className="py-24 bg-gray-50 relative z-10 border-t border-border/40">
-            <div className="container mx-auto px-6 max-w-4xl">
+        <section className="py-24 bg-white relative z-10 border-t border-border/40 overflow-hidden">
+            {/* Ambient Background Glows */}
+            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(242,78,107,0.03),transparent_60%)] pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(254,215,170,0.05),transparent_60%)] pointer-events-none" />
+
+            <div className="container mx-auto px-6 max-w-4xl relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -68,7 +72,7 @@ export default function FaqSection() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className={`border rounded-2xl overflow-hidden transition-all duration-300 ${openIndex === index ? 'bg-white border-primary/30 shadow-md' : 'bg-white/60 border-border hover:border-primary/20'}`}
+                            className={`border rounded-2xl overflow-hidden transition-all duration-300 ${openIndex === index ? 'bg-white border-primary/20 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-sm' : 'bg-white/50 border-border hover:border-primary/20 hover:bg-white/80'}`}
                         >
                             <button
                                 onClick={() => toggleFaq(index)}
