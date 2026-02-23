@@ -19,9 +19,9 @@ import {
   HardHat,
   Users,
   ArrowRight,
-  Target,
-  Clock,
 } from "lucide-react";
+
+import { certifications } from "@/data/certificazioniData";
 
 // Pain points for typewriter effect
 const painPoints = [
@@ -31,70 +31,7 @@ const painPoints = [
   "Vuoi valorizzare il tuo team con la Parità di Genere?",
 ];
 
-// Certification data
-const certifications = [
-  {
-    id: "iso-9001",
-    title: "Business OS",
-    subtitle: "ISO 9001",
-    description: "Trasforma il caos in un sistema operativo aziendale infallibile.",
-    target: "Aziende in crescita, B2B, fornitori PA e aziende che partecipano a bandi o gare d'appalto strutturate.",
-    deliverables: ["Gap Analysis completa", "Manuale della Qualità aziendale", "Procedure operative standardizzate (SOP)", "Affiancamento Audit Interno ed Esterno", "Certificato Ufficiale Accreditato"],
-    timeline: "Da 8 a 12 settimane",
-    whyNow: "Senza la 9001 vieni escluso dalle gare d'appalto sopra certe soglie e perdi affidabilità agli occhi dei grandi committenti.",
-    icon: Settings2,
-    image: "/AlSolved_Certificazioni/images/certificazioni/business_os_iso_9001_1771842010174.png"
-  },
-  {
-    id: "iso-27001",
-    title: "Cyber Shield",
-    subtitle: "ISO 27001",
-    description: "Proteggi i dati aziendali e quelli dei tuoi clienti, evitando disastri legali e sanzioni.",
-    target: "Software House, IT, aziende che gestiscono dati medici/bancari o operano in settori critici (Direttiva NIS2).",
-    deliverables: ["Statement of Applicability (SoA)", "Piano di Risk Assessment (RA)", "Policy di Data Breach ed Encryption", "Formazione del personale", "Simulazione Audit di sicurezza"],
-    timeline: "Da 12 a 16 settimane",
-    whyNow: "La direttiva NIS2 e il GDPR rendono la sicurezza obbligatoria. Un singolo data breach può costare il 4% del fatturato annuo.",
-    icon: ShieldCheck,
-    image: "/AlSolved_Certificazioni/images/certificazioni/cyber_shield_iso_27001_1771842028487.png"
-  },
-  {
-    id: "iso-14001",
-    title: "Green Badge",
-    subtitle: "ISO 14001",
-    description: "Dimostra il tuo impegno per l'ambiente e accedi ai fondi ESG.",
-    target: "Aziende manifatturiere, trasporti, logistica, chimica ed edilizia.",
-    deliverables: ["Analisi Ambientale Iniziale", "Registro degli Impatti", "Piano di Gestione Emergenze", "Procedure per la riduzione degli sprechi"],
-    timeline: "Da 8 a 12 settimane",
-    whyNow: "Il rating ESG è il nuovo standard bancario: senza 14001 sarà sempre più difficile ottenere prestiti agevolati o vincere bandi pubblici.",
-    icon: Leaf,
-    image: "/AlSolved_Certificazioni/images/certificazioni/green_badge_iso_14001_1771842046151.png"
-  },
-  {
-    id: "iso-45001",
-    title: "Zero Infortuni",
-    subtitle: "ISO 45001",
-    description: "Trasforma la sicurezza sul lavoro in un investimento per evitare cause e blocchi aziendali.",
-    target: "Imprese edili, manifattura pesante, industria, logistica complessa.",
-    deliverables: ["Valutazione flussi normativi", "Documento di Valutazione Rischi integrato (DVR)", "Piani di sorveglianza sanitaria", "Affiancamento ispettivo"],
-    timeline: "Da 10 a 14 settimane",
-    whyNow: "Un infortunio grave può bloccare il cantiere e portare a responsabilità penali. La 45001 offre inoltre sgravi INAIL (modello OT23).",
-    icon: HardHat,
-    image: "/AlSolved_Certificazioni/images/certificazioni/zero_infortuni_iso_45001_1771842068650.png"
-  },
-  {
-    id: "pdr-125",
-    title: "Talent Magnet",
-    subtitle: "UNI/PdR 125",
-    description: "La certificazione sulla Parità di Genere per attrarre talenti e ottenere sgravi.",
-    target: "PMI da 15 a 50+ dipendenti interessate al welfare aziendale.",
-    deliverables: ["KPI Assessment Gender Gap", "Policy di Parità e Molestie", "Affiancamento comitato guida", "Pratica per esonero contributivo INPS"],
-    timeline: "Da 6 a 10 settimane",
-    whyNow: "Offre sgravi contributivi INPS fino a 50.000€ l'anno e punteggi premiali imbattibili nelle gare d'appalto pubbliche (PNRR).",
-    icon: Users,
-    image: "/AlSolved_Certificazioni/images/certificazioni/talent_magnet_pdr_125.png"
-  },
-];
-
+// Motion variants
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -198,90 +135,47 @@ export default function Home() {
               className="fixed inset-4 md:inset-10 lg:inset-x-40 lg:inset-y-20 z-[101] flex flex-col md:flex-row bg-white rounded-[2rem] overflow-hidden shadow-2xl"
             >
               {/* Image Side */}
-              <div className="hidden md:block w-full md:w-2/5 h-64 md:h-full relative overflow-hidden bg-black flex-shrink-0">
+              <div className="w-full md:w-1/2 h-64 md:h-full relative overflow-hidden bg-black">
                 <Image
                   src={selectedCert.image}
                   alt={selectedCert.title}
                   fill
                   className="object-cover opacity-90 mix-blend-screen"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-white/10 mix-blend-overlay" />
+                <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-transparent via-transparent to-white/10 mix-blend-overlay" />
               </div>
 
-              {/* Content Side - Scrolling Hub */}
-              <div className="w-full md:w-3/5 p-8 md:p-14 flex flex-col relative bg-white overflow-y-auto custom-scrollbar">
+              {/* Content Side - Cinematic Hero */}
+              <div className="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-center relative bg-white">
                 <button
                   onClick={() => setSelectedCert(null)}
-                  className="absolute top-6 right-6 w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors z-10 shadow-sm"
+                  className="absolute top-6 right-6 w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors z-10"
                 >
                   <span className="sr-only">Chiudi</span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                 </button>
 
-                <div className="max-w-3xl">
-                  <motion.div layoutId={`icon-${selectedCert.id}`} className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-orange-400 flex items-center justify-center mb-6 shadow-md">
-                    <selectedCert.icon className="w-8 h-8 text-white" />
-                  </motion.div>
+                <motion.div layoutId={`icon-${selectedCert.id}`} className="w-20 h-20 rounded-[2rem] bg-gradient-to-br from-primary to-orange-400 flex items-center justify-center mb-8 shadow-lg">
+                  <selectedCert.icon className="w-10 h-10 text-white" />
+                </motion.div>
 
-                  <motion.p layoutId={`subtitle-${selectedCert.id}`} className="text-sm font-bold text-primary uppercase tracking-[0.2em] mb-3">
-                    {selectedCert.subtitle}
-                  </motion.p>
-                  <motion.h3 layoutId={`title-${selectedCert.id}`} className="text-4xl md:text-5xl font-black text-foreground mb-4 tracking-tight">
-                    {selectedCert.title}
-                  </motion.h3>
+                <motion.p layoutId={`subtitle-${selectedCert.id}`} className="text-sm font-bold text-primary uppercase tracking-[0.2em] mb-4">
+                  {selectedCert.subtitle}
+                </motion.p>
+                <motion.h3 layoutId={`title-${selectedCert.id}`} className="text-4xl md:text-5xl font-black text-foreground mb-6 tracking-tight">
+                  {selectedCert.title}
+                </motion.h3>
+                <motion.p layoutId={`desc-${selectedCert.id}`} className="text-lg md:text-xl text-muted-foreground leading-relaxed font-medium mb-10">
+                  {selectedCert.description}
+                  {" "}Affidarsi a una certificazione come {selectedCert.subtitle} significa trasformare gli obblighi normativi in un vantaggio competitivo tangibile per la tua azienda.
+                </motion.p>
 
-                  {/* Technical Details Grid */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2, duration: 0.5 }}
-                    className="mt-10 space-y-8"
-                  >
-                    <div>
-                      <h4 className="flex items-center text-lg font-bold text-foreground mb-3 border-b pb-2">
-                        <Users className="w-5 h-5 mr-3 text-primary" /> Per Chi è Essenziale
-                      </h4>
-                      <p className="text-muted-foreground font-medium leading-relaxed">{selectedCert.target}</p>
-                    </div>
-
-                    <div>
-                      <h4 className="flex items-center text-lg font-bold text-foreground mb-3 border-b pb-2">
-                        <Target className="w-5 h-5 mr-3 text-primary" /> Il Vantaggio Strategico (Perché Ora)
-                      </h4>
-                      <p className="text-muted-foreground font-medium leading-relaxed">{selectedCert.whyNow}</p>
-                    </div>
-
-                    <div>
-                      <h4 className="flex items-center text-lg font-bold text-foreground mb-3 border-b pb-2">
-                        <Settings2 className="w-5 h-5 mr-3 text-primary" /> Cosa Consegniamo (Deliverables)
-                      </h4>
-                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
-                        {selectedCert.deliverables.map((item, idx) => (
-                          <li key={idx} className="flex items-start text-sm font-medium text-muted-foreground">
-                            <ShieldCheck className="w-4 h-4 mr-2 text-green-500 mt-0.5 flex-shrink-0" />
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div>
-                      <h4 className="flex items-center text-lg font-bold text-foreground mb-3 border-b pb-2">
-                        <Clock className="w-5 h-5 mr-3 text-primary" /> Timeline
-                      </h4>
-                      <p className="text-muted-foreground font-medium">{selectedCert.timeline}</p>
-                    </div>
-
-                    <div className="pt-8 pb-4">
-                      <Link href="/contatti" onClick={() => setSelectedCert(null)}>
-                        <Button size="lg" className="w-full md:w-auto h-16 px-10 text-xl font-bold rounded-full bg-primary hover:bg-primary/90 text-white shadow-[0_8px_30px_rgba(242,78,107,0.4)] transition-all transform hover:scale-105">
-                          Prenota Call di 15 min
-                          <ArrowRight className="ml-3 w-6 h-6" />
-                        </Button>
-                      </Link>
-                    </div>
-                  </motion.div>
-                </div>
+                <Link href={`/certificazioni/${selectedCert.id}`} className="w-full md:w-auto">
+                  <Button size="lg" className="w-full h-16 px-10 text-xl font-bold rounded-full bg-primary hover:bg-primary/90 text-white shadow-[0_8px_30px_rgba(242,78,107,0.4)] transition-all transform hover:scale-105 hover:-translate-y-1">
+                    Scopri i Dettagli
+                    <ArrowRight className="ml-3 w-6 h-6" />
+                  </Button>
+                </Link>
               </div>
             </motion.div>
           </>
