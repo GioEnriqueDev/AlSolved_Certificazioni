@@ -78,31 +78,7 @@ export default function ClientLogos() {
                 </motion.div>
             </div>
 
-            {/* Trust Indicators */}
-            <motion.div
-                className="container mx-auto px-6 mt-16 flex flex-wrap justify-center gap-10 md:gap-20"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: 0.2 }}
-            >
-                <div className="text-center group">
-                    <div className="text-4xl font-black text-foreground group-hover:text-primary transition-colors">250+</div>
-                    <div className="text-sm font-medium text-muted-foreground mt-2">Progetti Completati</div>
-                </div>
-                <div className="text-center group">
-                    <div className="text-4xl font-black text-foreground group-hover:text-primary transition-colors">98%</div>
-                    <div className="text-sm font-medium text-muted-foreground mt-2">Clienti Soddisfatti</div>
-                </div>
-                <div className="text-center group">
-                    <div className="text-4xl font-black text-foreground group-hover:text-primary transition-colors">15+</div>
-                    <div className="text-sm font-medium text-muted-foreground mt-2">Anni di Esperienza</div>
-                </div>
-                <div className="text-center group">
-                    <div className="text-4xl font-black text-primary">100%</div>
-                    <div className="text-sm font-medium text-muted-foreground mt-2">Audit Superati</div>
-                </div>
-            </motion.div>
+
         </section>
     );
 }
