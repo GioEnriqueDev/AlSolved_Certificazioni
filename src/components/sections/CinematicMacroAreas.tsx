@@ -11,8 +11,6 @@ const macroAreas = [
         subtitle: "Il fondamento delle aziende leader.",
         description: "Standard riconosciuti a livello globale per dominare i bandi di gara e garantire processi perfetti.",
         icon: Settings2,
-        color: "from-amber-500/20 to-orange-600/20",
-        borderHover: "hover:border-orange-500/50",
         textGradient: "from-amber-600 to-orange-600",
         certifications: [
             { id: "iso-9001", name: "ISO 9001" },
@@ -29,8 +27,6 @@ const macroAreas = [
         subtitle: "Protezione totale dei dati.",
         description: "Blinda il tuo business contro attacchi informatici e sanzioni GDPR milionarie.",
         icon: ShieldCheck,
-        color: "from-blue-500/20 to-indigo-600/20",
-        borderHover: "hover:border-blue-500/50",
         textGradient: "from-blue-600 to-indigo-600",
         certifications: [
             { id: "iso-27001", name: "ISO 27001" },
@@ -44,8 +40,6 @@ const macroAreas = [
         subtitle: "Il nuovo standard bancario.",
         description: "Accedi a fondi verdi, migliora il rating aziendale e dimostra il tuo impegno per il futuro.",
         icon: Leaf,
-        color: "from-emerald-500/20 to-green-600/20",
-        borderHover: "hover:border-emerald-500/50",
         textGradient: "from-emerald-600 to-green-600",
         certifications: [
             { id: "iso-14001", name: "ISO 14001" },
@@ -59,8 +53,6 @@ const macroAreas = [
         subtitle: "Zero infortuni, zero cause.",
         description: "Tutela i tuoi lavoratori, ottieni sgravi INAIL ed entra nelle supply chain etiche internazionali.",
         icon: HeartHandshake,
-        color: "from-rose-500/20 to-red-600/20",
-        borderHover: "hover:border-rose-500/50",
         textGradient: "from-rose-600 to-red-600",
         certifications: [
             { id: "iso-45001", name: "ISO 45001" },
@@ -103,14 +95,14 @@ export default function CinematicMacroAreas() {
                             whileInView={{ opacity: 1, scale: 1, y: 0 }}
                             viewport={{ once: true, margin: "-5%" }}
                             transition={{ duration: 0.6, delay: index * 0.1 }}
-                            className={`group relative overflow-hidden rounded-[2.5rem] bg-white border border-border/60 ${area.borderHover} transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 p-10 flex flex-col justify-between ${area.className}`}
+                            className={`group relative overflow-hidden rounded-[2.5rem] bg-white border border-border/40 transition-all duration-500 hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] hover:-translate-y-1 hover:border-border p-10 flex flex-col justify-between ${area.className}`}
                         >
-                            {/* Abstract Ambient Gradient */}
-                            <div className={`absolute inset-0 bg-gradient-to-br ${area.color} opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
+                            {/* Subtle inner glow on hover */}
+                            <div className={`absolute inset-0 bg-gradient-to-br from-transparent to-black/[0.01] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
 
                             <div className="relative z-10">
-                                <div className="w-16 h-16 rounded-2xl bg-gray-50 flex items-center justify-center mb-8 shadow-sm group-hover:bg-white transition-colors duration-300">
-                                    <area.icon className={`w-8 h-8 text-foreground group-hover:scale-110 transition-transform duration-500`} />
+                                <div className="w-14 h-14 rounded-2xl bg-gray-50/80 border border-border/50 flex items-center justify-center mb-8 shadow-sm group-hover:bg-white group-hover:border-border transition-all duration-300">
+                                    <area.icon className={`w-6 h-6 text-foreground group-hover:scale-110 transition-transform duration-500`} />
                                 </div>
                                 <h3 className={`text-3xl md:text-4xl font-black tracking-tight mb-2 text-foreground`}>
                                     {area.title}
@@ -123,20 +115,20 @@ export default function CinematicMacroAreas() {
                                 </p>
                             </div>
 
-                            <div className="relative z-10 mt-12 pt-8 border-t border-border/40">
+                            <div className="relative z-10 mt-12 pt-8 border-t border-border/30">
                                 <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4">Certificazioni Incluse</p>
                                 <div className="flex flex-wrap gap-2 mb-8">
                                     {area.certifications.map((cert) => (
                                         <Link key={cert.id} href={`/certificazioni/${cert.id}`}>
-                                            <span className="inline-flex items-center px-4 py-2 rounded-xl bg-secondary/30 text-sm font-bold text-foreground hover:bg-primary hover:text-white transition-colors cursor-pointer shadow-sm">
+                                            <span className="inline-flex items-center px-4 py-2 rounded-xl bg-gray-50 border border-border/50 text-sm font-bold text-foreground hover:bg-white hover:border-primary/30 hover:shadow-sm transition-all cursor-pointer">
                                                 {cert.name}
                                             </span>
                                         </Link>
                                     ))}
                                 </div>
-                                <Link href="/contatti" className="inline-flex items-center gap-2 text-primary font-bold text-lg hover:text-primary/80 transition-colors group/link">
+                                <Link href="/contatti" className="inline-flex items-center gap-2 text-foreground font-bold text-lg hover:text-primary transition-colors group/link">
                                     Richiedi Analisi
-                                    <ArrowRight className="w-5 h-5 group-hover/link:translate-x-2 transition-transform" />
+                                    <ArrowRight className="w-5 h-5 group-hover/link:translate-x-1 transition-transform" />
                                 </Link>
                             </div>
                         </motion.div>

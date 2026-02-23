@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import abstractWavesImg from "@/assets/images/abstract_3d_waves.png";
 import Link from "next/link";
-import TypewriterHero from "@/components/ui/TypewriterHero";
+import HeroSection from "@/components/ui/HeroSection";
 import AnimatedBackground from "@/components/ui/AnimatedBackground";
 import ClientLogos from "@/components/sections/ClientLogos";
 import ScrollProgressProcess from "@/components/sections/ScrollProgressProcess";
@@ -12,24 +12,12 @@ import CinematicMacroAreas from "@/components/sections/CinematicMacroAreas";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
-// Pain points for typewriter effect
-const painPoints = [
-  "Vuoi accedere a nuovi mercati e appalti strutturati?",
-  "Devi ottimizzare e certificare i tuoi processi aziendali?",
-  "Vuoi garantire la massima sicurezza ai dati dei tuoi clienti?",
-  "Vuoi valorizzare il tuo team con la Parità di Genere?",
-];
-
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-transparent text-foreground overflow-x-hidden relative">
       <AnimatedBackground />
 
-      <TypewriterHero
-        painPoints={painPoints}
-        solution="Il Partner per le Normative."
-        solutionSubtitle="Affidati a un partner tecnologico per l'ottenimento delle certificazioni internazionali. Digitalizziamo la conformità per renderla un vero asset strategico, senza burocrazia inutile."
-      />
+      <HeroSection />
 
       <ClientLogos />
 
