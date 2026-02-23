@@ -79,11 +79,10 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 50, filter: "blur(10px)" },
+  hidden: { opacity: 0, y: 50 },
   visible: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
     transition: {
       type: "spring",
       stiffness: 100,
@@ -131,7 +130,7 @@ export default function Home() {
               <motion.div
                 key={i}
                 variants={itemVariants}
-                className="relative overflow-hidden rounded-3xl border border-border bg-white/80 backdrop-blur-sm p-10 h-full hover:border-primary/30 hover:bg-white transition-all duration-300 hover:-translate-y-2 group will-change-transform shadow-sm"
+                className="relative overflow-hidden rounded-3xl border border-border bg-white/95 p-10 h-full hover:border-primary/30 hover:bg-white transition-all duration-300 hover:-translate-y-2 group will-change-transform shadow-sm"
               >
                 <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-orange-400 flex items-center justify-center mb-8 shadow-sm group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
                   <cert.icon className="w-8 h-8 text-white" />

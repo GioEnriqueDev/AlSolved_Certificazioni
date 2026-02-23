@@ -89,7 +89,7 @@ export default function AnimatedBackground() {
 
             {/* 3. Volumetric Ray (Sweeps across the scene) */}
             <motion.div
-                className="absolute bottom-1/4 left-[-30%] w-[160%] h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent blur-[2px] rotate-[12deg]"
+                className="absolute bottom-1/4 left-[-30%] w-[160%] h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent rotate-[12deg]"
                 animate={{
                     y: ['-80vh', '120vh'],
                     opacity: [0, 1, 1, 0]
@@ -106,7 +106,7 @@ export default function AnimatedBackground() {
 
                 {/* --- MONOLITH 1 (Right, Foreground) - OPTIMIZED: Reduced shadow complexity and blur --- */}
                 <motion.div
-                    className="absolute right-[5%] lg:right-[15%] w-72 h-96 rounded-[2.5rem] bg-white/20 backdrop-blur-md border border-white/60"
+                    className="absolute right-[5%] lg:right-[15%] w-72 h-96 rounded-[2.5rem] bg-white/60 border border-white/60"
                     style={{
                         transformStyle: "preserve-3d",
                         y: m1Y,
@@ -126,7 +126,7 @@ export default function AnimatedBackground() {
 
                         {/* Floating Shield Seal */}
                         <div
-                            className="absolute bottom-10 right-10 w-20 h-20 rounded-full bg-white/40 border border-white/80 shadow-[0_10px_30px_rgba(242,78,107,0.15)] flex items-center justify-center backdrop-blur-md"
+                            className="absolute bottom-10 right-10 w-20 h-20 rounded-full bg-white/80 border border-white/80 shadow-[0_10px_30px_rgba(242,78,107,0.15)] flex items-center justify-center"
                             style={{ transform: "translateZ(50px)" }}
                         >
                             <div className="w-10 h-10 rounded-full border-2 border-primary/40 flex items-center justify-center relative">
@@ -145,7 +145,7 @@ export default function AnimatedBackground() {
 
                 {/* --- MONOLITH 2 (Left, Background) --- */}
                 <motion.div
-                    className="hidden md:block absolute left-[3%] lg:left-[10%] w-56 h-72 rounded-[2rem] bg-white/10 backdrop-blur-sm border border-white/40"
+                    className="hidden md:block absolute left-[3%] lg:left-[10%] w-56 h-72 rounded-[2rem] bg-white/50 border border-white/40"
                     style={{
                         transformStyle: "preserve-3d",
                         y: m2Y,
