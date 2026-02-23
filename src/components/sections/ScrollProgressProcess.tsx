@@ -2,33 +2,33 @@
 
 import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Search, FileText, Gavel, ShieldCheck } from "lucide-react";
+import { Search, FileText, Gavel, ShieldCheck, Users, Lightbulb, Target } from "lucide-react";
 import FadeIn from "@/components/animations/FadeIn";
 
 const steps = [
     {
-        icon: Search,
-        title: "1. Check-up Gratuito",
+        icon: Users,
+        title: "1. Analisi Iniziale (Gap Analysis)",
         description:
-            "Analizziamo i tuoi processi attuali e identifichiamo i gap rispetto allo standard. In 48h hai un report chiaro.",
+            "Fotografiamo la situazione attuale della tua azienda per capire cosa manca rispetto ai requisiti della norma scelta.",
     },
     {
-        icon: FileText,
-        title: "2. Ottimizzazione & Documenti",
+        icon: Lightbulb,
+        title: "2. Documentazione Pronta & Affiancamento",
         description:
-            "Creiamo tutta la documentazione necessaria con i nostri tool, riducendo il carico sul tuo team al minimo.",
-    },
-    {
-        icon: Gavel,
-        title: "3. Audit Interno",
-        description:
-            "Simuliamo l'ispezione ufficiale per garantire una preparazione impeccabile. Nessuna sorpresa.",
+            "Niente burocrazia impossibile. Prepariamo noi i manuali, le procedure e la documentazione tecnica, adattandola alla tua realtà lavorativa senza stravolgerla.",
     },
     {
         icon: ShieldCheck,
-        title: "4. Certificazione",
+        title: "3. Implementazione e Formazione",
         description:
-            "Ti affianchiamo durante l'audit dell'ente certificatore fino al rilascio del certificato ufficiale.",
+            "Ti affianchiamo nell'applicazione pratica delle procedure. Formiamo il tuo team (se necessario) per far diventare la norma un'abitudine utile, non un peso.",
+    },
+    {
+        icon: Target,
+        title: "4. Audit e Rilascio Certificato",
+        description:
+            "Gestiamo noi il rapporto con l'Ente Certificatore. Ti accompagniamo il giorno dell'Audit per garantire il superamento e il rilascio della certificazione.",
     },
 ];
 

@@ -138,7 +138,7 @@ export default function TypewriterHero({
                                         size="lg"
                                         className="h-16 px-10 text-xl font-bold rounded-full bg-primary hover:bg-primary/90 text-white shadow-[0_8px_20px_rgba(242,78,107,0.3)] transition-all hover:-translate-y-1 will-change-transform"
                                     >
-                                        Scopri le Certificazioni
+                                        Esplora le Certificazioni
                                         <ArrowRight className="ml-3 w-6 h-6" />
                                     </Button>
                                 </Link>
@@ -148,7 +148,7 @@ export default function TypewriterHero({
                                         size="lg"
                                         className="h-16 px-10 text-xl font-semibold rounded-full border-2 border-border/80 hover:bg-secondary/50 hover:border-border transition-all hover:-translate-y-1 bg-white/50 backdrop-blur-sm will-change-transform"
                                     >
-                                        Prenota Check-up Gratuito
+                                        Prenota Call (15 min)
                                     </Button>
                                 </Link>
                             </motion.div>

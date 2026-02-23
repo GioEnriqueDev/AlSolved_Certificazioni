@@ -2,21 +2,60 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { TrendingUp, Clock, Award, Users } from "lucide-react";
+import { TrendingUp, Clock, Award, Users, CheckCircle2 } from "lucide-react";
 
 interface StatItem {
     label: string;
     value: number;
     suffix: string;
+    description: string;
     icon: React.ElementType;
-    span?: string; // For grid sizing
+    colSpan?: string; // For grid sizing
+    bgClass: string;
+    textClass: string;
 }
 
 const stats: StatItem[] = [
-    { label: "Successo Audit", value: 100, suffix: "%", icon: Award, span: "md:col-span-2" },
-    { label: "Tempi Medi Ridotti", value: 50, suffix: "%", icon: Clock },
-    { label: "Aziende Servite", value: 500, suffix: "+", icon: Users },
-    { label: "Risparmio Fiscale Generato", value: 2, suffix: "M €", icon: TrendingUp, span: "md:col-span-2" },
+    {
+        label: "Progetti Completati",
+        value: 65,
+        suffix: "+",
+        description: "Aziende certificate con successo",
+        icon: Users,
+        colSpan: "col-span-12 md:col-span-6 lg:col-span-4",
+        bgClass: "bg-primary/5 border-primary/20",
+        textClass: "text-primary",
+    },
+    {
+        label: "Audit Superati 1° Colpo",
+        value: 100,
+        suffix: "%",
+        description: "Garanzia di risultato al primo tentativo",
+        icon: CheckCircle2,
+        colSpan: "col-span-12 md:col-span-6 lg:col-span-8",
+        bgClass: "bg-orange-500/5 border-orange-500/20",
+        textClass: "text-orange-500",
+    },
+    {
+        label: "Tempo Medio",
+        value: 8,
+        suffix: " Sett.",
+        description: "Per l'ottenimento della certificazione (variabile a 12 per progetti complessi)",
+        icon: Clock,
+        colSpan: "col-span-12 lg:col-span-8",
+        bgClass: "bg-blue-500/5 border-blue-500/20",
+        textClass: "text-blue-500",
+    },
+    {
+        label: "Sanzioni Evitate",
+        value: 100,
+        suffix: "%",
+        description: "Protezione totale su dati e sicurezza (GDPR, Sicurezza Macchine)",
+        icon: TrendingUp,
+        colSpan: "col-span-12 md:col-span-6 lg:col-span-4",
+        bgClass: "bg-emerald-500/5 border-emerald-500/20",
+        textClass: "text-emerald-500",
+    },
 ];
 
 function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
@@ -78,7 +117,7 @@ export default function BentoStats() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-50px" }}
                             transition={{ duration: 0.5, delay: i * 0.1 }}
-                            className={`relative p-10 rounded-3xl border border-border bg-gray-50/50 overflow-hidden group hover:border-primary/20 hover:shadow-lg hover:bg-white transition-all duration-300 hover:-translate-y-1 will-change-transform ${stat.span || ""}`}
+                            className={`relative p-10 rounded-3xl border border-border bg-gray-50/50 overflow-hidden group hover:border-primary/20 hover:shadow-lg hover:bg-white transition-all duration-300 hover:-translate-y-1 will-change-transform ${stat.colSpan || ""}`}
                         >
                             {/* Icon Background */}
                             <stat.icon className="absolute -bottom-6 -right-6 w-40 h-40 text-black/[0.02] group-hover:text-primary/5 transition-colors duration-500" />
