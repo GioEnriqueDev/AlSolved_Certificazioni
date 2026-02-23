@@ -23,13 +23,18 @@ export default function HeroSection() {
                         Il Partner Tecnologico per le Normative
                     </p>
 
-                    <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-br from-gray-900 via-gray-800 to-gray-500 leading-[1.1] pb-4 drop-shadow-sm mx-auto max-w-4xl">
-                        <SplitText text="Digitalizziamo la conformità." delay={0.02} />
+                    <motion.h1
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter text-foreground leading-[1.05] pb-4 drop-shadow-sm mx-auto max-w-4xl"
+                    >
+                        Digitalizziamo la conformità.
                         <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-400">
-                            <SplitText text="Sblocchiamo nuovi mercati." delay={0.02} />
+                            Sblocchiamo nuovi mercati.
                         </span>
-                    </h1>
+                    </motion.h1>
 
                     <div className="text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto font-medium leading-relaxed px-4">
                         <SplitText text="Affidati a esperti per l'ottenimento delle certificazioni internazionali. Trasformiamo la burocrazia in un asset strategico per far crescere il tuo business." delay={0.01} className="inline" />
