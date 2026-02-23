@@ -42,7 +42,7 @@ export default function ScrollProgressProcess() {
     const progressWidth = useTransform(scrollYProgress, [0.1, 0.9], ["0%", "100%"]);
 
     return (
-        <section id="metodo" ref={containerRef} className="py-16 md:py-24 bg-secondary/20 relative overflow-hidden">
+        <section id="metodo" ref={containerRef} className="py-24 md:py-32 bg-white relative overflow-hidden border-t border-border/40">
             {/* Progress Bar at Top - now part of section header, not sticky */}
             <div className="container mx-auto px-6">
                 {/* Progress Bar */}
@@ -53,11 +53,11 @@ export default function ScrollProgressProcess() {
                     />
                 </div>
 
-                <FadeIn className="text-center mb-16">
+                <FadeIn className="text-center mb-24">
                     <p className="text-sm font-bold text-primary uppercase tracking-[0.2em] mb-4">
                         Il Nostro Metodo
                     </p>
-                    <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 text-foreground tracking-tight">
+                    <h2 className="text-4xl sm:text-5xl md:text-7xl font-black mb-6 text-foreground tracking-tighter leading-tight">
                         4 Step. Zero Burocrazia.
                     </h2>
                     <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto font-medium">
@@ -70,7 +70,7 @@ export default function ScrollProgressProcess() {
                         <FadeIn
                             key={i}
                             delay={i * 0.1}
-                            className="relative p-8 rounded-3xl border border-border bg-white hover:bg-gray-50 hover:border-primary/20 hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] transition-all duration-300 group hover:-translate-y-1"
+                            className="relative p-10 rounded-[2.5rem] border border-border/50 bg-white hover:border-primary/20 hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] transition-all duration-500 group"
                         >
                             {/* Step Number Background */}
                             <div className="absolute top-4 right-6 text-8xl font-black text-black/[0.03] select-none group-hover:text-primary/5 transition-colors duration-500">

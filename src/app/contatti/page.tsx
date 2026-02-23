@@ -28,7 +28,7 @@ const contactInfo = [
         icon: MapPin,
         label: "Sede",
         value: "Via Bargoni 78, Roma",
-        href: "https://maps.google.com",
+        href: "https://www.google.com/maps/dir//Alsolved,+Via+Angelo+Bargoni,+78,+00153+Roma+RM/@41.8806996,12.4645128,17z/data=!4m17!1m7!3m6!1s0x13258af33987327d:0x2243ca7dd841e0eb!2sAlsolved!8m2!3d41.8806957!4d12.4691262!16s%2Fg%2F11cm0gx4g8!4m8!1m0!1m5!1m1!1s0x13258af33987327d:0x2243ca7dd841e0eb!2m2!1d12.4691262!2d41.8806957!3e3?entry=ttu&g_ep=EgoyMDI2MDIxOC4wIKXMDSoASAFQAw%3D%3D",
     },
     {
         icon: Clock,
