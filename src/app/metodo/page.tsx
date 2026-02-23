@@ -1,14 +1,12 @@
-import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/sections/Footer";
 import FadeIn from "@/components/animations/FadeIn";
-import { CheckCircle2, ShieldCheck, Users, Search, FileText, Settings, Award } from "lucide-react";
+import { ShieldCheck, Search, FileText, Settings, Award } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export default function MetodoPage() {
     return (
         <div className="flex flex-col min-h-screen bg-gray-50">
-            <Navbar />
 
             {/* Hero Section */}
             <section className="relative pt-40 pb-20 overflow-hidden bg-white border-b border-border/50">

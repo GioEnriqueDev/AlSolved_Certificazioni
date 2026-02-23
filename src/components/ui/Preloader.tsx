@@ -22,12 +22,12 @@ export default function Preloader({ onLoadingComplete }: PreloaderProps) {
         const startTime = Date.now();
         let animationFrame: number;
         let hasReachedReady = false;
+        let drawn = false;
 
         const updateProgress = () => {
             const elapsed = Date.now() - startTime;
-            // Easing function for smoother progress
             const rawProgress = Math.min(elapsed / MINIMUM_DURATION, 1);
-            const easedProgress = 1 - Math.pow(1 - rawProgress, 3); // Ease out cubic
+            const easedProgress = 1 - Math.pow(1 - rawProgress, 3);
             const timeProgress = easedProgress * 100;
 
             if (document.readyState === "complete") {
@@ -41,8 +41,8 @@ export default function Preloader({ onLoadingComplete }: PreloaderProps) {
 
             setProgress(Math.floor(newProgress));
 
-            // Mark as drawn earlier for faster feedback
-            if (elapsed >= 800 && !isDrawn) {
+            if (elapsed >= 800 && !drawn) {
+                drawn = true;
                 setIsDrawn(true);
             }
 
@@ -52,7 +52,7 @@ export default function Preloader({ onLoadingComplete }: PreloaderProps) {
                     setShouldExit(true);
                     document.body.style.overflow = "auto";
                     onLoadingComplete?.();
-                }, 300); // Reduced delay
+                }, 300);
             } else {
                 animationFrame = requestAnimationFrame(updateProgress);
             }
@@ -70,8 +70,7 @@ export default function Preloader({ onLoadingComplete }: PreloaderProps) {
             window.removeEventListener("load", handleLoad);
             document.body.style.overflow = "auto";
         };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [onLoadingComplete, isDrawn]);
+    }, [onLoadingComplete]);
 
     return (
         <AnimatePresence>

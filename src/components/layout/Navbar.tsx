@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 
 const items = [
     { name: "Certificazioni", href: "/certificazioni" },
-    { name: "Il Metodo", href: "/#metodo" },
+    { name: "Il Metodo", href: "/metodo" },
     { name: "Chi Siamo", href: "/chi-siamo" },
     { name: "Contatti", href: "/contatti" },
 ];

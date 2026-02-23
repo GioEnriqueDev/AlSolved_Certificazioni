@@ -73,18 +73,7 @@ export default function TypewriterHero({
         );
 
         return () => clearTimeout(timeout);
-    }, [
-        displayText,
-        isDeleting,
-        currentPainIndex,
-        painPoints,
-        cycleComplete,
-        setCycleComplete,
-        setIsDeleting,
-        setDisplayText,
-        setCurrentPainIndex,
-        setShowSolution
-    ]);
+    }, [displayText, isDeleting, currentPainIndex, painPoints, cycleComplete]);
 
     return (
         <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-transparent">
@@ -133,12 +122,12 @@ export default function TypewriterHero({
                                 transition={{ delay: 0.5, duration: 0.6 }}
                                 className="flex flex-col sm:flex-row gap-6 justify-center pt-10"
                             >
-                                <Link href="/#certificazioni">
+                                <Link href="/#aree-intervento">
                                     <Button
                                         size="lg"
                                         className="h-16 px-10 text-xl font-bold rounded-full bg-primary hover:bg-primary/90 text-white shadow-[0_8px_20px_rgba(242,78,107,0.3)] transition-all hover:-translate-y-1 will-change-transform"
                                     >
-                                        Esplora le Certificazioni
+                                        Aree di Intervento
                                         <ArrowRight className="ml-3 w-6 h-6" />
                                     </Button>
                                 </Link>

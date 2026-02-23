@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Search, FileText, Gavel, ShieldCheck, Users, Lightbulb, Target } from "lucide-react";
+import { ShieldCheck, Users, Lightbulb, Target } from "lucide-react";
 import FadeIn from "@/components/animations/FadeIn";
 
 const steps = [

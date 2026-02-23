@@ -46,22 +46,22 @@ export default function Footer() {
                         </h4>
                         <ul className="space-y-4 text-sm text-muted-foreground font-medium">
                             <li>
-                                <Link href="#certificazioni" className="hover:text-primary transition-colors">
+                                <Link href="/certificazioni/iso-9001" className="hover:text-primary transition-colors">
                                     ISO 9001 Qualità
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#certificazioni" className="hover:text-primary transition-colors">
+                                <Link href="/certificazioni/iso-27001" className="hover:text-primary transition-colors">
                                     ISO 27001 Sicurezza
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#certificazioni" className="hover:text-primary transition-colors">
+                                <Link href="/certificazioni/iso-14001" className="hover:text-primary transition-colors">
                                     ISO 14001 Ambiente
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#certificazioni" className="hover:text-primary transition-colors">
+                                <Link href="/certificazioni/pdr-125" className="hover:text-primary transition-colors">
                                     Parità di Genere
                                 </Link>
                             </li>
@@ -74,22 +74,22 @@ export default function Footer() {
                         </h4>
                         <ul className="space-y-4 text-sm text-muted-foreground font-medium">
                             <li>
-                                <Link href="#metodo" className="hover:text-primary transition-colors">
+                                <Link href="/metodo" className="hover:text-primary transition-colors">
                                     Il Metodo
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#" className="hover:text-primary transition-colors">
-                                    Casi Studio
+                                <Link href="/chi-siamo" className="hover:text-primary transition-colors">
+                                    Chi Siamo
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#" className="hover:text-primary transition-colors">
-                                    Lavora con noi
+                                <Link href="/certificazioni" className="hover:text-primary transition-colors">
+                                    Certificazioni
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#cta" className="hover:text-primary transition-colors">
+                                <Link href="/contatti" className="hover:text-primary transition-colors">
                                     Contatti
                                 </Link>
                             </li>

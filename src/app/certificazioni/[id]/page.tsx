@@ -5,7 +5,6 @@ import Link from "next/link";
 import { ArrowLeft, Users, Target, ShieldCheck, Clock, CheckCircle2, ChevronRight, Euro, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import FadeIn from "@/components/animations/FadeIn";
-import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/sections/Footer";
 
 export function generateStaticParams() {
@@ -32,7 +31,6 @@ export default function CertificationPage({ params }: { params: { id: string } }
 
     return (
         <div className="flex flex-col min-h-screen bg-white">
-            <Navbar />
 
             {/* Hero Section */}
             <section className="relative pt-40 pb-20 overflow-hidden bg-gray-50 border-b border-border/50">
