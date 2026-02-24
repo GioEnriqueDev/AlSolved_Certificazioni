@@ -11,7 +11,10 @@ const macroAreas = [
         subtitle: "Il fondamento delle aziende leader.",
         description: "Standard riconosciuti a livello globale per dominare i bandi di gara e garantire processi perfetti.",
         icon: Settings2,
-        textGradient: "from-amber-600 to-orange-600",
+        gradient: "from-amber-500 to-orange-500",
+        glowColor: "rgba(245,158,11,0.15)",
+        borderHover: "hover:border-amber-300/50",
+        chipBg: "bg-amber-50 border-amber-200/60 text-amber-800 hover:bg-amber-100 hover:border-amber-300",
         certifications: [
             { id: "iso-9001", name: "ISO 9001" },
             { id: "iatf-16949", name: "IATF 16949" },
@@ -27,7 +30,10 @@ const macroAreas = [
         subtitle: "Protezione totale dei dati.",
         description: "Blinda il tuo business contro attacchi informatici e sanzioni GDPR milionarie.",
         icon: ShieldCheck,
-        textGradient: "from-blue-600 to-indigo-600",
+        gradient: "from-blue-500 to-indigo-600",
+        glowColor: "rgba(59,130,246,0.15)",
+        borderHover: "hover:border-blue-300/50",
+        chipBg: "bg-blue-50 border-blue-200/60 text-blue-800 hover:bg-blue-100 hover:border-blue-300",
         certifications: [
             { id: "iso-27001", name: "ISO 27001" },
             { id: "iso-20000", name: "ISO 20000-1" },
@@ -40,7 +46,10 @@ const macroAreas = [
         subtitle: "Il nuovo standard bancario.",
         description: "Accedi a fondi verdi, migliora il rating aziendale e dimostra il tuo impegno per il futuro.",
         icon: Leaf,
-        textGradient: "from-emerald-600 to-green-600",
+        gradient: "from-emerald-500 to-green-600",
+        glowColor: "rgba(16,185,129,0.15)",
+        borderHover: "hover:border-emerald-300/50",
+        chipBg: "bg-emerald-50 border-emerald-200/60 text-emerald-800 hover:bg-emerald-100 hover:border-emerald-300",
         certifications: [
             { id: "iso-14001", name: "ISO 14001" },
             { id: "iso-50001", name: "ISO 50001" },
@@ -53,7 +62,10 @@ const macroAreas = [
         subtitle: "Zero infortuni, zero cause.",
         description: "Tutela i tuoi lavoratori, ottieni sgravi INAIL ed entra nelle supply chain etiche internazionali.",
         icon: HeartHandshake,
-        textGradient: "from-rose-600 to-red-600",
+        gradient: "from-rose-500 to-red-500",
+        glowColor: "rgba(244,63,94,0.15)",
+        borderHover: "hover:border-rose-300/50",
+        chipBg: "bg-rose-50 border-rose-200/60 text-rose-800 hover:bg-rose-100 hover:border-rose-300",
         certifications: [
             { id: "iso-45001", name: "ISO 45001" },
             { id: "sa-8000", name: "SA8000" },
@@ -75,60 +87,75 @@ export default function CinematicMacroAreas() {
                     viewport={{ once: true, margin: "-10%" }}
                     transition={{ duration: 0.8 }}
                 >
-                    <p className="text-sm font-bold text-primary uppercase tracking-[0.2em] mb-4">
+                    <p className="text-xs font-bold text-primary uppercase tracking-[0.25em] mb-5">
                         Aree di Intervento
                     </p>
-                    <h2 className="text-4xl sm:text-5xl md:text-7xl font-black mb-6 leading-tight tracking-tighter text-foreground drop-shadow-sm">
+                    <h2 className="text-4xl sm:text-5xl md:text-7xl font-black mb-6 leading-tight tracking-tighter text-foreground">
                         Domina il Tuo Settore.
                     </h2>
-                    <p className="text-lg md:text-2xl text-muted-foreground max-w-3xl mx-auto font-medium leading-relaxed">
-                        Non ti vendiamo "un pezzo di carta". Costruiamo l'infrastruttura normativa per farti vincere appalti, attrarre talenti e blindare il fatturato.
+                    <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto font-medium leading-relaxed">
+                        Non ti vendiamo &quot;un pezzo di carta&quot;. Costruiamo l&apos;infrastruttura normativa per farti vincere appalti, attrarre talenti e blindare il fatturato.
                     </p>
                 </motion.div>
 
                 {/* Bento Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 auto-rows-[minmax(300px,auto)] gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 auto-rows-[minmax(320px,auto)] gap-5">
                     {macroAreas.map((area, index) => (
                         <motion.div
                             key={area.id}
-                            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-5%" }}
-                            transition={{ duration: 0.6, delay: index * 0.1 }}
-                            className={`group relative overflow-hidden rounded-[2.5rem] bg-white border border-border/40 transition-all duration-500 hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] hover:-translate-y-1 hover:border-border p-10 flex flex-col justify-between ${area.className}`}
+                            transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                            className={`group relative overflow-hidden rounded-[2rem] bg-white/80 backdrop-blur-sm border border-border/40 transition-all duration-500 hover:shadow-[0_25px_60px_-12px_rgba(0,0,0,0.08)] hover:-translate-y-2 ${area.borderHover} p-8 md:p-10 flex flex-col justify-between ${area.className}`}
                         >
-                            {/* Subtle inner glow on hover */}
-                            <div className={`absolute inset-0 bg-gradient-to-br from-transparent to-black/[0.01] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
+                            {/* Glow effect on hover */}
+                            <div
+                                className="absolute -top-20 -right-20 w-60 h-60 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none blur-[80px]"
+                                style={{ backgroundColor: area.glowColor }}
+                            />
+                            {/* Bottom gradient border glow */}
+                            <div
+                                className="absolute bottom-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                                style={{ background: `linear-gradient(to right, transparent, ${area.glowColor.replace('0.15', '0.5')}, transparent)` }}
+                            />
 
                             <div className="relative z-10">
-                                <div className="w-14 h-14 rounded-2xl bg-gray-50/80 border border-border/50 flex items-center justify-center mb-8 shadow-sm group-hover:bg-white group-hover:border-border transition-all duration-300">
-                                    <area.icon className={`w-6 h-6 text-foreground group-hover:scale-110 transition-transform duration-500`} />
+                                {/* Icon with gradient background */}
+                                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${area.gradient} flex items-center justify-center mb-7 shadow-lg group-hover:scale-110 group-hover:shadow-xl transition-all duration-500`}>
+                                    <area.icon className="w-6 h-6 text-white" />
                                 </div>
-                                <h3 className={`text-3xl md:text-4xl font-black tracking-tight mb-2 text-foreground`}>
+
+                                <h3 className="text-2xl md:text-3xl font-black tracking-tight mb-2 text-foreground">
                                     {area.title}
                                 </h3>
-                                <p className={`text-lg font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r ${area.textGradient}`}>
+                                <p className={`text-base font-bold mb-5 bg-clip-text text-transparent bg-gradient-to-r ${area.gradient}`}>
                                     {area.subtitle}
                                 </p>
-                                <p className="text-muted-foreground font-medium leading-relaxed text-lg max-w-md">
+                                <p className="text-muted-foreground font-medium leading-relaxed text-base max-w-md">
                                     {area.description}
                                 </p>
                             </div>
 
-                            <div className="relative z-10 mt-12 pt-8 border-t border-border/30">
-                                <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4">Certificazioni Incluse</p>
-                                <div className="flex flex-wrap gap-2 mb-8">
+                            <div className="relative z-10 mt-8 pt-6 border-t border-border/20">
+                                <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-muted-foreground/70 mb-4">
+                                    Certificazioni Incluse
+                                </p>
+                                <div className="flex flex-wrap gap-2 mb-6">
                                     {area.certifications.map((cert) => (
                                         <Link key={cert.id} href={`/certificazioni/${cert.id}`}>
-                                            <span className="inline-flex items-center px-4 py-2 rounded-xl bg-gray-50 border border-border/50 text-sm font-bold text-foreground hover:bg-white hover:border-primary/30 hover:shadow-sm transition-all cursor-pointer">
+                                            <span className={`inline-flex items-center px-3.5 py-1.5 rounded-xl border text-xs font-bold transition-all duration-300 cursor-pointer shadow-sm hover:shadow-md ${area.chipBg}`}>
                                                 {cert.name}
                                             </span>
                                         </Link>
                                     ))}
                                 </div>
-                                <Link href="/contatti" className="inline-flex items-center gap-2 text-foreground font-bold text-lg hover:text-primary transition-colors group/link">
-                                    Richiedi Analisi
-                                    <ArrowRight className="w-5 h-5 group-hover/link:translate-x-1 transition-transform" />
+                                <Link
+                                    href="/contatti"
+                                    className="inline-flex items-center gap-2 text-foreground font-bold text-sm hover:text-primary transition-colors group/link"
+                                >
+                                    Richiedi Analisi Gratuita
+                                    <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1.5 transition-transform duration-300" />
                                 </Link>
                             </div>
                         </motion.div>

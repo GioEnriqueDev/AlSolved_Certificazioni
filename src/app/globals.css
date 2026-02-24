@@ -8,8 +8,10 @@
     /* Pristine, clean, Google-like aesthetics */
 
     /* Background: Pure white or extremely soft pearl */
-    --background: 210 20% 98%; /* #f8f9fa */
-    --foreground: 222 47% 11%; /* Dark slate text for high contrast */
+    --background: 210 20% 98%;
+    /* #f8f9fa */
+    --foreground: 222 47% 11%;
+    /* Dark slate text for high contrast */
 
     /* Cards: Pure white with soft shadow potential */
     --card: 0 0% 100%;
@@ -20,7 +22,8 @@
 
     /* Primary: Vibrant AlSolved Brand (Pink/Orange) */
     --primary: 345 100% 59%;
-    --primary-foreground: 0 0% 100%; /* White text on primary */
+    --primary-foreground: 0 0% 100%;
+    /* White text on primary */
 
     /* Secondary: Very light gray/slate for subtle contrasts */
     --secondary: 210 40% 96.1%;
@@ -42,7 +45,8 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 345 100% 59%;
 
-    --radius: 1rem; /* More rounded premium feel (from 0.5rem to 1rem) */
+    --radius: 1rem;
+    /* More rounded premium feel (from 0.5rem to 1rem) */
   }
 }
 
@@ -54,5 +58,63 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* ===== MARQUEE ANIMATION ===== */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* ===== GRADIENT SHIFT ===== */
+@keyframes gradient-shift {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* ===== SHIMMER ===== */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ===== PULSE GLOW ===== */
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
   }
 }
