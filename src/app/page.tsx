@@ -5,26 +5,17 @@ import Image from "next/image";
 import abstractWavesImg from "@/assets/images/abstract_3d_waves.png";
 import Link from "next/link";
 import HeroSection from "@/components/ui/HeroSection";
-import CanvasWrapper from "@/components/canvas/CanvasWrapper";
+import AnimatedBackground from "@/components/ui/AnimatedBackground";
 import ClientLogos from "@/components/sections/ClientLogos";
 import ScrollProgressProcess from "@/components/sections/ScrollProgressProcess";
 import CinematicMacroAreas from "@/components/sections/CinematicMacroAreas";
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { scrollState } from "@/lib/scrollState";
 
 export default function Home() {
-  const { scrollYProgress } = useScroll();
-
-  // Sync scroll to our vanilla mutable state for the 3D canvas (React Three Fiber)
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    scrollState.progress = latest;
-  });
-
   return (
     <div className="flex flex-col min-h-screen bg-transparent text-foreground overflow-x-hidden relative">
-      {/* 3D Canvas fixed in the background reacting to scroll */}
-      <CanvasWrapper />
+      <AnimatedBackground />
 
       <HeroSection />
 
@@ -38,7 +29,7 @@ export default function Home() {
       </div>
 
       {/* ===================== FINAL CTA ===================== */}
-      <section id="cta" className="py-40 bg-white/80 backdrop-blur-md relative overflow-hidden border-t border-border/40 z-10">
+      <section id="cta" className="py-40 bg-white relative overflow-hidden border-t border-border/40 z-10">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-[radial-gradient(circle_at_center,rgba(242,78,107,0.03),transparent_70%)] pointer-events-none z-[-1]"></div>
 
         <motion.div
