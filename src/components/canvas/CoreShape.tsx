@@ -7,79 +7,78 @@ import { scrollState } from "@/lib/scrollState";
 
 export default function CoreShape() {
     const meshRef = useRef<THREE.Mesh>(null);
-    const materialRef = useRef<THREE.MeshStandardMaterial>(null);
+    const materialRef = useRef<THREE.MeshPhysicalMaterial>(null);
 
-    // Pre-instantiate colors for performance
-    const white = new THREE.Color("#ffffff");
-    const blue = new THREE.Color("#0ea5e9");
-    const green = new THREE.Color("#10b981");
+    // Light theme elegant colors (matching the brand #f24e6b and clean aesthetics)
+    const pearlWhite = new THREE.Color("#ffffff");
+    const brandPrimary = new THREE.Color("#f24e6b");
+    const brandOrange = new THREE.Color("#fb923c");
 
     useFrame((state, delta) => {
         const p = scrollState.progress;
 
         if (meshRef.current) {
-            // Base passive rotation
+            // Elegant passive rotation
             meshRef.current.rotation.y += delta * 0.1;
             meshRef.current.rotation.x += delta * 0.15;
 
             // Scroll-linked rotation addition
-            meshRef.current.rotation.y = p * Math.PI * 4;
+            meshRef.current.rotation.y = p * Math.PI * 2;
 
             // Pulse scaling base logic linked to scroll
-            // Grows to 1.3 at halfway down the page
-            const targetScale = 1.0 + Math.sin(p * Math.PI) * 0.3;
+            const targetScale = 1.0 + Math.sin(p * Math.PI) * 0.2;
             meshRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
         }
 
         if (materialRef.current) {
-            let targetColor = white;
+            let targetColor = pearlWhite;
+            let targetTransmission = 0.9;
             let targetRoughness = 0.1;
-            let targetMetalness = 0.9;
-            let targetWireframe = false;
+            let targetThickness = 2.0;
 
-            // Scroll boundaries mapping
-            if (p < 0.25) {
-                // Hero & Quality (Clean metal/glass)
-                targetColor = white;
-            } else if (p < 0.6) {
-                // Cyber mode (Blue tech)
-                const subP = Math.min((p - 0.25) / 0.15, 1.0); // smooth transition window
-                targetColor = white.clone().lerp(blue, subP);
-                targetRoughness = 0.4;
-                targetMetalness = 0.6;
-
-                // Mid-cyber mode wireframe effect
-                if (p > 0.4 && p < 0.5) {
-                    targetWireframe = true;
-                }
+            // Light Theme Scroll boundaries mapping
+            if (p < 0.3) {
+                // Hero: Pure clean pearl glass
+                targetColor = pearlWhite;
+            } else if (p < 0.7) {
+                // Mid Page (MacroAreas / Process): Morph to brand primary/orange gradient feel
+                const subP = Math.min((p - 0.3) / 0.4, 1.0);
+                targetColor = pearlWhite.clone().lerp(brandPrimary, subP * 0.5); // Soft tint
+                targetTransmission = 0.7 - (subP * 0.3); // Gets slightly more solid
+                targetRoughness = 0.1 + (subP * 0.2); // Frosted glass effect
             } else {
-                // ESG mode (Green organic)
-                const subP = Math.min((p - 0.6) / 0.15, 1.0);
-                targetColor = blue.clone().lerp(green, subP);
-                targetRoughness = 0.2;
-                targetMetalness = 0.3;
+                // CTA Footer: Warm orange glow
+                const subP = Math.min((p - 0.7) / 0.3, 1.0);
+                targetColor = brandPrimary.clone().lerp(brandOrange, subP * 0.5);
+                targetTransmission = 0.4;
+                targetRoughness = 0.3;
             }
 
             // Smoothly interpolate current material properties to target
-            materialRef.current.color.lerp(targetColor, 0.1);
-            materialRef.current.roughness = THREE.MathUtils.lerp(materialRef.current.roughness, targetRoughness, 0.1);
-            materialRef.current.metalness = THREE.MathUtils.lerp(materialRef.current.metalness, targetMetalness, 0.1);
-            materialRef.current.wireframe = targetWireframe;
+            materialRef.current.color.lerp(targetColor, 0.05);
+            materialRef.current.transmission = THREE.MathUtils.lerp(materialRef.current.transmission, targetTransmission, 0.05);
+            materialRef.current.roughness = THREE.MathUtils.lerp(materialRef.current.roughness, targetRoughness, 0.05);
+            materialRef.current.thickness = THREE.MathUtils.lerp(materialRef.current.thickness, targetThickness, 0.05);
         }
     });
 
     return (
         <mesh ref={meshRef}>
-            {/* icosahedron with detail=1 creates a sleek multi-faceted gem */}
+            {/* Using an Icosahedron for a sleek geometric "core" feeling */}
             <icosahedronGeometry args={[2.5, 1]} />
-            <meshStandardMaterial
+
+            {/* Using MeshPhysicalMaterial for beautiful glassmorphism/refraction in the 3D view */}
+            <meshPhysicalMaterial
                 ref={materialRef}
                 color="#ffffff"
+                metalness={0.1}
                 roughness={0.1}
-                metalness={0.9}
+                transmission={0.9} // Glass effect
+                thickness={2.0} // Refraction thickness
+                ior={1.5} // Index of refraction
                 transparent
-                opacity={0.85}
-                envMapIntensity={2.0}
+                opacity={1}
+                envMapIntensity={1.5}
             />
         </mesh>
     );
