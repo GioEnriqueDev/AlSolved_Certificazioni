@@ -22,7 +22,6 @@ const macroAreas = [
             { id: "iso-13485", name: "ISO 13485" },
             { id: "iso-22000", name: "ISO 22000" },
         ],
-        className: "md:col-span-2 md:row-span-2",
     },
     {
         id: "cyber",
@@ -38,7 +37,6 @@ const macroAreas = [
             { id: "iso-27001", name: "ISO 27001" },
             { id: "iso-20000", name: "ISO 20000-1" },
         ],
-        className: "md:col-span-1 md:row-span-1",
     },
     {
         id: "esg",
@@ -54,7 +52,6 @@ const macroAreas = [
             { id: "iso-14001", name: "ISO 14001" },
             { id: "iso-50001", name: "ISO 50001" },
         ],
-        className: "md:col-span-1 md:row-span-1",
     },
     {
         id: "etica",
@@ -72,7 +69,6 @@ const macroAreas = [
             { id: "pdr-125", name: "UNI/PdR 125" },
             { id: "iso-37001", name: "ISO 37001" },
         ],
-        className: "md:col-span-2 md:row-span-1",
     },
 ];
 
@@ -98,8 +94,8 @@ export default function CinematicMacroAreas() {
                     </p>
                 </motion.div>
 
-                {/* Bento Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 auto-rows-[minmax(320px,auto)] gap-5">
+                {/* Uniform 2x2 Grid — no row-span to avoid gap issues */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     {macroAreas.map((area, index) => (
                         <motion.div
                             key={area.id}
@@ -107,7 +103,7 @@ export default function CinematicMacroAreas() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-5%" }}
                             transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                            className={`group relative overflow-hidden rounded-[2rem] bg-white/80 backdrop-blur-sm border border-border/40 transition-all duration-500 hover:shadow-[0_25px_60px_-12px_rgba(0,0,0,0.08)] hover:-translate-y-2 ${area.borderHover} p-8 md:p-10 flex flex-col justify-between ${area.className}`}
+                            className={`group relative overflow-hidden rounded-[2rem] bg-white/80 backdrop-blur-sm border border-border/40 transition-all duration-500 hover:shadow-[0_25px_60px_-12px_rgba(0,0,0,0.08)] hover:-translate-y-2 ${area.borderHover} p-8 md:p-10 flex flex-col`}
                         >
                             {/* Glow effect on hover */}
                             <div
@@ -122,26 +118,26 @@ export default function CinematicMacroAreas() {
 
                             <div className="relative z-10">
                                 {/* Icon with gradient background */}
-                                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${area.gradient} flex items-center justify-center mb-7 shadow-lg group-hover:scale-110 group-hover:shadow-xl transition-all duration-500`}>
+                                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${area.gradient} flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 group-hover:shadow-xl transition-all duration-500`}>
                                     <area.icon className="w-6 h-6 text-white" />
                                 </div>
 
                                 <h3 className="text-2xl md:text-3xl font-black tracking-tight mb-2 text-foreground">
                                     {area.title}
                                 </h3>
-                                <p className={`text-base font-bold mb-5 bg-clip-text text-transparent bg-gradient-to-r ${area.gradient}`}>
+                                <p className={`text-base font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r ${area.gradient}`}>
                                     {area.subtitle}
                                 </p>
-                                <p className="text-muted-foreground font-medium leading-relaxed text-base max-w-md">
+                                <p className="text-muted-foreground font-medium leading-relaxed text-base max-w-lg">
                                     {area.description}
                                 </p>
                             </div>
 
-                            <div className="relative z-10 mt-8 pt-6 border-t border-border/20">
-                                <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-muted-foreground/70 mb-4">
+                            <div className="relative z-10 mt-6 pt-5 border-t border-border/20">
+                                <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-muted-foreground/70 mb-3">
                                     Certificazioni Incluse
                                 </p>
-                                <div className="flex flex-wrap gap-2 mb-6">
+                                <div className="flex flex-wrap gap-2 mb-5">
                                     {area.certifications.map((cert) => (
                                         <Link key={cert.id} href={`/certificazioni/${cert.id}`}>
                                             <span className={`inline-flex items-center px-3.5 py-1.5 rounded-xl border text-xs font-bold transition-all duration-300 cursor-pointer shadow-sm hover:shadow-md ${area.chipBg}`}>
@@ -151,10 +147,10 @@ export default function CinematicMacroAreas() {
                                     ))}
                                 </div>
                                 <Link
-                                    href="/contatti"
+                                    href="/certificazioni"
                                     className="inline-flex items-center gap-2 text-foreground font-bold text-sm hover:text-primary transition-colors group/link"
                                 >
-                                    Richiedi Analisi Gratuita
+                                    Vedi Tutte le Certificazioni
                                     <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1.5 transition-transform duration-300" />
                                 </Link>
                             </div>

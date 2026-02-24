@@ -112,10 +112,10 @@ export default function ContattiPage() {
                             {/* Trust Badge */}
                             <div className="flex items-center gap-6 p-8 rounded-3xl bg-gradient-to-br from-primary/10 to-orange-400/5 border border-primary/20 shadow-sm relative overflow-hidden">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-[40px] -translate-y-1/2 translate-x-1/2"></div>
-                                <div className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-primary to-rose-600 shrink-0">100%</div>
+                                <div className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-primary to-rose-600 shrink-0">50+</div>
                                 <div className="relative z-10">
-                                    <p className="font-bold text-xl text-foreground">Tasso di Successo</p>
-                                    <p className="text-sm font-medium text-muted-foreground mt-1">Tutti gli audit dei nostri clienti superati al primo tentativo</p>
+                                    <p className="font-bold text-xl text-foreground">Aziende Certificate</p>
+                                    <p className="text-sm font-medium text-muted-foreground mt-1">Ti affianchiamo fino al rilascio del certificato, senza sorprese</p>
                                 </div>
                             </div>
                         </motion.div>
