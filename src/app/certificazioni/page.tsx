@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import StaticBackground from "@/components/ui/StaticBackground";
+import StaticBackground from "@/components/sections/StaticBackground";
 import Footer from "@/components/sections/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ShieldCheck, Clock, TrendingUp } from "lucide-react";

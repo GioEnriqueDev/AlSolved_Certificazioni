@@ -14,7 +14,7 @@ const logos = [
     { name: "IATF 16949", label: "Automotive", icon: Car, color: "text-slate-600" },
 ];
 
-function LogoPill({ name, label, icon: Icon, color }: { name: string; label: string; icon: React.ElementType; color: string }) {
+function LogoPill({ name, label, icon: Icon, color }: { name: string; label: string; icon: any; color: string }) {
     return (
         <div className="flex items-center gap-3 px-6 py-3 mx-3 rounded-2xl bg-white/70 border border-border/40 shadow-[0_1px_6px_rgba(0,0,0,0.03)] hover:border-primary/20 hover:shadow-[0_4px_16px_rgba(242,78,107,0.08)] transition-all duration-300 cursor-default group shrink-0">
             <div className={`w-9 h-9 rounded-xl bg-gray-50 border border-border/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 ${color}`}>

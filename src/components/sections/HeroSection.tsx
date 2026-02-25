@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2, Clock, Sparkles } from "lucide-react";
 import Link from "next/link";
+import { staggerContainer, childFadeVariant, fadeUpVariant } from "@/lib/animations";
 
 export default function HeroSection() {
     return (
@@ -13,16 +14,14 @@ export default function HeroSection() {
 
             <div className="container relative z-10 px-6 py-20 flex flex-col items-center text-center max-w-5xl mx-auto">
                 <motion.div
-                    initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                    variants={staggerContainer}
+                    initial="hidden"
+                    animate="visible"
                     className="space-y-8 w-full"
                 >
                     {/* Trust Badge */}
                     <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2, duration: 0.6 }}
+                        variants={childFadeVariant}
                         className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/80 border border-border/60 shadow-[0_2px_12px_rgba(0,0,0,0.04)] backdrop-blur-sm mx-auto"
                     >
                         <span className="flex items-center justify-center w-5 h-5 rounded-full bg-emerald-100">
@@ -35,9 +34,7 @@ export default function HeroSection() {
 
                     {/* Headline */}
                     <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        variants={fadeUpVariant}
                         className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter text-foreground leading-[1.02] pb-4 mx-auto max-w-5xl"
                     >
                         Digitalizziamo la
@@ -55,9 +52,7 @@ export default function HeroSection() {
 
                     {/* Subtitle */}
                     <motion.p
-                        initial={{ opacity: 0, y: 15 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3, duration: 0.7 }}
+                        variants={childFadeVariant}
                         className="text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto font-medium leading-relaxed px-4"
                     >
                         Affidati a esperti per l&apos;ottenimento delle certificazioni internazionali.
@@ -67,9 +62,7 @@ export default function HeroSection() {
 
                     {/* CTA Buttons */}
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.5, duration: 0.6 }}
+                        variants={childFadeVariant}
                         className="flex flex-col sm:flex-row gap-5 justify-center pt-6"
                     >
                         <Link href="/#aree-intervento">
@@ -95,9 +88,7 @@ export default function HeroSection() {
 
                     {/* Trust Micro-copy */}
                     <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.7, duration: 0.5 }}
+                        variants={childFadeVariant}
                         className="flex items-center justify-center gap-6 text-xs text-muted-foreground/70 font-medium pt-2"
                     >
                         <span className="flex items-center gap-1.5">

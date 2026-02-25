@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import BookingCTA from "@/components/ui/BookingCTA";
 import Footer from "@/components/sections/Footer";
-import StaticBackground from "@/components/ui/StaticBackground";
+import StaticBackground from "@/components/sections/StaticBackground";
 import {
     Phone,
     Mail,
