@@ -1,60 +1,55 @@
-"use client";
+﻿"use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { LoadingProvider } from "@/lib/LoadingContext";
 import Preloader from "@/components/ui/Preloader";
 import Navbar from "@/components/layout/Navbar";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 
 interface ClientWrapperProps {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }
 
+type BootState = "pending" | "preloader" | "content";
+
 export default function ClientWrapper({ children }: ClientWrapperProps) {
-    const [showPreloader, setShowPreloader] = useState(false);
-    const [showContent, setShowContent] = useState(false);
+  const [bootState, setBootState] = useState<BootState>("pending");
 
-    useEffect(() => {
-        // Check if preloader has already been shown this session
-        const hasSeenPreloader = sessionStorage.getItem("alsolved_preloader_shown");
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      try {
+        const hasSeenPreloader = sessionStorage.getItem("alsolved_preloader_shown") === "true";
+        setBootState(hasSeenPreloader ? "content" : "preloader");
+      } catch {
+        setBootState("content");
+      }
+    });
 
-        if (hasSeenPreloader) {
-            // Skip preloader, show content immediately
-            setTimeout(() => {
-                setShowPreloader(false);
-                setShowContent(true);
-            }, 0);
-        } else {
-            // Show preloader for first visit
-            setTimeout(() => {
-                setShowPreloader(true);
-            }, 0);
-        }
-    }, []);
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
 
-    const handleLoadingComplete = () => {
-        // Mark preloader as shown for this session
-        sessionStorage.setItem("alsolved_preloader_shown", "true");
-        setShowContent(true);
-        setShowPreloader(false);
-    };
+  const handleLoadingComplete = () => {
+    try {
+      sessionStorage.setItem("alsolved_preloader_shown", "true");
+    } catch {
+      // Ignore storage failures (private mode / browser restrictions)
+    }
+    setBootState("content");
+  };
 
-    return (
-        <LoadingProvider>
-            <SmoothScroll>
-                {/* Preloader - only shows on first visit */}
-                {showPreloader && (
-                    <Preloader onLoadingComplete={handleLoadingComplete} />
-                )}
+  const showPreloader = bootState === "preloader";
+  const showContent = bootState === "content";
 
-                {/* Main Content */}
-                <div
-                    className={`transition-opacity duration-300 ${showContent ? "opacity-100" : "opacity-0"}`}
-                >
-                    <Navbar />
-                    <main>{children}</main>
-                </div>
-            </SmoothScroll>
-        </LoadingProvider >
-    );
+  return (
+    <LoadingProvider>
+      <SmoothScroll>
+        {showPreloader ? <Preloader onLoadingComplete={handleLoadingComplete} /> : null}
+
+        <div className={`transition-opacity duration-500 ${showContent ? "opacity-100" : "opacity-0"}`}>
+          <Navbar />
+          <main>{children}</main>
+        </div>
+      </SmoothScroll>
+    </LoadingProvider>
+  );
 }

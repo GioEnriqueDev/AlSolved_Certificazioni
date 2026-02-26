@@ -1,121 +1,131 @@
-"use client";
+﻿"use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import NeonLogo from "./NeonLogo";
 
 interface PreloaderProps {
-    onLoadingComplete?: () => void;
+  onLoadingComplete?: () => void;
 }
 
 export default function Preloader({ onLoadingComplete }: PreloaderProps) {
-    const [progress, setProgress] = useState(0);
-    const [isDrawn, setIsDrawn] = useState(false);
-    const [shouldExit, setShouldExit] = useState(false);
+  const reduceMotion = useReducedMotion();
+  const [progress, setProgress] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
+  const completeCalled = useRef(false);
+  const displayProgress = reduceMotion ? 100 : progress;
 
-    // OPTIMIZED: Reduced from 3000ms to 1500ms for faster, less annoying experience
-    const MINIMUM_DURATION = 1500;
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
 
-    useEffect(() => {
-        document.body.style.overflow = "hidden";
+    if (reduceMotion) {
+      const timer = window.setTimeout(() => {
+        if (!completeCalled.current) {
+          completeCalled.current = true;
+          setIsVisible(false);
+          document.body.style.overflow = "";
+          onLoadingComplete?.();
+        }
+      }, 120);
 
-        const startTime = Date.now();
-        let animationFrame: number;
-        let hasReachedReady = false;
-        let drawn = false;
+      return () => {
+        window.clearTimeout(timer);
+        document.body.style.overflow = "";
+      };
+    }
 
-        const updateProgress = () => {
-            const elapsed = Date.now() - startTime;
-            const rawProgress = Math.min(elapsed / MINIMUM_DURATION, 1);
-            const easedProgress = 1 - Math.pow(1 - rawProgress, 3);
-            const timeProgress = easedProgress * 100;
+    const minDuration = 1100;
+    const startTime = performance.now();
+    let frame = 0;
+    let pageReady = document.readyState === "complete";
 
-            if (document.readyState === "complete") {
-                hasReachedReady = true;
-            }
+    const tick = (now: number) => {
+      const elapsed = now - startTime;
+      const t = Math.min(elapsed / minDuration, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      let nextProgress = Math.round(eased * 100);
 
-            let newProgress = timeProgress;
-            if (!hasReachedReady && timeProgress >= 95) {
-                newProgress = 95;
-            }
+      if (!pageReady && nextProgress > 94) {
+        nextProgress = 94;
+      }
 
-            setProgress(Math.floor(newProgress));
+      setProgress(nextProgress);
 
-            if (elapsed >= 800 && !drawn) {
-                drawn = true;
-                setIsDrawn(true);
-            }
+      if (pageReady && elapsed >= minDuration) {
+        finish();
+        return;
+      }
 
-            if (hasReachedReady && elapsed >= MINIMUM_DURATION) {
-                setProgress(100);
-                setTimeout(() => {
-                    setShouldExit(true);
-                    document.body.style.overflow = "auto";
-                    onLoadingComplete?.();
-                }, 300);
-            } else {
-                animationFrame = requestAnimationFrame(updateProgress);
-            }
-        };
+      frame = requestAnimationFrame(tick);
+    };
 
-        animationFrame = requestAnimationFrame(updateProgress);
+    const handleLoad = () => {
+      pageReady = true;
+    };
 
-        const handleLoad = () => {
-            hasReachedReady = true;
-        };
-        window.addEventListener("load", handleLoad);
+    const finish = () => {
+      cancelAnimationFrame(frame);
+      setProgress(100);
+      window.setTimeout(() => {
+        if (!completeCalled.current) {
+          completeCalled.current = true;
+          setIsVisible(false);
+          document.body.style.overflow = "";
+          onLoadingComplete?.();
+        }
+      }, 180);
+    };
 
-        return () => {
-            cancelAnimationFrame(animationFrame);
-            window.removeEventListener("load", handleLoad);
-            document.body.style.overflow = "auto";
-        };
-    }, [onLoadingComplete]);
+    window.addEventListener("load", handleLoad);
+    frame = requestAnimationFrame(tick);
 
-    return (
-        <AnimatePresence>
-            {!shouldExit && (
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("load", handleLoad);
+      document.body.style.overflow = "";
+    };
+  }, [onLoadingComplete, reduceMotion]);
+
+  return (
+    <AnimatePresence>
+      {isVisible ? (
+        <motion.div
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-[linear-gradient(180deg,#fbfbfd,#f3f5fa)] hero-noise"
+          initial={{ opacity: 1 }}
+          exit={{ opacity: 0, transition: { duration: 0.28, ease: [0.16, 1, 0.3, 1] } }}
+        >
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute left-1/2 top-[30%] h-64 w-64 -translate-x-1/2 rounded-full bg-primary/12 blur-3xl" />
+            <div className="absolute bottom-[20%] left-[28%] h-40 w-40 rounded-full bg-orange-300/20 blur-3xl" />
+          </div>
+
+          <motion.div
+            className="relative z-10 flex flex-col items-center"
+            initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35 }}
+          >
+            <div className="rounded-[1.75rem] border border-white/75 bg-white/75 px-7 py-5 shadow-[0_30px_80px_-36px_rgba(15,23,42,0.35)] backdrop-blur-xl">
+              <NeonLogo size="lg" />
+            </div>
+
+            <div className="mt-8 w-56 rounded-full border border-white/70 bg-white/70 p-2 shadow-sm backdrop-blur-xl">
+              <div className="h-1.5 overflow-hidden rounded-full bg-black/5">
                 <motion.div
-                    className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#FAFAFA]"
-                    initial={{ opacity: 1 }}
-                    exit={{
-                        opacity: 0,
-                        transition: { duration: 0.4, ease: "easeOut" },
-                    }}
-                >
-                    {/* Neon Logo - already contains icon and text */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.3 }}
-                    >
-                        <NeonLogo size="lg" />
-                    </motion.div>
-
-                    {/* Minimal Progress Indicator */}
-                    <motion.div
-                        className="mt-10 flex flex-col items-center gap-3"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.3, duration: 0.3 }}
-                    >
-                        {/* Progress Bar - thinner and cleaner */}
-                        <div className="w-32 h-[2px] bg-black/10 rounded-full overflow-hidden">
-                            <motion.div
-                                className="h-full rounded-full bg-primary"
-                                initial={{ width: "0%" }}
-                                animate={{ width: `${progress}%` }}
-                                transition={{ duration: 0.05, ease: "linear" }}
-                            />
-                        </div>
-
-                        {/* Simple Percentage */}
-                        <span className="text-xs font-mono text-black/40 tabular-nums">
-                            {progress}%
-                        </span>
-                    </motion.div>
-                </motion.div>
-            )}
-        </AnimatePresence>
-    );
+                  className="h-full rounded-full bg-gradient-to-r from-primary via-rose-400 to-orange-400"
+                  initial={{ width: "0%" }}
+                  animate={{ width: `${displayProgress}%` }}
+                  transition={{ duration: 0.08, ease: "linear" }}
+                />
+              </div>
+              <div className="mt-2 flex items-center justify-between text-[11px] font-semibold text-muted-foreground">
+                <span>Preparazione esperienza</span>
+                <span className="tabular-nums">{displayProgress}%</span>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      ) : null}
+    </AnimatePresence>
+  );
 }

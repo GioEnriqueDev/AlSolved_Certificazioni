@@ -1,163 +1,142 @@
-"use client";
+﻿"use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ShieldCheck, Leaf, Settings2, HeartHandshake } from "lucide-react";
 
 const macroAreas = [
-    {
-        id: "qualita",
-        title: "Qualità & Eccellenza",
-        subtitle: "Il fondamento delle aziende leader.",
-        description: "Standard riconosciuti a livello globale per dominare i bandi di gara e garantire processi perfetti.",
-        icon: Settings2,
-        gradient: "from-amber-500 to-orange-500",
-        glowColor: "rgba(245,158,11,0.15)",
-        borderHover: "hover:border-amber-300/50",
-        chipBg: "bg-amber-50 border-amber-200/60 text-amber-800 hover:bg-amber-100 hover:border-amber-300",
-        certifications: [
-            { id: "iso-9001", name: "ISO 9001" },
-            { id: "iatf-16949", name: "IATF 16949" },
-            { id: "as-9100", name: "AS9100" },
-            { id: "iso-13485", name: "ISO 13485" },
-            { id: "iso-22000", name: "ISO 22000" },
-        ],
-    },
-    {
-        id: "cyber",
-        title: "Cyber Security & IT",
-        subtitle: "Protezione totale dei dati.",
-        description: "Blinda il tuo business contro attacchi informatici e sanzioni GDPR milionarie.",
-        icon: ShieldCheck,
-        gradient: "from-blue-500 to-indigo-600",
-        glowColor: "rgba(59,130,246,0.15)",
-        borderHover: "hover:border-blue-300/50",
-        chipBg: "bg-blue-50 border-blue-200/60 text-blue-800 hover:bg-blue-100 hover:border-blue-300",
-        certifications: [
-            { id: "iso-27001", name: "ISO 27001" },
-            { id: "iso-20000", name: "ISO 20000-1" },
-        ],
-    },
-    {
-        id: "esg",
-        title: "ESG & Sostenibilità",
-        subtitle: "Il nuovo standard bancario.",
-        description: "Accedi a fondi verdi, migliora il rating aziendale e dimostra il tuo impegno per il futuro.",
-        icon: Leaf,
-        gradient: "from-emerald-500 to-green-600",
-        glowColor: "rgba(16,185,129,0.15)",
-        borderHover: "hover:border-emerald-300/50",
-        chipBg: "bg-emerald-50 border-emerald-200/60 text-emerald-800 hover:bg-emerald-100 hover:border-emerald-300",
-        certifications: [
-            { id: "iso-14001", name: "ISO 14001" },
-            { id: "iso-50001", name: "ISO 50001" },
-        ],
-    },
-    {
-        id: "etica",
-        title: "Sicurezza & Etica",
-        subtitle: "Zero infortuni, zero cause.",
-        description: "Tutela i tuoi lavoratori, ottieni sgravi INAIL ed entra nelle supply chain etiche internazionali.",
-        icon: HeartHandshake,
-        gradient: "from-rose-500 to-red-500",
-        glowColor: "rgba(244,63,94,0.15)",
-        borderHover: "hover:border-rose-300/50",
-        chipBg: "bg-rose-50 border-rose-200/60 text-rose-800 hover:bg-rose-100 hover:border-rose-300",
-        certifications: [
-            { id: "iso-45001", name: "ISO 45001" },
-            { id: "sa-8000", name: "SA8000" },
-            { id: "pdr-125", name: "UNI/PdR 125" },
-            { id: "iso-37001", name: "ISO 37001" },
-        ],
-    },
-];
+  {
+    id: "qualita",
+    title: "Qualità & Operational Excellence",
+    subtitle: "Standard che aumentano affidabilità e punteggio tecnico.",
+    description:
+      "Sistemi di gestione per rendere i processi ripetibili, auditabili e credibili verso clienti enterprise e committenze pubbliche.",
+    icon: Settings2,
+    gradient: "from-amber-500 to-orange-500",
+    glow: "rgba(245,158,11,0.18)",
+    chips: ["ISO 9001", "IATF 16949", "AS9100", "ISO 13485", "ISO 22000"],
+    links: ["iso-9001", "iatf-16949", "as-9100", "iso-13485", "iso-22000"],
+    payoff: "Riduci sprechi, aumenta controllo, entra in filiere ad alta selettività.",
+  },
+  {
+    id: "cyber",
+    title: "Cyber Security & IT Governance",
+    subtitle: "Difesa del dato, continuità operativa, fiducia di mercato.",
+    description:
+      "Percorsi pensati per software house, MSP e aziende esposte a GDPR, NIS2 e richieste enterprise su sicurezza e SLA.",
+    icon: ShieldCheck,
+    gradient: "from-blue-500 to-indigo-600",
+    glow: "rgba(59,130,246,0.2)",
+    chips: ["ISO 27001", "ISO 20000-1"],
+    links: ["iso-27001", "iso-20000"],
+    payoff: "Trasforma la compliance in vantaggio competitivo commerciale e legale.",
+  },
+  {
+    id: "esg",
+    title: "ESG, Ambiente & Energia",
+    subtitle: "Performance ambientale che dialoga con banche e bandi.",
+    description:
+      "Framework per migliorare rating ESG, gestire impatti ambientali e costruire efficienza energetica misurabile.",
+    icon: Leaf,
+    gradient: "from-emerald-500 to-green-600",
+    glow: "rgba(16,185,129,0.2)",
+    chips: ["ISO 14001", "ISO 50001"],
+    links: ["iso-14001", "iso-50001"],
+    payoff: "Compliance ambientale + risparmio operativo + posizionamento sostenibile.",
+  },
+  {
+    id: "people",
+    title: "Sicurezza, Etica & Governance",
+    subtitle: "Riduci rischio umano, reputazionale e ispettivo.",
+    description:
+      "Percorsi per salute e sicurezza, parità di genere, responsabilità sociale e prevenzione della corruzione.",
+    icon: HeartHandshake,
+    gradient: "from-rose-500 to-red-500",
+    glow: "rgba(244,63,94,0.2)",
+    chips: ["ISO 45001", "SA8000", "UNI/PdR 125", "ISO 37001"],
+    links: ["iso-45001", "sa-8000", "pdr-125", "iso-37001"],
+    payoff: "Meno rischio sanzionatorio, più attrattività verso talenti e committenti.",
+  },
+] as const;
 
 export default function CinematicMacroAreas() {
-    return (
-        <section id="aree-intervento" className="py-32 bg-transparent relative z-10 w-full overflow-hidden">
-            <div className="container mx-auto px-6 max-w-7xl">
-                <motion.div
-                    className="text-center mb-20"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-10%" }}
-                    transition={{ duration: 0.8 }}
-                >
-                    <p className="text-xs font-bold text-primary uppercase tracking-[0.25em] mb-5">
-                        Aree di Intervento
-                    </p>
-                    <h2 className="text-4xl sm:text-5xl md:text-7xl font-black mb-6 leading-tight tracking-tighter text-foreground">
-                        Domina il Tuo Settore.
-                    </h2>
-                    <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto font-medium leading-relaxed">
-                        Non ti vendiamo &quot;un pezzo di carta&quot;. Costruiamo l&apos;infrastruttura normativa per farti vincere appalti, attrarre talenti e blindare il fatturato.
-                    </p>
-                </motion.div>
+  const reduceMotion = useReducedMotion();
 
-                {/* Uniform 2x2 Grid — no row-span to avoid gap issues */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    {macroAreas.map((area, index) => (
-                        <motion.div
-                            key={area.id}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-5%" }}
-                            transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                            className={`group relative overflow-hidden rounded-[2rem] bg-white/80 backdrop-blur-sm border border-border/40 transition-all duration-500 hover:shadow-[0_25px_60px_-12px_rgba(0,0,0,0.08)] hover:-translate-y-2 ${area.borderHover} p-8 md:p-10 flex flex-col`}
-                        >
-                            {/* Glow effect on hover */}
-                            <div
-                                className="absolute -top-20 -right-20 w-60 h-60 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none blur-[80px]"
-                                style={{ backgroundColor: area.glowColor }}
-                            />
-                            {/* Bottom gradient border glow */}
-                            <div
-                                className="absolute bottom-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                                style={{ background: `linear-gradient(to right, transparent, ${area.glowColor.replace('0.15', '0.5')}, transparent)` }}
-                            />
+  return (
+    <section id="aree-intervento" className="section-shell relative z-10 w-full overflow-hidden px-4 py-24 sm:px-6 md:py-32">
+      <div className="container mx-auto max-w-7xl">
+        <motion.div
+          className="mx-auto mb-16 max-w-4xl text-center md:mb-20"
+          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-10%" }}
+          transition={{ duration: 0.7 }}
+        >
+          <p className="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-primary">Aree di Intervento</p>
+          <h2 className="text-balance text-3xl font-black leading-tight text-foreground sm:text-4xl md:text-6xl">
+            Un catalogo progettato come una piattaforma di crescita.
+          </h2>
+          <p className="mx-auto mt-5 max-w-3xl text-base font-medium leading-relaxed text-muted-foreground sm:text-lg md:text-xl">
+            Ogni area combina certificazioni, compliance e supporto operativo. L’obiettivo non è solo “ottenere il certificato”, ma migliorare processi, margine e posizionamento.
+          </p>
+        </motion.div>
 
-                            <div className="relative z-10">
-                                {/* Icon with gradient background */}
-                                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${area.gradient} flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 group-hover:shadow-xl transition-all duration-500`}>
-                                    <area.icon className="w-6 h-6 text-white" />
-                                </div>
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+          {macroAreas.map((area, index) => (
+            <motion.article
+              key={area.id}
+              className="group relative overflow-hidden rounded-[2rem] border border-white/70 bg-white/75 p-6 shadow-[0_22px_60px_-34px_rgba(15,23,42,0.26)] backdrop-blur-xl md:p-8"
+              initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-6%" }}
+              transition={{ duration: 0.55, delay: reduceMotion ? 0 : index * 0.06, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="pointer-events-none absolute -right-16 -top-20 h-56 w-56 rounded-full opacity-70 blur-3xl transition-opacity duration-500 group-hover:opacity-100" style={{ backgroundColor: area.glow }} />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent" />
 
-                                <h3 className="text-2xl md:text-3xl font-black tracking-tight mb-2 text-foreground">
-                                    {area.title}
-                                </h3>
-                                <p className={`text-base font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r ${area.gradient}`}>
-                                    {area.subtitle}
-                                </p>
-                                <p className="text-muted-foreground font-medium leading-relaxed text-base max-w-lg">
-                                    {area.description}
-                                </p>
-                            </div>
-
-                            <div className="relative z-10 mt-6 pt-5 border-t border-border/20">
-                                <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-muted-foreground/70 mb-3">
-                                    Certificazioni Incluse
-                                </p>
-                                <div className="flex flex-wrap gap-2 mb-5">
-                                    {area.certifications.map((cert) => (
-                                        <Link key={cert.id} href={`/certificazioni/${cert.id}`}>
-                                            <span className={`inline-flex items-center px-3.5 py-1.5 rounded-xl border text-xs font-bold transition-all duration-300 cursor-pointer shadow-sm hover:shadow-md ${area.chipBg}`}>
-                                                {cert.name}
-                                            </span>
-                                        </Link>
-                                    ))}
-                                </div>
-                                <Link
-                                    href="/certificazioni"
-                                    className="inline-flex items-center gap-2 text-foreground font-bold text-sm hover:text-primary transition-colors group/link"
-                                >
-                                    Vedi Tutte le Certificazioni
-                                    <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1.5 transition-transform duration-300" />
-                                </Link>
-                            </div>
-                        </motion.div>
-                    ))}
+              <div className="relative z-10 flex h-full flex-col">
+                <div className="mb-5 flex items-start justify-between gap-4">
+                  <div className={`inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${area.gradient} text-white shadow-lg`}>
+                    <area.icon className="size-5" />
+                  </div>
+                  <span className="rounded-full border border-white/60 bg-white/80 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
+                    Area {String(index + 1).padStart(2, "0")}
+                  </span>
                 </div>
-            </div>
-        </section>
-    );
+
+                <h3 className="text-2xl font-black tracking-tight text-foreground md:text-[1.7rem]">{area.title}</h3>
+                <p className={`mt-2 text-sm font-bold bg-gradient-to-r ${area.gradient} bg-clip-text text-transparent`}>{area.subtitle}</p>
+                <p className="mt-4 text-sm font-medium leading-relaxed text-muted-foreground md:text-base">{area.description}</p>
+
+                <div className="mt-5 rounded-2xl border border-white/70 bg-white/70 p-4 shadow-sm">
+                  <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">Valore strategico</p>
+                  <p className="text-sm font-semibold leading-relaxed text-foreground/85">{area.payoff}</p>
+                </div>
+
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {area.chips.map((chip, chipIndex) => (
+                    <Link key={chip} href={`/certificazioni/${area.links[chipIndex]}`} className="focus-ring rounded-xl">
+                      <span className="inline-flex items-center rounded-xl border border-white/80 bg-white/85 px-3 py-1.5 text-xs font-bold text-foreground shadow-sm hover:border-primary/20 hover:bg-white">
+                        {chip}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+
+                <div className="mt-6 flex items-center justify-between gap-4 border-t border-border/40 pt-4">
+                  <Link href="/certificazioni" className="focus-ring inline-flex items-center gap-2 rounded-full text-sm font-bold text-foreground hover:text-primary">
+                    Vedi catalogo completo
+                    <ArrowRight className="size-4" />
+                  </Link>
+                  <Link href={`/certificazioni/${area.links[0]}`} className="focus-ring rounded-full border border-white/80 bg-white/80 px-3 py-1.5 text-xs font-semibold text-muted-foreground hover:text-foreground">
+                    Inizia da {area.chips[0]}
+                  </Link>
+                </div>
+              </div>
+            </motion.article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }

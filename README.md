@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+﻿# ALSOLVED Certificazioni (Next.js + GitHub Pages)
 
-## Getting Started
+Sito marketing/statico per ALSOLVED focalizzato su certificazioni ISO, compliance e audit readiness.
 
-First, run the development server:
+## Stack
+
+- Next.js 16 (App Router)
+- React 19 + TypeScript
+- Tailwind CSS
+- Framer Motion
+- Lenis (smooth scroll)
+- shadcn/ui (component base)
+
+## Sviluppo locale
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Apri `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Script disponibili
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run dev     # sviluppo locale
+npm run build   # build + static export (output in /out)
+npm run start   # server Next (non usato su GitHub Pages)
+npm run lint    # lint del codice sorgente (docs/ esclusa)
+```
 
-## Learn More
+## Deploy su GitHub Pages
 
-To learn more about Next.js, take a look at the following resources:
+Il progetto è configurato per GitHub Pages con:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `output: 'export'`
+- `basePath: '/AlSolved_Certificazioni'`
+- `trailingSlash: true`
+- `images.unoptimized: true`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Workflow: `.github/workflows/deploy.yml`
 
-## Deploy on Vercel
+Ad ogni push su `main`, GitHub Actions:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Installa dipendenze
+2. Esegue `npm run build`
+3. Pubblica `out/` su GitHub Pages
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Struttura principale
+
+- `src/app/` pagine App Router
+- `src/components/sections/` sezioni UI marketing
+- `src/components/layout/` navbar, wrapper, smooth scroll
+- `src/components/ui/` componenti UI condivisi
+- `src/data/certificazioniData.ts` dataset certificazioni
+- `public/` asset statici
+- `docs/` artifact statici legacy versionati (ignorati dal lint)
+
+## Note operative
+
+- La pagina `contatti` gestisce il caso in cui il Google Form sia ancora placeholder e mostra fallback contatti senza link rotti.
+- Nel dataset alcune immagini certificazioni sono placeholder e non bloccano la UI (il catalogo usa rendering icon-based).
+- Se colleghi un Google Form reale, aggiorna `googleFormUrl` in `src/app/contatti/page.tsx` e l'eventuale campo prefill in `src/components/ui/BookingCTA.tsx` (`entry.PLACEHOLDER`).

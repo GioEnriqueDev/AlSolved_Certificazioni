@@ -16,6 +16,10 @@ const nextConfig: NextConfig = {
 
   reactStrictMode: true,
 
+  turbopack: {
+    root: process.cwd(),
+  },
+
   // Required for proper routing on GitHub Pages static exports (so /certificazioni/[id] resolves to /certificazioni/[id]/index.html)
   trailingSlash: true,
 };

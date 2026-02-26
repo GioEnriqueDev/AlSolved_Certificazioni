@@ -1,170 +1,192 @@
-import Footer from "@/components/sections/Footer";
-import FadeIn from "@/components/animations/FadeIn";
-import { ShieldCheck, Search, FileText, Settings, Award } from "lucide-react";
+﻿"use client";
+
 import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
+import Footer from "@/components/sections/Footer";
+import StaticBackground from "@/components/sections/StaticBackground";
 import { Button } from "@/components/ui/button";
+import { ShieldCheck, Search, FileText, Settings, Award, ArrowRight, CheckCircle2 } from "lucide-react";
+
+const steps = [
+  {
+    month: "Mese 1",
+    title: "Gap Analysis & check-up iniziale",
+    description:
+      "Fotografiamo la situazione attuale della tua azienda, mappiamo i processi già esistenti e identifichiamo lo scarto rispetto ai requisiti della norma selezionata.",
+    icon: Search,
+    color: "from-orange-400 to-amber-500",
+  },
+  {
+    month: "Mese 1–2",
+    title: "Progettazione della documentazione operativa",
+    description:
+      "Scriviamo manuali, procedure, policy e valutazioni necessarie sulla base del tuo modo di lavorare, non su template standardizzati.",
+    icon: FileText,
+    color: "from-primary to-rose-500",
+  },
+  {
+    month: "Mese 2–3",
+    title: "Implementazione & audit interno",
+    description:
+      "Affianchiamo i referenti nell'applicazione pratica delle procedure, formiamo il team e simuliamo l'audit per correggere eventuali non conformità.",
+    icon: Settings,
+    color: "from-blue-500 to-indigo-600",
+  },
+  {
+    month: "Mese 3+",
+    title: "Audit ente terzo & certificazione",
+    description:
+      "Ti supportiamo durante l'audit ufficiale dell'ente certificatore, gestendo richieste documentali e chiarimenti fino al rilascio del certificato.",
+    icon: Award,
+    color: "from-emerald-500 to-green-600",
+  },
+] as const;
+
+const workloadRows = [
+  {
+    you: "Un referente interno per raccogliere documenti base (visure, contratti, organigramma).",
+    us: "Check-up preliminare completo del modello organizzativo e definizione roadmap compliance.",
+  },
+  {
+    you: "Disponibilità a condividere processi, strumenti e prassi operative reali.",
+    us: "Scrittura integrale della documentazione richiesta, pronta per essere adottata e auditata.",
+  },
+  {
+    you: "2–4 ore al mese per interviste, validazioni e approvazioni.",
+    us: "Revisione tecnica e legale, implementazione guidata e simulazione audit interno.",
+  },
+  {
+    you: "Presenza operativa durante l'audit dell'ente terzo.",
+    us: "Affiancamento attivo e gestione delle richieste ispettive durante l'audit ufficiale.",
+  },
+] as const;
 
 export default function MetodoPage() {
-    return (
-        <div className="flex flex-col min-h-screen bg-gray-50">
+  const reduceMotion = useReducedMotion();
 
-            {/* Hero Section */}
-            <section className="relative pt-40 pb-20 overflow-hidden bg-white border-b border-border/50">
-                <div className="absolute inset-0 bg-grid-black/[0.02] bg-[size:30px_30px]" />
+  return (
+    <div className="relative min-h-screen text-foreground">
+      <StaticBackground />
 
-                <div className="container mx-auto px-6 max-w-4xl relative z-10 text-center">
-                    <FadeIn>
-                        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-                            <ShieldCheck className="w-5 h-5 text-primary" />
-                            <span className="text-sm font-bold text-primary uppercase tracking-widest">Processo ALSOLVED</span>
-                        </div>
-                        <h1 className="text-5xl md:text-7xl font-black text-foreground mb-6 tracking-tight leading-tight">
-                            Zero Sorprese.<br />Massima Certezza.
-                        </h1>
-                        <p className="text-xl text-muted-foreground font-medium leading-relaxed mb-8 max-w-2xl mx-auto">
-                            Dimentica i manuali copia-incolla e la burocrazia infinita. Abbiamo ingegnerizzato un metodo a 4 fasi che riduce al minimo l'impatto sul tuo team interno.
-                        </p>
-                    </FadeIn>
-                </div>
-            </section>
-
-            {/* 4 Steps Section */}
-            <section className="py-24 relative z-10">
-                <div className="container mx-auto px-6 max-w-5xl">
-                    <FadeIn>
-                        <h2 className="text-3xl font-black mb-16 text-center">Le 4 Fasi del Nostro Intervento</h2>
-                    </FadeIn>
-
-                    <div className="space-y-12">
-                        {/* Step 1 */}
-                        <FadeIn delay={0.1}>
-                            <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-border/50 flex flex-col md:flex-row gap-8 items-center">
-                                <div className="w-20 h-20 shrink-0 rounded-2xl bg-orange-100 flex items-center justify-center">
-                                    <Search className="w-10 h-10 text-orange-500" />
-                                </div>
-                                <div>
-                                    <span className="text-sm font-bold text-orange-500 uppercase tracking-wider mb-2 block">Mese 1</span>
-                                    <h3 className="text-3xl font-black mb-4">1. Gap Analysis & Check-up Iniziale</h3>
-                                    <p className="text-lg text-muted-foreground font-medium leading-relaxed">
-                                        Fotografiamo esattamente la situazione attuale della tua azienda. Analizziamo come lavorate già, mappiamo i processi esistenti e identifichiamo lo scarto ("Gap") rispetto ai requisiti rigidi della norma ISO/UNI che abbiamo scelto. Non stravolgiamo il vostro lavoro: vi adattiamo noi alla norma.
-                                    </p>
-                                </div>
-                            </div>
-                        </FadeIn>
-
-                        {/* Step 2 */}
-                        <FadeIn delay={0.2}>
-                            <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-border/50 flex flex-col md:flex-row gap-8 items-center">
-                                <div className="w-20 h-20 shrink-0 rounded-2xl bg-primary/10 flex items-center justify-center">
-                                    <FileText className="w-10 h-10 text-primary" />
-                                </div>
-                                <div>
-                                    <span className="text-sm font-bold text-primary uppercase tracking-wider mb-2 block">Mese 1 - 2</span>
-                                    <h3 className="text-3xl font-black mb-4">2. Creazione della Burocrazia Operativa</h3>
-                                    <p className="text-lg text-muted-foreground font-medium leading-relaxed">
-                                        Sulla base del Gap Analysis, i nostri consulenti scrivono fisicamente i Manuali Tecnici, le Procedure (SOP), la Valutazione dei Rischi e le Policy. Non vi mandiamo template da riempire: creiamo noi la documentazione su misura, pronta per essere integrata nel vostro operato.
-                                    </p>
-                                </div>
-                            </div>
-                        </FadeIn>
-
-                        {/* Step 3 */}
-                        <FadeIn delay={0.3}>
-                            <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-border/50 flex flex-col md:flex-row gap-8 items-center">
-                                <div className="w-20 h-20 shrink-0 rounded-2xl bg-blue-100 flex items-center justify-center">
-                                    <Settings className="w-10 h-10 text-blue-500" />
-                                </div>
-                                <div>
-                                    <span className="text-sm font-bold text-blue-500 uppercase tracking-wider mb-2 block">Mese 2 - 3</span>
-                                    <h3 className="text-3xl font-black mb-4">3. Implementazione & Audit Interno</h3>
-                                    <p className="text-lg text-muted-foreground font-medium leading-relaxed">
-                                        Affianchiamo il vostro team (o il vostro Responsabile) nell'applicare concretamente le nuove procedure. Facciamo formazione specifica sulle policy appena scritte e poi simuliamo l'esame finale: l'Audit Interno. Se troviamo non conformità in questa simulazione, le correggiamo senza danni.
-                                    </p>
-                                </div>
-                            </div>
-                        </FadeIn>
-
-                        {/* Step 4 */}
-                        <FadeIn delay={0.4}>
-                            <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-border/50 flex flex-col md:flex-row gap-8 items-center">
-                                <div className="w-20 h-20 shrink-0 rounded-2xl bg-green-100 flex items-center justify-center">
-                                    <Award className="w-10 h-10 text-green-500" />
-                                </div>
-                                <div>
-                                    <span className="text-sm font-bold text-green-500 uppercase tracking-wider mb-2 block">Mese 3</span>
-                                    <h3 className="text-3xl font-black mb-4">4. Audit dell'Ente Terzo & Certificazione</h3>
-                                    <p className="text-lg text-muted-foreground font-medium leading-relaxed">
-                                        Il giorno della verità non vi lasciamo soli. Partecipiamo in affiancamento (in presenza o da remoto) all'Audit ufficiale condotto dall'Organismo di Certificazione indipendente. Interveniamo tempestivamente in caso di richieste complesse dell'ispettore per garantire il rilascio del Certificato.
-                                    </p>
-                                </div>
-                            </div>
-                        </FadeIn>
-                    </div>
-                </div>
-            </section>
-
-            {/* Comparison Table Section */}
-            <section className="py-24 bg-white border-t border-border/50">
-                <div className="container mx-auto px-6 max-w-5xl">
-                    <FadeIn>
-                        <div className="text-center mb-16">
-                            <h2 className="text-4xl font-black mb-4">Carico di lavoro: Noi vs Voi</h2>
-                            <p className="text-xl text-muted-foreground font-medium max-w-2xl mx-auto">
-                                Il problema delle certificazioni è spesso il blocco operativo dell'azienda. Ecco come dividiamo realmente i compiti per farvi continuare a lavorare al 100%.
-                            </p>
-                        </div>
-
-                        <div className="overflow-x-auto rounded-3xl shadow-lg border border-border/50">
-                            <table className="w-full text-left border-collapse bg-white">
-                                <thead>
-                                    <tr>
-                                        <th className="p-6 bg-gray-50 border-b-2 text-xl font-bold w-1/3">Cosa ci serve da Voi</th>
-                                        <th className="p-6 bg-primary/10 border-b-2 text-xl font-bold w-2/3 border-l text-primary">Cosa Facciamo Noi (ALSOLVED)</th>
-                                    </tr>
-                                </thead>
-                                <tbody className="text-lg font-medium">
-                                    <tr>
-                                        <td className="p-6 border-b text-muted-foreground">Nominare un referente interno per la raccolta dei documenti di base (visure, contratti).</td>
-                                        <td className="p-6 border-b border-l bg-primary/5">Assorbimento totale e check-up preliminare formale del modello organizzativo (SOP, organigramma, flussi).</td>
-                                    </tr>
-                                    <tr>
-                                        <td className="p-6 border-b text-muted-foreground">Fornire accessi ai software esistenti per eventuali integrazioni.</td>
-                                        <td className="p-6 border-b border-l bg-primary/5">Scrittura integrale della documentazione obbligatoria. <span className="font-bold underline text-foreground">Zero fogli in bianco da riempire per voi.</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td className="p-6 border-b text-muted-foreground">Ritagliare 2-4 ore al mese per validare e approvare le procedure generate da noi.</td>
-                                        <td className="p-6 border-b border-l bg-primary/5">Revisione legale e correzione degli scostamenti rispetto alla compliance ISO/UNI. Simulazione Audit Interno completa.</td>
-                                    </tr>
-                                    <tr>
-                                        <td className="p-6 border-b text-muted-foreground">Ospitare l'ispettore dell'Ente Terzo nei giorni dell'audit finale.</td>
-                                        <td className="p-6 border-b border-l bg-primary/5">Affiancamento attivo durante i giorni di ispezione. Facciamo da scudo alle domande tecniche poste dall'Ente Ispettivo.</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </FadeIn>
-                </div>
-            </section>
-
-            {/* Global CTA */}
-            <section className="py-24 bg-foreground text-background text-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(242,78,107,0.2),transparent_70%)] pointer-events-none" />
-                <div className="container mx-auto px-6 relative z-10 max-w-3xl">
-                    <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-6">
-                        Vuoi certificarti senza bloccare l'azienda?
-                    </h2>
-                    <p className="text-xl text-gray-400 font-medium mb-10">
-                        Siamo pronti. Parliamo per 15 minuti e ti diamo chiarezza assoluta sui prossimi passi.
-                    </p>
-                    <Link href="/contatti">
-                        <Button size="lg" className="h-16 px-10 text-xl font-bold rounded-full bg-primary hover:bg-primary/90 text-white shadow-[0_0_40px_rgba(242,78,107,0.3)] transition-all transform hover:scale-105">
-                            Prenota una Call
-                        </Button>
-                    </Link>
-                </div>
-            </section>
-
-            <Footer />
+      <section className="section-shell relative px-4 pb-14 pt-28 sm:px-6 md:pt-32">
+        <div className="container mx-auto max-w-5xl text-center">
+          <motion.div
+            initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55 }}
+          >
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/80 px-4 py-2 shadow-sm backdrop-blur-xl">
+              <ShieldCheck className="size-4 text-primary" />
+              <span className="text-xs font-bold uppercase tracking-[0.18em] text-primary">Processo ALSOLVED</span>
+            </div>
+            <h1 className="text-balance text-4xl font-black leading-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
+              Zero sorprese. Massima chiarezza operativa.
+            </h1>
+            <p className="mx-auto mt-5 max-w-3xl text-base font-medium leading-relaxed text-muted-foreground sm:text-lg md:text-xl">
+              Abbiamo ingegnerizzato un metodo a fasi per ridurre il carico interno, accelerare la preparazione documentale e arrivare all’audit con un sistema davvero funzionante.
+            </p>
+          </motion.div>
         </div>
-    );
+      </section>
+
+      <section className="relative z-10 px-4 pb-16 sm:px-6 md:pb-24">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 gap-5 xl:grid-cols-2">
+            {steps.map((step, index) => (
+              <motion.article
+                key={step.title}
+                initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-8%" }}
+                transition={{ duration: 0.5, delay: reduceMotion ? 0 : index * 0.06 }}
+                className="relative rounded-[1.85rem] border border-white/80 bg-white/80 p-6 shadow-[0_22px_60px_-36px_rgba(15,23,42,0.28)] backdrop-blur-xl md:p-7"
+              >
+                <div className="mb-5 flex items-start gap-4">
+                  <div className={`inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${step.color} text-white shadow-lg`}>
+                    <step.icon className="size-5" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground">{step.month}</p>
+                    <h2 className="mt-1 text-xl font-black tracking-tight text-foreground sm:text-2xl">{step.title}</h2>
+                  </div>
+                </div>
+                <p className="text-sm font-medium leading-relaxed text-muted-foreground sm:text-base">{step.description}</p>
+              </motion.article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative z-10 px-4 pb-16 sm:px-6 md:pb-24">
+        <div className="container mx-auto max-w-7xl rounded-[2rem] border border-white/80 bg-white/82 p-6 shadow-[0_24px_70px_-40px_rgba(15,23,42,0.3)] backdrop-blur-xl md:p-8">
+          <div className="mb-6 text-center md:mb-8">
+            <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-primary">Distribuzione del carico</p>
+            <h2 className="text-balance text-2xl font-black tracking-tight text-foreground sm:text-3xl md:text-4xl">
+              Noi facciamo il lavoro pesante. Tu mantieni il focus sul business.
+            </h2>
+            <p className="mx-auto mt-3 max-w-3xl text-sm font-medium leading-relaxed text-muted-foreground sm:text-base">
+              Il metodo è progettato per ridurre il tempo interno richiesto e accelerare la fase documentale e di audit preparation.
+            </p>
+          </div>
+
+          <div className="overflow-x-auto rounded-2xl border border-white/80 bg-white/80 shadow-sm">
+            <table className="min-w-full border-collapse text-left">
+              <thead>
+                <tr>
+                  <th className="w-1/2 border-b border-border/50 bg-white/90 p-4 text-sm font-black uppercase tracking-[0.12em] text-muted-foreground md:w-[42%]">
+                    Cosa ci serve da voi
+                  </th>
+                  <th className="border-b border-l border-border/50 bg-primary/8 p-4 text-sm font-black uppercase tracking-[0.12em] text-primary">
+                    Cosa facciamo noi (ALSOLVED)
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {workloadRows.map((row, index) => (
+                  <tr key={index}>
+                    <td className="border-b border-border/40 p-4 align-top text-sm font-medium leading-relaxed text-muted-foreground">{row.you}</td>
+                    <td className="border-b border-l border-border/40 bg-primary/5 p-4 align-top text-sm font-semibold leading-relaxed text-foreground">{row.us}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+            {[
+              "Timeline realistica, non promesse aggressive",
+              "Documentazione scritta sulla tua operatività",
+              "Affiancamento fino all'audit ufficiale",
+            ].map((item) => (
+              <div key={item} className="flex items-start gap-3 rounded-xl border border-white/80 bg-white/75 p-3 text-sm font-semibold text-foreground">
+                <span className="mt-0.5 inline-flex size-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <CheckCircle2 className="size-3.5" />
+                </span>
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative z-10 px-4 pb-24 sm:px-6 md:pb-32">
+        <div className="container mx-auto max-w-5xl rounded-[2.25rem] border border-white/80 bg-white/82 p-8 text-center shadow-[0_26px_80px_-40px_rgba(15,23,42,0.3)] backdrop-blur-xl md:p-12">
+          <h2 className="text-balance text-3xl font-black tracking-tight text-foreground sm:text-4xl md:text-5xl">
+            Vuoi certificarti senza bloccare l’azienda?
+          </h2>
+          <p className="mx-auto mt-4 max-w-3xl text-base font-medium leading-relaxed text-muted-foreground sm:text-lg">
+            Parliamo 15 minuti e ti diamo una valutazione chiara sui prossimi passi, sul livello di readiness e sulla certificazione più strategica per la tua azienda.
+          </p>
+          <Link href="/contatti" className="focus-ring mt-8 inline-flex rounded-full">
+            <Button size="lg" className="h-14 rounded-full px-8 text-base font-semibold text-white glow-shadow hover:glow-shadow-strong">
+              Prenota una call
+              <ArrowRight className="size-4" />
+            </Button>
+          </Link>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
 }

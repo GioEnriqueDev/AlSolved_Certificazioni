@@ -1,181 +1,188 @@
-"use client";
+﻿"use client";
 
-import { motion } from "framer-motion";
+import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
 import Footer from "@/components/sections/Footer";
 import StaticBackground from "@/components/sections/StaticBackground";
 import { Button } from "@/components/ui/button";
-import {
-    ShieldCheck,
-    Award,
-    Zap,
-    Scale,
-    Users,
-    ArrowRight,
-} from "lucide-react";
-import Link from "next/link";
 import NeonLogo from "@/components/ui/NeonLogo";
+import { ShieldCheck, Award, Zap, Scale, Users, ArrowRight, BriefcaseBusiness, Goal } from "lucide-react";
 
 const benefits = [
-    {
-        icon: ShieldCheck,
-        title: "Garanzia di Risultato",
-        description: "Accompagniamo l'azienda fino all'ottenimento del certificato. Nessuna sorpresa."
-    },
-    {
-        icon: Zap,
-        title: "Velocità di Esecuzione",
-        description: "Protocolli snelli che non bloccano l'operatività aziendale quotidiana."
-    },
-    {
-        icon: Scale,
-        title: "Compliance Legale",
-        description: "Mettiamo al riparo l'azienda da sanzioni, responsabilità amministrative e rischi penali."
-    },
-    {
-        icon: Award,
-        title: "Vittoria Gare d'Appalto",
-        description: "I nostri clienti aumentano il punteggio tecnico nelle gare pubbliche in media del 40%."
-    },
-];
+  {
+    icon: ShieldCheck,
+    title: "Garanzia di risultato",
+    description: "Ti accompagniamo fino all'ottenimento del certificato, con audit prep e supporto operativo.",
+  },
+  {
+    icon: Zap,
+    title: "Velocità di esecuzione",
+    description: "Protocolli snelli e timeline realistiche per non bloccare l'operatività aziendale quotidiana.",
+  },
+  {
+    icon: Scale,
+    title: "Compliance legale",
+    description: "Riduciamo il rischio di sanzioni, contestazioni e responsabilità amministrative.",
+  },
+  {
+    icon: Award,
+    title: "Valore competitivo",
+    description: "Più credibilità verso clienti enterprise, enti pubblici e partner di filiera.",
+  },
+] as const;
+
+const principles = [
+  {
+    icon: BriefcaseBusiness,
+    title: "Business-first",
+    text: "Le certificazioni devono migliorare il business, non rallentarlo. Ogni deliverable è progettato per essere utile alla tua azienda.",
+  },
+  {
+    icon: Goal,
+    title: "Execution over theory",
+    text: "Pochi meeting, molta operatività. Produciamo noi la maggior parte del lavoro documentale e di impostazione.",
+  },
+  {
+    icon: Users,
+    title: "Affiancamento reale",
+    text: "Non ti lasciamo con un manuale in mano: ti guidiamo fino all'audit e alle verifiche di sorveglianza.",
+  },
+] as const;
 
 export default function ChiSiamoPage() {
-    return (
-        <div className="min-h-screen bg-transparent text-foreground relative">
-            <StaticBackground />
+  const reduceMotion = useReducedMotion();
 
-            {/* Hero Section */}
-            <section className="pt-32 pb-20 relative">
-                <div className="container mx-auto px-6">
-                    <motion.div
-                        className="max-w-4xl mx-auto text-center"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                    >
-                        <p className="text-sm font-bold text-primary uppercase tracking-[0.2em] mb-4">
-                            Chi Siamo
-                        </p>
-                        <h1 className="text-5xl md:text-7xl font-black mb-6 leading-tight text-foreground tracking-tight drop-shadow-sm">
-                            Trasformiamo la Burocrazia in <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-400">Asset Strategico</span>
-                        </h1>
-                        <p className="text-lg md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-medium">
-                            Non vendiamo &quot;pezzi di carta&quot;. Costruiamo sistemi di gestione che permettono alle aziende di vincere appalti, evitare sanzioni e scalare il business.
-                        </p>
-                    </motion.div>
-                </div>
-            </section>
+  return (
+    <div className="relative min-h-screen text-foreground">
+      <StaticBackground />
 
-            {/* The Mission Section */}
-            <section className="py-20 relative">
-                <div className="container mx-auto px-6">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                        <motion.div
-                            initial={{ opacity: 0, x: -30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6 }}
-                        >
-                            <div className="inline-block mb-8 bg-white p-3 rounded-2xl shadow-sm border border-border">
-                                <NeonLogo size="sm" />
-                            </div>
-                            <h2 className="text-3xl md:text-5xl font-bold mb-8 text-foreground tracking-tight">
-                                Il Partner Tecnico per le Certificazioni ISO
-                            </h2>
-                            <div className="space-y-6 text-muted-foreground leading-relaxed text-lg font-medium">
-                                <p>
-                                    ALSOLVED nasce con un obiettivo preciso: <strong className="text-foreground">liberare le PMI italiane dalla complessità normativa</strong>.
-                                </p>
-                                <p>
-                                    Troppe aziende vedono le certificazioni come un costo o un obbligo. Noi le trasformiamo in un vantaggio competitivo. Che si tratti di Qualità (9001), Sicurezza Dati (27001) o Sostenibilità (14001), <strong className="text-foreground">il nostro approccio è pratico, veloce e orientato al business.</strong>
-                                </p>
-                                <p>
-                                    Non siamo generalisti. Siamo verticali sulle certificazioni. Conosciamo ogni virgola dei regolamenti per farti ottenere il massimo punteggio nel minor tempo possibile.
-                                </p>
-                            </div>
-                        </motion.div>
-
-                        {/* Why Choose Us Grid */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            {benefits.map((item, i) => (
-                                <motion.div
-                                    key={i}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: i * 0.1 }}
-                                    className="bg-white border border-border p-8 rounded-3xl hover:border-primary/20 hover:shadow-soft-glow transition-all duration-300 hover:-translate-y-1"
-                                >
-                                    <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 shadow-sm">
-                                        <item.icon className="w-7 h-7 text-primary" />
-                                    </div>
-                                    <h3 className="text-xl font-bold mb-3 text-foreground tracking-tight">{item.title}</h3>
-                                    <p className="text-sm text-muted-foreground leading-relaxed font-medium">
-                                        {item.description}
-                                    </p>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Quote / Philosophy Section */}
-            <section className="py-32 bg-secondary/20 relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-border to-transparent"></div>
-                <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-border to-transparent"></div>
-
-                <div className="container mx-auto px-6 text-center relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                    >
-                        <Users className="w-16 h-16 text-primary mx-auto mb-10 opacity-80" />
-                        <h2 className="text-3xl md:text-5xl font-light italic max-w-5xl mx-auto leading-relaxed text-foreground tracking-tight">
-                            &quot;La certificazione non è l&apos;obiettivo finale. L&apos;obiettivo è un&apos;azienda che funziona meglio, rischia meno e guadagna di più. Il certificato è solo la naturale conseguenza.&quot;
-                        </h2>
-                        <div className="mt-12">
-                            <p className="font-bold text-xl text-primary tracking-widest uppercase">Il Team ALSOLVED</p>
-                        </div>
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* CTA Section */}
-            <section className="py-32 relative">
-                <div className="container mx-auto px-6 text-center">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="max-w-4xl mx-auto bg-white border border-border shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-[3rem] p-12 md:p-20 relative overflow-hidden"
-                    >
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2"></div>
-                        <div className="absolute bottom-0 left-0 w-64 h-64 bg-orange-400/5 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2"></div>
-
-                        <div className="relative z-10">
-                            <h2 className="text-4xl md:text-6xl font-black mb-8 text-foreground tracking-tight">
-                                La tua azienda è pronta al salto di qualità?
-                            </h2>
-                            <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto font-medium leading-relaxed">
-                                Verifica gratuitamente se hai i requisiti per le certificazioni ISO e scopri come ottenerle in tempi record.
-                            </p>
-                            <Link href="/contatti">
-                                <Button
-                                    size="lg"
-                                    className="h-16 px-12 text-xl font-bold rounded-full bg-primary hover:bg-primary/90 text-white shadow-[0_8px_30px_rgba(242,78,107,0.4)] transition-all duration-300 hover:scale-105 hover:-translate-y-1"
-                                >
-                                    Richiedi Analisi Preliminare
-                                    <ArrowRight className="w-6 h-6 ml-3" />
-                                </Button>
-                            </Link>
-                        </div>
-                    </motion.div>
-                </div>
-            </section>
-
-            <Footer />
+      <section className="section-shell relative px-4 pb-16 pt-28 sm:px-6 md:pt-32">
+        <div className="container mx-auto max-w-6xl">
+          <motion.div
+            className="mx-auto max-w-4xl text-center"
+            initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55 }}
+          >
+            <p className="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-primary">Chi siamo</p>
+            <h1 className="text-balance text-4xl font-black leading-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
+              Trasformiamo la burocrazia in un asset strategico.
+            </h1>
+            <p className="mx-auto mt-5 max-w-3xl text-base font-medium leading-relaxed text-muted-foreground sm:text-lg md:text-xl">
+              ALSOLVED è il partner tecnico per certificazioni ISO e compliance operativa. Non vendiamo “pezzi di carta”: costruiamo sistemi di gestione utili, auditabili e orientati ai risultati.
+            </p>
+          </motion.div>
         </div>
-    );
+      </section>
+
+      <section className="relative z-10 px-4 pb-16 sm:px-6 md:pb-24">
+        <div className="container mx-auto grid max-w-7xl grid-cols-1 gap-8 xl:grid-cols-[1.05fr_0.95fr]">
+          <motion.div
+            initial={reduceMotion ? false : { opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.55 }}
+            className="rounded-[2rem] border border-white/80 bg-white/80 p-6 shadow-[0_24px_70px_-36px_rgba(15,23,42,0.28)] backdrop-blur-xl md:p-8"
+          >
+            <div className="mb-6 inline-flex rounded-2xl border border-white/80 bg-white/85 p-3 shadow-sm">
+              <NeonLogo size="sm" />
+            </div>
+            <h2 className="text-balance text-2xl font-black tracking-tight text-foreground sm:text-3xl md:text-4xl">
+              Il partner tecnico per certificazioni ISO, audit e compliance.
+            </h2>
+            <div className="mt-6 space-y-4 text-sm font-medium leading-relaxed text-muted-foreground sm:text-base">
+              <p>
+                ALSOLVED nasce per liberare le PMI italiane dalla complessità normativa e trasformare la compliance in leva di crescita. Lavoriamo in modo verticale su certificazioni e sistemi di gestione.
+              </p>
+              <p>
+                Il nostro approccio è pratico: analizziamo il tuo modello operativo, progettiamo la documentazione su misura e accompagniamo il team fino all’audit, senza imporre burocrazia scollegata dalla realtà.
+              </p>
+              <p>
+                Che si tratti di qualità, cybersecurity, sostenibilità o sicurezza sul lavoro, il focus resta lo stesso: risultati misurabili e carico interno contenuto.
+              </p>
+            </div>
+
+            <div className="mt-8 grid gap-4 sm:grid-cols-3">
+              {[
+                { label: "Approccio", value: "Pragmatico" },
+                { label: "Supporto", value: "End-to-end" },
+                { label: "Obiettivo", value: "Audit-ready" },
+              ].map((item) => (
+                <div key={item.label} className="rounded-2xl border border-white/80 bg-white/80 p-4 text-center shadow-sm">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">{item.label}</p>
+                  <p className="mt-2 text-lg font-black tracking-tight text-foreground">{item.value}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {benefits.map((item, index) => (
+              <motion.article
+                key={item.title}
+                initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-6%" }}
+                transition={{ duration: 0.45, delay: reduceMotion ? 0 : index * 0.06 }}
+                className="rounded-[1.5rem] border border-white/80 bg-white/80 p-5 shadow-[0_18px_48px_-34px_rgba(15,23,42,0.24)] backdrop-blur-xl"
+              >
+                <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                  <item.icon className="size-5" />
+                </div>
+                <h3 className="text-lg font-black tracking-tight text-foreground">{item.title}</h3>
+                <p className="mt-2 text-sm font-medium leading-relaxed text-muted-foreground">{item.description}</p>
+              </motion.article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative z-10 px-4 pb-16 sm:px-6 md:pb-24">
+        <div className="container mx-auto max-w-7xl rounded-[2rem] border border-white/75 bg-white/72 p-6 shadow-[0_24px_70px_-36px_rgba(15,23,42,0.26)] backdrop-blur-xl md:p-8">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1.15fr] lg:items-start">
+            <div>
+              <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-primary">La nostra filosofia</p>
+              <h2 className="text-balance text-2xl font-black tracking-tight text-foreground sm:text-3xl md:text-4xl">
+                La certificazione non è il traguardo. È il risultato di un’azienda che funziona meglio.
+              </h2>
+              <p className="mt-4 text-sm font-medium leading-relaxed text-muted-foreground sm:text-base">
+                Costruiamo sistemi che migliorano governance, processi e accountability. Il certificato arriva come conseguenza naturale di un lavoro ben progettato.
+              </p>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+              {principles.map((item) => (
+                <div key={item.title} className="rounded-2xl border border-white/80 bg-white/82 p-4 shadow-sm">
+                  <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                    <item.icon className="h-[18px] w-[18px]" />
+                  </div>
+                  <h3 className="text-sm font-black uppercase tracking-[0.12em] text-foreground">{item.title}</h3>
+                  <p className="mt-2 text-sm font-medium leading-relaxed text-muted-foreground">{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative z-10 px-4 pb-24 sm:px-6 md:pb-32">
+        <div className="container mx-auto max-w-5xl rounded-[2.25rem] border border-white/80 bg-white/82 p-8 text-center shadow-[0_26px_80px_-40px_rgba(15,23,42,0.3)] backdrop-blur-xl md:p-12">
+          <h2 className="text-balance text-3xl font-black tracking-tight text-foreground sm:text-4xl md:text-5xl">
+            La tua azienda è pronta al prossimo salto di qualità?
+          </h2>
+          <p className="mx-auto mt-4 max-w-3xl text-base font-medium leading-relaxed text-muted-foreground sm:text-lg">
+            Analizziamo gratuitamente il tuo scenario e ti diciamo quali certificazioni hanno il miglior impatto in base a settore, clienti e obiettivi di crescita.
+          </p>
+          <Link href="/contatti" className="focus-ring mt-8 inline-flex rounded-full">
+            <Button size="lg" className="h-14 rounded-full px-8 text-base font-semibold text-white glow-shadow hover:glow-shadow-strong">
+              Richiedi analisi preliminare
+              <ArrowRight className="size-4" />
+            </Button>
+          </Link>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
 }

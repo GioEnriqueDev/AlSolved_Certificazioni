@@ -1,70 +1,87 @@
-"use client";
+﻿"use client";
 
-import { motion } from "framer-motion";
-import { ShieldCheck, Lock, Leaf, HardHat, Heart, Scale, Wifi, Car } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import {
+  ShieldCheck,
+  Lock,
+  Leaf,
+  HardHat,
+  Heart,
+  Scale,
+  Wifi,
+  Car,
+  type LucideIcon,
+} from "lucide-react";
 
-const logos = [
-    { name: "ISO 9001", label: "Qualità", icon: ShieldCheck, color: "text-amber-600" },
-    { name: "ISO 27001", label: "Cybersecurity", icon: Lock, color: "text-blue-600" },
-    { name: "ISO 14001", label: "Ambiente", icon: Leaf, color: "text-emerald-600" },
-    { name: "ISO 45001", label: "Sicurezza", icon: HardHat, color: "text-orange-600" },
-    { name: "UNI/PdR 125", label: "Parità di Genere", icon: Heart, color: "text-rose-500" },
-    { name: "GDPR", label: "Compliance DPO", icon: Scale, color: "text-indigo-600" },
-    { name: "NIS2", label: "Direttiva EU", icon: Wifi, color: "text-violet-600" },
-    { name: "IATF 16949", label: "Automotive", icon: Car, color: "text-slate-600" },
+const logos: Array<{ name: string; label: string; icon: LucideIcon; color: string }> = [
+  { name: "ISO 9001", label: "Qualità", icon: ShieldCheck, color: "text-amber-600" },
+  { name: "ISO 27001", label: "Cybersecurity", icon: Lock, color: "text-blue-600" },
+  { name: "ISO 14001", label: "Ambiente", icon: Leaf, color: "text-emerald-600" },
+  { name: "ISO 45001", label: "Sicurezza", icon: HardHat, color: "text-orange-600" },
+  { name: "UNI/PdR 125", label: "Parità di genere", icon: Heart, color: "text-rose-500" },
+  { name: "GDPR", label: "Compliance DPO", icon: Scale, color: "text-indigo-600" },
+  { name: "NIS2", label: "Direttiva EU", icon: Wifi, color: "text-violet-600" },
+  { name: "IATF 16949", label: "Automotive", icon: Car, color: "text-slate-600" },
 ];
 
-function LogoPill({ name, label, icon: Icon, color }: { name: string; label: string; icon: any; color: string }) {
-    return (
-        <div className="flex items-center gap-3 px-6 py-3 mx-3 rounded-2xl bg-white/70 border border-border/40 shadow-[0_1px_6px_rgba(0,0,0,0.03)] hover:border-primary/20 hover:shadow-[0_4px_16px_rgba(242,78,107,0.08)] transition-all duration-300 cursor-default group shrink-0">
-            <div className={`w-9 h-9 rounded-xl bg-gray-50 border border-border/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 ${color}`}>
-                <Icon className="w-4.5 h-4.5" />
-            </div>
-            <div className="flex flex-col">
-                <span className="text-sm font-bold text-foreground leading-tight">{name}</span>
-                <span className="text-[11px] text-muted-foreground font-medium">{label}</span>
-            </div>
-        </div>
-    );
+function LogoPill({ name, label, icon: Icon, color }: { name: string; label: string; icon: LucideIcon; color: string }) {
+  return (
+    <div className="group flex shrink-0 items-center gap-3 rounded-2xl border border-white/70 bg-white/75 px-5 py-3 shadow-[0_12px_28px_-22px_rgba(15,23,42,0.24)] backdrop-blur-xl">
+      <div className={`flex size-10 items-center justify-center rounded-xl border border-white/70 bg-white/85 ${color}`}>
+        <Icon className="h-[18px] w-[18px]" />
+      </div>
+      <div className="flex flex-col leading-tight">
+        <span className="text-sm font-bold text-foreground">{name}</span>
+        <span className="text-[11px] font-semibold text-muted-foreground">{label}</span>
+      </div>
+    </div>
+  );
 }
 
 export default function ClientLogos() {
-    return (
-        <section className="py-16 bg-transparent border-y border-border/30 overflow-hidden relative z-10 w-full">
-            <div className="container mx-auto px-6 text-center mb-10">
-                <motion.p
-                    className="text-xs font-bold text-primary uppercase tracking-[0.25em] mb-3"
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                >
-                    Standard & Framework
-                </motion.p>
-                <motion.h3
-                    className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground tracking-tight"
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.1 }}
-                >
-                    Certificazioni Riconosciute a Livello Globale
-                </motion.h3>
-            </div>
+  const reduceMotion = useReducedMotion();
 
-            {/* CSS-only Infinite Marquee */}
-            <div className="relative">
-                {/* Gradient Masks */}
-                <div className="absolute left-0 top-0 bottom-0 w-24 md:w-40 bg-gradient-to-r from-background to-transparent z-10" />
-                <div className="absolute right-0 top-0 bottom-0 w-24 md:w-40 bg-gradient-to-l from-background to-transparent z-10" />
+  return (
+    <section className="relative z-10 w-full overflow-hidden border-y border-white/50 bg-white/35 py-14 backdrop-blur-sm">
+      <div className="container mx-auto mb-8 px-6 text-center">
+        <motion.p
+          className="mb-3 text-xs font-bold uppercase tracking-[0.25em] text-primary"
+          initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          Standard & Framework
+        </motion.p>
+        <motion.h3
+          className="text-balance text-xl font-bold tracking-tight text-foreground sm:text-2xl md:text-3xl"
+          initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.08 }}
+        >
+          Certificazioni riconosciute a livello globale, implementate in modo pragmatico
+        </motion.h3>
+      </div>
 
-                {/* Scrolling Container — pure CSS animation */}
-                <div className="flex animate-marquee will-change-transform">
-                    {/* Double the logos for seamless loop */}
-                    {[...logos, ...logos].map((logo, i) => (
-                        <LogoPill key={i} name={logo.name} label={logo.label} icon={logo.icon} color={logo.color} />
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
+      {reduceMotion ? (
+        <div className="container mx-auto grid grid-cols-1 gap-3 px-6 sm:grid-cols-2 lg:grid-cols-4">
+          {logos.map((logo) => (
+            <LogoPill key={logo.name} name={logo.name} label={logo.label} icon={logo.icon} color={logo.color} />
+          ))}
+        </div>
+      ) : (
+        <div className="relative">
+          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-background to-transparent md:w-40" />
+          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-background to-transparent md:w-40" />
+          <div className="flex animate-marquee will-change-transform">
+            {[...logos, ...logos].map((logo, index) => (
+              <div key={`${logo.name}-${index}`} className="mx-2">
+                <LogoPill name={logo.name} label={logo.label} icon={logo.icon} color={logo.color} />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </section>
+  );
 }

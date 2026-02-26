@@ -1,293 +1,371 @@
-import { certifications } from "@/data/certificazioniData";
-import { notFound } from "next/navigation";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, Users, Target, ShieldCheck, Clock, CheckCircle2, ChevronRight, Euro, HelpCircle, TrendingUp, ArrowRight } from "lucide-react";
+import { notFound } from "next/navigation";
+import {
+  ArrowLeft,
+  ArrowRight,
+  CheckCircle2,
+  ChevronRight,
+  Clock,
+  Euro,
+  HelpCircle,
+  ShieldCheck,
+  Target,
+  TrendingUp,
+  Users,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import FadeIn from "@/components/animations/FadeIn";
 import Footer from "@/components/sections/Footer";
+import { certifications } from "@/data/certificazioniData";
+
+export const dynamicParams = false;
+
+const palettes = [
+  { gradient: "from-amber-400 to-orange-500", glow: "rgba(245,158,11,0.14)", soft: "bg-amber-50 text-amber-700 border-amber-200" },
+  { gradient: "from-blue-500 to-indigo-600", glow: "rgba(59,130,246,0.14)", soft: "bg-blue-50 text-blue-700 border-blue-200" },
+  { gradient: "from-emerald-500 to-green-600", glow: "rgba(16,185,129,0.14)", soft: "bg-emerald-50 text-emerald-700 border-emerald-200" },
+  { gradient: "from-rose-500 to-red-500", glow: "rgba(244,63,94,0.14)", soft: "bg-rose-50 text-rose-700 border-rose-200" },
+  { gradient: "from-fuchsia-500 to-pink-500", glow: "rgba(217,70,239,0.14)", soft: "bg-fuchsia-50 text-fuchsia-700 border-fuchsia-200" },
+  { gradient: "from-cyan-500 to-sky-600", glow: "rgba(6,182,212,0.14)", soft: "bg-cyan-50 text-cyan-700 border-cyan-200" },
+] as const;
+
+function getCertification(id: string) {
+  return certifications.find((cert) => cert.id === id);
+}
+
+function getPalette(id: string) {
+  const index = certifications.findIndex((cert) => cert.id === id);
+  return palettes[(index >= 0 ? index : 0) % palettes.length];
+}
 
 export function generateStaticParams() {
-    return certifications.map((cert) => ({
-        id: cert.id,
-    }));
+  return certifications.map((cert) => ({ id: cert.id }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params;
+  const cert = getCertification(id);
+
+  if (!cert) {
+    return {
+      title: "Certificazione non trovata | ALSOLVED",
+      description: "La certificazione richiesta non è disponibile.",
+    };
+  }
+
+  return {
+    title: `${cert.subtitle} | ${cert.title} | ALSOLVED`,
+    description: cert.description,
+    openGraph: {
+      title: `${cert.subtitle} | ALSOLVED`,
+      description: cert.description,
+      type: "article",
+      url: `/certificazioni/${cert.id}`,
+    },
+  };
 }
 
 export default async function CertificationPage({ params }: { params: Promise<{ id: string }> }) {
-    const { id } = await params;
-    const cert = certifications.find((c) => c.id === id);
+  const { id } = await params;
+  const cert = getCertification(id);
 
-    if (!cert) {
-        return notFound();
-    }
+  if (!cert) {
+    notFound();
+  }
 
-    const genericFaqs = [
-        { question: "Serve un responsabile interno dedicato?", answer: "No, affianchiamo la tua squadra per ridurre al minimo il carico interno. Serve solo un referente per il recupero dei documenti essenziali." },
-        { question: "L'audit si fa in azienda?", answer: "Solitamente l'audit di certificazione prevede una fase documentale da remoto e una fase ispettiva presso la sede (o i cantieri) dell'azienda, accompagnati dal nostro team." },
-        { question: "Quanto dura la certificazione?", answer: "3 anni. Sono previste verifiche annuali di sorveglianza molto più snelle del primo audit per mantenere la validità." },
-        { question: "Posso partecipare subito ai bandi?", answer: "Sì, non appena superato l'audit e rilasciato il certificato dall'Ente, puoi usarlo immediatamente per punteggi e bandi pubblici." },
-    ];
+  const genericFaqs = [
+    {
+      question: "Serve un responsabile interno dedicato?",
+      answer:
+        "No. Basta un referente interno per coordinare documenti e appuntamenti. ALSOLVED assorbe la parte tecnica, documentale e di audit preparation.",
+    },
+    {
+      question: "L'audit si svolge in azienda?",
+      answer:
+        "Di norma c'è una fase documentale (spesso da remoto) e una fase ispettiva in sede o nei siti operativi. Ti affianchiamo in entrambe.",
+    },
+    {
+      question: "Quanto dura la certificazione?",
+      answer:
+        "Tipicamente 3 anni con verifiche annuali di sorveglianza. Dopo il primo audit, i controlli successivi sono più snelli se il sistema resta vivo.",
+    },
+    {
+      question: "Quando posso usare il certificato in gare e bandi?",
+      answer:
+        "Subito dopo il rilascio ufficiale da parte dell'ente certificatore, secondo i requisiti specifici del bando o della qualifica fornitore.",
+    },
+  ] as const;
 
-    // Find related certifications (same category or adjacent)
-    const currentIndex = certifications.findIndex(c => c.id === cert.id);
-    const related = certifications.filter((c, i) => c.id !== cert.id && Math.abs(i - currentIndex) <= 3).slice(0, 3);
+  const currentIndex = certifications.findIndex((item) => item.id === cert.id);
+  const related = certifications
+    .filter((item, index) => item.id !== cert.id && Math.abs(index - currentIndex) <= 3)
+    .slice(0, 3);
 
-    return (
-        <div className="flex flex-col min-h-screen bg-white">
+  const palette = getPalette(cert.id);
 
-            {/* Hero Section */}
-            <section className="relative pt-36 pb-20 overflow-hidden bg-gray-50/50 border-b border-border/40">
-                <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:40px_40px]" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(242,78,107,0.04),transparent_60%)] pointer-events-none" />
-
-                <div className="container mx-auto px-6 max-w-5xl relative z-10">
-                    {/* Breadcrumb */}
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-8">
-                        <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
-                        <ChevronRight className="w-3.5 h-3.5" />
-                        <Link href="/certificazioni" className="hover:text-foreground transition-colors">Certificazioni</Link>
-                        <ChevronRight className="w-3.5 h-3.5" />
-                        <span className="font-semibold text-foreground">{cert.subtitle}</span>
-                    </div>
-
-                    <div className="max-w-3xl">
-                        <FadeIn>
-                            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-                                <cert.icon className="w-4 h-4 text-primary" />
-                                <span className="text-xs font-bold text-primary uppercase tracking-[0.15em]">{cert.subtitle}</span>
-                            </div>
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-foreground mb-5 tracking-tight leading-tight">
-                                {cert.title}
-                            </h1>
-                            <p className="text-lg md:text-xl text-muted-foreground font-medium leading-relaxed mb-8 max-w-2xl">
-                                {cert.description}
-                            </p>
-                            <div className="flex flex-col sm:flex-row gap-4">
-                                <Link href={`/contatti?cert=${cert.id}`}>
-                                    <Button size="lg" className="w-full sm:w-auto h-14 px-8 text-base font-bold rounded-full shadow-[0_8px_25px_rgba(242,78,107,0.25)] hover:shadow-[0_12px_35px_rgba(242,78,107,0.4)] transition-all hover:-translate-y-0.5">
-                                        Richiedi Analisi Gratuita
-                                        <ArrowRight className="ml-2 w-4 h-4" />
-                                    </Button>
-                                </Link>
-                            </div>
-                        </FadeIn>
-                    </div>
-                </div>
-            </section>
-
-            {/* Benefits Section — NEW */}
-            <section className="py-20 relative z-10 border-b border-border/30">
-                <div className="container mx-auto px-6 max-w-5xl">
-                    <FadeIn>
-                        <h2 className="text-2xl md:text-3xl font-black text-foreground mb-3 tracking-tight">
-                            Vantaggi Concreti per la Tua Azienda
-                        </h2>
-                        <p className="text-muted-foreground font-medium mb-10 max-w-xl">
-                            Ecco cosa cambia davvero dopo aver ottenuto la {cert.subtitle}.
-                        </p>
-                    </FadeIn>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {cert.benefits.map((benefit, idx) => (
-                            <FadeIn key={idx} delay={idx * 0.06}>
-                                <div className="flex items-start gap-3 p-5 rounded-2xl bg-gray-50/80 border border-border/30 hover:border-primary/20 hover:bg-white hover:shadow-sm transition-all duration-300">
-                                    <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                                        <TrendingUp className="w-4 h-4 text-primary" />
-                                    </div>
-                                    <span className="text-sm font-semibold text-foreground leading-relaxed">{benefit}</span>
-                                </div>
-                            </FadeIn>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Technical Hub Section */}
-            <section className="py-20 relative z-10">
-                <div className="container mx-auto px-6 max-w-5xl">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-
-                        {/* Left Content Column */}
-                        <div className="md:col-span-2 space-y-14">
-
-                            {/* Target & Why Now */}
-                            <FadeIn delay={0.1}>
-                                <div className="space-y-8">
-                                    <div>
-                                        <h2 className="flex items-center text-xl font-black text-foreground mb-3">
-                                            <Users className="w-5 h-5 mr-2.5 text-primary" /> A Chi Serve
-                                        </h2>
-                                        <p className="text-base text-muted-foreground font-medium leading-relaxed bg-gray-50 p-5 rounded-xl border border-border/40">
-                                            {cert.target}
-                                        </p>
-                                    </div>
-
-                                    <div>
-                                        <h2 className="flex items-center text-xl font-black text-foreground mb-3">
-                                            <Target className="w-5 h-5 mr-2.5 text-primary" /> Perché Ti Serve Ora
-                                        </h2>
-                                        <p className="text-base text-muted-foreground font-medium leading-relaxed">
-                                            {cert.whyNow}
-                                        </p>
-                                    </div>
-                                </div>
-                            </FadeIn>
-
-                            {/* Requirements */}
-                            <FadeIn delay={0.2}>
-                                <h2 className="flex items-center text-xl font-black text-foreground mb-5">
-                                    <CheckCircle2 className="w-5 h-5 mr-2.5 text-primary" /> Requisiti Minimi di Partenza
-                                </h2>
-                                <div className="bg-white border border-border/40 text-foreground rounded-xl p-6 shadow-sm">
-                                    <p className="text-sm text-muted-foreground mb-5 font-medium">Non serve avere un&apos;azienda perfetta. Spesso partiamo da zero. Cosa ci serve da te:</p>
-                                    <ul className="space-y-3">
-                                        <li className="flex items-start">
-                                            <ChevronRight className="w-4 h-4 text-orange-400 mr-2 mt-0.5 shrink-0" />
-                                            <span className="font-medium text-sm">Un referente interno (anche non tecnico) per fornirci visure, contratti e organigramma.</span>
-                                        </li>
-                                        <li className="flex items-start">
-                                            <ChevronRight className="w-4 h-4 text-orange-400 mr-2 mt-0.5 shrink-0" />
-                                            <span className="font-medium text-sm">Impegno della direzione a dedicare alcune ore per le interviste iniziali.</span>
-                                        </li>
-                                        <li className="flex items-start">
-                                            <ChevronRight className="w-4 h-4 text-orange-400 mr-2 mt-0.5 shrink-0" />
-                                            <span className="font-medium text-sm">Nessuna procedura già scritta: creiamo tutto noi analizzando come lavorate.</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </FadeIn>
-
-                            {/* Deliverables */}
-                            <FadeIn delay={0.3}>
-                                <h2 className="flex items-center text-xl font-black text-foreground mb-5">
-                                    <ShieldCheck className="w-5 h-5 mr-2.5 text-primary" /> Cosa Consegniamo
-                                </h2>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                    {cert.deliverables.map((item, idx) => (
-                                        <div key={idx} className="bg-gray-50 border border-border/40 p-4 rounded-xl flex items-start">
-                                            <CheckCircle2 className="w-4 h-4 text-green-500 mr-2.5 shrink-0 mt-0.5" />
-                                            <span className="font-semibold text-foreground text-sm">{item}</span>
-                                        </div>
-                                    ))}
-                                    <div className="bg-primary/5 border border-primary/20 p-4 rounded-xl flex items-start">
-                                        <CheckCircle2 className="w-4 h-4 text-primary mr-2.5 shrink-0 mt-0.5" />
-                                        <span className="font-semibold text-primary text-sm">Affiancamento completo fino all&apos;Audit</span>
-                                    </div>
-                                </div>
-                            </FadeIn>
-
-                        </div>
-
-                        {/* Right Sticky Sidebar */}
-                        <div className="md:col-span-1">
-                            <div className="sticky top-32 space-y-5">
-
-                                {/* Info Card */}
-                                <FadeIn delay={0.4}>
-                                    <div className="bg-white border border-border/50 rounded-2xl p-6 shadow-lg shadow-black/[0.03]">
-                                        <h3 className="text-base font-black border-b border-border/40 pb-3 mb-4">Sintesi del Progetto</h3>
-
-                                        <div className="space-y-5">
-                                            <div>
-                                                <div className="flex items-center text-[11px] font-bold text-muted-foreground uppercase tracking-[0.12em] mb-1.5">
-                                                    <Clock className="w-3.5 h-3.5 mr-1.5" /> Timeline
-                                                </div>
-                                                <p className="text-lg font-bold text-foreground">{cert.timeline}</p>
-                                            </div>
-
-                                            <div>
-                                                <div className="flex items-center text-[11px] font-bold text-muted-foreground uppercase tracking-[0.12em] mb-1.5">
-                                                    <Euro className="w-3.5 h-3.5 mr-1.5" /> Investimento
-                                                </div>
-                                                <p className="text-lg font-bold text-foreground">Preventivo su Misura</p>
-                                                <p className="text-xs font-medium text-muted-foreground mt-1">Dipende da dimensione e complessità.</p>
-                                            </div>
-
-                                            <Link href={`/contatti?cert=${cert.id}`} className="block pt-3 border-t border-border/30 mt-3">
-                                                <Button className="w-full h-12 text-base font-bold rounded-xl" variant="default">
-                                                    Parliamone Ora
-                                                </Button>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </FadeIn>
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-            {/* FAQ Section */}
-            <section className="py-20 bg-gray-50/50 border-t border-border/30">
-                <div className="container mx-auto px-6 max-w-3xl">
-                    <FadeIn>
-                        <h2 className="text-2xl md:text-3xl font-black text-center mb-10 tracking-tight">
-                            Domande Frequenti su {cert.subtitle}
-                        </h2>
-                        <div className="space-y-3">
-                            {genericFaqs.map((faq, i) => (
-                                <div key={i} className="bg-white border border-border/40 p-5 rounded-xl">
-                                    <h4 className="font-bold text-base mb-2 flex items-start">
-                                        <HelpCircle className="w-4 h-4 text-primary mr-2.5 mt-0.5 shrink-0" />
-                                        {faq.question}
-                                    </h4>
-                                    <p className="text-sm text-muted-foreground font-medium pl-6.5 leading-relaxed">{faq.answer}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </FadeIn>
-                </div>
-            </section>
-
-            {/* Related Certifications */}
-            {related.length > 0 && (
-                <section className="py-20 border-t border-border/30">
-                    <div className="container mx-auto px-6 max-w-5xl">
-                        <FadeIn>
-                            <h2 className="text-2xl font-black mb-8 tracking-tight">Potrebbe Interessarti Anche</h2>
-                        </FadeIn>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            {related.map((r, i) => (
-                                <FadeIn key={r.id} delay={i * 0.08}>
-                                    <Link href={`/certificazioni/${r.id}`} className="group block p-5 rounded-xl border border-border/40 bg-white hover:border-primary/20 hover:shadow-md transition-all duration-300">
-                                        <div className="flex items-center gap-3 mb-3">
-                                            <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
-                                                <r.icon className="w-4 h-4 text-primary" />
-                                            </div>
-                                            <div>
-                                                <p className="text-base font-black text-foreground">{r.subtitle}</p>
-                                                <p className="text-xs text-muted-foreground font-medium">{r.title}</p>
-                                            </div>
-                                        </div>
-                                        <p className="text-xs text-muted-foreground font-medium leading-relaxed mb-3">{r.description}</p>
-                                        <span className="text-xs font-bold text-primary group-hover:underline">Scopri →</span>
-                                    </Link>
-                                </FadeIn>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            )}
-
-            {/* Global CTA */}
-            <section className="py-20 bg-foreground text-background text-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(242,78,107,0.15),transparent_70%)] pointer-events-none" />
-                <div className="container mx-auto px-6 relative z-10 max-w-2xl">
-                    <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-5">
-                        Pronto a ottenere la {cert.subtitle}?
-                    </h2>
-                    <p className="text-base text-gray-400 font-medium mb-8">
-                        Prenota un&apos;analisi iniziale gratuita. In 15 minuti ti diamo chiara la fattibilità e i prossimi passi.
-                    </p>
-                    <Link href={`/contatti?cert=${cert.id}`}>
-                        <Button size="lg" className="h-14 px-10 text-lg font-bold rounded-full bg-primary hover:bg-primary/90 text-white shadow-[0_0_30px_rgba(242,78,107,0.25)] transition-all transform hover:scale-105 hover:-translate-y-0.5">
-                            Prenota Analisi Gratuita
-                        </Button>
-                    </Link>
-                </div>
-            </section>
-
-            <Footer />
+  return (
+    <div className="min-h-screen bg-transparent text-foreground">
+      <div className="section-shell relative overflow-hidden border-b border-white/55 px-4 pb-16 pt-28 sm:px-6 md:pt-32">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute right-[8%] top-[8%] h-64 w-64 rounded-full blur-3xl" style={{ backgroundColor: palette.glow }} />
+          <div className="absolute left-[8%] top-[22%] h-52 w-52 rounded-full bg-blue-200/12 blur-3xl" />
         </div>
-    );
+
+        <div className="container relative z-10 mx-auto max-w-7xl">
+          <div className="mb-6 flex flex-wrap items-center gap-2 text-sm font-medium text-muted-foreground">
+            <Link href="/" className="focus-ring rounded-md hover:text-foreground">Home</Link>
+            <ChevronRight className="size-4" />
+            <Link href="/certificazioni" className="focus-ring rounded-md hover:text-foreground">Certificazioni</Link>
+            <ChevronRight className="size-4" />
+            <span className="font-semibold text-foreground">{cert.subtitle}</span>
+          </div>
+
+          <div className="grid grid-cols-1 gap-8 xl:grid-cols-[1.05fr_0.95fr] xl:items-start">
+            <FadeIn className="max-w-3xl">
+              <Link href="/certificazioni" className="focus-ring mb-5 inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/80 px-4 py-2 text-sm font-semibold text-foreground shadow-sm hover:text-primary">
+                <ArrowLeft className="size-4" />
+                Torna al catalogo
+              </Link>
+
+              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/80 px-4 py-2 shadow-sm backdrop-blur-xl">
+                <span className={`inline-flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br ${palette.gradient} text-white shadow-md`}>
+                  <cert.icon className="size-4" />
+                </span>
+                <span className="text-xs font-bold uppercase tracking-[0.16em] text-primary">{cert.subtitle}</span>
+              </div>
+
+              <h1 className="text-balance text-4xl font-black leading-tight text-foreground sm:text-5xl md:text-6xl">
+                {cert.title}
+              </h1>
+              <p className="mt-4 text-base font-medium leading-relaxed text-muted-foreground sm:text-lg md:text-xl">
+                {cert.description}
+              </p>
+
+              <div className="mt-6 flex flex-wrap gap-3">
+                <span className={`inline-flex items-center rounded-full border px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] ${palette.soft}`}>
+                  {cert.timeline}
+                </span>
+                <span className="pill-chip bg-white/85 text-muted-foreground">
+                  <ShieldCheck className="size-3.5 text-primary" /> Audit-ready supporto completo
+                </span>
+              </div>
+
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+                <Link href={`/contatti?cert=${cert.id}`} className="focus-ring rounded-full">
+                  <Button size="lg" className="h-14 rounded-full px-8 text-base font-semibold text-white glow-shadow hover:glow-shadow-strong">
+                    Richiedi analisi gratuita
+                    <ArrowRight className="size-4" />
+                  </Button>
+                </Link>
+                <Link href="/metodo" className="focus-ring rounded-full">
+                  <Button variant="outline" size="lg" className="h-14 rounded-full border-white/80 bg-white/80 px-8 text-base font-semibold shadow-sm backdrop-blur-xl hover:bg-white/90">
+                    Scopri il metodo ALSOLVED
+                  </Button>
+                </Link>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.08} className="xl:sticky xl:top-28">
+              <aside className="rounded-[2rem] border border-white/80 bg-white/82 p-6 shadow-[0_26px_80px_-40px_rgba(15,23,42,0.3)] backdrop-blur-xl">
+                <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">Sintesi del progetto</p>
+                <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-1">
+                  <div className="rounded-2xl border border-white/80 bg-white/80 p-4 shadow-sm">
+                    <div className="mb-2 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
+                      <Clock className="size-3.5" /> Timeline
+                    </div>
+                    <p className="text-lg font-black tracking-tight text-foreground">{cert.timeline}</p>
+                  </div>
+                  <div className="rounded-2xl border border-white/80 bg-white/80 p-4 shadow-sm">
+                    <div className="mb-2 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
+                      <Euro className="size-3.5" /> Investimento
+                    </div>
+                    <p className="text-lg font-black tracking-tight text-foreground">Preventivo su misura</p>
+                    <p className="mt-1 text-xs font-medium text-muted-foreground">Dipende da dimensione, sedi e complessità del perimetro.</p>
+                  </div>
+                </div>
+
+                <div className="mt-4 rounded-2xl border border-white/80 bg-white/80 p-4 shadow-sm">
+                  <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Consegniamo</p>
+                  <ul className="space-y-2">
+                    {cert.deliverables.slice(0, 4).map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-sm font-semibold text-foreground/85">
+                        <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <Link href={`/contatti?cert=${cert.id}`} className="focus-ring mt-5 block rounded-2xl">
+                  <Button className="h-12 w-full rounded-2xl text-sm font-semibold text-white glow-shadow hover:glow-shadow-strong">
+                    Parliamone ora
+                  </Button>
+                </Link>
+              </aside>
+            </FadeIn>
+          </div>
+        </div>
+      </div>
+
+      <section className="relative z-10 px-4 py-16 sm:px-6 md:py-20">
+        <div className="container mx-auto max-w-7xl grid grid-cols-1 gap-6 xl:grid-cols-[1.05fr_0.95fr]">
+          <div className="space-y-6">
+            <FadeIn>
+              <div className="rounded-[1.75rem] border border-white/80 bg-white/82 p-6 shadow-[0_22px_60px_-36px_rgba(15,23,42,0.26)] backdrop-blur-xl">
+                <h2 className="mb-4 flex items-center gap-2 text-xl font-black tracking-tight text-foreground md:text-2xl">
+                  <Users className="size-5 text-primary" /> A chi serve
+                </h2>
+                <p className="text-sm font-medium leading-relaxed text-muted-foreground sm:text-base">{cert.target}</p>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.05}>
+              <div className="rounded-[1.75rem] border border-white/80 bg-white/82 p-6 shadow-[0_22px_60px_-36px_rgba(15,23,42,0.26)] backdrop-blur-xl">
+                <h2 className="mb-4 flex items-center gap-2 text-xl font-black tracking-tight text-foreground md:text-2xl">
+                  <Target className="size-5 text-primary" /> Perché conviene ora
+                </h2>
+                <p className="text-sm font-medium leading-relaxed text-muted-foreground sm:text-base">{cert.whyNow}</p>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.08}>
+              <div className="rounded-[1.75rem] border border-white/80 bg-white/82 p-6 shadow-[0_22px_60px_-36px_rgba(15,23,42,0.26)] backdrop-blur-xl">
+                <h2 className="mb-4 flex items-center gap-2 text-xl font-black tracking-tight text-foreground md:text-2xl">
+                  <TrendingUp className="size-5 text-primary" /> Vantaggi concreti
+                </h2>
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  {cert.benefits.map((benefit) => (
+                    <div key={benefit} className="rounded-xl border border-white/80 bg-white/80 p-4 shadow-sm">
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" />
+                        <span className="text-sm font-semibold leading-relaxed text-foreground/85">{benefit}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+
+          <div className="space-y-6">
+            <FadeIn>
+              <div className="rounded-[1.75rem] border border-white/80 bg-white/82 p-6 shadow-[0_22px_60px_-36px_rgba(15,23,42,0.26)] backdrop-blur-xl">
+                <h2 className="mb-4 flex items-center gap-2 text-xl font-black tracking-tight text-foreground md:text-2xl">
+                  <ShieldCheck className="size-5 text-primary" /> Cosa consegniamo
+                </h2>
+                <div className="space-y-2.5">
+                  {cert.deliverables.map((item) => (
+                    <div key={item} className="flex items-start gap-3 rounded-xl border border-white/80 bg-white/80 p-3 shadow-sm">
+                      <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" />
+                      <span className="text-sm font-semibold text-foreground/85">{item}</span>
+                    </div>
+                  ))}
+                  <div className="flex items-start gap-3 rounded-xl border border-primary/20 bg-primary/8 p-3">
+                    <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" />
+                    <span className="text-sm font-semibold text-primary">Affiancamento completo fino all’audit dell’ente terzo</span>
+                  </div>
+                </div>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.05}>
+              <div className="rounded-[1.75rem] border border-white/80 bg-white/82 p-6 shadow-[0_22px_60px_-36px_rgba(15,23,42,0.26)] backdrop-blur-xl">
+                <h2 className="mb-4 text-xl font-black tracking-tight text-foreground md:text-2xl">Requisiti minimi di partenza</h2>
+                <ul className="space-y-3">
+                  {[
+                    "Un referente interno (anche non tecnico) per documenti e coordinamento.",
+                    "Disponibilità della direzione per un kickoff e brevi interviste iniziali.",
+                    "Accesso alle informazioni operative reali per costruire procedure aderenti al business.",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-3 rounded-xl border border-white/80 bg-white/80 p-3 shadow-sm text-sm font-semibold text-foreground/85">
+                      <ChevronRight className="mt-0.5 size-4 shrink-0 text-primary" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative z-10 border-y border-white/55 bg-white/45 px-4 py-16 backdrop-blur-sm sm:px-6 md:py-20">
+        <div className="container mx-auto max-w-4xl">
+          <FadeIn>
+            <h2 className="mb-8 text-center text-2xl font-black tracking-tight text-foreground md:text-3xl">
+              Domande frequenti su {cert.subtitle}
+            </h2>
+            <div className="space-y-3">
+              {genericFaqs.map((faq) => (
+                <div key={faq.question} className="rounded-2xl border border-white/80 bg-white/82 p-5 shadow-sm backdrop-blur-xl">
+                  <h3 className="flex items-start gap-2 text-base font-black tracking-tight text-foreground">
+                    <HelpCircle className="mt-0.5 size-4 shrink-0 text-primary" />
+                    <span>{faq.question}</span>
+                  </h3>
+                  <p className="mt-2 pl-6 text-sm font-medium leading-relaxed text-muted-foreground">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {related.length > 0 ? (
+        <section className="relative z-10 px-4 py-16 sm:px-6 md:py-20">
+          <div className="container mx-auto max-w-6xl">
+            <FadeIn>
+              <h2 className="mb-6 text-2xl font-black tracking-tight text-foreground md:text-3xl">Potrebbe interessarti anche</h2>
+            </FadeIn>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              {related.map((item, index) => {
+                const relatedPalette = getPalette(item.id);
+                return (
+                  <FadeIn key={item.id} delay={index * 0.05}>
+                    <Link href={`/certificazioni/${item.id}`} className="group focus-ring block rounded-2xl">
+                      <article className="h-full rounded-2xl border border-white/80 bg-white/82 p-5 shadow-[0_18px_48px_-34px_rgba(15,23,42,0.24)] backdrop-blur-xl hover:border-white hover:shadow-[0_24px_60px_-34px_rgba(15,23,42,0.28)]">
+                        <div className="mb-3 flex items-center gap-3">
+                          <div className={`inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${relatedPalette.gradient} text-white shadow-md`}>
+                            <item.icon className="size-4" />
+                          </div>
+                          <div>
+                            <p className="text-sm font-black text-foreground">{item.subtitle}</p>
+                            <p className="text-xs font-semibold text-muted-foreground">{item.title}</p>
+                          </div>
+                        </div>
+                        <p className="text-xs font-medium leading-relaxed text-muted-foreground">{item.description}</p>
+                        <span className="mt-4 inline-flex items-center gap-2 text-xs font-bold text-primary">
+                          Scopri dettagli
+                          <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                        </span>
+                      </article>
+                    </Link>
+                  </FadeIn>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      <section className="relative z-10 px-4 pb-24 sm:px-6 md:pb-32">
+        <div className="container mx-auto max-w-5xl rounded-[2.25rem] border border-white/80 bg-white/82 p-8 text-center shadow-[0_26px_80px_-40px_rgba(15,23,42,0.3)] backdrop-blur-xl md:p-12">
+          <h2 className="text-balance text-3xl font-black tracking-tight text-foreground sm:text-4xl md:text-5xl">
+            Pronto a ottenere la {cert.subtitle}?
+          </h2>
+          <p className="mx-auto mt-4 max-w-3xl text-base font-medium leading-relaxed text-muted-foreground sm:text-lg">
+            Prenota un’analisi gratuita: in 15 minuti ti diciamo fattibilità, priorità e prossimi passi per avviare il percorso di certificazione.
+          </p>
+          <Link href={`/contatti?cert=${cert.id}`} className="focus-ring mt-8 inline-flex rounded-full">
+            <Button size="lg" className="h-14 rounded-full px-8 text-base font-semibold text-white glow-shadow hover:glow-shadow-strong">
+              Prenota analisi gratuita
+              <ArrowRight className="size-4" />
+            </Button>
+          </Link>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
 }

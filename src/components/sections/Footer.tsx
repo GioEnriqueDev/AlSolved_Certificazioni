@@ -1,129 +1,116 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
+import { Mail, Phone, MapPin, ArrowUpRight } from "lucide-react";
 import NeonLogo from "@/components/ui/NeonLogo";
-import { Linkedin, Twitter, Instagram } from "lucide-react";
+
+const quickLinks = [
+  { label: "ISO 9001", href: "/certificazioni/iso-9001" },
+  { label: "ISO 27001", href: "/certificazioni/iso-27001" },
+  { label: "ISO 14001", href: "/certificazioni/iso-14001" },
+  { label: "UNI/PdR 125", href: "/certificazioni/pdr-125" },
+] as const;
+
+const navLinks = [
+  { label: "Il Metodo", href: "/metodo" },
+  { label: "Chi Siamo", href: "/chi-siamo" },
+  { label: "Catalogo", href: "/certificazioni" },
+  { label: "Contatti", href: "/contatti" },
+] as const;
+
+const contactLinks = [
+  { icon: Phone, label: "Telefono", value: "+39 351 537 1725", href: "tel:+393515371725" },
+  { icon: Mail, label: "Email", value: "info@alsolved.com", href: "mailto:info@alsolved.com" },
+  {
+    icon: MapPin,
+    label: "Sede",
+    value: "Via Bargoni 78, Roma",
+    href: "https://www.google.com/maps/dir//Alsolved,+Via+Angelo+Bargoni,+78,+00153+Roma+RM",
+  },
+] as const;
 
 export default function Footer() {
-    return (
-        <footer className="bg-white border-t border-border pt-20 pb-10">
-            <div className="container mx-auto px-6">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-                    {/* Brand */}
-                    <div className="col-span-1 md:col-span-1">
-                        <Link href="/" className="inline-block mb-6 group">
-                            <NeonLogo size="md" />
-                        </Link>
-                        <p className="text-muted-foreground text-sm leading-relaxed mb-6 font-medium">
-                            Il partner tecnologico per le certificazioni aziendali. Eccellenza, conformità e crescita sostenibile.
-                        </p>
-                        <div className="flex gap-4">
-                            <Link
-                                href="#"
-                                className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all shadow-sm"
-                            >
-                                <Linkedin className="w-5 h-5" />
-                            </Link>
-                            <Link
-                                href="#"
-                                className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all shadow-sm"
-                            >
-                                <Twitter className="w-5 h-5" />
-                            </Link>
-                            <Link
-                                href="#"
-                                className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all shadow-sm"
-                            >
-                                <Instagram className="w-5 h-5" />
-                            </Link>
-                        </div>
-                    </div>
+  return (
+    <footer className="relative z-10 border-t border-white/55 bg-white/50 px-4 pb-10 pt-16 backdrop-blur-sm sm:px-6">
+      <div className="container mx-auto max-w-7xl">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.1fr_0.7fr_0.7fr_1fr]">
+          <div className="rounded-[1.5rem] border border-white/75 bg-white/78 p-6 shadow-[0_20px_48px_-34px_rgba(15,23,42,0.28)] backdrop-blur-xl">
+            <Link href="/" className="focus-ring inline-flex rounded-xl" aria-label="ALSOLVED homepage">
+              <NeonLogo size="md" />
+            </Link>
+            <p className="mt-4 text-sm font-medium leading-relaxed text-muted-foreground">
+              Partner tecnico per certificazioni ISO, compliance e audit readiness. Progettiamo sistemi che migliorano processi, riducono rischio e aumentano credibilità commerciale.
+            </p>
+            <Link
+              href="/contatti"
+              className="focus-ring mt-5 inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/85 px-4 py-2 text-sm font-semibold text-foreground shadow-sm hover:border-primary/20 hover:text-primary"
+            >
+              Richiedi analisi preliminare
+              <ArrowUpRight className="size-4" />
+            </Link>
+          </div>
 
-                    {/* Links */}
-                    <div>
-                        <h4 className="font-bold text-foreground mb-6 text-sm uppercase tracking-wider">
-                            Servizi
-                        </h4>
-                        <ul className="space-y-4 text-sm text-muted-foreground font-medium">
-                            <li>
-                                <Link href="/certificazioni/iso-9001" className="hover:text-primary transition-colors">
-                                    ISO 9001 Qualità
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/certificazioni/iso-27001" className="hover:text-primary transition-colors">
-                                    ISO 27001 Sicurezza
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/certificazioni/iso-14001" className="hover:text-primary transition-colors">
-                                    ISO 14001 Ambiente
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/certificazioni/pdr-125" className="hover:text-primary transition-colors">
-                                    Parità di Genere
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
+          <div className="rounded-[1.5rem] border border-white/70 bg-white/70 p-6 shadow-sm backdrop-blur-xl">
+            <h4 className="mb-4 text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">Certificazioni chiave</h4>
+            <ul className="space-y-3">
+              {quickLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="focus-ring rounded-md text-sm font-semibold text-foreground/85 hover:text-primary">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-                    <div>
-                        <h4 className="font-bold text-foreground mb-6 text-sm uppercase tracking-wider">
-                            Azienda
-                        </h4>
-                        <ul className="space-y-4 text-sm text-muted-foreground font-medium">
-                            <li>
-                                <Link href="/metodo" className="hover:text-primary transition-colors">
-                                    Il Metodo
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/chi-siamo" className="hover:text-primary transition-colors">
-                                    Chi Siamo
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/certificazioni" className="hover:text-primary transition-colors">
-                                    Certificazioni
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/contatti" className="hover:text-primary transition-colors">
-                                    Contatti
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
+          <div className="rounded-[1.5rem] border border-white/70 bg-white/70 p-6 shadow-sm backdrop-blur-xl">
+            <h4 className="mb-4 text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">Navigazione</h4>
+            <ul className="space-y-3">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="focus-ring rounded-md text-sm font-semibold text-foreground/85 hover:text-primary">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-                    <div>
-                        <h4 className="font-bold text-foreground mb-6 text-sm uppercase tracking-wider">
-                            Contatti
-                        </h4>
-                        <ul className="space-y-4 text-sm text-muted-foreground font-medium">
-                            <li>Via Bargoni 78 - Roma</li>
-                            <li>+39 351 537 1725</li>
-                            <li>info@alsolved.com</li>
-                            <li className="pt-2 text-xs opacity-70">P.IVA 13090841001</li>
-                        </ul>
-                    </div>
-                </div>
+          <div className="rounded-[1.5rem] border border-white/70 bg-white/70 p-6 shadow-sm backdrop-blur-xl">
+            <h4 className="mb-4 text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">Contatti</h4>
+            <ul className="space-y-3">
+              {contactLinks.map((item) => (
+                <li key={item.label}>
+                  <a
+                    href={item.href}
+                    target={item.href.startsWith("http") ? "_blank" : undefined}
+                    rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="focus-ring flex items-start gap-3 rounded-xl border border-white/70 bg-white/70 p-3 hover:border-primary/20"
+                    aria-label={`${item.label}: ${item.value}`}
+                  >
+                    <span className="mt-0.5 inline-flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                      <item.icon className="size-4" />
+                    </span>
+                    <span>
+                      <span className="block text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">{item.label}</span>
+                      <span className="block text-sm font-semibold text-foreground">{item.value}</span>
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-4 text-xs font-medium text-muted-foreground">P.IVA 13090841001</p>
+          </div>
+        </div>
 
-                <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium text-muted-foreground">
-                    <p>&copy; {new Date().getFullYear()} ALSOLVED S.r.l. Tutti i diritti riservati.</p>
-                    <div className="flex gap-6">
-                        <Link href="#" className="hover:text-foreground transition-colors">
-                            Privacy Policy
-                        </Link>
-                        <Link href="#" className="hover:text-foreground transition-colors">
-                            Cookie Policy
-                        </Link>
-                        <Link href="#" className="hover:text-foreground transition-colors">
-                            Termini di Servizio
-                        </Link>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    );
+        <div className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-white/70 pt-6 text-center text-xs font-medium text-muted-foreground md:flex-row md:text-left">
+          <p>© {new Date().getFullYear()} ALSOLVED S.r.l. Tutti i diritti riservati.</p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link href="/contatti" className="focus-ring rounded-md hover:text-foreground">Privacy e cookie su richiesta</Link>
+            <a href="mailto:info@alsolved.com" className="focus-ring rounded-md hover:text-foreground">Supporto</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
 }

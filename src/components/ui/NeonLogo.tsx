@@ -1,132 +1,98 @@
-"use client";
+﻿"use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface NeonLogoProps {
-    className?: string;
-    size?: "sm" | "md" | "lg";
+  className?: string;
+  size?: "sm" | "md" | "lg";
 }
 
 const sizes = {
-    sm: { icon: 32, text: "text-xl", blur: "blur-[1px]" },
-    md: { icon: 40, text: "text-2xl", blur: "blur-[1.5px]" },
-    lg: { icon: 56, text: "text-4xl", blur: "blur-[2px]" },
-};
+  sm: { icon: 28, text: "text-lg", gap: "gap-2.5" },
+  md: { icon: 36, text: "text-xl", gap: "gap-3" },
+  lg: { icon: 52, text: "text-3xl", gap: "gap-4" },
+} as const;
 
-export default function NeonLogo({
-    className,
-    size = "md",
-}: NeonLogoProps) {
-    // sizes object moved outside
+export default function NeonLogo({ className, size = "md" }: NeonLogoProps) {
+  const reduceMotion = useReducedMotion();
+  const current = sizes[size];
 
-    return (
-        <div className={cn("flex items-center gap-3 relative group", className)}>
+  return (
+    <div className={cn("relative inline-flex items-center", current.gap, className)}>
+      <span className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-primary/15 blur-xl opacity-70" />
 
-            {/* Glow Effect Underlying */}
-            <div className={cn(
-                "absolute inset-0 bg-primary/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500",
-                sizes[size].blur
-            )} />
+      <motion.svg
+        width={current.icon}
+        height={current.icon}
+        viewBox="0 0 48 48"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="relative shrink-0"
+        initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <defs>
+          <linearGradient id="alsolved-stroke" x1="6" y1="6" x2="40" y2="38" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#F24E6B" />
+            <stop offset="1" stopColor="#FB923C" />
+          </linearGradient>
+          <filter id="alsolved-glow" x="-40%" y="-40%" width="180%" height="180%">
+            <feGaussianBlur stdDeviation="2" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
 
-            {/* Animated SVG Icon with Neon Stroke */}
-            <motion.svg
-                width={sizes[size].icon}
-                height={sizes[size].icon}
-                viewBox="0 0 48 48"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                className="relative z-10"
-            >
-                <defs>
-                    <filter id="glow-red" x="-50%" y="-50%" width="200%" height="200%">
-                        <feGaussianBlur stdDeviation="2.5" result="coloredBlur" />
-                        <feMerge>
-                            <feMergeNode in="coloredBlur" />
-                            <feMergeNode in="SourceGraphic" />
-                        </feMerge>
-                    </filter>
-                </defs>
+        <motion.path
+          d="M8 10C8 7.79086 9.79086 6 12 6H28C30.2091 6 32 7.79086 32 10V22C32 24.2091 30.2091 26 28 26H16L10 32V26H12C9.79086 26 8 24.2091 8 22V10Z"
+          stroke="url(#alsolved-stroke)"
+          strokeWidth="2.4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="rgba(242,78,107,0.10)"
+          filter="url(#alsolved-glow)"
+          initial={reduceMotion ? false : { pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 0.9, ease: "easeInOut" }}
+        />
+        <motion.path
+          d="M16 18C16 15.7909 17.7909 14 20 14H36C38.2091 14 40 15.7909 40 18V30C40 32.2091 38.2091 34 36 34H32V40L26 34H20C17.7909 34 16 32.2091 16 30V18Z"
+          stroke="#64748B"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="rgba(100,116,139,0.05)"
+          initial={reduceMotion ? false : { pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 0.95 }}
+          transition={{ duration: 0.85, delay: reduceMotion ? 0 : 0.1, ease: "easeInOut" }}
+        />
+      </motion.svg>
 
-                {/* Pink Speech Bubble (Front) - Neon Style */}
-                <motion.path
-                    d="M8 10C8 7.79086 9.79086 6 12 6H28C30.2091 6 32 7.79086 32 10V22C32 24.2091 30.2091 26 28 26H16L10 32V26H12C9.79086 26 8 24.2091 8 22V10Z"
-                    stroke="#F24E6B"
-                    strokeWidth="2.5"
-                    fill="transparent"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    style={{ filter: "url(#glow-red)" }}
-                    initial={{ pathLength: 0, opacity: 0 }}
-                    animate={{ pathLength: 1, opacity: 1 }}
-                    transition={{ duration: 1.2, ease: "easeInOut" }}
-                />
+      <div className="relative">
+        <motion.span
+          className={cn("relative z-10 font-bold tracking-[0.18em] text-foreground", current.text)}
+          initial={reduceMotion ? false : { opacity: 0, y: 4 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35, delay: reduceMotion ? 0 : 0.18 }}
+          style={{ textShadow: "0 1px 0 rgba(255,255,255,0.9), 0 10px 25px rgba(15,23,42,0.06)" }}
+        >
+          ALSOLVED
+        </motion.span>
 
-                {/* Fill animation for "ON" state */}
-                <motion.path
-                    d="M8 10C8 7.79086 9.79086 6 12 6H28C30.2091 6 32 7.79086 32 10V22C32 24.2091 30.2091 26 28 26H16L10 32V26H12C9.79086 26 8 24.2091 8 22V10Z"
-                    fill="#F24E6B"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 0.2 }}
-                    transition={{ delay: 1, duration: 0.5 }}
-                />
-
-                {/* Gray Speech Bubble (Back) - Neon Style */}
-                <motion.path
-                    d="M16 18C16 15.7909 17.7909 14 20 14H36C38.2091 14 40 15.7909 40 18V30C40 32.2091 38.2091 34 36 34H32V40L26 34H20C17.7909 34 16 32.2091 16 30V18Z"
-                    stroke="#4B5563"
-                    strokeWidth="2.5"
-                    fill="transparent"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    initial={{ pathLength: 0, opacity: 0 }}
-                    animate={{ pathLength: 1, opacity: 1 }}
-                    transition={{ duration: 1.2, delay: 0.2, ease: "easeInOut" }}
-                />
-            </motion.svg>
-
-            {/* Neon Text */}
-            <div className="relative">
-                {/* Main Text */}
-                <motion.span
-                    className={cn(
-                        "font-bold tracking-widest text-foreground relative z-10",
-                        sizes[size].text
-                    )}
-                    style={{
-                        textShadow: "0 0 10px rgba(0,0,0,0.05)"
-                    }}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
-                >
-                    ALSOLVED
-                </motion.span>
-
-                {/* Flickering Clone for "broken neon" effect (Subtle) */}
-                <motion.span
-                    className={cn(
-                        "font-bold tracking-widest text-[#F24E6B] absolute inset-0 z-0",
-                        sizes[size].text
-                    )}
-                    style={{
-                        filter: "blur(8px)",
-                        opacity: 0.7
-                    }}
-                    animate={{
-                        opacity: [0.6, 0.8, 0.6, 0.7, 0.6],
-                    }}
-                    transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        repeatType: "reverse"
-                    }}
-                >
-                    ALSOLVED
-                </motion.span>
-            </div>
-        </div>
-    );
+        <motion.span
+          aria-hidden="true"
+          className={cn("absolute inset-0 -z-0 font-bold tracking-[0.18em] text-primary/70", current.text)}
+          style={{ filter: "blur(7px)" }}
+          animate={reduceMotion ? { opacity: 0.35 } : { opacity: [0.28, 0.45, 0.34] }}
+          transition={reduceMotion ? { duration: 0 } : { duration: 4.8, repeat: Infinity, repeatType: "mirror" }}
+        >
+          ALSOLVED
+        </motion.span>
+      </div>
+    </div>
+  );
 }

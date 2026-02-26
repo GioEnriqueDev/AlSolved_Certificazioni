@@ -1,69 +1,71 @@
-"use client";
+﻿"use client";
 
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, Clock, Shield } from "lucide-react";
 import Link from "next/link";
-import { slideUpVariant } from "@/lib/animations";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowRight, Sparkles, Clock, Shield, Rocket } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+const trustPills = [
+  { icon: Sparkles, label: "Analisi gratuita" },
+  { icon: Clock, label: "Solo 15 minuti" },
+  { icon: Shield, label: "Senza impegno" },
+  { icon: Rocket, label: "Roadmap chiara" },
+] as const;
 
 export default function FinalCTA() {
-    return (
-        <section id="cta" className="py-32 md:py-40 bg-white relative overflow-hidden border-t border-border/40 z-10">
-            {/* Background mesh gradient */}
-            <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] bg-[radial-gradient(circle_at_center,rgba(242,78,107,0.04),transparent_60%)]"></div>
-                <div className="absolute top-[30%] left-[20%] w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(251,191,36,0.03),transparent_60%)]"></div>
-                <div className="absolute top-[60%] right-[15%] w-[500px] h-[500px] bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.03),transparent_60%)]"></div>
-            </div>
+  const reduceMotion = useReducedMotion();
 
-            <motion.div
-                className="container mx-auto px-6 relative z-10 text-center max-w-5xl"
-                variants={slideUpVariant}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-100px" }}
-            >
-                <p className="text-xs font-bold text-primary uppercase tracking-[0.25em] mb-8">
-                    Pronto a Iniziare?
-                </p>
-                <h2 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-8 leading-[0.95] tracking-tighter text-foreground">
-                    Smetti di Perdere <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-rose-500 to-orange-400">Opportunità.</span>
-                </h2>
-                <p className="text-lg md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto font-medium leading-relaxed px-4">
-                    Ogni giorno senza una certificazione è una gara persa.
-                    <br className="hidden sm:block" />
-                    Prenota oggi la tua analisi di conformità gratuita.
-                </p>
+  return (
+    <section id="cta" className="relative z-10 overflow-hidden border-t border-white/55 px-4 py-24 sm:px-6 md:py-32">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(242,78,107,0.08),transparent_48%),radial-gradient(circle_at_14%_65%,rgba(59,130,246,0.06),transparent_36%),radial-gradient(circle_at_90%_60%,rgba(251,146,60,0.07),transparent_38%)]" />
+        <div className="absolute left-1/2 top-[20%] h-64 w-[48rem] max-w-[96vw] -translate-x-1/2 rounded-full bg-white/70 blur-3xl" />
+      </div>
 
-                {/* CTA Button */}
-                <div className="flex flex-col items-center gap-8">
-                    <Link href="/contatti">
-                        <Button
-                            size="lg"
-                            className="h-16 md:h-18 px-12 md:px-16 text-lg md:text-xl font-bold rounded-full bg-primary hover:bg-primary/90 text-white shadow-[0_12px_35px_rgba(242,78,107,0.35)] hover:shadow-[0_18px_50px_rgba(242,78,107,0.45)] transition-all duration-500 hover:-translate-y-1"
-                        >
-                            Analisi Gratuita
-                            <ArrowRight className="ml-3 w-5 h-5 md:w-6 md:h-6" />
-                        </Button>
-                    </Link>
+      <motion.div
+        className="container relative mx-auto max-w-5xl rounded-[2.25rem] border border-white/80 bg-white/82 p-8 text-center shadow-[0_32px_90px_-42px_rgba(15,23,42,0.34)] backdrop-blur-2xl sm:p-10 md:p-14"
+        initial={reduceMotion ? false : { opacity: 0, y: 22 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-12%" }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <div className="pointer-events-none absolute inset-0 rounded-[2.25rem] ring-1 ring-white/65" />
+        <div className="pointer-events-none absolute right-0 top-0 h-48 w-48 translate-x-1/4 -translate-y-1/4 rounded-full bg-primary/15 blur-3xl" />
+        <div className="pointer-events-none absolute bottom-0 left-0 h-44 w-44 -translate-x-1/4 translate-y-1/4 rounded-full bg-orange-300/18 blur-3xl" />
 
-                    {/* Trust indicators */}
-                    <div className="flex flex-wrap items-center justify-center gap-5 text-xs text-muted-foreground/60 font-medium">
-                        <span className="flex items-center gap-1.5">
-                            <Sparkles className="w-3 h-3" /> Completamente gratuita
-                        </span>
-                        <span className="w-1 h-1 rounded-full bg-muted-foreground/20"></span>
-                        <span className="flex items-center gap-1.5">
-                            <Clock className="w-3 h-3" /> Solo 15 minuti
-                        </span>
-                        <span className="w-1 h-1 rounded-full bg-muted-foreground/20"></span>
-                        <span className="flex items-center gap-1.5">
-                            <Shield className="w-3 h-3" /> Senza impegno
-                        </span>
-                    </div>
-                </div>
-            </motion.div>
-        </section>
-    );
+        <div className="relative z-10">
+          <p className="mb-5 text-xs font-bold uppercase tracking-[0.25em] text-primary">Pronto a iniziare?</p>
+          <h2 className="text-balance text-3xl font-black leading-[1.02] text-foreground sm:text-4xl md:text-6xl lg:text-7xl">
+            Smetti di perdere opportunità per colpa della compliance.
+          </h2>
+          <p className="mx-auto mt-6 max-w-3xl text-base font-medium leading-relaxed text-muted-foreground sm:text-lg md:text-xl">
+            In una call breve identifichiamo la certificazione più strategica, il livello di readiness della tua azienda e la roadmap operativa per arrivare all’audit.
+          </p>
+
+          <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+            <Link href="/contatti" className="focus-ring rounded-full">
+              <Button size="lg" className="h-14 rounded-full px-8 text-base font-semibold text-white glow-shadow hover:glow-shadow-strong">
+                Prenota Analisi Gratuita
+                <ArrowRight className="size-4" />
+              </Button>
+            </Link>
+            <Link href="/certificazioni" className="focus-ring rounded-full">
+              <Button variant="outline" size="lg" className="h-14 rounded-full border-white/70 bg-white/70 px-8 text-base font-semibold shadow-sm backdrop-blur-xl hover:bg-white/90">
+                Esplora Catalogo
+              </Button>
+            </Link>
+          </div>
+
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            {trustPills.map((pill) => (
+              <span key={pill.label} className="pill-chip bg-white/85 text-muted-foreground">
+                <pill.icon className="size-3.5 text-primary" />
+                <span>{pill.label}</span>
+              </span>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+    </section>
+  );
 }

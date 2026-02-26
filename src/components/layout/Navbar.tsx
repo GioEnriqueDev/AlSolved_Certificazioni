@@ -1,126 +1,165 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import NeonLogo from "@/components/ui/NeonLogo";
 import { cn } from "@/lib/utils";
 
 const items = [
-    { name: "Certificazioni", href: "/certificazioni" },
-    { name: "Il Metodo", href: "/metodo" },
-    { name: "Chi Siamo", href: "/chi-siamo" },
-    { name: "Contatti", href: "/contatti" },
+  { name: "Certificazioni", href: "/certificazioni" },
+  { name: "Il Metodo", href: "/metodo" },
+  { name: "Chi Siamo", href: "/chi-siamo" },
+  { name: "Contatti", href: "/contatti" },
 ];
 
+function isActiveRoute(pathname: string, href: string) {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
 export default function Navbar() {
-    const [scrolled, setScrolled] = useState(false);
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const shouldReduceMotion = useReducedMotion();
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 20);
-        };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 18);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
-    const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-        if (href.startsWith("#")) {
-            e.preventDefault();
-            const element = document.querySelector(href);
-            if (element) {
-                element.scrollIntoView({ behavior: "smooth" });
-            }
-            setMobileMenuOpen(false);
-        }
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
     };
+  }, [mobileMenuOpen]);
 
-    return (
-        <header
-            className={cn(
-                "fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 w-[95%] max-w-7xl rounded-full",
-                scrolled
-                    ? "bg-white/80 backdrop-blur-2xl border border-white/50 shadow-[0_8px_30px_rgb(0,0,0,0.08)] py-2"
-                    : "bg-transparent py-4 border border-transparent"
-            )}
-        >
-            <div className="container mx-auto px-6 h-20 flex items-center justify-between">
-                {/* Logo */}
-                <Link href="/" className="group">
-                    <NeonLogo size="md" />
-                </Link>
+  return (
+    <>
+      <header
+        className={cn(
+          "fixed top-3 left-1/2 -translate-x-1/2 z-50 w-[min(96vw,88rem)] rounded-[1.35rem] transition-all duration-500",
+          scrolled
+            ? "glass-panel-strong border-white/70 shadow-[0_18px_42px_-20px_rgba(15,23,42,0.28)]"
+            : "bg-white/55 backdrop-blur-xl border border-white/45 shadow-[0_10px_26px_-18px_rgba(15,23,42,0.18)]"
+        )}
+      >
+        <div className="mx-auto flex h-[78px] items-center justify-between px-4 sm:px-5 md:px-6">
+          <Link href="/" className="focus-ring rounded-xl" aria-label="ALSOLVED homepage">
+            <NeonLogo size="md" />
+          </Link>
 
-                {/* Desktop Menu */}
-                <nav className="hidden md:flex items-center gap-10">
-                    {items.map((item) => (
-                        <Link
-                            key={item.name}
-                            href={item.href}
-                            onClick={(e) => handleAnchorClick(e, item.href)}
-                            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors relative group"
-                        >
-                            {item.name}
-                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
-                        </Link>
-                    ))}
-                    <Link href="/contatti">
-                        <Button
-                            variant="default"
-                            className="rounded-full px-6 font-semibold bg-primary hover:bg-primary/90 text-white shadow-[0_0_20px_rgba(242,78,107,0.3)] hover:shadow-[0_0_30px_rgba(242,78,107,0.4)] transition-all"
-                        >
-                            Richiedi Audit
-                        </Button>
-                    </Link>
-                </nav>
-
-                {/* Mobile Toggle */}
-                <button
-                    className="md:hidden text-foreground p-2"
-                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                    aria-label="Toggle menu"
+          <nav className="hidden items-center gap-2 lg:flex" aria-label="Navigazione principale">
+            {items.map((item) => {
+              const active = isActiveRoute(pathname, item.href);
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={cn(
+                    "focus-ring relative rounded-full px-4 py-2 text-sm font-semibold",
+                    active
+                      ? "text-foreground bg-white/80 border border-white/70 shadow-sm"
+                      : "text-muted-foreground hover:text-foreground hover:bg-white/60"
+                  )}
+                  aria-current={active ? "page" : undefined}
                 >
-                    {mobileMenuOpen ? <X /> : <Menu />}
-                </button>
-            </div>
+                  {item.name}
+                  {active ? (
+                    <span className="absolute inset-x-4 -bottom-[2px] h-px bg-gradient-to-r from-transparent via-primary/70 to-transparent" />
+                  ) : null}
+                </Link>
+              );
+            })}
+          </nav>
 
-            {/* Mobile Menu */}
-            <AnimatePresence>
-                {mobileMenuOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden bg-background border-b border-border shadow-xl overflow-hidden"
+          <div className="hidden items-center gap-3 lg:flex">
+            <Link href="/contatti" className="focus-ring rounded-full">
+              <Button className="rounded-full h-11 px-5 font-semibold text-white glow-shadow hover:glow-shadow-strong">
+                Richiedi Analisi
+                <ArrowUpRight className="size-4" />
+              </Button>
+            </Link>
+          </div>
+
+          <button
+            type="button"
+            className="focus-ring inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/60 bg-white/75 text-foreground shadow-sm lg:hidden"
+            onClick={() => setMobileMenuOpen((value) => !value)}
+            aria-label={mobileMenuOpen ? "Chiudi menu" : "Apri menu"}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-nav-panel"
+          >
+            {mobileMenuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
+        </div>
+      </header>
+
+      <AnimatePresence initial={false}>
+        {mobileMenuOpen ? (
+          <motion.div
+            key="mobile-overlay"
+            className="fixed inset-0 z-40 lg:hidden"
+            initial={shouldReduceMotion ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <button
+              type="button"
+              className="absolute inset-0 bg-[rgba(15,23,42,0.28)] backdrop-blur-sm"
+              onClick={() => setMobileMenuOpen(false)}
+              aria-label="Chiudi menu mobile"
+            />
+
+            <motion.div
+              id="mobile-nav-panel"
+              initial={shouldReduceMotion ? false : { y: -18, opacity: 0, scale: 0.985 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              exit={shouldReduceMotion ? { opacity: 0 } : { y: -8, opacity: 0, scale: 0.99 }}
+              transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+              className="relative mx-auto mt-24 w-[min(94vw,38rem)] rounded-[1.5rem] border border-white/70 bg-white/90 p-4 shadow-[0_30px_80px_-26px_rgba(15,23,42,0.3)] backdrop-blur-2xl"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Menu di navigazione"
+            >
+              <div className="mb-2 rounded-2xl border border-white/60 bg-white/70 p-2">
+                {items.map((item) => {
+                  const active = isActiveRoute(pathname, item.href);
+                  return (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={cn(
+                        "focus-ring flex items-center justify-between rounded-xl px-4 py-3 text-base font-semibold",
+                        active
+                          ? "bg-primary text-white shadow-[0_10px_24px_-16px_rgba(var(--glow-primary),0.55)]"
+                          : "text-foreground hover:bg-secondary/70"
+                      )}
+                      aria-current={active ? "page" : undefined}
                     >
-                        <div className="flex flex-col p-6 gap-4">
-                            {items.map((item) => (
-                                <Link
-                                    key={item.name}
-                                    href={item.href}
-                                    onClick={(e) => handleAnchorClick(e, item.href)}
-                                    className="text-lg font-medium text-foreground py-3 border-b border-border/50 last:border-0"
-                                >
-                                    {item.name}
-                                </Link>
-                            ))}
-                            <Button
-                                className="w-full mt-4 bg-primary text-white"
-                                size="lg"
-                                onClick={() => {
-                                    setMobileMenuOpen(false);
-                                    const ctaSection = document.querySelector("#cta");
-                                    ctaSection?.scrollIntoView({ behavior: "smooth" });
-                                }}
-                            >
-                                Richiedi Audit
-                            </Button>
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </header >
-    );
+                      <span>{item.name}</span>
+                      <ArrowUpRight className={cn("size-4", active ? "opacity-90" : "text-muted-foreground")} />
+                    </Link>
+                  );
+                })}
+              </div>
+
+              <Link href="/contatti" onClick={() => setMobileMenuOpen(false)} className="focus-ring block rounded-xl">
+                <Button className="h-12 w-full rounded-xl font-semibold text-white glow-shadow">Prenota Analisi Gratuita</Button>
+              </Link>
+            </motion.div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+    </>
+  );
 }

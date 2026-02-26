@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Manrope, Sora } from "next/font/google";
 import React from "react";
 import "./globals.css";
 import ClientWrapper from "@/components/layout/ClientWrapper";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
+const sora = Sora({ subsets: ["latin"], variable: "--font-sora" });
 
 export const metadata: Metadata = {
   title: "ALSOLVED - Certificazioni & Compliance. Risolto.",
@@ -27,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="it" className="scroll-smooth">
-      <body className={`${inter.variable} font-sans antialiased bg-background text-foreground selection:bg-primary/20 selection:text-primary`}>
+      <body className={`${manrope.variable} ${sora.variable} antialiased bg-background text-foreground selection:bg-primary/20 selection:text-primary`}>
         <ClientWrapper>
           {children}
         </ClientWrapper>
