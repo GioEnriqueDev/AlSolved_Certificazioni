@@ -58,7 +58,7 @@ export default function HeroSection() {
           </motion.p>
 
           <motion.div variants={childFadeVariant} className="flex flex-col gap-3 sm:flex-row sm:items-center">
-            <Link href="/contatti" className="focus-ring rounded-full">
+            <Link href="/contatti#analysis-form" className="focus-ring rounded-full">
               <Button size="lg" className="h-[52px] w-full rounded-full px-6 text-[15px] font-semibold text-white glow-shadow hover:glow-shadow-strong sm:h-14 sm:w-auto sm:px-7 sm:text-base">
                 Prenota Analisi Gratuita
                 <ArrowRight className="size-4" />

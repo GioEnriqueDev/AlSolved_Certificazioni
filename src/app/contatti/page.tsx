@@ -8,6 +8,7 @@ import BookingCTA from "@/components/ui/BookingCTA";
 import Footer from "@/components/sections/Footer";
 import StaticBackground from "@/components/sections/StaticBackground";
 import { certifications } from "@/data/certificazioniData";
+import { useMobileViewport } from "@/hooks/useMobileViewport";
 import { Phone, Mail, MapPin, Clock, ArrowUpRight, Sparkles } from "lucide-react";
 
 const contactInfo = [
@@ -40,6 +41,7 @@ const contactInfo = [
 function ContattiPageContent() {
   const searchParams = useSearchParams();
   const reduceMotion = useReducedMotion();
+  const { isMobile } = useMobileViewport();
   const certId = searchParams.get("cert") ?? "";
   const selectedCert = certifications.find((cert) => cert.id === certId);
 
@@ -47,7 +49,7 @@ function ContattiPageContent() {
     <div className="relative min-h-screen text-foreground">
       <StaticBackground />
 
-      <section className="section-shell relative px-4 pb-14 pt-28 sm:px-6 md:pt-32">
+      <section className="section-shell relative px-4 pb-10 pt-24 sm:px-6 sm:pb-14 md:pt-32">
         <div className="container mx-auto max-w-6xl">
           <motion.div
             className="mx-auto max-w-4xl text-center"
@@ -56,41 +58,65 @@ function ContattiPageContent() {
             transition={{ duration: 0.5 }}
           >
             <p className="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-primary">Contatti</p>
-            <h1 className="text-balance text-4xl font-black leading-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
-              Inizia il tuo percorso verso la certificazione con una roadmap chiara.
+            <h1 className="text-balance text-3xl font-black leading-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
+              Richiedi la tua analisi preliminare dal sito e invia il lead direttamente al CRM.
             </h1>
-            <p className="mx-auto mt-5 max-w-3xl text-base font-medium leading-relaxed text-muted-foreground sm:text-lg md:text-xl">
-              Raccontaci il contesto della tua azienda: ti aiutiamo a capire quale certificazione è prioritaria, cosa serve per partire e quanto tempo richiede il percorso.
+            <p className="mx-auto mt-4 max-w-3xl text-sm font-medium leading-relaxed text-muted-foreground sm:mt-5 sm:text-lg md:text-xl">
+              Compila il form qui sotto: raccogliamo contesto, certificazione di interesse e timing, poi inviamo i dati al webhook collegato a HubSpot per il follow-up commerciale.
             </p>
             {selectedCert ? (
-              <div className="mx-auto mt-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/8 px-4 py-2 text-sm font-semibold text-primary">
-                <Sparkles className="size-4" />
-                Richiesta guidata per {selectedCert.subtitle} ({selectedCert.title})
+              <div className="mx-auto mt-5 inline-flex max-w-full items-center gap-2 rounded-full border border-primary/20 bg-primary/8 px-4 py-2 text-sm font-semibold text-primary">
+                <Sparkles className="size-4 shrink-0" />
+                <span className="truncate">Richiesta guidata per {selectedCert.subtitle} ({selectedCert.title})</span>
               </div>
             ) : null}
           </motion.div>
         </div>
       </section>
 
-      <section className="relative z-10 px-4 pb-24 sm:px-6 md:pb-32">
-        <div className="container mx-auto grid max-w-7xl grid-cols-1 gap-8 xl:grid-cols-[1.15fr_0.85fr] xl:gap-10">
+      <section className="relative z-10 px-4 pb-20 sm:px-6 md:pb-32">
+        <div className="container mx-auto grid max-w-7xl grid-cols-1 gap-5 sm:gap-6 xl:grid-cols-[1.15fr_0.85fr] xl:gap-10">
+          {isMobile ? (
+            <motion.div
+              initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="-mx-1 flex snap-x snap-mandatory gap-3 overflow-x-auto px-1 pb-1 scrollbar-none"
+            >
+              <a href="tel:+393515371725" className="focus-ring flex min-w-[16rem] shrink-0 snap-start items-center gap-3 rounded-2xl border border-white/80 bg-white/80 p-4 shadow-sm backdrop-blur-xl">
+                <span className="inline-flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary"><Phone className="h-[18px] w-[18px]" /></span>
+                <span>
+                  <span className="block text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">Telefono</span>
+                  <span className="block text-sm font-semibold text-foreground">+39 351 537 1725</span>
+                </span>
+              </a>
+              <a href="mailto:info@alsolved.com" className="focus-ring flex min-w-[16rem] shrink-0 snap-start items-center gap-3 rounded-2xl border border-white/80 bg-white/80 p-4 shadow-sm backdrop-blur-xl">
+                <span className="inline-flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary"><Mail className="h-[18px] w-[18px]" /></span>
+                <span>
+                  <span className="block text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">Email</span>
+                  <span className="block text-sm font-semibold text-foreground">info@alsolved.com</span>
+                </span>
+              </a>
+            </motion.div>
+          ) : null}
+
           <motion.div
             initial={reduceMotion ? false : { opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.55, delay: reduceMotion ? 0 : 0.08 }}
           >
-            <BookingCTA googleFormUrl="https://docs.google.com/forms/d/e/1FAIpQLSf_placeholder/viewform" />
+            <BookingCTA />
           </motion.div>
 
           <motion.aside
             initial={reduceMotion ? false : { opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.55, delay: reduceMotion ? 0 : 0.12 }}
-            className="space-y-6"
+            className="space-y-4 sm:space-y-6"
           >
-            <div className="rounded-[1.75rem] border border-white/80 bg-white/80 p-6 shadow-[0_20px_56px_-34px_rgba(15,23,42,0.28)] backdrop-blur-xl">
+            <div className="rounded-[1.4rem] border border-white/80 bg-white/80 p-4 shadow-[0_20px_56px_-34px_rgba(15,23,42,0.28)] backdrop-blur-xl sm:rounded-[1.75rem] sm:p-6">
               <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">Informazioni di contatto</p>
-              <div className="space-y-3">
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-1">
                 {contactInfo.map((info) => {
                   const content = (
                     <>
@@ -128,12 +154,12 @@ function ContattiPageContent() {
               </div>
             </div>
 
-            <div className="rounded-[1.75rem] border border-white/80 bg-white/80 p-6 shadow-[0_20px_56px_-34px_rgba(15,23,42,0.28)] backdrop-blur-xl">
+            <div className="rounded-[1.4rem] border border-white/80 bg-white/80 p-4 shadow-[0_20px_56px_-34px_rgba(15,23,42,0.28)] backdrop-blur-xl sm:rounded-[1.75rem] sm:p-6">
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">Come lavoriamo</p>
               <ul className="space-y-3 text-sm font-medium leading-relaxed text-muted-foreground">
-                <li className="rounded-xl border border-white/70 bg-white/70 p-3"><span className="font-semibold text-foreground">1.</span> Analisi iniziale del contesto e degli obiettivi.</li>
-                <li className="rounded-xl border border-white/70 bg-white/70 p-3"><span className="font-semibold text-foreground">2.</span> Scelta della certificazione più strategica (o combinazione di percorsi).</li>
-                <li className="rounded-xl border border-white/70 bg-white/70 p-3"><span className="font-semibold text-foreground">3.</span> Roadmap operativa con tempi, deliverable e priorità del team.</li>
+                <li className="rounded-xl border border-white/70 bg-white/70 p-3"><span className="font-semibold text-foreground">1.</span> Analisi del contesto e degli obiettivi commerciali/compliance.</li>
+                <li className="rounded-xl border border-white/70 bg-white/70 p-3"><span className="font-semibold text-foreground">2.</span> Priorità certificazioni + valutazione del livello di readiness attuale.</li>
+                <li className="rounded-xl border border-white/70 bg-white/70 p-3"><span className="font-semibold text-foreground">3.</span> Roadmap operativa con tempistiche, deliverable e piano di attivazione.</li>
               </ul>
               <Link href="/metodo" className="focus-ring mt-4 inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/80 px-4 py-2 text-sm font-semibold text-foreground hover:text-primary">
                 Scopri il metodo ALSOLVED
@@ -153,9 +179,9 @@ function ContattiPageFallback() {
   return (
     <div className="relative min-h-screen text-foreground">
       <StaticBackground />
-      <section className="px-4 pb-24 pt-28 sm:px-6 md:pt-32">
+      <section className="px-4 pb-24 pt-24 sm:px-6 md:pt-32">
         <div className="container mx-auto max-w-6xl">
-          <div className="rounded-[2rem] border border-white/80 bg-white/80 p-8 shadow-[0_22px_64px_-34px_rgba(15,23,42,0.28)] backdrop-blur-xl">
+          <div className="rounded-[1.5rem] border border-white/80 bg-white/80 p-5 shadow-[0_22px_64px_-34px_rgba(15,23,42,0.28)] backdrop-blur-xl sm:rounded-[2rem] sm:p-8">
             <p className="text-sm font-semibold text-muted-foreground">Caricamento modulo contatti…</p>
           </div>
         </div>

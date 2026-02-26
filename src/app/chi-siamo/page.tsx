@@ -173,7 +173,7 @@ export default function ChiSiamoPage() {
           <p className="mx-auto mt-4 max-w-3xl text-base font-medium leading-relaxed text-muted-foreground sm:text-lg">
             Analizziamo gratuitamente il tuo scenario e ti diciamo quali certificazioni hanno il miglior impatto in base a settore, clienti e obiettivi di crescita.
           </p>
-          <Link href="/contatti" className="focus-ring mt-8 inline-flex rounded-full">
+          <Link href="/contatti#analysis-form" className="focus-ring mt-8 inline-flex rounded-full">
             <Button size="lg" className="h-14 rounded-full px-8 text-base font-semibold text-white glow-shadow hover:glow-shadow-strong">
               Richiedi analisi preliminare
               <ArrowRight className="size-4" />

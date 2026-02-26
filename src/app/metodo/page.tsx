@@ -177,7 +177,7 @@ export default function MetodoPage() {
           <p className="mx-auto mt-4 max-w-3xl text-base font-medium leading-relaxed text-muted-foreground sm:text-lg">
             Parliamo 15 minuti e ti diamo una valutazione chiara sui prossimi passi, sul livello di readiness e sulla certificazione più strategica per la tua azienda.
           </p>
-          <Link href="/contatti" className="focus-ring mt-8 inline-flex rounded-full">
+          <Link href="/contatti#analysis-form" className="focus-ring mt-8 inline-flex rounded-full">
             <Button size="lg" className="h-14 rounded-full px-8 text-base font-semibold text-white glow-shadow hover:glow-shadow-strong">
               Prenota una call
               <ArrowRight className="size-4" />

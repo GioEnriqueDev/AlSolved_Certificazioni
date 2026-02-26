@@ -152,7 +152,7 @@ export default async function CertificationPage({ params }: { params: Promise<{ 
               </div>
 
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                <Link href={`/contatti?cert=${cert.id}`} className="focus-ring rounded-full">
+                <Link href={`/contatti?cert=${cert.id}#analysis-form`} className="focus-ring rounded-full">
                   <Button size="lg" className="h-14 rounded-full px-8 text-base font-semibold text-white glow-shadow hover:glow-shadow-strong">
                     Richiedi analisi gratuita
                     <ArrowRight className="size-4" />
@@ -197,7 +197,7 @@ export default async function CertificationPage({ params }: { params: Promise<{ 
                   </ul>
                 </div>
 
-                <Link href={`/contatti?cert=${cert.id}`} className="focus-ring mt-5 block rounded-2xl">
+                <Link href={`/contatti?cert=${cert.id}#analysis-form`} className="focus-ring mt-5 block rounded-2xl">
                   <Button className="h-12 w-full rounded-2xl text-sm font-semibold text-white glow-shadow hover:glow-shadow-strong">
                     Parliamone ora
                   </Button>
@@ -356,7 +356,7 @@ export default async function CertificationPage({ params }: { params: Promise<{ 
           <p className="mx-auto mt-4 max-w-3xl text-base font-medium leading-relaxed text-muted-foreground sm:text-lg">
             Prenota un’analisi gratuita: in 15 minuti ti diciamo fattibilità, priorità e prossimi passi per avviare il percorso di certificazione.
           </p>
-          <Link href={`/contatti?cert=${cert.id}`} className="focus-ring mt-8 inline-flex rounded-full">
+          <Link href={`/contatti?cert=${cert.id}#analysis-form`} className="focus-ring mt-8 inline-flex rounded-full">
             <Button size="lg" className="h-14 rounded-full px-8 text-base font-semibold text-white glow-shadow hover:glow-shadow-strong">
               Prenota analisi gratuita
               <ArrowRight className="size-4" />

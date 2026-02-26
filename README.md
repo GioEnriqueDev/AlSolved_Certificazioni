@@ -60,4 +60,4 @@ Ad ogni push su `main`, GitHub Actions:
 
 - La pagina `contatti` gestisce il caso in cui il Google Form sia ancora placeholder e mostra fallback contatti senza link rotti.
 - Nel dataset alcune immagini certificazioni sono placeholder e non bloccano la UI (il catalogo usa rendering icon-based).
-- Se colleghi un Google Form reale, aggiorna `googleFormUrl` in `src/app/contatti/page.tsx` e l'eventuale campo prefill in `src/components/ui/BookingCTA.tsx` (`entry.PLACEHOLDER`).
+- Per attivare l'invio lead dal form contatti verso HubSpot, imposta `NEXT_PUBLIC_ANALYSIS_WEBHOOK_URL` (oppure `NEXT_PUBLIC_HUBSPOT_WEBHOOK_URL`) e abilita CORS sul webhook per il dominio del sito.
