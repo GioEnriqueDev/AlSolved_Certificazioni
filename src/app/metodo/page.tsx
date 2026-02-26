@@ -68,8 +68,8 @@ export default function MetodoPage() {
     <div className="relative min-h-screen text-foreground">
       <StaticBackground />
 
-      <section className="section-shell relative px-4 pb-14 pt-28 sm:px-6 md:pt-32">
-        <div className="container mx-auto max-w-5xl text-center">
+      <section className="section-shell relative px-4 pb-14 pt-28 sm:px-6 md:pt-32 xl:pb-16">
+        <div className="container mx-auto max-w-5xl text-center xl:max-w-6xl">
           <motion.div
             initial={reduceMotion ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -79,19 +79,19 @@ export default function MetodoPage() {
               <ShieldCheck className="size-4 text-primary" />
               <span className="text-xs font-bold uppercase tracking-[0.18em] text-primary">Processo ALSOLVED</span>
             </div>
-            <h1 className="text-balance text-4xl font-black leading-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
+            <h1 className="text-balance text-4xl font-black leading-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl xl:text-[4.85rem]">
               Zero sorprese. Massima chiarezza operativa.
             </h1>
-            <p className="mx-auto mt-5 max-w-3xl text-base font-medium leading-relaxed text-muted-foreground sm:text-lg md:text-xl">
+            <p className="mx-auto mt-5 max-w-3xl text-base font-medium leading-relaxed text-muted-foreground sm:text-lg md:text-xl xl:max-w-4xl xl:text-[1.15rem]">
               Abbiamo ingegnerizzato un metodo a fasi per ridurre il carico interno, accelerare la preparazione documentale e arrivare all’audit con un sistema davvero funzionante.
             </p>
           </motion.div>
         </div>
       </section>
 
-      <section className="relative z-10 px-4 pb-16 sm:px-6 md:pb-24">
-        <div className="container mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 gap-5 xl:grid-cols-2">
+      <section className="relative z-10 px-4 pb-16 sm:px-6 md:pb-24 xl:pb-28">
+        <div className="container mx-auto max-w-[90rem] 2xl:max-w-[96rem]">
+          <div className="grid grid-cols-1 gap-5 xl:grid-cols-2 xl:gap-6 2xl:grid-cols-4">
             {steps.map((step, index) => (
               <motion.article
                 key={step.title}
@@ -99,7 +99,7 @@ export default function MetodoPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-8%" }}
                 transition={{ duration: 0.5, delay: reduceMotion ? 0 : index * 0.06 }}
-                className="relative rounded-[1.85rem] border border-white/80 bg-white/80 p-6 shadow-[0_22px_60px_-36px_rgba(15,23,42,0.28)] backdrop-blur-xl md:p-7"
+                className="relative rounded-[1.85rem] border border-white/80 bg-white/80 p-6 shadow-[0_22px_60px_-36px_rgba(15,23,42,0.28)] backdrop-blur-xl md:p-7 xl:rounded-[2rem] xl:p-8"
               >
                 <div className="mb-5 flex items-start gap-4">
                   <div className={`inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${step.color} text-white shadow-lg`}>
@@ -117,8 +117,8 @@ export default function MetodoPage() {
         </div>
       </section>
 
-      <section className="relative z-10 px-4 pb-16 sm:px-6 md:pb-24">
-        <div className="container mx-auto max-w-7xl rounded-[2rem] border border-white/80 bg-white/82 p-6 shadow-[0_24px_70px_-40px_rgba(15,23,42,0.3)] backdrop-blur-xl md:p-8">
+      <section className="relative z-10 px-4 pb-16 sm:px-6 md:pb-24 xl:pb-28">
+        <div className="container mx-auto max-w-[90rem] rounded-[2rem] border border-white/80 bg-white/82 p-6 shadow-[0_24px_70px_-40px_rgba(15,23,42,0.3)] backdrop-blur-xl md:p-8 xl:rounded-[2.2rem] xl:p-10 2xl:max-w-[96rem]">
           <div className="mb-6 text-center md:mb-8">
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-primary">Distribuzione del carico</p>
             <h2 className="text-balance text-2xl font-black tracking-tight text-foreground sm:text-3xl md:text-4xl">
@@ -170,8 +170,8 @@ export default function MetodoPage() {
       </section>
 
       <section className="relative z-10 px-4 pb-24 sm:px-6 md:pb-32">
-        <div className="container mx-auto max-w-5xl rounded-[2.25rem] border border-white/80 bg-white/82 p-8 text-center shadow-[0_26px_80px_-40px_rgba(15,23,42,0.3)] backdrop-blur-xl md:p-12">
-          <h2 className="text-balance text-3xl font-black tracking-tight text-foreground sm:text-4xl md:text-5xl">
+        <div className="container mx-auto max-w-5xl rounded-[2.25rem] border border-white/80 bg-white/82 p-8 text-center shadow-[0_26px_80px_-40px_rgba(15,23,42,0.3)] backdrop-blur-xl md:p-12 xl:max-w-6xl xl:p-14">
+          <h2 className="text-balance text-3xl font-black tracking-tight text-foreground sm:text-4xl md:text-5xl xl:text-[3.4rem]">
             Vuoi certificarti senza bloccare l’azienda?
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-base font-medium leading-relaxed text-muted-foreground sm:text-lg">

@@ -45,18 +45,18 @@ export default function Navbar() {
     <>
       <header
         className={cn(
-          "fixed top-2 left-1/2 -translate-x-1/2 z-50 w-[calc(100vw-14px)] max-w-[88rem] rounded-[1rem] transition-all duration-500 sm:top-3 sm:w-[min(96vw,88rem)] sm:rounded-[1.35rem]",
+          "fixed top-2 left-1/2 -translate-x-1/2 z-50 w-[calc(100vw-14px)] max-w-[88rem] rounded-[1rem] transition-all duration-500 sm:top-3 sm:w-[min(96vw,88rem)] sm:rounded-[1.35rem] 2xl:max-w-[94rem] 2xl:w-[min(95vw,94rem)]",
           scrolled
             ? "glass-panel-strong border-white/70 shadow-[0_18px_42px_-20px_rgba(15,23,42,0.28)]"
             : "bg-white/55 backdrop-blur-xl border border-white/45 shadow-[0_10px_26px_-18px_rgba(15,23,42,0.18)]"
         )}
       >
-        <div className="mx-auto flex h-[68px] items-center justify-between px-3.5 sm:h-[78px] sm:px-5 md:px-6">
+        <div className="mx-auto flex h-[68px] items-center justify-between px-3.5 sm:h-[78px] sm:px-5 md:px-6 xl:h-[82px] xl:px-7">
           <Link href="/" className="focus-ring rounded-xl" aria-label="ALSOLVED homepage">
             <NeonLogo size="md" />
           </Link>
 
-          <nav className="hidden items-center gap-2 lg:flex" aria-label="Navigazione principale">
+          <nav className="hidden items-center gap-2 lg:flex xl:gap-2.5" aria-label="Navigazione principale">
             {items.map((item) => {
               const active = isActiveRoute(pathname, item.href);
               return (
@@ -64,7 +64,7 @@ export default function Navbar() {
                   key={item.name}
                   href={item.href}
                   className={cn(
-                    "focus-ring relative rounded-full px-4 py-2 text-sm font-semibold",
+                    "focus-ring relative rounded-full px-4 py-2 text-sm font-semibold xl:px-5 xl:py-2.5",
                     active
                       ? "text-foreground bg-white/80 border border-white/70 shadow-sm"
                       : "text-muted-foreground hover:text-foreground hover:bg-white/60"
@@ -82,7 +82,7 @@ export default function Navbar() {
 
           <div className="hidden items-center gap-3 lg:flex">
             <Link href="/contatti#analysis-form" className="focus-ring rounded-full">
-              <Button className="rounded-full h-11 px-5 font-semibold text-white glow-shadow hover:glow-shadow-strong">
+              <Button className="rounded-full h-11 px-5 font-semibold text-white glow-shadow hover:glow-shadow-strong xl:h-12 xl:px-6">
                 Richiedi Analisi
                 <ArrowUpRight className="size-4" />
               </Button>

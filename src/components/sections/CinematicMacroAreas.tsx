@@ -63,29 +63,29 @@ export default function CinematicMacroAreas() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section id="aree-intervento" className="section-shell relative z-10 w-full overflow-hidden px-4 py-24 sm:px-6 md:py-32">
-      <div className="container mx-auto max-w-7xl">
+    <section id="aree-intervento" className="section-shell relative z-10 w-full overflow-hidden px-4 py-24 sm:px-6 md:py-32 xl:py-36">
+      <div className="container mx-auto max-w-[90rem] 2xl:max-w-[96rem]">
         <motion.div
-          className="mx-auto mb-16 max-w-4xl text-center md:mb-20"
+          className="mx-auto mb-16 max-w-4xl text-center md:mb-20 xl:mb-24 xl:max-w-5xl"
           initial={reduceMotion ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 0.7 }}
         >
           <p className="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-primary">Aree di Intervento</p>
-          <h2 className="text-balance text-3xl font-black leading-tight text-foreground sm:text-4xl md:text-6xl">
+          <h2 className="text-balance text-3xl font-black leading-tight text-foreground sm:text-4xl md:text-6xl xl:text-[4.15rem]">
             Un catalogo progettato come una piattaforma di crescita.
           </h2>
-          <p className="mx-auto mt-5 max-w-3xl text-base font-medium leading-relaxed text-muted-foreground sm:text-lg md:text-xl">
+          <p className="mx-auto mt-5 max-w-3xl text-base font-medium leading-relaxed text-muted-foreground sm:text-lg md:text-xl xl:max-w-4xl xl:text-[1.25rem]">
             Ogni area combina certificazioni, compliance e supporto operativo. L’obiettivo non è solo “ottenere il certificato”, ma migliorare processi, margine e posizionamento.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:gap-6">
           {macroAreas.map((area, index) => (
             <motion.article
               key={area.id}
-              className="group relative overflow-hidden rounded-[2rem] border border-white/70 bg-white/75 p-6 shadow-[0_22px_60px_-34px_rgba(15,23,42,0.26)] backdrop-blur-xl md:p-8"
+              className="group relative overflow-hidden rounded-[2rem] border border-white/70 bg-white/75 p-6 shadow-[0_22px_60px_-34px_rgba(15,23,42,0.26)] backdrop-blur-xl md:p-8 xl:min-h-[31rem] xl:rounded-[2.15rem] xl:p-9"
               initial={reduceMotion ? false : { opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-6%" }}
@@ -95,7 +95,7 @@ export default function CinematicMacroAreas() {
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent" />
 
               <div className="relative z-10 flex h-full flex-col">
-                <div className="mb-5 flex items-start justify-between gap-4">
+                <div className="mb-5 flex items-start justify-between gap-4 xl:mb-6">
                   <div className={`inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${area.gradient} text-white shadow-lg`}>
                     <area.icon className="size-5" />
                   </div>
@@ -104,16 +104,16 @@ export default function CinematicMacroAreas() {
                   </span>
                 </div>
 
-                <h3 className="text-2xl font-black tracking-tight text-foreground md:text-[1.7rem]">{area.title}</h3>
-                <p className={`mt-2 text-sm font-bold bg-gradient-to-r ${area.gradient} bg-clip-text text-transparent`}>{area.subtitle}</p>
-                <p className="mt-4 text-sm font-medium leading-relaxed text-muted-foreground md:text-base">{area.description}</p>
+                <h3 className="text-2xl font-black tracking-tight text-foreground md:text-[1.7rem] xl:text-[1.9rem]">{area.title}</h3>
+                <p className={`mt-2 text-sm font-bold bg-gradient-to-r ${area.gradient} bg-clip-text text-transparent xl:text-[0.95rem]`}>{area.subtitle}</p>
+                <p className="mt-4 text-sm font-medium leading-relaxed text-muted-foreground md:text-base xl:text-[1.02rem]">{area.description}</p>
 
-                <div className="mt-5 rounded-2xl border border-white/70 bg-white/70 p-4 shadow-sm">
+                <div className="mt-5 rounded-2xl border border-white/70 bg-white/70 p-4 shadow-sm xl:mt-6 xl:p-5">
                   <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">Valore strategico</p>
-                  <p className="text-sm font-semibold leading-relaxed text-foreground/85">{area.payoff}</p>
+                  <p className="text-sm font-semibold leading-relaxed text-foreground/85 xl:text-[0.95rem]">{area.payoff}</p>
                 </div>
 
-                <div className="mt-5 flex flex-wrap gap-2">
+                <div className="mt-5 flex flex-wrap gap-2 xl:mt-6 xl:gap-2.5">
                   {area.chips.map((chip, chipIndex) => (
                     <Link key={chip} href={`/certificazioni/${area.links[chipIndex]}`} className="focus-ring rounded-xl">
                       <span className="inline-flex items-center rounded-xl border border-white/80 bg-white/85 px-3 py-1.5 text-xs font-bold text-foreground shadow-sm hover:border-primary/20 hover:bg-white">
@@ -123,12 +123,12 @@ export default function CinematicMacroAreas() {
                   ))}
                 </div>
 
-                <div className="mt-6 flex items-center justify-between gap-4 border-t border-border/40 pt-4">
-                  <Link href="/certificazioni" className="focus-ring inline-flex items-center gap-2 rounded-full text-sm font-bold text-foreground hover:text-primary">
+                <div className="mt-6 flex items-center justify-between gap-4 border-t border-border/40 pt-4 xl:mt-7 xl:pt-5">
+                  <Link href="/certificazioni" className="focus-ring inline-flex items-center gap-2 rounded-full text-sm font-bold text-foreground hover:text-primary xl:text-[0.95rem]">
                     Vedi catalogo completo
                     <ArrowRight className="size-4" />
                   </Link>
-                  <Link href={`/certificazioni/${area.links[0]}`} className="focus-ring rounded-full border border-white/80 bg-white/80 px-3 py-1.5 text-xs font-semibold text-muted-foreground hover:text-foreground">
+                  <Link href={`/certificazioni/${area.links[0]}`} className="focus-ring rounded-full border border-white/80 bg-white/80 px-3 py-1.5 text-xs font-semibold text-muted-foreground hover:text-foreground xl:px-3.5 xl:py-2">
                     Inizia da {area.chips[0]}
                   </Link>
                 </div>

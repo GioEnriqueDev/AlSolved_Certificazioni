@@ -328,32 +328,32 @@ export default function BookingCTA({
   const inputBase =
     "w-full rounded-xl border border-white/85 bg-white/90 px-4 py-3 text-sm font-medium text-foreground shadow-sm outline-none transition placeholder:text-muted-foreground/70 focus:border-primary/30 focus:ring-2 focus:ring-primary/15";
   const cardBase =
-    "rounded-2xl border border-white/80 bg-white/80 p-4 shadow-sm backdrop-blur-xl sm:p-5";
+    "rounded-2xl border border-white/80 bg-white/80 p-4 shadow-sm backdrop-blur-xl sm:p-5 xl:rounded-[1.35rem] xl:p-6";
 
   return (
     <div
       id="analysis-form"
-      className="relative mx-auto w-full max-w-3xl overflow-hidden rounded-[1.4rem] border border-white/80 bg-white/80 p-2 shadow-[0_28px_80px_-42px_rgba(15,23,42,0.28)] backdrop-blur-xl sm:rounded-[1.8rem]"
+      className="relative mx-auto w-full max-w-3xl overflow-hidden rounded-[1.4rem] border border-white/80 bg-white/80 p-2 shadow-[0_28px_80px_-42px_rgba(15,23,42,0.28)] backdrop-blur-xl sm:rounded-[1.8rem] xl:max-w-none xl:rounded-[2rem] xl:p-2.5"
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_15%,rgba(242,78,107,0.12),transparent_46%),radial-gradient(circle_at_84%_80%,rgba(59,130,246,0.10),transparent_46%)]" />
 
-      <div className="relative rounded-[1.05rem] border border-white/85 bg-white/90 p-4 shadow-sm sm:rounded-[1.35rem] sm:p-6 md:p-8">
-        <div className="mb-4 flex flex-col gap-4 sm:mb-6 sm:flex-row sm:items-start sm:justify-between">
+      <div className="relative rounded-[1.05rem] border border-white/85 bg-white/90 p-4 shadow-sm sm:rounded-[1.35rem] sm:p-6 md:p-8 xl:rounded-[1.7rem] xl:p-10">
+        <div className="mb-4 flex flex-col gap-4 sm:mb-6 sm:flex-row sm:items-start sm:justify-between xl:mb-7">
           <div className="flex gap-3 sm:gap-4">
             <div className="mt-0.5 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary shadow-inner sm:h-14 sm:w-14">
               <CalendarCheck className="size-6 sm:size-7" />
             </div>
             <div>
-              <h2 className="text-balance text-xl font-black tracking-tight text-foreground sm:text-2xl md:text-3xl">
+              <h2 className="text-balance text-xl font-black tracking-tight text-foreground sm:text-2xl md:text-3xl xl:text-[2rem]">
                 Richiedi l&apos;analisi preliminare
               </h2>
-              <p className="mt-1 text-sm font-medium leading-relaxed text-muted-foreground sm:text-base">
+              <p className="mt-1 text-sm font-medium leading-relaxed text-muted-foreground sm:text-base xl:max-w-[34rem] xl:text-[1.02rem]">
                 Compila il modulo e invia il lead al webhook collegato a HubSpot.
               </p>
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-2 sm:max-w-[18rem] sm:justify-end">
+          <div className="flex flex-wrap gap-2 sm:max-w-[18rem] sm:justify-end xl:max-w-[20rem] xl:gap-2.5">
             <span className="pill-chip bg-white/90 text-muted-foreground">
               <FileCheck className="size-3.5 text-primary" />
               Lead qualificato
@@ -365,7 +365,7 @@ export default function BookingCTA({
           </div>
         </div>
 
-        <div className="mb-5 flex flex-col gap-2 sm:mb-6">
+        <div className="mb-5 flex flex-col gap-2 sm:mb-6 xl:mb-7">
           {selectedCertification ? (
             <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
               <Sparkles className="size-4 shrink-0" />
@@ -433,7 +433,7 @@ export default function BookingCTA({
               animate={{ opacity: 1, y: 0 }}
               exit={reducedMotion ? {} : { opacity: 0, y: -6 }}
             >
-              <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1.04fr_0.96fr]">
+              <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1.04fr_0.96fr] xl:gap-5">
                 <fieldset className={cardBase}>
                   <legend className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">
                     Contatto
@@ -691,7 +691,7 @@ export default function BookingCTA({
                 ) : null}
               </AnimatePresence>
 
-              <div className="sticky bottom-2 z-20 -mx-1 rounded-2xl border border-white/80 bg-white/95 p-3 shadow-[0_16px_40px_-24px_rgba(15,23,42,0.25)] backdrop-blur-xl sm:static sm:mx-0 sm:p-4">
+              <div className="sticky bottom-2 z-20 -mx-1 rounded-2xl border border-white/80 bg-white/95 p-3 shadow-[0_16px_40px_-24px_rgba(15,23,42,0.25)] backdrop-blur-xl sm:static sm:mx-0 sm:p-4 xl:rounded-[1.15rem] xl:p-4">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <div className="text-xs font-semibold text-muted-foreground sm:text-sm">
                     <p className="text-foreground/85">Invio diretto lead a webhook (HubSpot)</p>

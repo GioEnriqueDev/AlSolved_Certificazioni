@@ -106,13 +106,13 @@ export default async function CertificationPage({ params }: { params: Promise<{ 
 
   return (
     <div className="min-h-screen bg-transparent text-foreground">
-      <div className="section-shell relative overflow-hidden border-b border-white/55 px-4 pb-16 pt-28 sm:px-6 md:pt-32">
+      <div className="section-shell relative overflow-hidden border-b border-white/55 px-4 pb-16 pt-28 sm:px-6 md:pt-32 xl:pb-20">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute right-[8%] top-[8%] h-64 w-64 rounded-full blur-3xl" style={{ backgroundColor: palette.glow }} />
           <div className="absolute left-[8%] top-[22%] h-52 w-52 rounded-full bg-blue-200/12 blur-3xl" />
         </div>
 
-        <div className="container relative z-10 mx-auto max-w-7xl">
+        <div className="container relative z-10 mx-auto max-w-[90rem] 2xl:max-w-[96rem]">
           <div className="mb-6 flex flex-wrap items-center gap-2 text-sm font-medium text-muted-foreground">
             <Link href="/" className="focus-ring rounded-md hover:text-foreground">Home</Link>
             <ChevronRight className="size-4" />
@@ -121,8 +121,8 @@ export default async function CertificationPage({ params }: { params: Promise<{ 
             <span className="font-semibold text-foreground">{cert.subtitle}</span>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 xl:grid-cols-[1.05fr_0.95fr] xl:items-start">
-            <FadeIn className="max-w-3xl">
+          <div className="grid grid-cols-1 gap-8 xl:grid-cols-[1.08fr_0.92fr] xl:items-start xl:gap-10 2xl:gap-12">
+            <FadeIn className="max-w-3xl xl:max-w-4xl">
               <Link href="/certificazioni" className="focus-ring mb-5 inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/80 px-4 py-2 text-sm font-semibold text-foreground shadow-sm hover:text-primary">
                 <ArrowLeft className="size-4" />
                 Torna al catalogo
@@ -135,10 +135,10 @@ export default async function CertificationPage({ params }: { params: Promise<{ 
                 <span className="text-xs font-bold uppercase tracking-[0.16em] text-primary">{cert.subtitle}</span>
               </div>
 
-              <h1 className="text-balance text-4xl font-black leading-tight text-foreground sm:text-5xl md:text-6xl">
+              <h1 className="text-balance text-4xl font-black leading-tight text-foreground sm:text-5xl md:text-6xl xl:text-[4.6rem]">
                 {cert.title}
               </h1>
-              <p className="mt-4 text-base font-medium leading-relaxed text-muted-foreground sm:text-lg md:text-xl">
+              <p className="mt-4 text-base font-medium leading-relaxed text-muted-foreground sm:text-lg md:text-xl xl:max-w-[44rem] xl:text-[1.16rem]">
                 {cert.description}
               </p>
 
@@ -151,7 +151,7 @@ export default async function CertificationPage({ params }: { params: Promise<{ 
                 </span>
               </div>
 
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row xl:mt-8 xl:gap-4">
                 <Link href={`/contatti?cert=${cert.id}#analysis-form`} className="focus-ring rounded-full">
                   <Button size="lg" className="h-14 rounded-full px-8 text-base font-semibold text-white glow-shadow hover:glow-shadow-strong">
                     Richiedi analisi gratuita
@@ -167,7 +167,7 @@ export default async function CertificationPage({ params }: { params: Promise<{ 
             </FadeIn>
 
             <FadeIn delay={0.08} className="xl:sticky xl:top-28">
-              <aside className="rounded-[2rem] border border-white/80 bg-white/82 p-6 shadow-[0_26px_80px_-40px_rgba(15,23,42,0.3)] backdrop-blur-xl">
+              <aside className="rounded-[2rem] border border-white/80 bg-white/82 p-6 shadow-[0_26px_80px_-40px_rgba(15,23,42,0.3)] backdrop-blur-xl xl:rounded-[2.15rem] xl:p-8">
                 <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">Sintesi del progetto</p>
                 <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-1">
                   <div className="rounded-2xl border border-white/80 bg-white/80 p-4 shadow-sm">
@@ -208,8 +208,8 @@ export default async function CertificationPage({ params }: { params: Promise<{ 
         </div>
       </div>
 
-      <section className="relative z-10 px-4 py-16 sm:px-6 md:py-20">
-        <div className="container mx-auto max-w-7xl grid grid-cols-1 gap-6 xl:grid-cols-[1.05fr_0.95fr]">
+      <section className="relative z-10 px-4 py-16 sm:px-6 md:py-20 xl:py-24">
+        <div className="container mx-auto grid max-w-[90rem] grid-cols-1 gap-6 xl:grid-cols-[1.08fr_0.92fr] xl:gap-8 2xl:max-w-[96rem] 2xl:gap-10">
           <div className="space-y-6">
             <FadeIn>
               <div className="rounded-[1.75rem] border border-white/80 bg-white/82 p-6 shadow-[0_22px_60px_-36px_rgba(15,23,42,0.26)] backdrop-blur-xl">
@@ -290,8 +290,8 @@ export default async function CertificationPage({ params }: { params: Promise<{ 
         </div>
       </section>
 
-      <section className="relative z-10 border-y border-white/55 bg-white/45 px-4 py-16 backdrop-blur-sm sm:px-6 md:py-20">
-        <div className="container mx-auto max-w-4xl">
+      <section className="relative z-10 border-y border-white/55 bg-white/45 px-4 py-16 backdrop-blur-sm sm:px-6 md:py-20 xl:py-24">
+        <div className="container mx-auto max-w-4xl xl:max-w-5xl">
           <FadeIn>
             <h2 className="mb-8 text-center text-2xl font-black tracking-tight text-foreground md:text-3xl">
               Domande frequenti su {cert.subtitle}
@@ -312,8 +312,8 @@ export default async function CertificationPage({ params }: { params: Promise<{ 
       </section>
 
       {related.length > 0 ? (
-        <section className="relative z-10 px-4 py-16 sm:px-6 md:py-20">
-          <div className="container mx-auto max-w-6xl">
+        <section className="relative z-10 px-4 py-16 sm:px-6 md:py-20 xl:py-24">
+          <div className="container mx-auto max-w-[88rem] 2xl:max-w-[94rem]">
             <FadeIn>
               <h2 className="mb-6 text-2xl font-black tracking-tight text-foreground md:text-3xl">Potrebbe interessarti anche</h2>
             </FadeIn>
@@ -349,8 +349,8 @@ export default async function CertificationPage({ params }: { params: Promise<{ 
       ) : null}
 
       <section className="relative z-10 px-4 pb-24 sm:px-6 md:pb-32">
-        <div className="container mx-auto max-w-5xl rounded-[2.25rem] border border-white/80 bg-white/82 p-8 text-center shadow-[0_26px_80px_-40px_rgba(15,23,42,0.3)] backdrop-blur-xl md:p-12">
-          <h2 className="text-balance text-3xl font-black tracking-tight text-foreground sm:text-4xl md:text-5xl">
+        <div className="container mx-auto max-w-5xl rounded-[2.25rem] border border-white/80 bg-white/82 p-8 text-center shadow-[0_26px_80px_-40px_rgba(15,23,42,0.3)] backdrop-blur-xl md:p-12 xl:max-w-6xl xl:p-14">
+          <h2 className="text-balance text-3xl font-black tracking-tight text-foreground sm:text-4xl md:text-5xl xl:text-[3.4rem]">
             Pronto a ottenere la {cert.subtitle}?
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-base font-medium leading-relaxed text-muted-foreground sm:text-lg">

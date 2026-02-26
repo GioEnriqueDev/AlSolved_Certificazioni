@@ -19,7 +19,7 @@ export default function Home() {
       {/* Cinematic Bento Box - The New Certification Hub */}
       <CinematicMacroAreas />
 
-      <div className="relative z-10 pt-10">
+      <div className="relative z-10 pt-10 xl:pt-14">
         <ScrollProgressProcess />
       </div>
 

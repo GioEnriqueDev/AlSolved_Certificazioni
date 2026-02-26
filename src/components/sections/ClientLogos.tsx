@@ -27,13 +27,13 @@ const logos: Array<{ name: string; label: string; icon: LucideIcon; color: strin
 
 function LogoPill({ name, label, icon: Icon, color }: { name: string; label: string; icon: LucideIcon; color: string }) {
   return (
-    <div className="group flex shrink-0 items-center gap-3 rounded-2xl border border-white/70 bg-white/75 px-5 py-3 shadow-[0_12px_28px_-22px_rgba(15,23,42,0.24)] backdrop-blur-xl">
-      <div className={`flex size-10 items-center justify-center rounded-xl border border-white/70 bg-white/85 ${color}`}>
+    <div className="group flex shrink-0 items-center gap-3 rounded-2xl border border-white/70 bg-white/75 px-5 py-3 shadow-[0_12px_28px_-22px_rgba(15,23,42,0.24)] backdrop-blur-xl xl:gap-3.5 xl:px-6 xl:py-3.5">
+      <div className={`flex size-10 items-center justify-center rounded-xl border border-white/70 bg-white/85 ${color} xl:size-11`}>
         <Icon className="h-[18px] w-[18px]" />
       </div>
       <div className="flex flex-col leading-tight">
-        <span className="text-sm font-bold text-foreground">{name}</span>
-        <span className="text-[11px] font-semibold text-muted-foreground">{label}</span>
+        <span className="text-sm font-bold text-foreground xl:text-[0.95rem]">{name}</span>
+        <span className="text-[11px] font-semibold text-muted-foreground xl:text-xs">{label}</span>
       </div>
     </div>
   );
@@ -44,8 +44,8 @@ export default function ClientLogos() {
   const { isMobile } = useMobileViewport();
 
   return (
-    <section className="relative z-10 w-full overflow-hidden border-y border-white/50 bg-white/35 py-12 backdrop-blur-sm sm:py-14">
-      <div className="container mx-auto mb-7 px-4 text-center sm:mb-8 sm:px-6">
+    <section className="relative z-10 w-full overflow-hidden border-y border-white/50 bg-white/35 py-12 backdrop-blur-sm sm:py-14 xl:py-16">
+      <div className="container mx-auto mb-7 max-w-5xl px-4 text-center sm:mb-8 sm:px-6 xl:mb-10 xl:max-w-6xl">
         <motion.p
           className="mb-3 text-xs font-bold uppercase tracking-[0.25em] text-primary"
           initial={reduceMotion ? false : { opacity: 0, y: 10 }}
@@ -55,7 +55,7 @@ export default function ClientLogos() {
           Standard & Framework
         </motion.p>
         <motion.h3
-          className="text-balance text-lg font-bold tracking-tight text-foreground sm:text-2xl md:text-3xl"
+          className="text-balance text-lg font-bold tracking-tight text-foreground sm:text-2xl md:text-3xl xl:text-[2.15rem]"
           initial={reduceMotion ? false : { opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -85,15 +85,15 @@ export default function ClientLogos() {
           </div>
         </div>
       ) : reduceMotion ? (
-        <div className="container mx-auto grid grid-cols-1 gap-3 px-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="container mx-auto grid max-w-[90rem] grid-cols-1 gap-3 px-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-4 2xl:max-w-[96rem]">
           {logos.map((logo) => (
             <LogoPill key={logo.name} name={logo.name} label={logo.label} icon={logo.icon} color={logo.color} />
           ))}
         </div>
       ) : (
         <div className="relative">
-          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-background to-transparent md:w-40" />
-          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-background to-transparent md:w-40" />
+          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-background to-transparent md:w-40 xl:w-56" />
+          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-background to-transparent md:w-40 xl:w-56" />
           <div className="flex animate-marquee will-change-transform">
             {[...logos, ...logos].map((logo, index) => (
               <div key={`${logo.name}-${index}`} className="mx-2">

@@ -209,6 +209,23 @@
   }
 }
 
+@media (min-width: 1280px) {
+  html {
+    scroll-padding-top: 6rem;
+  }
+
+  .section-shell::before {
+    background-size: 40px 40px;
+    opacity: 0.34;
+  }
+
+  .pill-chip {
+    padding-inline: 0.95rem;
+    padding-block: 0.45rem;
+    font-size: 0.8rem;
+  }
+}
+
 @keyframes marquee {
   0% {
     transform: translateX(0);

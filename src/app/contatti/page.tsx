@@ -50,18 +50,18 @@ function ContattiPageContent() {
       <StaticBackground />
 
       <section className="section-shell relative px-4 pb-10 pt-24 sm:px-6 sm:pb-14 md:pt-32">
-        <div className="container mx-auto max-w-6xl">
+        <div className="container mx-auto max-w-6xl xl:max-w-7xl">
           <motion.div
-            className="mx-auto max-w-4xl text-center"
+            className="mx-auto max-w-4xl text-center xl:max-w-5xl"
             initial={reduceMotion ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
             <p className="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-primary">Contatti</p>
-            <h1 className="text-balance text-3xl font-black leading-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
+            <h1 className="text-balance text-3xl font-black leading-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl xl:text-[4.9rem]">
               Richiedi la tua analisi preliminare dal sito e invia il lead direttamente al CRM.
             </h1>
-            <p className="mx-auto mt-4 max-w-3xl text-sm font-medium leading-relaxed text-muted-foreground sm:mt-5 sm:text-lg md:text-xl">
+            <p className="mx-auto mt-4 max-w-3xl text-sm font-medium leading-relaxed text-muted-foreground sm:mt-5 sm:text-lg md:text-xl xl:max-w-4xl xl:text-[1.15rem]">
               Compila il form qui sotto: raccogliamo contesto, certificazione di interesse e timing, poi inviamo i dati al webhook collegato a HubSpot per il follow-up commerciale.
             </p>
             {selectedCert ? (
@@ -75,7 +75,7 @@ function ContattiPageContent() {
       </section>
 
       <section className="relative z-10 px-4 pb-20 sm:px-6 md:pb-32">
-        <div className="container mx-auto grid max-w-7xl grid-cols-1 gap-5 sm:gap-6 xl:grid-cols-[1.15fr_0.85fr] xl:gap-10">
+        <div className="container mx-auto grid max-w-[90rem] grid-cols-1 gap-5 sm:gap-6 xl:grid-cols-[1.12fr_0.88fr] xl:gap-8 2xl:max-w-[96rem] 2xl:gap-10">
           {isMobile ? (
             <motion.div
               initial={reduceMotion ? false : { opacity: 0, y: 12 }}
@@ -112,7 +112,7 @@ function ContattiPageContent() {
             initial={reduceMotion ? false : { opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.55, delay: reduceMotion ? 0 : 0.12 }}
-            className="space-y-4 sm:space-y-6"
+            className="space-y-4 sm:space-y-6 xl:sticky xl:top-28 xl:self-start"
           >
             <div className="rounded-[1.4rem] border border-white/80 bg-white/80 p-4 shadow-[0_20px_56px_-34px_rgba(15,23,42,0.28)] backdrop-blur-xl sm:rounded-[1.75rem] sm:p-6">
               <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">Informazioni di contatto</p>

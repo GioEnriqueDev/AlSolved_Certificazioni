@@ -28,10 +28,10 @@ export default function CertificazioniPage() {
     <div className="relative min-h-screen text-foreground">
       <StaticBackground />
 
-      <section className="section-shell relative px-4 pb-14 pt-28 sm:px-6 md:pt-32">
-        <div className="container mx-auto max-w-6xl">
+      <section className="section-shell relative px-4 pb-14 pt-28 sm:px-6 md:pt-32 xl:pb-20">
+        <div className="container mx-auto max-w-6xl xl:max-w-7xl">
           <motion.div
-            className="mx-auto max-w-5xl text-center"
+            className="mx-auto max-w-5xl text-center xl:max-w-6xl"
             initial={reduceMotion ? false : { opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55 }}
@@ -40,10 +40,10 @@ export default function CertificazioniPage() {
               <ShieldCheck className="size-4 text-primary" />
               <span className="text-xs font-bold uppercase tracking-[0.18em] text-primary">Catalogo certificazioni</span>
             </div>
-            <h1 className="text-balance text-4xl font-black leading-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
+            <h1 className="text-balance text-4xl font-black leading-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl xl:text-[4.85rem]">
               Ogni certificazione è una leva di crescita.
             </h1>
-            <p className="mx-auto mt-5 max-w-3xl text-base font-medium leading-relaxed text-muted-foreground sm:text-lg md:text-xl">
+            <p className="mx-auto mt-5 max-w-3xl text-base font-medium leading-relaxed text-muted-foreground sm:text-lg md:text-xl xl:max-w-4xl xl:text-[1.18rem]">
               Scegli il percorso più strategico per la tua azienda. Ogni progetto include analisi iniziale, documentazione, implementazione, formazione e affiancamento fino all’audit.
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
@@ -55,9 +55,9 @@ export default function CertificazioniPage() {
         </div>
       </section>
 
-      <section className="relative z-10 px-4 pb-16 sm:px-6 md:pb-24">
-        <div className="container mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+      <section className="relative z-10 px-4 pb-16 sm:px-6 md:pb-24 xl:pb-28">
+        <div className="container mx-auto max-w-[90rem] 2xl:max-w-[96rem]">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3 xl:gap-6">
             {certifications.map((cert, index) => {
               const color = getPalette(index);
               return (
@@ -69,7 +69,7 @@ export default function CertificazioniPage() {
                   transition={{ duration: 0.45, delay: reduceMotion ? 0 : (index % 3) * 0.05 }}
                 >
                   <Link href={`/certificazioni/${cert.id}`} className="group focus-ring block rounded-[1.75rem]">
-                    <article className="relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-white/80 bg-white/80 p-6 shadow-[0_22px_60px_-38px_rgba(15,23,42,0.28)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-1.5 hover:border-white hover:shadow-[0_28px_80px_-36px_rgba(15,23,42,0.32)]">
+                    <article className="relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-white/80 bg-white/80 p-6 shadow-[0_22px_60px_-38px_rgba(15,23,42,0.28)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-1.5 hover:border-white hover:shadow-[0_28px_80px_-36px_rgba(15,23,42,0.32)] xl:rounded-[1.95rem] xl:p-7">
                       <div className="pointer-events-none absolute -right-14 -top-16 h-48 w-48 rounded-full opacity-70 blur-3xl transition-opacity duration-500 group-hover:opacity-100" style={{ backgroundColor: color.glow }} />
 
                       <div className="relative z-10 flex h-full flex-col">
@@ -84,10 +84,10 @@ export default function CertificazioniPage() {
 
                         <div className="mb-4">
                           <p className={`text-sm font-bold bg-gradient-to-r ${color.gradient} bg-clip-text text-transparent`}>{cert.title}</p>
-                          <h2 className="mt-1 text-2xl font-black tracking-tight text-foreground">{cert.subtitle}</h2>
+                          <h2 className="mt-1 text-2xl font-black tracking-tight text-foreground xl:text-[1.8rem]">{cert.subtitle}</h2>
                         </div>
 
-                        <p className="text-sm font-medium leading-relaxed text-muted-foreground">{cert.description}</p>
+                        <p className="text-sm font-medium leading-relaxed text-muted-foreground xl:text-[0.96rem]">{cert.description}</p>
 
                         <div className="mt-5 space-y-2">
                           {cert.benefits.slice(0, 2).map((benefit) => (
@@ -118,9 +118,9 @@ export default function CertificazioniPage() {
       </section>
 
       <section className="relative z-10 px-4 pb-24 sm:px-6 md:pb-32">
-        <div className="container mx-auto max-w-5xl rounded-[2.25rem] border border-white/80 bg-white/82 p-8 text-center shadow-[0_26px_80px_-40px_rgba(15,23,42,0.3)] backdrop-blur-xl md:p-12">
+        <div className="container mx-auto max-w-5xl rounded-[2.25rem] border border-white/80 bg-white/82 p-8 text-center shadow-[0_26px_80px_-40px_rgba(15,23,42,0.3)] backdrop-blur-xl md:p-12 xl:max-w-6xl xl:p-14">
           <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-primary">Non sai da dove partire?</p>
-          <h2 className="text-balance text-3xl font-black tracking-tight text-foreground sm:text-4xl md:text-5xl">
+          <h2 className="text-balance text-3xl font-black tracking-tight text-foreground sm:text-4xl md:text-5xl xl:text-[3.4rem]">
             Ti aiutiamo a scegliere la certificazione più strategica.
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-base font-medium leading-relaxed text-muted-foreground sm:text-lg">
