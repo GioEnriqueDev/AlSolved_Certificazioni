@@ -3,6 +3,7 @@
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import abstractGlassImg from "@/assets/images/abstract_3d_glass.png";
+import { useMobileViewport } from "@/hooks/useMobileViewport";
 
 const particles = [
   { left: 14, top: 22, delay: 0, duration: 24 },
@@ -10,10 +11,43 @@ const particles = [
   { left: 43, top: 70, delay: 0.7, duration: 22 },
 ];
 
-export default function AnimatedBackground() {
-  const reduceMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll();
+function MobileAnimatedBackground({ reduceMotion }: { reduceMotion: boolean }) {
+  return (
+    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-[linear-gradient(180deg,#fbfbfd,#f6f8fc)]">
+      <div className="absolute inset-0 opacity-20 mix-blend-multiply">
+        <Image
+          src={abstractGlassImg}
+          alt=""
+          aria-hidden="true"
+          fill
+          priority
+          unoptimized
+          sizes="100vw"
+          className="object-cover object-center scale-[1.03]"
+        />
+      </div>
 
+      <div className="absolute inset-0 opacity-35">
+        <div className="absolute left-[2%] top-[4%] h-52 w-52 rounded-full bg-primary/12 blur-2xl" />
+        <div className="absolute right-[0%] top-[8%] h-56 w-56 rounded-full bg-orange-300/12 blur-2xl" />
+        <div className="absolute left-1/2 top-[38%] h-44 w-[22rem] max-w-[88vw] -translate-x-1/2 rounded-full bg-blue-200/10 blur-2xl" />
+      </div>
+
+      {!reduceMotion ? (
+        <motion.div
+          className="absolute left-1/2 top-[22%] h-28 w-28 -translate-x-1/2 rounded-[1.6rem] border border-white/65 bg-white/55 shadow-[0_18px_35px_-20px_rgba(15,23,42,0.2)]"
+          animate={{ y: [0, -8, 0], rotate: [0, -1.2, 0] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+        />
+      ) : null}
+
+      <div className="absolute inset-x-0 bottom-0 h-[24vh] bg-gradient-to-t from-[#f6f8fc] via-[#f6f8fc]/85 to-transparent" />
+    </div>
+  );
+}
+
+function DesktopAnimatedBackground({ reduceMotion }: { reduceMotion: boolean }) {
+  const { scrollYProgress } = useScroll();
   const bgY = useTransform(scrollYProgress, [0, 1], [0, 72]);
   const monolithA = useTransform(scrollYProgress, [0, 1], [-16, -80]);
   const monolithB = useTransform(scrollYProgress, [0, 1], [8, 62]);
@@ -90,5 +124,16 @@ export default function AnimatedBackground() {
       <div className="absolute inset-x-0 bottom-0 h-[28vh] bg-gradient-to-t from-[#f6f8fc] via-[#f6f8fc]/82 to-transparent" />
       <div className="absolute inset-0 ring-1 ring-white/25" />
     </div>
+  );
+}
+
+export default function AnimatedBackground() {
+  const reduceMotion = !!useReducedMotion();
+  const { isMobile } = useMobileViewport();
+
+  return isMobile ? (
+    <MobileAnimatedBackground reduceMotion={reduceMotion} />
+  ) : (
+    <DesktopAnimatedBackground reduceMotion={reduceMotion} />
   );
 }

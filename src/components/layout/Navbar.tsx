@@ -45,13 +45,13 @@ export default function Navbar() {
     <>
       <header
         className={cn(
-          "fixed top-3 left-1/2 -translate-x-1/2 z-50 w-[min(96vw,88rem)] rounded-[1.35rem] transition-all duration-500",
+          "fixed top-2 left-1/2 -translate-x-1/2 z-50 w-[calc(100vw-14px)] max-w-[88rem] rounded-[1rem] transition-all duration-500 sm:top-3 sm:w-[min(96vw,88rem)] sm:rounded-[1.35rem]",
           scrolled
             ? "glass-panel-strong border-white/70 shadow-[0_18px_42px_-20px_rgba(15,23,42,0.28)]"
             : "bg-white/55 backdrop-blur-xl border border-white/45 shadow-[0_10px_26px_-18px_rgba(15,23,42,0.18)]"
         )}
       >
-        <div className="mx-auto flex h-[78px] items-center justify-between px-4 sm:px-5 md:px-6">
+        <div className="mx-auto flex h-[68px] items-center justify-between px-3.5 sm:h-[78px] sm:px-5 md:px-6">
           <Link href="/" className="focus-ring rounded-xl" aria-label="ALSOLVED homepage">
             <NeonLogo size="md" />
           </Link>
@@ -91,7 +91,7 @@ export default function Navbar() {
 
           <button
             type="button"
-            className="focus-ring inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/60 bg-white/75 text-foreground shadow-sm lg:hidden"
+            className="focus-ring inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/60 bg-white/75 text-foreground shadow-sm lg:hidden"
             onClick={() => setMobileMenuOpen((value) => !value)}
             aria-label={mobileMenuOpen ? "Chiudi menu" : "Apri menu"}
             aria-expanded={mobileMenuOpen}
@@ -121,15 +121,16 @@ export default function Navbar() {
 
             <motion.div
               id="mobile-nav-panel"
-              initial={shouldReduceMotion ? false : { y: -18, opacity: 0, scale: 0.985 }}
-              animate={{ y: 0, opacity: 1, scale: 1 }}
-              exit={shouldReduceMotion ? { opacity: 0 } : { y: -8, opacity: 0, scale: 0.99 }}
+              initial={shouldReduceMotion ? false : { y: 28, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={shouldReduceMotion ? { opacity: 0 } : { y: 14, opacity: 0 }}
               transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-              className="relative mx-auto mt-24 w-[min(94vw,38rem)] rounded-[1.5rem] border border-white/70 bg-white/90 p-4 shadow-[0_30px_80px_-26px_rgba(15,23,42,0.3)] backdrop-blur-2xl"
+              className="absolute inset-x-0 bottom-0 mx-auto w-full rounded-t-[1.5rem] border border-white/70 border-b-0 bg-white/92 p-4 pb-[calc(env(safe-area-inset-bottom)+0.9rem)] shadow-[0_-20px_60px_-18px_rgba(15,23,42,0.28)] backdrop-blur-2xl sm:bottom-4 sm:w-[min(94vw,38rem)] sm:rounded-[1.5rem] sm:border-b sm:p-4 sm:pb-4 sm:shadow-[0_30px_80px_-26px_rgba(15,23,42,0.3)]"
               role="dialog"
               aria-modal="true"
               aria-label="Menu di navigazione"
             >
+              <div className="mx-auto mb-3 h-1.5 w-10 rounded-full bg-black/10 sm:hidden" />
               <div className="mb-2 rounded-2xl border border-white/60 bg-white/70 p-2">
                 {items.map((item) => {
                   const active = isActiveRoute(pathname, item.href);

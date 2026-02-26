@@ -12,6 +12,7 @@ import {
   Car,
   type LucideIcon,
 } from "lucide-react";
+import { useMobileViewport } from "@/hooks/useMobileViewport";
 
 const logos: Array<{ name: string; label: string; icon: LucideIcon; color: string }> = [
   { name: "ISO 9001", label: "Qualità", icon: ShieldCheck, color: "text-amber-600" },
@@ -40,10 +41,11 @@ function LogoPill({ name, label, icon: Icon, color }: { name: string; label: str
 
 export default function ClientLogos() {
   const reduceMotion = useReducedMotion();
+  const { isMobile } = useMobileViewport();
 
   return (
-    <section className="relative z-10 w-full overflow-hidden border-y border-white/50 bg-white/35 py-14 backdrop-blur-sm">
-      <div className="container mx-auto mb-8 px-6 text-center">
+    <section className="relative z-10 w-full overflow-hidden border-y border-white/50 bg-white/35 py-12 backdrop-blur-sm sm:py-14">
+      <div className="container mx-auto mb-7 px-4 text-center sm:mb-8 sm:px-6">
         <motion.p
           className="mb-3 text-xs font-bold uppercase tracking-[0.25em] text-primary"
           initial={reduceMotion ? false : { opacity: 0, y: 10 }}
@@ -53,7 +55,7 @@ export default function ClientLogos() {
           Standard & Framework
         </motion.p>
         <motion.h3
-          className="text-balance text-xl font-bold tracking-tight text-foreground sm:text-2xl md:text-3xl"
+          className="text-balance text-lg font-bold tracking-tight text-foreground sm:text-2xl md:text-3xl"
           initial={reduceMotion ? false : { opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -63,7 +65,26 @@ export default function ClientLogos() {
         </motion.h3>
       </div>
 
-      {reduceMotion ? (
+      {isMobile ? (
+        <div className="relative">
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-background to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-background to-transparent" />
+          <div className="-mx-1 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-1 scrollbar-none">
+            {logos.map((logo, index) => (
+              <motion.div
+                key={logo.name}
+                initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-10%" }}
+                transition={{ duration: 0.35, delay: reduceMotion ? 0 : Math.min(index * 0.03, 0.12) }}
+                className="snap-start"
+              >
+                <LogoPill name={logo.name} label={logo.label} icon={logo.icon} color={logo.color} />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      ) : reduceMotion ? (
         <div className="container mx-auto grid grid-cols-1 gap-3 px-6 sm:grid-cols-2 lg:grid-cols-4">
           {logos.map((logo) => (
             <LogoPill key={logo.name} name={logo.name} label={logo.label} icon={logo.icon} color={logo.color} />

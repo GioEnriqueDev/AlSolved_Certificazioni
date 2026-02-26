@@ -2,9 +2,11 @@
 
 import { ReactLenis } from "lenis/react";
 import { useEffect, useState } from "react";
+import { useMobileViewport } from "@/hooks/useMobileViewport";
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   const [reducedMotion, setReducedMotion] = useState(false);
+  const { isMobile, isCoarsePointer, ready } = useMobileViewport();
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -14,7 +16,8 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     return () => mediaQuery.removeEventListener("change", update);
   }, []);
 
-  if (reducedMotion) {
+  // Touch devices generally scroll better with native scrolling than JS smoothing.
+  if (!ready || reducedMotion || isMobile || isCoarsePointer) {
     return <>{children}</>;
   }
 
@@ -22,8 +25,8 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     <ReactLenis
       root
       options={{
-        lerp: 0.06,
-        duration: 1.05,
+        lerp: 0.055,
+        duration: 0.95,
         wheelMultiplier: 1,
         smoothWheel: true,
         syncTouch: false,

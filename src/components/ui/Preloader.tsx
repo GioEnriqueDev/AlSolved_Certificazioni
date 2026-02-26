@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import NeonLogo from "./NeonLogo";
+import { useMobileViewport } from "@/hooks/useMobileViewport";
 
 interface PreloaderProps {
   onLoadingComplete?: () => void;
@@ -10,6 +11,7 @@ interface PreloaderProps {
 
 export default function Preloader({ onLoadingComplete }: PreloaderProps) {
   const reduceMotion = useReducedMotion();
+  const { isMobile, isCoarsePointer } = useMobileViewport();
   const [progress, setProgress] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
   const completeCalled = useRef(false);
@@ -34,7 +36,7 @@ export default function Preloader({ onLoadingComplete }: PreloaderProps) {
       };
     }
 
-    const minDuration = 1100;
+    const minDuration = isMobile || isCoarsePointer ? 780 : 1100;
     const startTime = performance.now();
     let frame = 0;
     let pageReady = document.readyState === "complete";
@@ -84,7 +86,7 @@ export default function Preloader({ onLoadingComplete }: PreloaderProps) {
       window.removeEventListener("load", handleLoad);
       document.body.style.overflow = "";
     };
-  }, [onLoadingComplete, reduceMotion]);
+  }, [isCoarsePointer, isMobile, onLoadingComplete, reduceMotion]);
 
   return (
     <AnimatePresence>
