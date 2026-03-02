@@ -36,7 +36,7 @@ export const certifications: Certification[] = [
         timeline: "Da 8 a 12 settimane",
         whyNow: "Senza la 9001 vieni escluso dalle gare d'appalto sopra certe soglie e perdi affidabilità verso grandi committenti.",
         icon: Settings2,
-        image: "/AlSolved_Certificazioni/images/certificazioni/business_os_iso_9001_1771842010174.png"
+        image: "/AlSolved_Certificazioni/images/certificazioni/photos/iso_9001_photo_1772449515269.png"
     },
     {
         id: "iso-27001",
@@ -55,7 +55,7 @@ export const certifications: Certification[] = [
         timeline: "Da 12 a 16 settimane",
         whyNow: "La direttiva NIS2 e il GDPR rendono la sicurezza obbligatoria. Un singolo data breach può costare fino al 4% del fatturato globale.",
         icon: ShieldCheck,
-        image: "/AlSolved_Certificazioni/images/certificazioni/cyber_shield_iso_27001_1771842028487.png"
+        image: "/AlSolved_Certificazioni/images/certificazioni/photos/iso_27001_photo_1772452630751.png"
     },
     {
         id: "iso-14001",
@@ -74,7 +74,7 @@ export const certifications: Certification[] = [
         timeline: "Da 8 a 12 settimane",
         whyNow: "Il rating ESG è il nuovo standard bancario: senza 14001 è difficile ottenere prestiti agevolati o vincere bandi pubblici.",
         icon: Leaf,
-        image: "/AlSolved_Certificazioni/images/certificazioni/green_badge_iso_14001_1771842046151.png"
+        image: "/AlSolved_Certificazioni/images/certificazioni/photos/iso_9001_photo_1772449515269.png"
     },
     {
         id: "iso-45001",
@@ -93,7 +93,7 @@ export const certifications: Certification[] = [
         timeline: "Da 10 a 14 settimane",
         whyNow: "Un infortunio grave blocca l'azienda e porta a responsabilità penali. La 45001 offre inoltre importanti sgravi INAIL (OT23).",
         icon: HardHat,
-        image: "/AlSolved_Certificazioni/images/certificazioni/zero_infortuni_iso_45001_1771842068650.png"
+        image: "/AlSolved_Certificazioni/images/certificazioni/photos/iso_45001_photo_1772449530671.png"
     },
     {
         id: "pdr-125",
@@ -112,7 +112,7 @@ export const certifications: Certification[] = [
         timeline: "Da 6 a 10 settimane",
         whyNow: "Offre sgravi contributivi INPS fino a 50.000€ l'anno e punteggi premiali imbattibili nelle gare d'appalto PNRR.",
         icon: Users,
-        image: "/AlSolved_Certificazioni/images/certificazioni/talent_magnet_pdr_125.png"
+        image: "/AlSolved_Certificazioni/images/certificazioni/photos/sa_8000_photo_1772449544927.png"
     },
     {
         id: "sa-8000",
@@ -131,7 +131,7 @@ export const certifications: Certification[] = [
         timeline: "Da 10 a 14 settimane",
         whyNow: "I consumatori e le multinazionali esigono etica. Senza SA8000 sei fuori dalla supply chain dei grandi brand.",
         icon: HeartHandshake,
-        image: "/AlSolved_Certificazioni/images/certificazioni/sa8000_placeholder.png"
+        image: "/AlSolved_Certificazioni/images/certificazioni/photos/sa_8000_photo_1772449544927.png"
     },
     {
         id: "iso-37001",
@@ -150,7 +150,7 @@ export const certifications: Certification[] = [
         timeline: "Da 12 a 16 settimane",
         whyNow: "Obbligatoria per molti contratti governativi. Fornisce un'esimente fortissima per la responsabilità penale d'impresa.",
         icon: Scale,
-        image: "/AlSolved_Certificazioni/images/certificazioni/iso37001_placeholder.png"
+        image: "/AlSolved_Certificazioni/images/certificazioni/photos/iso_37001_photo_1772449558352.png"
     },
     {
         id: "iso-22000",
@@ -169,7 +169,7 @@ export const certifications: Certification[] = [
         timeline: "Da 8 a 14 settimane",
         whyNow: "Senza uno standard alimentare riconosciuto (ISO 22000, IFS, BRC) non puoi vendere nei grandi supermercati.",
         icon: Utensils,
-        image: "/AlSolved_Certificazioni/images/certificazioni/iso22000_placeholder.png"
+        image: "/AlSolved_Certificazioni/images/certificazioni/photos/iso_22000_photo_1772449573174.png"
     },
     {
         id: "iso-50001",
@@ -184,11 +184,11 @@ export const certifications: Certification[] = [
             "Miglior contributo ESG e rating di sostenibilità",
             "Ottimizzazione degli impianti e riduzione dei consumi"
         ],
-        deliverables: ["Diagnosi Energetica", "Baseline e Indicatori (EnPI)", "Piano d'azione risparmio"],
+        deliverables: ["Diagnosi Energetica", "Baseline e Indicatori (EnPI)", "Piano d'action risparmio"],
         timeline: "Da 10 a 16 settimane",
         whyNow: "In tempi di crisi energetica, la 50001 non è solo un certificato: è vero risparmio sui costi operativi e sblocco incentivi.",
         icon: Zap,
-        image: "/AlSolved_Certificazioni/images/certificazioni/iso50001_placeholder.png"
+        image: "/AlSolved_Certificazioni/images/certificazioni/photos/iso_22000_photo_1772449573174.png"
     },
     {
         id: "iso-20000",
@@ -207,7 +207,7 @@ export const certifications: Certification[] = [
         timeline: "Da 12 a 16 settimane",
         whyNow: "I clienti enterprise esigono SLA e uptime garantiti. È la dimostrazione che il tuo IT è strutturato e affidabile.",
         icon: Database,
-        image: "/AlSolved_Certificazioni/images/certificazioni/iso20000_placeholder.png"
+        image: "/AlSolved_Certificazioni/images/certificazioni/photos/iso_27001_photo_1772452630751.png"
     },
     {
         id: "iatf-16949",
@@ -226,7 +226,7 @@ export const certifications: Certification[] = [
         timeline: "Da 16 a 24 settimane (richiede ISO 9001)",
         whyNow: "Per vendere a Stellantis, BMW o ai loro fornitori primari, questa certificazione è un requisito tassativo, non opzionale.",
         icon: Car,
-        image: "/AlSolved_Certificazioni/images/certificazioni/iatf16949_placeholder.png"
+        image: "/AlSolved_Certificazioni/images/certificazioni/photos/iso_45001_photo_1772449530671.png"
     },
     {
         id: "as-9100",
@@ -245,7 +245,7 @@ export const certifications: Certification[] = [
         timeline: "Da 16 a 24 settimane",
         whyNow: "Senza AS9100 è letteralmente illegale fornire componenti per aerei o per la difesa (es. Leonardo).",
         icon: Plane,
-        image: "/AlSolved_Certificazioni/images/certificazioni/as9100_placeholder.png"
+        image: "/AlSolved_Certificazioni/images/certificazioni/photos/iso_45001_photo_1772449530671.png"
     },
     {
         id: "iso-13485",
@@ -264,6 +264,6 @@ export const certifications: Certification[] = [
         timeline: "Da 12 a 20 settimane",
         whyNow: "Senza 13485 non ottieni la marcatura CE medica, rendendo il tuo prodotto non vendibile negli ospedali o in farmacia.",
         icon: Stethoscope,
-        image: "/AlSolved_Certificazioni/images/certificazioni/iso13485_placeholder.png"
+        image: "/AlSolved_Certificazioni/images/certificazioni/photos/iso_22000_photo_1772449573174.png"
     }
 ];

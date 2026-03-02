@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import {
   ArrowLeft,
@@ -167,41 +168,61 @@ export default async function CertificationPage({ params }: { params: Promise<{ 
             </FadeIn>
 
             <FadeIn delay={0.08} className="xl:sticky xl:top-28">
-              <aside className="rounded-[2rem] border border-white/80 bg-white/82 p-6 shadow-[0_26px_80px_-40px_rgba(15,23,42,0.3)] backdrop-blur-xl xl:rounded-[2.15rem] xl:p-8">
-                <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">Sintesi del progetto</p>
-                <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-1">
-                  <div className="rounded-2xl border border-white/80 bg-white/80 p-4 shadow-sm">
-                    <div className="mb-2 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
-                      <Clock className="size-3.5" /> Timeline
-                    </div>
-                    <p className="text-lg font-black tracking-tight text-foreground">{cert.timeline}</p>
-                  </div>
-                  <div className="rounded-2xl border border-white/80 bg-white/80 p-4 shadow-sm">
-                    <div className="mb-2 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
-                      <Euro className="size-3.5" /> Investimento
-                    </div>
-                    <p className="text-lg font-black tracking-tight text-foreground">Preventivo su misura</p>
-                    <p className="mt-1 text-xs font-medium text-muted-foreground">Dipende da dimensione, sedi e complessità del perimetro.</p>
-                  </div>
-                </div>
+              <aside className="rounded-[2rem] border border-white/80 bg-white/82 p-3 shadow-[0_26px_80px_-40px_rgba(15,23,42,0.3)] backdrop-blur-xl xl:rounded-[2.15rem] xl:p-3 pb-6 xl:pb-6">
 
-                <div className="mt-4 rounded-2xl border border-white/80 bg-white/80 p-4 shadow-sm">
-                  <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Consegniamo</p>
-                  <ul className="space-y-2">
-                    {cert.deliverables.slice(0, 4).map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-sm font-semibold text-foreground/85">
-                        <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                {cert.image && (
+                  <div className="relative mb-5 w-full h-56 sm:h-64 xl:h-[18rem] overflow-hidden rounded-[1.6rem] shadow-inner ring-1 ring-black/5">
+                    <Image
+                      src={cert.image}
+                      alt={`Ambiente aziendale per ${cert.title}`}
+                      fill
+                      sizes="(max-width: 1280px) 100vw, 40vw"
+                      className="object-cover transition-transform duration-1000 hover:scale-[1.03]"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                    <div className="absolute bottom-4 left-4 right-4 text-white">
+                      <p className="text-xl font-black drop-shadow-md">{cert.title}</p>
+                      <p className="text-xs font-semibold uppercase tracking-wider text-white/90 drop-shadow-md">{cert.subtitle}</p>
+                    </div>
+                  </div>
+                )}
 
-                <Link href={`/contatti?cert=${cert.id}#analysis-form`} className="focus-ring mt-5 block rounded-2xl">
-                  <Button className="h-12 w-full rounded-2xl text-sm font-semibold text-white glow-shadow hover:glow-shadow-strong">
-                    Parliamone ora
-                  </Button>
-                </Link>
+                <div className="px-3 xl:px-5">
+                  <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">Sintesi del progetto</p>
+                  <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-1">
+                    <div className="rounded-2xl border border-white/80 bg-white/80 p-4 shadow-sm">
+                      <div className="mb-2 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
+                        <Clock className="size-3.5" /> Timeline
+                      </div>
+                      <p className="text-lg font-black tracking-tight text-foreground">{cert.timeline}</p>
+                    </div>
+                    <div className="rounded-2xl border border-white/80 bg-white/80 p-4 shadow-sm">
+                      <div className="mb-2 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
+                        <Euro className="size-3.5" /> Investimento
+                      </div>
+                      <p className="text-lg font-black tracking-tight text-foreground">Preventivo su misura</p>
+                      <p className="mt-1 text-xs font-medium text-muted-foreground">Dipende da dimensione, sedi e complessità del perimetro.</p>
+                    </div>
+                  </div>
+
+                  <div className="mt-4 rounded-2xl border border-white/80 bg-white/80 p-4 shadow-sm">
+                    <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">Consegniamo</p>
+                    <ul className="space-y-2">
+                      {cert.deliverables.slice(0, 4).map((item) => (
+                        <li key={item} className="flex items-start gap-2 text-sm font-semibold text-foreground/85">
+                          <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <Link href={`/contatti?cert=${cert.id}#analysis-form`} className="focus-ring mt-5 block rounded-2xl">
+                    <Button className="h-12 w-full rounded-2xl text-sm font-semibold text-white glow-shadow hover:glow-shadow-strong">
+                      Parliamone ora
+                    </Button>
+                  </Link>
+                </div>
               </aside>
             </FadeIn>
           </div>
