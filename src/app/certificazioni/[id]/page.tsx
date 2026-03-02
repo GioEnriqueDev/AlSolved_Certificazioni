@@ -139,11 +139,19 @@ export default async function CertificationPage({ params }: { params: Promise<{ 
               <h1 className="text-balance text-4xl font-black leading-tight text-foreground sm:text-5xl md:text-6xl xl:text-[4.6rem]">
                 {cert.title}
               </h1>
-              <p className="mt-4 text-base font-medium leading-relaxed text-muted-foreground sm:text-lg md:text-xl xl:max-w-[44rem] xl:text-[1.16rem]">
+              <p className="mt-4 text-base font-bold leading-relaxed text-foreground/90 sm:text-lg md:text-xl xl:max-w-[44rem] xl:text-[1.16rem]">
                 {cert.description}
               </p>
 
-              <div className="mt-6 flex flex-wrap gap-3">
+              {cert.marketingCopy && cert.marketingCopy.length > 0 && (
+                <div className="mt-5 space-y-4 text-base font-medium leading-relaxed text-muted-foreground sm:text-lg xl:max-w-[44rem]">
+                  {cert.marketingCopy.map((paragraph, index) => (
+                    <p key={index}>{paragraph}</p>
+                  ))}
+                </div>
+              )}
+
+              <div className="mt-8 flex flex-wrap gap-3">
                 <span className={`inline-flex items-center rounded-full border px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] ${palette.soft}`}>
                   {cert.timeline}
                 </span>
