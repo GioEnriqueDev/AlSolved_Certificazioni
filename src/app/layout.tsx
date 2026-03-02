@@ -26,9 +26,31 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Configurazione base per Structured Data B2B
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "AlSolved Certificazioni",
+    "description": "Il partner tecnologico per le aziende moderne. Certificazioni ISO, automazione della compliance e audit strategici.",
+    "url": "https://www.alsolvedcertificazioni.com",
+    "telephone": "+39000000000",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "IT"
+    },
+    "sameAs": [
+      // In futuro inserire link LinkedIn o altri social se ci sono
+    ]
+  };
+
   return (
     <html lang="it" className="scroll-smooth">
       <body className={`${manrope.variable} ${sora.variable} antialiased bg-background text-foreground selection:bg-primary/20 selection:text-primary`}>
+        {/* Inject Structured Data per la SEO tecnica */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <ClientWrapper>
           {children}
         </ClientWrapper>

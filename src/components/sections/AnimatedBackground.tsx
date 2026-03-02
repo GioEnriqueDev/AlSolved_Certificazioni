@@ -1,128 +1,69 @@
 ﻿"use client";
 
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import Image from "next/image";
-import abstractGlassImg from "@/assets/images/abstract_3d_glass.png";
+import { motion, useReducedMotion } from "framer-motion";
 import { useMobileViewport } from "@/hooks/useMobileViewport";
 
-const particles = [
-  { left: 14, top: 22, delay: 0, duration: 24 },
-  { left: 74, top: 38, delay: 1.4, duration: 20 },
-  { left: 43, top: 70, delay: 0.7, duration: 22 },
-];
-
-function MobileAnimatedBackground({ reduceMotion }: { reduceMotion: boolean }) {
+function MeshGradientBackground({ reduceMotion }: { reduceMotion: boolean }) {
   return (
-    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-[linear-gradient(180deg,#fbfbfd,#f6f8fc)]">
-      <div className="absolute inset-0 opacity-20 mix-blend-multiply">
-        <Image
-          src={abstractGlassImg}
-          alt=""
-          aria-hidden="true"
-          fill
-          priority
-          unoptimized
-          sizes="100vw"
-          className="object-cover object-center scale-[1.03]"
+    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-[#f6f8fc]">
+      {/* Rumore di fondo per dare texture granulosa (Premium feel) */}
+      <div className="absolute inset-0 hero-noise opacity-40 mix-blend-overlay" />
+
+      {/* Blob sfocati che compongono il Mesh Gradient */}
+      <div className="absolute inset-0 overflow-hidden opacity-60">
+        <motion.div
+          animate={
+            reduceMotion
+              ? undefined
+              : {
+                x: [0, -30, 20, 0],
+                y: [0, 40, -10, 0],
+                scale: [1, 1.1, 0.9, 1],
+              }
+          }
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          className="absolute -top-[10%] left-[-5%] h-[45vw] w-[45vw] rounded-full bg-primary/10 blur-[80px] sm:blur-[120px]"
+        />
+        <motion.div
+          animate={
+            reduceMotion
+              ? undefined
+              : {
+                x: [0, 40, -20, 0],
+                y: [0, -30, 20, 0],
+                scale: [1, 0.9, 1.1, 1],
+              }
+          }
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: "linear",
+            delay: 2,
+          }}
+          className="absolute -right-[10%] top-[10%] h-[40vw] w-[40vw] rounded-full bg-orange-300/15 blur-[80px] sm:blur-[120px]"
+        />
+        <motion.div
+          animate={
+            reduceMotion
+              ? undefined
+              : {
+                x: [0, -20, 30, 0],
+                y: [0, 20, -30, 0],
+                scale: [1, 1.05, 0.95, 1],
+              }
+          }
+          transition={{
+            duration: 22,
+            repeat: Infinity,
+            ease: "linear",
+            delay: 4,
+          }}
+          className="absolute bottom-[-10%] left-[20%] h-[50vw] w-[60vw] rounded-full bg-blue-400/10 blur-[90px] sm:blur-[140px]"
         />
       </div>
 
-      <div className="absolute inset-0 opacity-35">
-        <div className="absolute left-[2%] top-[4%] h-52 w-52 rounded-full bg-primary/12 blur-2xl" />
-        <div className="absolute right-[0%] top-[8%] h-56 w-56 rounded-full bg-orange-300/12 blur-2xl" />
-        <div className="absolute left-1/2 top-[38%] h-44 w-[22rem] max-w-[88vw] -translate-x-1/2 rounded-full bg-blue-200/10 blur-2xl" />
-      </div>
-
-      {!reduceMotion ? (
-        <motion.div
-          className="absolute left-1/2 top-[22%] h-28 w-28 -translate-x-1/2 rounded-[1.6rem] border border-white/65 bg-white/55 shadow-[0_18px_35px_-20px_rgba(15,23,42,0.2)]"
-          animate={{ y: [0, -8, 0], rotate: [0, -1.2, 0] }}
-          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-        />
-      ) : null}
-
-      <div className="absolute inset-x-0 bottom-0 h-[24vh] bg-gradient-to-t from-[#f6f8fc] via-[#f6f8fc]/85 to-transparent" />
-    </div>
-  );
-}
-
-function DesktopAnimatedBackground({ reduceMotion }: { reduceMotion: boolean }) {
-  const { scrollYProgress } = useScroll();
-  const bgY = useTransform(scrollYProgress, [0, 1], [0, 72]);
-  const monolithA = useTransform(scrollYProgress, [0, 1], [-16, -80]);
-  const monolithB = useTransform(scrollYProgress, [0, 1], [8, 62]);
-
-  return (
-    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-[linear-gradient(180deg,#fbfbfd,#f5f7fb)]">
-      <motion.div
-        className="absolute inset-0 opacity-30 mix-blend-multiply"
-        style={reduceMotion ? undefined : { y: bgY }}
-      >
-        <Image
-          src={abstractGlassImg}
-          alt=""
-          aria-hidden="true"
-          fill
-          priority
-          unoptimized
-          sizes="100vw"
-          className="object-cover object-center"
-        />
-      </motion.div>
-
-      <div className="absolute inset-0 hero-noise opacity-60" />
-
-      <div className="absolute inset-0">
-        <div className="absolute left-[6%] top-[4%] h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle_at_center,rgba(242,78,107,0.15),transparent_70%)] blur-3xl" />
-        <div className="absolute right-[3%] top-[8%] h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(circle_at_center,rgba(251,146,60,0.16),transparent_72%)] blur-3xl" />
-        <div className="absolute left-1/2 top-[46%] h-[32rem] w-[32rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.08),transparent_70%)] blur-3xl" />
-      </div>
-
-      <div className="absolute inset-0 hidden md:block">
-        <motion.div
-          className="glass-panel absolute right-[8%] top-[16%] h-[26rem] w-[18rem] rounded-[2.25rem] border-white/55 bg-white/50"
-          style={reduceMotion ? { rotate: -5 } : { y: monolithA, rotate: -5 }}
-        >
-          <div className="absolute inset-0 rounded-[2.25rem] border border-white/40">
-            <div className="absolute left-7 top-8 h-1.5 w-2/3 rounded-full bg-gradient-to-r from-primary/35 to-transparent" />
-            <div className="absolute left-7 top-14 h-1 w-1/2 rounded-full bg-black/8" />
-            <div className="absolute bottom-10 right-10 flex h-20 w-20 items-center justify-center rounded-2xl border border-white/70 bg-white/80 shadow-[0_20px_45px_-20px_rgba(242,78,107,0.35)]">
-              <div className="relative h-8 w-8 rounded-full border-2 border-primary/45">
-                <span className="absolute inset-0 rounded-full bg-primary/20" style={{ animation: reduceMotion ? "none" : "pulse-glow 4s ease-in-out infinite" }} />
-                <span className="absolute left-1/2 top-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary" />
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        <motion.div
-          className="glass-panel absolute left-[6%] top-[34%] h-[18rem] w-[14rem] rounded-[1.85rem] border-white/45 bg-white/45"
-          style={reduceMotion ? { rotate: 8 } : { y: monolithB, rotate: 8 }}
-        >
-          <div className="absolute inset-0 rounded-[1.85rem] border border-white/30">
-            <div className="absolute left-6 top-7 h-1 w-2/3 rounded-full bg-black/10" />
-            <div className="absolute left-6 top-12 h-1 w-1/2 rounded-full bg-black/5" />
-            <div className="absolute bottom-8 left-6 h-14 w-14 rounded-xl bg-white/70 shadow-inner" />
-          </div>
-        </motion.div>
-      </div>
-
-      {!reduceMotion && (
-        <div className="absolute inset-0 hidden md:block">
-          {particles.map((particle, index) => (
-            <motion.div
-              key={index}
-              className="absolute h-1.5 w-1.5 rounded-full bg-black/10"
-              style={{ left: `${particle.left}%`, top: `${particle.top}%` }}
-              animate={{ y: [0, -28, 0], opacity: [0, 1, 0] }}
-              transition={{ duration: particle.duration, repeat: Infinity, delay: particle.delay, ease: "linear" }}
-            />
-          ))}
-        </div>
-      )}
-
-      <div className="absolute inset-x-0 bottom-0 h-[28vh] bg-gradient-to-t from-[#f6f8fc] via-[#f6f8fc]/82 to-transparent" />
-      <div className="absolute inset-0 ring-1 ring-white/25" />
+      {/* Sfumature alla base per fondere con i contenuti */}
+      <div className="absolute inset-x-0 bottom-0 h-[30vh] bg-gradient-to-t from-[#f6f8fc] via-[#f6f8fc]/85 to-transparent backdrop-blur-[2px]" />
     </div>
   );
 }
@@ -131,9 +72,8 @@ export default function AnimatedBackground() {
   const reduceMotion = !!useReducedMotion();
   const { isMobile } = useMobileViewport();
 
-  return isMobile ? (
-    <MobileAnimatedBackground reduceMotion={reduceMotion} />
-  ) : (
-    <DesktopAnimatedBackground reduceMotion={reduceMotion} />
-  );
+  // Entrambe le interfacce Mobile/Desktop condividono la logica performante.
+  // L'assenza di scroll listener (useScroll) alleggerisce il JS Thread.
+  return <MeshGradientBackground reduceMotion={reduceMotion} />;
 }
+

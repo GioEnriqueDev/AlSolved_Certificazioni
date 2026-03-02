@@ -1,11 +1,14 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import HeroSection from "@/components/sections/HeroSection";
 import AnimatedBackground from "@/components/sections/AnimatedBackground";
-import ClientLogos from "@/components/sections/ClientLogos";
-import ScrollProgressProcess from "@/components/sections/ScrollProgressProcess";
 import CinematicMacroAreas from "@/components/sections/CinematicMacroAreas";
-import FinalCTA from "@/components/sections/FinalCTA";
+
+// Lazy loading dei componenti below-the-fold per migliorare LCP e TTI
+const ClientLogos = dynamic(() => import("@/components/sections/ClientLogos"), { ssr: true });
+const ScrollProgressProcess = dynamic(() => import("@/components/sections/ScrollProgressProcess"), { ssr: false });
+const FinalCTA = dynamic(() => import("@/components/sections/FinalCTA"), { ssr: true });
 
 export default function Home() {
   return (
@@ -20,6 +23,7 @@ export default function Home() {
       <CinematicMacroAreas />
 
       <div className="relative z-10 pt-10 xl:pt-14">
+        {/* Renderizzato dinamicamente solo quando richiesto dal client (pesante di calcoli Framer Motion) */}
         <ScrollProgressProcess />
       </div>
 
