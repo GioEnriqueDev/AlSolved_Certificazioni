@@ -84,13 +84,14 @@ URL PROVENIENZA: ${data.sourceUrl || '/'}
                         lastname: data.cognome,
                         email: data.email,
                         phone: data.telefono,
-                        company: data.azienda,
-                        message: summaryMessage // usa campo default HubSpot per le note di contatto se esiste, altrimenti si affida solo a firstname/email
+                        company: data.azienda
                     }
                 })
             });
+
+            const fallbackResult = await fallbackResponse.json();
             if (!fallbackResponse.ok) {
-                throw new Error("Fallback failed");
+                throw new Error(`Fallback failed: ${fallbackResult.message || 'Unknown'}`);
             }
             return NextResponse.json({ success: true, redirect: 'https://calendly.com/consulenza-alsolved/prenota-una-call-' });
         }
@@ -102,8 +103,8 @@ URL PROVENIENZA: ${data.sourceUrl || '/'}
 
         return NextResponse.json({ success: true, redirect: 'https://calendly.com/consulenza-alsolved/prenota-una-call-' });
 
-    } catch (error) {
+    } catch (error: any) {
         console.error('Form submission error:', error);
-        return NextResponse.json({ success: false, error: 'Errore durante l\'invio. Riprova più tardi.' }, { status: 500 });
+        return NextResponse.json({ success: false, error: error.message || 'Errore durante l\'invio. Riprova più tardi.' }, { status: 500 });
     }
 }
