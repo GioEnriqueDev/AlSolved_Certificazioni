@@ -51,7 +51,7 @@ URL PROVENIENZA: ${data.sourceUrl || '/'}
                 address: data.indirizzo,
                 state: data.provincia,
                 messaggio_richiesta_analisi: summaryMessage,
-                certificazione_interesse: data.certificazione,
+                certificazione_di_interesse: data.certificazione,
                 ruolo_referente: data.ruolo,
                 fonte_form: "Sito Web Wizard",
                 pagina_invio_form: data.sourceUrl || "Sito"
