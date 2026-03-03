@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Manrope, Sora } from "next/font/google";
 import React from "react";
 import "./globals.css";
@@ -19,6 +19,20 @@ export const metadata: Metadata = {
     siteName: "ALSOLVED",
   },
   metadataBase: new URL("https://www.alsolvedcertificazioni.com"),
+  appleWebApp: {
+    capable: true,
+    title: "AlSolved",
+    statusBarStyle: "black-translucent",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#f8fafc",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({

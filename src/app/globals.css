@@ -101,6 +101,41 @@
   }
 }
 
+/* 
+ * ========================================================
+ * REGOLE APP-LIKE: BLOCCANO I COMPORTAMENTI DEL BROWSER
+ * ========================================================
+ */
+@media (max-width: 768px) {
+
+  html,
+  body {
+    /* Blocca l'effetto 'rimbalzo' (pull-to-refresh) di iOS/Android */
+    overscroll-behavior-y: none;
+    /* Impedisce la selezione accidentale del testo tenendo premuto */
+    user-select: none;
+    -webkit-user-select: none;
+    /* Disabilita il menu contestuale nativo del sistema al long press */
+    -webkit-touch-callout: none;
+  }
+
+  /* Ripristiniamo la possibilità di evidenziare e selezionare il testo SOLO dove serve davvero (input e testi testuali lunghi se vogliamo) */
+  input,
+  textarea,
+  [contenteditable="true"] {
+    user-select: auto;
+    -webkit-user-select: auto;
+  }
+
+  /* Rimuove l'evidenziazione di sistema sui link e pulsanti (quel rettangolino grigio che appare al tocco) */
+  a,
+  button,
+  [role="button"],
+  div[tabindex="0"] {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
 @layer components {
   .glass-panel {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.85));

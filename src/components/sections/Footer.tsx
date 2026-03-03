@@ -31,7 +31,7 @@ const contactLinks = [
 
 export default function Footer() {
   return (
-    <footer className="relative z-10 border-t border-white/55 bg-white/50 px-4 pb-10 pt-16 backdrop-blur-sm sm:px-6 xl:pt-20">
+    <footer className="relative z-10 border-t border-white/55 bg-white/50 px-4 pb-[calc(env(safe-area-inset-bottom)+2.5rem)] pt-16 backdrop-blur-sm sm:px-6 xl:pt-20">
       <div className="container mx-auto max-w-[90rem] 2xl:max-w-[96rem]">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.12fr_0.72fr_0.72fr_1fr] xl:gap-6">
           <div className="rounded-[1.5rem] border border-white/75 bg-white/78 p-6 shadow-[0_20px_48px_-34px_rgba(15,23,42,0.28)] backdrop-blur-xl xl:rounded-[1.75rem] xl:p-7">
