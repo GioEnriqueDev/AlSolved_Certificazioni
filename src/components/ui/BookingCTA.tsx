@@ -474,8 +474,8 @@ export default function BookingCTA({
                     </div>
 
                     <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                      <div>
-                        <label htmlFor="email" className="mb-2 block text-[0.7rem] font-bold uppercase tracking-[0.14em] text-slate-500">
+                      <div className="flex h-full flex-col">
+                        <label htmlFor="email" className="mb-2 block flex-1 text-[0.7rem] font-bold uppercase tracking-[0.14em] text-slate-500">
                           Email *
                         </label>
                         <input
@@ -492,8 +492,8 @@ export default function BookingCTA({
                         <ErrorText>{errors.email}</ErrorText>
                       </div>
 
-                      <div>
-                        <label htmlFor="phone" className="mb-2 block text-[0.7rem] font-bold uppercase tracking-[0.14em] text-slate-500">
+                      <div className="flex h-full flex-col">
+                        <label htmlFor="phone" className="mb-2 block flex-1 text-[0.7rem] font-bold uppercase tracking-[0.14em] text-slate-500">
                           Telefono *
                         </label>
                         <input
@@ -540,8 +540,8 @@ export default function BookingCTA({
                     </div>
 
                     <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                      <div>
-                        <label htmlFor="employeesRange" className="mb-2 block text-[0.7rem] font-bold uppercase tracking-[0.14em] text-slate-500">
+                      <div className="flex h-full flex-col">
+                        <label htmlFor="employeesRange" className="mb-2 block flex-1 text-[0.7rem] font-bold uppercase tracking-[0.14em] text-slate-500">
                           Dipendenti
                         </label>
                         <select
@@ -560,8 +560,8 @@ export default function BookingCTA({
                         </select>
                       </div>
 
-                      <div>
-                        <label htmlFor="timeframe" className="mb-2 block text-[0.7rem] font-bold uppercase tracking-[0.14em] text-slate-500">
+                      <div className="flex h-full flex-col">
+                        <label htmlFor="timeframe" className="mb-2 block flex-1 text-[0.7rem] font-bold uppercase tracking-[0.14em] text-slate-500">
                           Quando vuoi partire?
                         </label>
                         <select
@@ -582,8 +582,8 @@ export default function BookingCTA({
                     </div>
 
                     <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                      <div>
-                        <label htmlFor="role" className="mb-2 block text-[0.7rem] font-bold uppercase tracking-[0.14em] text-slate-500">
+                      <div className="flex h-full flex-col">
+                        <label htmlFor="role" className="mb-2 block flex-1 text-[0.7rem] font-bold uppercase tracking-[0.14em] text-slate-500">
                           Ruolo
                         </label>
                         <input
@@ -597,8 +597,8 @@ export default function BookingCTA({
                         />
                       </div>
 
-                      <div>
-                        <label htmlFor="website" className="mb-2 block text-[0.7rem] font-bold uppercase tracking-[0.14em] text-slate-500">
+                      <div className="flex h-full flex-col">
+                        <label htmlFor="website" className="mb-2 block flex-1 text-[0.7rem] font-bold uppercase tracking-[0.14em] text-slate-500">
                           Sito web
                         </label>
                         <input
