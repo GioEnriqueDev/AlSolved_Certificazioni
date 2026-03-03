@@ -326,28 +326,28 @@ export default function BookingCTA({
   }
 
   const inputBase =
-    "w-full rounded-xl border border-white/85 bg-white/90 px-4 py-3 text-sm font-medium text-foreground shadow-sm outline-none transition placeholder:text-muted-foreground/70 focus:border-primary/30 focus:ring-2 focus:ring-primary/15";
+    "w-full rounded-[0.85rem] border border-slate-200/80 bg-white px-4 py-4 text-[0.95rem] font-semibold text-slate-900 shadow-[0_2px_14px_-6px_rgba(0,0,0,0.03)] transition-all duration-200 placeholder:font-medium placeholder:text-slate-400 hover:border-slate-300 hover:shadow-[0_4px_20px_-6px_rgba(0,0,0,0.06)] focus:border-primary/50 focus:bg-white focus:ring-[4px] focus:ring-primary/10 focus:outline-none";
   const cardBase =
-    "rounded-2xl border border-white/80 bg-white/95 p-4 shadow-sm sm:p-5 xl:rounded-[1.35rem] xl:p-6";
+    "rounded-[1.4rem] border border-slate-200/60 bg-slate-50/60 p-6 transition-all duration-300 hover:border-slate-200 hover:bg-slate-50/90 sm:p-8 xl:rounded-[1.75rem] xl:p-10";
 
   return (
     <div
       id="analysis-form"
-      className="relative mx-auto w-full max-w-3xl overflow-hidden rounded-[1.4rem] border border-white/80 bg-white/95 p-2 shadow-[0_28px_80px_-42px_rgba(15,23,42,0.28)] sm:rounded-[1.8rem] xl:max-w-none xl:rounded-[2rem] xl:p-2.5"
+      className="relative mx-auto w-full max-w-3xl overflow-hidden rounded-[1.5rem] border border-slate-200/80 bg-white/95 p-2.5 shadow-[0_32px_80px_-24px_rgba(15,23,42,0.12)] sm:rounded-[2rem] xl:max-w-none xl:rounded-[2.25rem] xl:p-3"
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_15%,rgba(242,78,107,0.12),transparent_46%),radial-gradient(circle_at_84%_80%,rgba(59,130,246,0.10),transparent_46%)]" />
 
-      <div className="relative rounded-[1.05rem] border border-white/85 bg-white/90 p-4 shadow-sm sm:rounded-[1.35rem] sm:p-6 md:p-8 xl:rounded-[1.7rem] xl:p-10">
-        <div className="mb-4 flex flex-col gap-4 sm:mb-6 sm:flex-row sm:items-start sm:justify-between xl:mb-7">
-          <div className="flex gap-3 sm:gap-4">
-            <div className="mt-0.5 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary shadow-inner sm:h-14 sm:w-14">
-              <CalendarCheck className="size-6 sm:size-7" />
+      <div className="relative rounded-[1.1rem] border border-slate-100 bg-white p-6 shadow-[0_8px_30px_rgb(0,0,0,0.02)] sm:rounded-[1.5rem] sm:p-8 md:p-10 xl:rounded-[1.8rem] xl:p-12">
+        <div className="mb-8 flex flex-col gap-6 sm:mb-10 sm:flex-row sm:items-start sm:justify-between xl:mb-12">
+          <div className="flex gap-4 sm:gap-5">
+            <div className="mt-0.5 inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-[1rem] border border-primary/20 bg-gradient-to-br from-primary/20 to-primary/5 text-primary shadow-inner sm:h-16 sm:w-16">
+              <CalendarCheck className="size-7 sm:size-8" />
             </div>
             <div>
-              <h2 className="text-balance text-xl font-black tracking-tight text-foreground sm:text-2xl md:text-3xl xl:text-[2rem]">
+              <h2 className="text-balance text-2xl font-black tracking-tight text-slate-900 sm:text-3xl md:text-4xl xl:text-[2.25rem]">
                 Richiedi l&apos;analisi preliminare gratuita
               </h2>
-              <p className="mt-1 text-sm font-medium leading-relaxed text-muted-foreground sm:text-base xl:max-w-[34rem] xl:text-[1.02rem]">
+              <p className="mt-2 text-sm font-medium leading-relaxed text-slate-500 sm:text-[1.05rem] xl:max-w-[34rem]">
                 Compila il modulo e ti ricontattiamo entro 24 ore con una valutazione personalizzata.
               </p>
             </div>
@@ -428,19 +428,19 @@ export default function BookingCTA({
             <motion.form
               key="form"
               onSubmit={handleSubmit}
-              className="space-y-4 sm:space-y-5"
+              className="space-y-6 sm:space-y-8 xl:space-y-10"
               initial={reducedMotion ? false : { opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={reducedMotion ? {} : { opacity: 0, y: -6 }}
             >
-              <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1.04fr_0.96fr] xl:gap-5">
-                <fieldset className={cardBase}>
-                  <legend className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">
-                    Contatto
+              <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1fr] xl:gap-8">
+                <fieldset className={`${cardBase} flex flex-col`}>
+                  <legend className="mb-5 text-[0.8rem] font-bold uppercase tracking-[0.2em] text-primary">
+                    Contatto Personale
                   </legend>
-                  <div className="grid grid-cols-1 gap-3">
+                  <div className="flex h-full flex-col justify-between gap-5">
                     <div>
-                      <label htmlFor="fullName" className="mb-1.5 block text-xs font-bold uppercase tracking-[0.12em] text-muted-foreground">
+                      <label htmlFor="fullName" className="mb-2 block text-[0.7rem] font-bold uppercase tracking-[0.14em] text-slate-500">
                         Nome e cognome *
                       </label>
                       <input
@@ -457,7 +457,7 @@ export default function BookingCTA({
                     </div>
 
                     <div>
-                      <label htmlFor="companyName" className="mb-1.5 block text-xs font-bold uppercase tracking-[0.12em] text-muted-foreground">
+                      <label htmlFor="companyName" className="mb-2 block text-[0.7rem] font-bold uppercase tracking-[0.14em] text-slate-500">
                         Azienda *
                       </label>
                       <input
@@ -475,7 +475,7 @@ export default function BookingCTA({
 
                     <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                       <div>
-                        <label htmlFor="email" className="mb-1.5 block text-xs font-bold uppercase tracking-[0.12em] text-muted-foreground">
+                        <label htmlFor="email" className="mb-2 block text-[0.7rem] font-bold uppercase tracking-[0.14em] text-slate-500">
                           Email *
                         </label>
                         <input
@@ -493,7 +493,7 @@ export default function BookingCTA({
                       </div>
 
                       <div>
-                        <label htmlFor="phone" className="mb-1.5 block text-xs font-bold uppercase tracking-[0.12em] text-muted-foreground">
+                        <label htmlFor="phone" className="mb-2 block text-[0.7rem] font-bold uppercase tracking-[0.14em] text-slate-500">
                           Telefono *
                         </label>
                         <input
@@ -513,13 +513,13 @@ export default function BookingCTA({
                   </div>
                 </fieldset>
 
-                <fieldset className={cardBase}>
-                  <legend className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">
-                    Contesto aziendale
+                <fieldset className={`${cardBase} flex flex-col`}>
+                  <legend className="mb-5 text-[0.8rem] font-bold uppercase tracking-[0.2em] text-primary">
+                    Dettagli Azienda
                   </legend>
-                  <div className="grid grid-cols-1 gap-3">
+                  <div className="flex h-full flex-col justify-between gap-5">
                     <div>
-                      <label htmlFor="certificationId" className="mb-1.5 block text-xs font-bold uppercase tracking-[0.12em] text-muted-foreground">
+                      <label htmlFor="certificationId" className="mb-2 block text-[0.7rem] font-bold uppercase tracking-[0.14em] text-slate-500">
                         Certificazione di interesse
                       </label>
                       <select
@@ -541,7 +541,7 @@ export default function BookingCTA({
 
                     <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                       <div>
-                        <label htmlFor="employeesRange" className="mb-1.5 block text-xs font-bold uppercase tracking-[0.12em] text-muted-foreground">
+                        <label htmlFor="employeesRange" className="mb-2 block text-[0.7rem] font-bold uppercase tracking-[0.14em] text-slate-500">
                           Dipendenti
                         </label>
                         <select
@@ -561,7 +561,7 @@ export default function BookingCTA({
                       </div>
 
                       <div>
-                        <label htmlFor="timeframe" className="mb-1.5 block text-xs font-bold uppercase tracking-[0.12em] text-muted-foreground">
+                        <label htmlFor="timeframe" className="mb-2 block text-[0.7rem] font-bold uppercase tracking-[0.14em] text-slate-500">
                           Quando vuoi partire?
                         </label>
                         <select
@@ -583,7 +583,7 @@ export default function BookingCTA({
 
                     <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                       <div>
-                        <label htmlFor="role" className="mb-1.5 block text-xs font-bold uppercase tracking-[0.12em] text-muted-foreground">
+                        <label htmlFor="role" className="mb-2 block text-[0.7rem] font-bold uppercase tracking-[0.14em] text-slate-500">
                           Ruolo
                         </label>
                         <input
@@ -598,7 +598,7 @@ export default function BookingCTA({
                       </div>
 
                       <div>
-                        <label htmlFor="website" className="mb-1.5 block text-xs font-bold uppercase tracking-[0.12em] text-muted-foreground">
+                        <label htmlFor="website" className="mb-2 block text-[0.7rem] font-bold uppercase tracking-[0.14em] text-slate-500">
                           Sito web
                         </label>
                         <input
@@ -617,10 +617,10 @@ export default function BookingCTA({
               </div>
 
               <fieldset className={cardBase}>
-                <legend className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">
+                <legend className="mb-5 text-[0.8rem] font-bold uppercase tracking-[0.2em] text-primary">
                   Obiettivo e note operative
                 </legend>
-                <label htmlFor="message" className="mb-1.5 block text-xs font-bold uppercase tracking-[0.12em] text-muted-foreground">
+                <label htmlFor="message" className="mb-2.5 block text-[0.7rem] font-bold uppercase tracking-[0.16em] text-slate-500">
                   Cosa vuoi ottenere? *
                 </label>
                 <textarea
@@ -637,11 +637,11 @@ export default function BookingCTA({
               </fieldset>
 
               <fieldset className={cardBase}>
-                <legend className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">
-                  Consensi
+                <legend className="mb-5 text-[0.8rem] font-bold uppercase tracking-[0.2em] text-primary">
+                  Consensi e Privacy
                 </legend>
 
-                <label className="flex items-start gap-3 rounded-xl border border-white/80 bg-white/75 p-3 shadow-sm">
+                <label className="flex items-start gap-3.5 rounded-xl border border-slate-200/60 bg-white/80 p-4 shadow-sm transition-colors hover:bg-white">
                   <input
                     type="checkbox"
                     checked={values.privacyConsent}
@@ -654,7 +654,7 @@ export default function BookingCTA({
                 </label>
                 <ErrorText>{errors.privacyConsent}</ErrorText>
 
-                <label className="mt-3 flex items-start gap-3 rounded-xl border border-white/80 bg-white/75 p-3 shadow-sm">
+                <label className="mt-4 flex items-start gap-3.5 rounded-xl border border-slate-200/60 bg-white/80 p-4 shadow-sm transition-colors hover:bg-white">
                   <input
                     type="checkbox"
                     checked={values.marketingConsent}
@@ -692,16 +692,16 @@ export default function BookingCTA({
                 ) : null}
               </AnimatePresence>
 
-              <div className="sticky bottom-2 z-20 -mx-1 rounded-2xl border border-white/80 bg-white/97 p-3 shadow-[0_16px_40px_-24px_rgba(15,23,42,0.25)] sm:static sm:mx-0 sm:p-4 xl:rounded-[1.15rem] xl:p-4">
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                  <div className="text-xs font-semibold text-muted-foreground sm:text-sm">
-                    <p className="text-foreground/85">Ti ricontatteremo entro 24 ore lavorative</p>
-                    <p className="mt-0.5">I tuoi dati sono trattati in conformità al GDPR</p>
+              <div className="sticky bottom-2 z-20 -mx-1 mt-4 rounded-2xl border border-slate-200/70 bg-white/95 p-4 shadow-[0_-12px_40px_rgba(0,0,0,0.04),0_16px_40px_-24px_rgba(15,23,42,0.25)] sm:static sm:mx-0 sm:mt-10 sm:p-6 xl:rounded-[1.75rem] xl:p-7">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="text-sm font-semibold text-slate-600 sm:text-[0.95rem]">
+                    <p className="text-slate-900">Ti ricontatteremo entro 24 ore lavorative</p>
+                    <p className="mt-1 font-medium text-slate-500">I tuoi dati sono trattati in conformità al GDPR</p>
                   </div>
                   <Button
                     type="submit"
                     disabled={status.state === "submitting"}
-                    className="h-12 w-full rounded-xl text-sm font-semibold text-white glow-shadow hover:glow-shadow-strong sm:w-auto sm:px-6"
+                    className="h-14 w-full rounded-[1rem] bg-gradient-to-r from-primary to-primary/90 text-[1rem] font-bold text-white shadow-[0_8px_24px_-8px_rgba(var(--primary-rgb),0.5)] transition-all duration-300 hover:shadow-[0_12px_32px_-8px_rgba(var(--primary-rgb),0.6)] sm:w-auto sm:px-10"
                   >
                     {status.state === "submitting" ? (
                       <>
