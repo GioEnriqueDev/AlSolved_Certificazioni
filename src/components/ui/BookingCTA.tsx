@@ -525,7 +525,7 @@ export default function BookingCTA({
                       <select
                         id="certificationId"
                         name="certificationId"
-                        className={inputBase}
+                        className={`${inputBase} md:text-sm lg:text-[0.95rem] pr-10 text-ellipsis sm:pr-12`}
                         value={values.certificationId || preselectedCertificationId}
                         onChange={(e) => onFieldChange("certificationId", e.target.value)}
                       >
@@ -547,7 +547,7 @@ export default function BookingCTA({
                         <select
                           id="employeesRange"
                           name="employeesRange"
-                          className={inputBase}
+                          className={`${inputBase} pr-10 text-ellipsis`}
                           value={values.employeesRange}
                           onChange={(e) => onFieldChange("employeesRange", e.target.value)}
                         >
@@ -567,7 +567,7 @@ export default function BookingCTA({
                         <select
                           id="timeframe"
                           name="timeframe"
-                          className={inputBase}
+                          className={`${inputBase} pr-10 text-ellipsis`}
                           value={values.timeframe}
                           onChange={(e) => onFieldChange("timeframe", e.target.value)}
                         >
