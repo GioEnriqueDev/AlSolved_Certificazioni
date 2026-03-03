@@ -20,9 +20,9 @@ export default function HeroSection() {
   return (
     <section className="section-shell relative flex min-h-[88svh] items-center overflow-hidden px-4 pt-24 sm:min-h-[94svh] sm:px-6 md:pt-32 xl:min-h-[96svh]">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-[8%] top-[12%] h-40 w-40 rounded-full bg-primary/12 blur-2xl sm:h-52 sm:w-52 sm:bg-primary/15 sm:blur-3xl" />
-        <div className="absolute right-[10%] top-[10%] h-44 w-44 rounded-full bg-orange-300/16 blur-2xl sm:h-60 sm:w-60 sm:bg-orange-300/20 sm:blur-3xl" />
-        <div className="absolute bottom-[14%] left-1/2 h-32 w-[24rem] max-w-[92vw] -translate-x-1/2 rounded-full bg-blue-200/14 blur-2xl sm:bottom-[12%] sm:h-48 sm:w-[38rem] sm:bg-blue-200/20 sm:blur-3xl" />
+        <div className="absolute left-[8%] top-[12%] h-52 w-52 rounded-full sm:h-72 sm:w-72" style={{ background: 'radial-gradient(circle, rgba(242,78,107,0.12) 0%, transparent 70%)' }} />
+        <div className="absolute right-[10%] top-[10%] h-56 w-56 rounded-full sm:h-80 sm:w-80" style={{ background: 'radial-gradient(circle, rgba(251,146,60,0.14) 0%, transparent 70%)' }} />
+        <div className="absolute bottom-[14%] left-1/2 h-40 w-[26rem] max-w-[92vw] -translate-x-1/2 rounded-full sm:bottom-[12%] sm:h-56 sm:w-[42rem]" style={{ background: 'radial-gradient(ellipse, rgba(59,130,246,0.12) 0%, transparent 70%)' }} />
       </div>
 
       <div className="container relative z-10 mx-auto grid max-w-[90rem] grid-cols-1 gap-7 py-10 sm:gap-10 sm:py-14 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-center xl:gap-14 2xl:max-w-[96rem] 2xl:gap-16 2xl:py-16">
@@ -32,7 +32,7 @@ export default function HeroSection() {
           animate="visible"
           className="space-y-5 sm:space-y-7 xl:space-y-8"
         >
-          <motion.div variants={childFadeVariant} className="inline-flex max-w-full items-center gap-2 rounded-full border border-white/70 bg-white/80 px-3 py-2 shadow-sm backdrop-blur-xl sm:px-4">
+          <motion.div variants={childFadeVariant} className="inline-flex max-w-full items-center gap-2 rounded-full border border-white/70 bg-white/95 px-3 py-2 shadow-sm sm:px-4">
             <span className="inline-flex size-5 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
               <BadgeCheck className="size-3.5" />
             </span>
@@ -65,7 +65,7 @@ export default function HeroSection() {
               </Button>
             </Link>
             <Link href="/certificazioni" className="focus-ring rounded-full">
-              <Button variant="outline" size="lg" className="h-[52px] w-full rounded-full border-white/70 bg-white/70 px-6 text-[15px] font-semibold shadow-sm backdrop-blur-xl hover:bg-white/90 sm:h-14 sm:w-auto sm:px-7 sm:text-base">
+              <Button variant="outline" size="lg" className="h-[52px] w-full rounded-full border-white/70 bg-white/95 px-6 text-[15px] font-semibold shadow-sm hover:bg-white sm:h-14 sm:w-auto sm:px-7 sm:text-base">
                 Esplora le Certificazioni
               </Button>
             </Link>
@@ -84,7 +84,7 @@ export default function HeroSection() {
           transition={{ duration: 0.7, delay: reduceMotion ? 0 : 0.15, ease: [0.16, 1, 0.3, 1] }}
           className="relative mx-auto w-full max-w-xl lg:max-w-none xl:max-w-[42rem]"
         >
-          <div className="glass-panel-strong relative overflow-hidden rounded-[1.5rem] p-3 sm:rounded-[2rem] sm:p-5 xl:rounded-[2.25rem] xl:p-6">
+          <div className="relative overflow-hidden rounded-[1.5rem] border border-white/70 bg-white/92 p-3 shadow-[0_18px_55px_-28px_rgba(15,23,42,0.16),0_6px_18px_-12px_rgba(15,23,42,0.08)] sm:rounded-[2rem] sm:p-5 xl:rounded-[2.25rem] xl:p-6">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_10%,rgba(242,78,107,0.14),transparent_55%),radial-gradient(circle_at_10%_90%,rgba(59,130,246,0.12),transparent_48%)]" />
 
             <div className="relative grid gap-4 sm:grid-cols-2 xl:gap-5">

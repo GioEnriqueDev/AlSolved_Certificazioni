@@ -85,13 +85,13 @@ export default function CinematicMacroAreas() {
           {macroAreas.map((area, index) => (
             <motion.article
               key={area.id}
-              className="group relative overflow-hidden rounded-[2rem] border border-white/70 bg-white/75 p-6 shadow-[0_22px_60px_-34px_rgba(15,23,42,0.26)] backdrop-blur-xl md:p-8 xl:min-h-[31rem] xl:rounded-[2.15rem] xl:p-9"
+              className="group relative overflow-hidden rounded-[2rem] border border-white/70 bg-white/95 p-6 shadow-[0_22px_60px_-34px_rgba(15,23,42,0.26)] md:p-8 xl:min-h-[31rem] xl:rounded-[2.15rem] xl:p-9"
               initial={reduceMotion ? false : { opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-6%" }}
               transition={{ duration: 0.55, delay: reduceMotion ? 0 : index * 0.06, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="pointer-events-none absolute -right-16 -top-20 h-56 w-56 rounded-full opacity-70 blur-3xl transition-opacity duration-500 group-hover:opacity-100" style={{ backgroundColor: area.glow }} />
+              <div className="pointer-events-none absolute -right-16 -top-20 h-72 w-72 rounded-full opacity-70 transition-opacity duration-500 group-hover:opacity-100" style={{ background: `radial-gradient(circle, ${area.glow} 0%, transparent 70%)` }} />
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent" />
 
               <div className="relative z-10 flex h-full flex-col">

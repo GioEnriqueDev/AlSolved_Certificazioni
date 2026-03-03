@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import React from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ShieldCheck, Users, Lightbulb, Target, ArrowRight } from "lucide-react";
 import FadeIn from "@/components/animations/FadeIn";
 import { useMobileViewport } from "@/hooks/useMobileViewport";
@@ -48,9 +48,8 @@ const steps = [
 function ProcessCard({ step, desktop = false }: { step: (typeof steps)[number]; desktop?: boolean }) {
   return (
     <article
-      className={`group relative flex h-full flex-col rounded-[1.5rem] border border-white/75 bg-white/82 p-5 shadow-[0_18px_44px_-28px_rgba(15,23,42,0.22)] backdrop-blur-xl sm:rounded-[1.75rem] sm:p-6 ${
-        desktop ? "xl:rounded-[1.9rem] xl:p-7" : ""
-      }`}
+      className={`group relative flex h-full flex-col rounded-[1.5rem] border border-white/75 bg-white/95 p-5 shadow-[0_18px_44px_-28px_rgba(15,23,42,0.22)] sm:rounded-[1.75rem] sm:p-6 ${desktop ? "xl:rounded-[1.9rem] xl:p-7" : ""
+        }`}
     >
       <div className={`absolute -top-3 left-5 sm:left-6 ${desktop ? "xl:left-7" : ""}`}>
         <span className={`inline-flex h-8 min-w-8 items-center justify-center rounded-full bg-gradient-to-br ${step.gradient} px-2 text-xs font-black text-white shadow-md`}>
@@ -81,7 +80,7 @@ function ProcessCard({ step, desktop = false }: { step: (typeof steps)[number]; 
 
 function MobileProcess({ reduceMotion }: { reduceMotion: boolean }) {
   return (
-    <section id="metodo" className="relative overflow-hidden border-y border-white/55 bg-white/45 px-4 py-20 backdrop-blur-sm sm:px-6">
+    <section id="metodo" className="relative overflow-hidden border-y border-white/55 bg-white/60 px-4 py-20 sm:px-6">
       <div className="container mx-auto max-w-[90rem] 2xl:max-w-[96rem]">
         <FadeIn className="mb-10 text-center">
           <p className="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-primary">Il Nostro Metodo</p>
@@ -118,23 +117,17 @@ function MobileProcess({ reduceMotion }: { reduceMotion: boolean }) {
 }
 
 function DesktopProcess({ reduceMotion }: { reduceMotion: boolean }) {
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
-  const progressWidth = useTransform(scrollYProgress, [0.1, 0.9], ["0%", "100%"]);
-
   return (
-    <section ref={containerRef} id="metodo" className="relative overflow-hidden border-y border-white/55 bg-white/45 px-4 py-24 backdrop-blur-sm sm:px-6 md:py-32">
+    <section id="metodo" className="relative overflow-hidden border-y border-white/55 bg-white/60 px-4 py-24 sm:px-6 md:py-32">
       <div className="container mx-auto max-w-7xl">
         <div className="mb-14 overflow-hidden rounded-full border border-white/70 bg-white/70 p-1 shadow-sm xl:mb-16">
           <div className="h-1.5 rounded-full bg-secondary/80">
             <motion.div
               className="h-full rounded-full bg-gradient-to-r from-primary via-rose-400 to-orange-400"
-              style={reduceMotion ? undefined : { width: progressWidth }}
-              animate={reduceMotion ? { width: "100%" } : undefined}
+              initial={reduceMotion ? false : { width: "0%" }}
+              whileInView={{ width: "100%" }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
             />
           </div>
         </div>
