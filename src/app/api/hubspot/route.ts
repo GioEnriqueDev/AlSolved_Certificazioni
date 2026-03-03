@@ -53,7 +53,7 @@ URL PROVENIENZA: ${data.sourceUrl || '/'}
                 messaggio_richiesta_analisi: summaryMessage,
                 certificazione_di_interesse: data.certificazione,
                 ruolo_referente: data.ruolo,
-                fonte_form: "Sito Web Wizard",
+                fonte_form: "Sito Certificazioni AlSolved",
                 pagina_invio_form: data.sourceUrl || "Sito"
             }
         };
