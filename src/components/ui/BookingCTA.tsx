@@ -210,10 +210,10 @@ function ErrorText({ children }: { children?: ReactNode }) {
 
 export default function BookingCTA({
   webhookUrl =
-    process.env.NEXT_PUBLIC_ANALYSIS_WEBHOOK_URL ??
-    process.env.NEXT_PUBLIC_HUBSPOT_WEBHOOK_URL ??
-    "",
-  fallbackPhone = "+39 351 537 1725",
+  process.env.NEXT_PUBLIC_ANALYSIS_WEBHOOK_URL ??
+  process.env.NEXT_PUBLIC_HUBSPOT_WEBHOOK_URL ??
+  "",
+  fallbackPhone = "+39 331 365 3490",
   fallbackEmail = "info@alsolved.com",
 }: BookingCTAProps) {
   const searchParams = useSearchParams();
@@ -328,12 +328,12 @@ export default function BookingCTA({
   const inputBase =
     "w-full rounded-xl border border-white/85 bg-white/90 px-4 py-3 text-sm font-medium text-foreground shadow-sm outline-none transition placeholder:text-muted-foreground/70 focus:border-primary/30 focus:ring-2 focus:ring-primary/15";
   const cardBase =
-    "rounded-2xl border border-white/80 bg-white/80 p-4 shadow-sm backdrop-blur-xl sm:p-5 xl:rounded-[1.35rem] xl:p-6";
+    "rounded-2xl border border-white/80 bg-white/95 p-4 shadow-sm sm:p-5 xl:rounded-[1.35rem] xl:p-6";
 
   return (
     <div
       id="analysis-form"
-      className="relative mx-auto w-full max-w-3xl overflow-hidden rounded-[1.4rem] border border-white/80 bg-white/80 p-2 shadow-[0_28px_80px_-42px_rgba(15,23,42,0.28)] backdrop-blur-xl sm:rounded-[1.8rem] xl:max-w-none xl:rounded-[2rem] xl:p-2.5"
+      className="relative mx-auto w-full max-w-3xl overflow-hidden rounded-[1.4rem] border border-white/80 bg-white/95 p-2 shadow-[0_28px_80px_-42px_rgba(15,23,42,0.28)] sm:rounded-[1.8rem] xl:max-w-none xl:rounded-[2rem] xl:p-2.5"
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_15%,rgba(242,78,107,0.12),transparent_46%),radial-gradient(circle_at_84%_80%,rgba(59,130,246,0.10),transparent_46%)]" />
 
@@ -345,10 +345,10 @@ export default function BookingCTA({
             </div>
             <div>
               <h2 className="text-balance text-xl font-black tracking-tight text-foreground sm:text-2xl md:text-3xl xl:text-[2rem]">
-                Richiedi l&apos;analisi preliminare
+                Richiedi l&apos;analisi preliminare gratuita
               </h2>
               <p className="mt-1 text-sm font-medium leading-relaxed text-muted-foreground sm:text-base xl:max-w-[34rem] xl:text-[1.02rem]">
-                Compila il modulo e invia il lead al webhook collegato a HubSpot.
+                Compila il modulo e ti ricontattiamo entro 24 ore con una valutazione personalizzata.
               </p>
             </div>
           </div>
@@ -356,11 +356,11 @@ export default function BookingCTA({
           <div className="flex flex-wrap gap-2 sm:max-w-[18rem] sm:justify-end xl:max-w-[20rem] xl:gap-2.5">
             <span className="pill-chip bg-white/90 text-muted-foreground">
               <FileCheck className="size-3.5 text-primary" />
-              Lead qualificato
+              100% gratuita
             </span>
             <span className="pill-chip bg-white/90 text-muted-foreground">
               <ShieldCheck className="size-3.5 text-primary" />
-              Webhook / HubSpot
+              Senza impegno
             </span>
           </div>
         </div>
@@ -376,14 +376,14 @@ export default function BookingCTA({
           ) : (
             <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-white/80 bg-white/85 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
               <Sparkles className="size-3.5 shrink-0 text-primary" />
-              <span className="truncate">Analisi mobile-first - webhook - follow-up commerciale</span>
+              <span className="truncate">Risposta garantita entro 24 ore lavorative</span>
             </div>
           )}
 
           {!webhookConfigured ? (
             <div className="inline-flex items-center gap-2 rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-xs font-semibold text-amber-700">
               <AlertCircle className="size-3.5" />
-              Webhook non configurato (`NEXT_PUBLIC_ANALYSIS_WEBHOOK_URL` mancante)
+              Servizio in fase di attivazione — Ti ricontatteremo via email.
             </div>
           ) : null}
         </div>
@@ -535,6 +535,7 @@ export default function BookingCTA({
                             {cert.subtitle} - {cert.title}
                           </option>
                         ))}
+                        <option value="altro">Altro / Non sono sicuro</option>
                       </select>
                     </div>
 
@@ -691,11 +692,11 @@ export default function BookingCTA({
                 ) : null}
               </AnimatePresence>
 
-              <div className="sticky bottom-2 z-20 -mx-1 rounded-2xl border border-white/80 bg-white/95 p-3 shadow-[0_16px_40px_-24px_rgba(15,23,42,0.25)] backdrop-blur-xl sm:static sm:mx-0 sm:p-4 xl:rounded-[1.15rem] xl:p-4">
+              <div className="sticky bottom-2 z-20 -mx-1 rounded-2xl border border-white/80 bg-white/97 p-3 shadow-[0_16px_40px_-24px_rgba(15,23,42,0.25)] sm:static sm:mx-0 sm:p-4 xl:rounded-[1.15rem] xl:p-4">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <div className="text-xs font-semibold text-muted-foreground sm:text-sm">
-                    <p className="text-foreground/85">Invio diretto lead a webhook (HubSpot)</p>
-                    <p className="mt-0.5">Mobile optimized, form inline, dati + contesto pagina + UTM</p>
+                    <p className="text-foreground/85">Ti ricontatteremo entro 24 ore lavorative</p>
+                    <p className="mt-0.5">I tuoi dati sono trattati in conformità al GDPR</p>
                   </div>
                   <Button
                     type="submit"
@@ -722,14 +723,14 @@ export default function BookingCTA({
 
         {!webhookConfigured ? (
           <div className="mt-5 rounded-2xl border border-dashed border-border/80 bg-secondary/30 p-4 text-left">
-            <p className="text-sm font-bold text-foreground">Fallback contatti</p>
+            <p className="text-sm font-bold text-foreground">Preferisci contattarci direttamente?</p>
             <p className="mt-1 text-sm font-medium leading-relaxed text-muted-foreground">
-              Finche il webhook non e configurato, raccogli i lead via contatto diretto.
+              Puoi raggiungerci anche via telefono o email per una risposta immediata.
             </p>
             <div className="mt-3 grid gap-3 sm:grid-cols-2">
               <a
                 href={`tel:${fallbackPhone.replace(/\s+/g, "")}`}
-                className="focus-ring flex items-center gap-3 rounded-xl border border-white/80 bg-white/80 px-4 py-3 text-sm font-semibold text-foreground hover:border-primary/20"
+                className="focus-ring flex items-center gap-3 rounded-xl border border-white/80 bg-white/95 px-4 py-3 text-sm font-semibold text-foreground hover:border-primary/20"
               >
                 <span className="inline-flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
                   <Phone className="size-4" />
@@ -738,7 +739,7 @@ export default function BookingCTA({
               </a>
               <a
                 href={`mailto:${fallbackEmail}`}
-                className="focus-ring flex items-center gap-3 rounded-xl border border-white/80 bg-white/80 px-4 py-3 text-sm font-semibold text-foreground hover:border-primary/20"
+                className="focus-ring flex items-center gap-3 rounded-xl border border-white/80 bg-white/95 px-4 py-3 text-sm font-semibold text-foreground hover:border-primary/20"
               >
                 <span className="inline-flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
                   <Mail className="size-4" />
@@ -750,7 +751,7 @@ export default function BookingCTA({
         ) : null}
 
         <p className="mt-5 text-xs font-medium leading-relaxed text-muted-foreground/85">
-          Il webhook deve accettare richieste `POST` dal dominio del sito (CORS). Il payload JSON include dati lead, contesto pagina, parametri UTM e `hubspotutk` se disponibile.
+          I dati saranno trattati nel rispetto del GDPR. Non condividiamo le tue informazioni con terze parti.
         </p>
       </div>
     </div>

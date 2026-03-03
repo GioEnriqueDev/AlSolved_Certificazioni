@@ -15,8 +15,8 @@ const contactInfo = [
   {
     icon: Phone,
     label: "Telefono",
-    value: "+39 351 537 1725",
-    href: "tel:+393515371725",
+    value: "+39 331 365 3490",
+    href: "tel:+393313653490",
   },
   {
     icon: Mail,
@@ -59,10 +59,10 @@ function ContattiPageContent() {
           >
             <p className="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-primary">Contatti</p>
             <h1 className="text-balance text-3xl font-black leading-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl xl:text-[4.9rem]">
-              Richiedi la tua analisi preliminare dal sito e invia il lead direttamente al CRM.
+              Parlaci del tuo progetto e ti guidiamo noi.
             </h1>
             <p className="mx-auto mt-4 max-w-3xl text-sm font-medium leading-relaxed text-muted-foreground sm:mt-5 sm:text-lg md:text-xl xl:max-w-4xl xl:text-[1.15rem]">
-              Compila il form qui sotto: raccogliamo contesto, certificazione di interesse e timing, poi inviamo i dati al webhook collegato a HubSpot per il follow-up commerciale.
+              Compila il modulo con le tue esigenze: ti ricontattiamo entro 24 ore con una valutazione preliminare gratuita e senza impegno.
             </p>
             {selectedCert ? (
               <div className="mx-auto mt-5 inline-flex max-w-full items-center gap-2 rounded-full border border-primary/20 bg-primary/8 px-4 py-2 text-sm font-semibold text-primary">
@@ -83,14 +83,14 @@ function ContattiPageContent() {
               transition={{ duration: 0.4 }}
               className="-mx-1 flex snap-x snap-mandatory gap-3 overflow-x-auto px-1 pb-1 scrollbar-none"
             >
-              <a href="tel:+393515371725" className="focus-ring flex min-w-[16rem] shrink-0 snap-start items-center gap-3 rounded-2xl border border-white/80 bg-white/80 p-4 shadow-sm backdrop-blur-xl">
+              <a href="tel:+393313653490" className="focus-ring flex min-w-[16rem] shrink-0 snap-start items-center gap-3 rounded-2xl border border-white/80 bg-white/95 p-4 shadow-sm">
                 <span className="inline-flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary"><Phone className="h-[18px] w-[18px]" /></span>
                 <span>
                   <span className="block text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">Telefono</span>
-                  <span className="block text-sm font-semibold text-foreground">+39 351 537 1725</span>
+                  <span className="block text-sm font-semibold text-foreground">+39 331 365 3490</span>
                 </span>
               </a>
-              <a href="mailto:info@alsolved.com" className="focus-ring flex min-w-[16rem] shrink-0 snap-start items-center gap-3 rounded-2xl border border-white/80 bg-white/80 p-4 shadow-sm backdrop-blur-xl">
+              <a href="mailto:info@alsolved.com" className="focus-ring flex min-w-[16rem] shrink-0 snap-start items-center gap-3 rounded-2xl border border-white/80 bg-white/95 p-4 shadow-sm">
                 <span className="inline-flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary"><Mail className="h-[18px] w-[18px]" /></span>
                 <span>
                   <span className="block text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">Email</span>
@@ -114,7 +114,7 @@ function ContattiPageContent() {
             transition={{ duration: 0.55, delay: reduceMotion ? 0 : 0.12 }}
             className="space-y-4 sm:space-y-6 xl:sticky xl:top-28 xl:self-start"
           >
-            <div className="rounded-[1.4rem] border border-white/80 bg-white/80 p-4 shadow-[0_20px_56px_-34px_rgba(15,23,42,0.28)] backdrop-blur-xl sm:rounded-[1.75rem] sm:p-6">
+            <div className="rounded-[1.4rem] border border-white/80 bg-white/95 p-4 shadow-[0_20px_56px_-34px_rgba(15,23,42,0.28)] sm:rounded-[1.75rem] sm:p-6">
               <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">Informazioni di contatto</p>
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-1">
                 {contactInfo.map((info) => {
@@ -154,7 +154,7 @@ function ContattiPageContent() {
               </div>
             </div>
 
-            <div className="rounded-[1.4rem] border border-white/80 bg-white/80 p-4 shadow-[0_20px_56px_-34px_rgba(15,23,42,0.28)] backdrop-blur-xl sm:rounded-[1.75rem] sm:p-6">
+            <div className="rounded-[1.4rem] border border-white/80 bg-white/95 p-4 shadow-[0_20px_56px_-34px_rgba(15,23,42,0.28)] sm:rounded-[1.75rem] sm:p-6">
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">Come lavoriamo</p>
               <ul className="space-y-3 text-sm font-medium leading-relaxed text-muted-foreground">
                 <li className="rounded-xl border border-white/70 bg-white/70 p-3"><span className="font-semibold text-foreground">1.</span> Analisi del contesto e degli obiettivi commerciali/compliance.</li>
@@ -181,7 +181,7 @@ function ContattiPageFallback() {
       <StaticBackground />
       <section className="px-4 pb-24 pt-24 sm:px-6 md:pt-32">
         <div className="container mx-auto max-w-6xl">
-          <div className="rounded-[1.5rem] border border-white/80 bg-white/80 p-5 shadow-[0_22px_64px_-34px_rgba(15,23,42,0.28)] backdrop-blur-xl sm:rounded-[2rem] sm:p-8">
+          <div className="rounded-[1.5rem] border border-white/80 bg-white/95 p-5 shadow-[0_22px_64px_-34px_rgba(15,23,42,0.28)] sm:rounded-[2rem] sm:p-8">
             <p className="text-sm font-semibold text-muted-foreground">Caricamento modulo contatti…</p>
           </div>
         </div>

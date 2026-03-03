@@ -19,7 +19,7 @@ const navLinks = [
 ] as const;
 
 const contactLinks = [
-  { icon: Phone, label: "Telefono", value: "+39 351 537 1725", href: "tel:+393515371725" },
+  { icon: Phone, label: "Telefono", value: "+39 331 365 3490", href: "tel:+393313653490" },
   { icon: Mail, label: "Email", value: "info@alsolved.com", href: "mailto:info@alsolved.com" },
   {
     icon: MapPin,
