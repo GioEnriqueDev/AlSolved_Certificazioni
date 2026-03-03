@@ -81,9 +81,9 @@ export default function Navbar() {
           </nav>
 
           <div className="hidden items-center gap-3 lg:flex">
-            <Link href="/contatti#analysis-form" className="focus-ring rounded-full">
+            <Link href="/check-up" className="focus-ring rounded-full">
               <Button className="rounded-full h-11 px-5 font-semibold text-white glow-shadow hover:glow-shadow-strong xl:h-12 xl:px-6">
-                Richiedi Analisi
+                Prenota call 15 min
                 <ArrowUpRight className="size-4" />
               </Button>
             </Link>
@@ -154,8 +154,8 @@ export default function Navbar() {
                 })}
               </div>
 
-              <Link href="/contatti#analysis-form" onClick={() => setMobileMenuOpen(false)} className="focus-ring block rounded-xl">
-                <Button className="h-12 w-full rounded-xl font-semibold text-white glow-shadow">Prenota Analisi Gratuita</Button>
+              <Link href="/check-up" onClick={() => setMobileMenuOpen(false)} className="focus-ring block rounded-xl">
+                <Button className="h-12 w-full rounded-xl font-semibold text-white glow-shadow">Prenota call 15 min</Button>
               </Link>
             </motion.div>
           </motion.div>

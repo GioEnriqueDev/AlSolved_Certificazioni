@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { motion, useReducedMotion } from "framer-motion";
-import BookingCTA from "@/components/ui/BookingCTA";
+import { Button } from "@/components/ui/button";
 import Footer from "@/components/sections/Footer";
 import StaticBackground from "@/components/sections/StaticBackground";
 import { certifications } from "@/data/certificazioniData";
@@ -105,7 +105,19 @@ function ContattiPageContent() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.55, delay: reduceMotion ? 0 : 0.08 }}
           >
-            <BookingCTA />
+            <div className="rounded-[1.4rem] border border-white/80 bg-white/95 p-6 shadow-[0_20px_56px_-34px_rgba(15,23,42,0.28)] sm:rounded-[2rem] sm:p-10 text-center">
+              <h2 className="text-2xl font-black mb-4">Prenota una consulenza o richiedi informazioni</h2>
+              <p className="text-muted-foreground mb-8 text-sm sm:text-base">
+                Per poterti aiutare al meglio, ti chiediamo di compilare un rapido questionario di 3 minuti.
+                Al termine potrai fissare subito a calendario una call strategica di 15 minuti con i nostri esperti.
+              </p>
+              <Link href="/check-up" className="inline-block w-full sm:w-auto">
+                <Button size="lg" className="h-14 w-full sm:w-auto rounded-xl px-8 font-semibold text-white glow-shadow hover:glow-shadow-strong">
+                  Inizia il check-up
+                  <ArrowUpRight className="ml-2 size-5" />
+                </Button>
+              </Link>
+            </div>
           </motion.div>
 
           <motion.aside

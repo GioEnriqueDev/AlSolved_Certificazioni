@@ -58,15 +58,15 @@ export default function HeroSection() {
           </motion.p>
 
           <motion.div variants={childFadeVariant} className="flex flex-col gap-3 sm:flex-row sm:items-center xl:gap-4">
-            <Link href="/contatti#analysis-form" className="focus-ring rounded-full">
+            <Link href="/check-up" className="focus-ring rounded-full sm:w-auto w-full">
               <Button size="lg" className="h-[52px] w-full rounded-full px-6 text-[15px] font-semibold text-white glow-shadow hover:glow-shadow-strong sm:h-14 sm:w-auto sm:px-7 sm:text-base">
-                Prenota Analisi Gratuita
+                Fai check-up e prenota call
                 <ArrowRight className="size-4" />
               </Button>
             </Link>
-            <Link href="/certificazioni" className="focus-ring rounded-full">
+            <Link href="#assets-futuri" className="focus-ring rounded-full sm:w-auto w-full">
               <Button variant="outline" size="lg" className="h-[52px] w-full rounded-full border-white/70 bg-white/95 px-6 text-[15px] font-semibold shadow-sm hover:bg-white sm:h-14 sm:w-auto sm:px-7 sm:text-base">
-                Esplora le Certificazioni
+                Scarica Checklist (PDF)
               </Button>
             </Link>
           </motion.div>

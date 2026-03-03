@@ -46,15 +46,15 @@ export default function FinalCTA() {
 
           <div className="mt-7 rounded-[1.25rem] border border-white/80 bg-white/70 p-4 shadow-sm sm:mt-8 sm:p-5 xl:mt-0 xl:rounded-[1.6rem] xl:p-6">
             <div className="flex flex-col items-center gap-3 sm:gap-4 sm:flex-row sm:justify-center xl:flex-col xl:items-stretch xl:justify-start">
-              <Link href="/contatti#analysis-form" className="focus-ring w-full rounded-full">
+              <Link href="/check-up" className="focus-ring w-full rounded-full">
                 <Button size="lg" className="h-[52px] w-full rounded-full px-6 text-[15px] font-semibold text-white glow-shadow hover:glow-shadow-strong sm:h-14 sm:px-8 sm:text-base">
-                  Prenota Analisi Gratuita
+                  Fai check-up e prenota call
                   <ArrowRight className="size-4" />
                 </Button>
               </Link>
-              <Link href="/certificazioni" className="focus-ring w-full rounded-full">
+              <Link href="#assets-futuri" className="focus-ring w-full rounded-full">
                 <Button variant="outline" size="lg" className="h-[52px] w-full rounded-full border-white/70 bg-white/95 px-6 text-[15px] font-semibold shadow-sm hover:bg-white sm:h-14 sm:px-8 sm:text-base">
-                  Esplora Catalogo
+                  Scarica Checklist (PDF)
                 </Button>
               </Link>
             </div>

@@ -42,7 +42,7 @@ export default function Footer() {
               Partner tecnico per certificazioni ISO, compliance e audit readiness. Progettiamo sistemi che migliorano processi, riducono rischio e aumentano credibilità commerciale.
             </p>
             <Link
-              href="/contatti#analysis-form"
+              href="/check-up"
               className="focus-ring mt-5 inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/85 px-4 py-2 text-sm font-semibold text-foreground shadow-sm hover:border-primary/20 hover:text-primary"
             >
               Richiedi analisi preliminare
