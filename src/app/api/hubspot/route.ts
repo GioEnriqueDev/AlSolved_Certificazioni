@@ -58,17 +58,17 @@ URL PROVENIENZA: ${data.sourceUrl || '/'}
                 partita_iva: data.piva,
                 anno_di_apertura: data.annoApertura,
                 settore_attivita_ateco: data.ateco,
-                iscr_registro_imprese: data.registroImprese,
+                iscr_registro_imprese_citta: data.registroImprese,
                 hai_piu_sedi_operative: data.sediMultiple,
                 sedi_operative_addizionali: data.doveSediMultiple,
                 numero_dipendenti_attuali: data.dipendenti,
                 fatturato_2024: data.fatturato2024,
                 fatturato_2025: data.fatturato2025,
-                in_regola_con_durc: data.durc,
+                sei_in_regola_con_il_durc: data.durc,
                 impresa_giovanile: data.giovanile,
                 impresa_femminile: data.femminile,
-                parita_di_genere: data.paritaGenere,
-                certificazione_ambientale: data.ambientale,
+                hai_il_certificato_di_parita_di_genere: data.paritaGenere,
+                certificazione_di_sostenibilita_ambientale: data.ambientale,
                 link_upload_visura: data.visuraUrl || ""
             }
         };
