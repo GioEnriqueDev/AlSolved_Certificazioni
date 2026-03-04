@@ -54,7 +54,22 @@ URL PROVENIENZA: ${data.sourceUrl || '/'}
                 certificazione_di_interesse: data.certificazione,
                 ruolo_referente: data.ruolo,
                 fonte_form: "Sito Certificazioni AlSolved",
-                pagina_invio_form: data.sourceUrl || "Sito"
+                pagina_invio_form: data.sourceUrl || "Sito",
+                partita_iva: data.piva,
+                anno_di_apertura: data.annoApertura,
+                settore_attivita_ateco: data.ateco,
+                iscr_registro_imprese: data.registroImprese,
+                hai_piu_sedi_operative: data.sediMultiple,
+                sedi_operative_addizionali: data.doveSediMultiple,
+                numero_dipendenti_attuali: data.dipendenti,
+                fatturato_2024: data.fatturato2024,
+                fatturato_2025: data.fatturato2025,
+                in_regola_con_durc: data.durc,
+                impresa_giovanile: data.giovanile,
+                impresa_femminile: data.femminile,
+                parita_di_genere: data.paritaGenere,
+                certificazione_ambientale: data.ambientale,
+                link_upload_visura: data.visuraUrl || ""
             }
         };
 
