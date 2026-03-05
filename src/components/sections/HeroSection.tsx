@@ -87,13 +87,13 @@ export default function HeroSection() {
           <div className="relative overflow-hidden rounded-[1.25rem] border border-white/50 bg-white/70 p-4 shadow-[0_18px_55px_-28px_rgba(15,23,42,0.16),0_6px_18px_-12px_rgba(15,23,42,0.08)] backdrop-blur-xl sm:rounded-[2rem] sm:p-5 xl:rounded-[2.25rem] xl:p-6">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_10%,rgba(242,78,107,0.14),transparent_55%),radial-gradient(circle_at_10%_90%,rgba(59,130,246,0.12),transparent_48%)]" />
 
-            <div className="relative grid gap-4 sm:grid-cols-2 xl:gap-5">
-              <div className="paper-panel rounded-2xl p-4 sm:col-span-2 sm:p-5 xl:rounded-[1.4rem] xl:p-6">
+            <div className="relative grid grid-cols-2 gap-3 sm:gap-4 xl:gap-5">
+              <div className="paper-panel col-span-2 rounded-2xl p-3 sm:p-5 xl:rounded-[1.4rem] xl:p-6">
                 <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">Compliance Command Center</p>
                 <div className="grid gap-4 sm:grid-cols-[1.15fr_0.85fr]">
                   <div>
-                    <h3 className="text-lg font-black tracking-tight text-foreground sm:text-xl xl:text-[1.35rem]">Roadmap di certificazione su misura</h3>
-                    <p className="mt-2 text-[13px] font-medium leading-relaxed text-muted-foreground sm:text-sm xl:text-[0.95rem]">
+                    <h3 className="text-base font-black tracking-tight text-foreground sm:text-xl xl:text-[1.35rem]">Roadmap di certificazione su misura</h3>
+                    <p className="mt-1 text-[12px] font-medium leading-relaxed text-muted-foreground sm:mt-2 sm:text-sm xl:text-[0.95rem]">
                       Analisi gap, documentazione, implementazione e audit in un flusso unico, con milestone condivise e carico operativo ridotto per il tuo team.
                     </p>
                   </div>
@@ -127,20 +127,20 @@ export default function HeroSection() {
               {(isMobile ? stats.slice(0, 2) : stats).map((stat, index) => (
                 <motion.div
                   key={stat.label}
-                  className="paper-panel rounded-2xl p-4 sm:p-5 xl:rounded-[1.35rem] xl:p-6"
+                  className="paper-panel rounded-2xl p-3 sm:p-5 xl:rounded-[1.35rem] xl:p-6"
                   initial={reduceMotion ? false : { opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, delay: reduceMotion ? 0 : 0.35 + index * 0.08 }}
                 >
-                  <div className="mb-3 inline-flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                    <stat.icon className="size-5" />
+                  <div className="mb-2 inline-flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary sm:mb-3 sm:size-10 sm:rounded-xl">
+                    <stat.icon className="size-4 sm:size-5" />
                   </div>
-                  <p className="text-2xl font-black tracking-tight text-foreground xl:text-[1.9rem]">{stat.value}</p>
-                  <p className="mt-1 text-sm font-semibold text-muted-foreground xl:text-[0.95rem]">{stat.label}</p>
+                  <p className="text-xl font-black tracking-tight text-foreground sm:text-2xl xl:text-[1.9rem]">{stat.value}</p>
+                  <p className="mt-0.5 text-xs font-semibold text-muted-foreground sm:mt-1 sm:text-sm xl:text-[0.95rem]">{stat.label}</p>
                 </motion.div>
               ))}
 
-              <div className="paper-panel rounded-2xl p-4 sm:col-span-2 sm:p-5 xl:rounded-[1.4rem] xl:p-6">
+              <div className="paper-panel col-span-2 hidden rounded-2xl p-4 sm:block sm:p-5 xl:rounded-[1.4rem] xl:p-6">
                 <div className="-mx-1 mb-3 flex snap-x snap-mandatory gap-2 overflow-x-auto px-1 pb-1 scrollbar-none sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0">
                   {[
                     "ISO 9001",
