@@ -2,7 +2,6 @@
 
 import dynamic from "next/dynamic";
 import HeroSection from "@/components/sections/HeroSection";
-import AnimatedBackground from "@/components/sections/AnimatedBackground";
 import CinematicMacroAreas from "@/components/sections/CinematicMacroAreas";
 
 // Lazy loading dei componenti below-the-fold per migliorare LCP e TTI
@@ -13,8 +12,6 @@ const FinalCTA = dynamic(() => import("@/components/sections/FinalCTA"), { ssr: 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-transparent text-foreground overflow-x-hidden relative">
-      <AnimatedBackground />
-
       <HeroSection />
 
       <ClientLogos />

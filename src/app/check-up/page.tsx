@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import LeadWizard from "@/components/ui/LeadWizard";
-import StaticBackground from "@/components/sections/StaticBackground";
 
 export const metadata: Metadata = {
     title: "Analisi Preliminare | ALSOLVED",
@@ -9,8 +8,7 @@ export const metadata: Metadata = {
 
 export default function CheckUpPage() {
     return (
-        <div className="relative min-h-screen bg-background pt-24 pb-12 sm:pt-32 sm:pb-20 px-4 sm:px-6">
-            <StaticBackground />
+        <div className="relative min-h-screen pt-24 pb-12 sm:pt-32 sm:pb-20 px-4 sm:px-6">
 
             <div className="container relative z-10 mx-auto max-w-6xl">
                 <div className="mb-10 text-center">

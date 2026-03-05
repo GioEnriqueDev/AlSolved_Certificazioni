@@ -5,6 +5,7 @@ import { LoadingProvider } from "@/lib/LoadingContext";
 import Preloader from "@/components/ui/Preloader";
 import Navbar from "@/components/layout/Navbar";
 import SmoothScroll from "@/components/layout/SmoothScroll";
+import AnimatedBackground from "@/components/sections/AnimatedBackground";
 
 interface ClientWrapperProps {
   children: React.ReactNode;
@@ -46,6 +47,7 @@ export default function ClientWrapper({ children }: ClientWrapperProps) {
         {showPreloader ? <Preloader onLoadingComplete={handleLoadingComplete} /> : null}
 
         <div className={`transition-opacity duration-500 ${showContent ? "opacity-100" : "opacity-0"}`}>
+          <AnimatedBackground />
           <Navbar />
           <main>{children}</main>
         </div>

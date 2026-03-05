@@ -10,33 +10,27 @@ export default function AnimatedBackground() {
       className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-background"
       style={{ contain: "layout style paint" }}
     >
-      {/* Hardware-Accelerated Fluid Aurora */}
+      {/* PS5 Wave Aurora Layer */}
       <div
-        className="absolute inset-0 opacity-80 max-sm:opacity-60 blur-[90px] max-sm:blur-[60px] transform-gpu"
+        className="absolute inset-x-0 top-0 bottom-0 flex flex-col items-center justify-center opacity-85 max-sm:opacity-65 blur-[100px] max-sm:blur-[65px] transform-gpu"
         style={{ transform: "translateZ(0)" }}
       >
-        {/* Core Rose/Pink Blob */}
+        {/* Core Rose Wave */}
         <div
-          className={`absolute -top-[10%] left-[10%] h-[45vw] w-[50vw] rounded-full max-sm:h-[40vw] max-sm:w-[45vw] ${reduceMotion ? '' : 'animate-aurora-1'}`}
-          style={{ background: 'conic-gradient(from 180deg at 50% 50%, rgba(242,78,107,0.3) 0deg, rgba(226,29,72,0.4) 180deg, rgba(242,78,107,0.3) 360deg)' }}
+          className={`absolute left-[-25vw] h-[45vh] w-[150vw] rotate-[-8deg] origin-center max-sm:h-[35vh] max-sm:w-[200vw] ${reduceMotion ? '' : 'animate-wave-1'}`}
+          style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(242,78,107,0.4) 40%, rgba(226,29,72,0.45) 60%, transparent 100%)' }}
         />
 
-        {/* Secondary Orange/Amber Blob */}
+        {/* Deep Blue Wave */}
         <div
-          className={`absolute top-[20%] -right-[10%] h-[55vw] w-[45vw] rounded-full max-sm:h-[50vw] max-sm:w-[40vw] ${reduceMotion ? '' : 'animate-aurora-2'}`}
-          style={{ background: 'radial-gradient(ellipse at center, rgba(251,146,60,0.4) 0%, rgba(245,158,11,0.1) 70%)' }}
+          className={`absolute right-[-25vw] top-[30%] h-[55vh] w-[150vw] rotate-[6deg] origin-center max-sm:h-[45vh] max-sm:w-[200vw] ${reduceMotion ? '' : 'animate-wave-2'}`}
+          style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(59,130,246,0.35) 40%, rgba(99,102,241,0.4) 60%, transparent 100%)' }}
         />
 
-        {/* Deep Blue/Indigo Accent Blob */}
+        {/* Secondary Orange/Amber Highlight Wave */}
         <div
-          className={`absolute -bottom-[20%] left-[20%] h-[60vw] w-[60vw] rounded-full max-sm:h-[50vw] max-sm:w-[50vw] ${reduceMotion ? '' : 'animate-aurora-3'}`}
-          style={{ background: 'conic-gradient(from 90deg at 50% 50%, rgba(59,130,246,0.3) 0deg, rgba(99,102,241,0.4) 180deg, rgba(59,130,246,0.3) 360deg)' }}
-        />
-
-        {/* Floating Highlight Blob */}
-        <div
-          className={`absolute top-[40%] left-[40%] h-[40vw] w-[40vw] rounded-full opacity-60 max-sm:h-[30vw] max-sm:w-[30vw] ${reduceMotion ? '' : 'animate-aurora-4'}`}
-          style={{ background: 'radial-gradient(circle at center, rgba(255,255,255,0.4) 0%, transparent 60%)' }}
+          className={`absolute left-0 bottom-[10%] h-[35vh] w-[120vw] rotate-[-4deg] origin-center max-sm:h-[25vh] max-sm:w-[150vw] ${reduceMotion ? '' : 'animate-wave-3'}`}
+          style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(251,146,60,0.3) 50%, rgba(245,158,11,0.15) 80%, transparent 100%)' }}
         />
       </div>
 

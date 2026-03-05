@@ -10,6 +10,7 @@ import NeonLogo from "@/components/ui/NeonLogo";
 import { cn } from "@/lib/utils";
 
 const items = [
+  { name: "Home", href: "/" },
   { name: "Certificazioni", href: "/certificazioni" },
   { name: "Il Metodo", href: "/metodo" },
   { name: "Chi Siamo", href: "/chi-siamo" },
