@@ -96,7 +96,7 @@ export default function LeadWizard() {
                 setError(data.error || "Si è verificato un errore. Riprova.");
                 setIsSubmitting(false);
             }
-        } catch (err) {
+        } catch {
             setError("Impossibile connettersi al Server. Controlla la tua connessione.");
             setIsSubmitting(false);
         }
@@ -143,7 +143,7 @@ export default function LeadWizard() {
                 return (
                     <div className="space-y-6">
                         <h2 className="text-3xl font-black text-foreground sm:text-4xl text-balance tracking-tight">La tua Azienda</h2>
-                        <p className="text-muted-foreground text-sm font-medium">I dati anagrafici base dell'impresa.</p>
+                        <p className="text-muted-foreground text-sm font-medium">I dati anagrafici base dell&apos;impresa.</p>
 
                         <div className="space-y-2">
                             <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Ragione Sociale *</label>
@@ -282,7 +282,7 @@ export default function LeadWizard() {
                                 <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{question.label}</label>
                                 <div className="flex gap-3">
                                     {["Si", "No"].map(opt => (
-                                        <button key={opt} type="button" onClick={() => handleSelect(question.id, opt)} className={cn("flex-1 py-3 px-4 rounded-xl border text-sm font-semibold transition-all", (formData as any)[question.id] === opt ? "bg-primary text-white border-primary shadow-sm" : "bg-white/50 text-foreground/80 border-input hover:border-primary/30")}>
+                                        <button key={opt} type="button" onClick={() => handleSelect(question.id, opt)} className={cn("flex-1 py-3 px-4 rounded-xl border text-sm font-semibold transition-all", (formData as unknown as Record<string, string>)[question.id] === opt ? "bg-primary text-white border-primary shadow-sm" : "bg-white/50 text-foreground/80 border-input hover:border-primary/30")}>
                                             {opt}
                                         </button>
                                     ))}
@@ -310,7 +310,7 @@ export default function LeadWizard() {
                                 <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{question.label}</label>
                                 <div className="flex gap-3">
                                     {["Si", "No"].map(opt => (
-                                        <button key={opt} type="button" onClick={() => handleSelect(question.id, opt)} className={cn("flex-1 py-3 px-4 rounded-xl border text-sm font-semibold transition-all", (formData as any)[question.id] === opt ? "bg-primary text-white border-primary shadow-sm" : "bg-white/50 text-foreground/80 border-input hover:border-primary/30")}>
+                                        <button key={opt} type="button" onClick={() => handleSelect(question.id, opt)} className={cn("flex-1 py-3 px-4 rounded-xl border text-sm font-semibold transition-all", (formData as unknown as Record<string, string>)[question.id] === opt ? "bg-primary text-white border-primary shadow-sm" : "bg-white/50 text-foreground/80 border-input hover:border-primary/30")}>
                                             {opt}
                                         </button>
                                     ))}
@@ -319,7 +319,7 @@ export default function LeadWizard() {
                         ))}
 
                         <div className="mt-6 rounded-2xl border border-dotted border-border p-5 text-center bg-white/40">
-                            <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground block mb-2 cursor-pointer hover:text-primary transition-colors">Allega Visura (Opzionale, serve per velocizzare l'analisi)</label>
+                            <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground block mb-2 cursor-pointer hover:text-primary transition-colors">Allega Visura (Opzionale, serve per velocizzare l&apos;analisi)</label>
                             <input type="file" className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 transition-all" />
                             <p className="text-[11px] text-muted-foreground mt-3">Dimensione massima: 5MB</p>
                         </div>
@@ -336,6 +336,7 @@ export default function LeadWizard() {
         }
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const isFormValid = () => {
         // Esempio molto basico di validazione (assicuriamo che il nome ci sia al primo step)
         if (currentStep === 0) return formData.nome.length > 2 && formData.email.includes('@');
@@ -356,7 +357,7 @@ export default function LeadWizard() {
                             Step {currentStep + 1} di {steps.length}
                         </div>
                         <p className="text-sm text-muted-foreground font-medium">
-                            Bastano pochi istanti per inquadrare la tua situazione. Subito dopo sceglierai l'orario della call e avrai fatto il primo passo The screen per risolvere la burocrazia.
+                            Bastano pochi istanti per inquadrare la tua situazione. Subito dopo sceglierai l&apos;orario della call e avrai fatto il primo passo The screen per risolvere la burocrazia.
                         </p>
                     </div>
 

@@ -28,7 +28,16 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 18);
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 18);
+          ticking = false;
+        });
+      }
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -48,7 +57,7 @@ export default function Navbar() {
           "fixed top-2 left-1/2 -translate-x-1/2 z-50 w-[calc(100vw-14px)] max-w-[88rem] rounded-[1rem] transition-all duration-500 sm:top-3 sm:w-[min(96vw,88rem)] sm:rounded-[1.35rem] 2xl:max-w-[94rem] 2xl:w-[min(95vw,94rem)]",
           scrolled
             ? "glass-panel-strong border-white/70 shadow-[0_18px_42px_-20px_rgba(15,23,42,0.28)]"
-            : "bg-white/55 backdrop-blur-xl border border-white/45 shadow-[0_10px_26px_-18px_rgba(15,23,42,0.18)]"
+            : "bg-white/55 backdrop-blur-xl max-sm:backdrop-blur-md border border-white/45 shadow-[0_10px_26px_-18px_rgba(15,23,42,0.18)]"
         )}
       >
         <div className="mx-auto flex h-[68px] items-center justify-between px-3.5 sm:h-[78px] sm:px-5 md:px-6 xl:h-[82px] xl:px-7">

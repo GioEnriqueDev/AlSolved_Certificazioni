@@ -18,7 +18,7 @@ export default function HeroSection() {
   const { isMobile } = useMobileViewport();
 
   return (
-    <section className="section-shell relative flex min-h-[88svh] items-center overflow-hidden px-4 pt-24 sm:min-h-[94svh] sm:px-6 md:pt-32 xl:min-h-[96svh]">
+    <section className="section-shell relative flex min-h-[85svh] items-center overflow-hidden px-4 pt-24 sm:min-h-[94svh] sm:px-6 md:pt-32 xl:min-h-[96svh]">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-[8%] top-[12%] h-52 w-52 rounded-full sm:h-72 sm:w-72" style={{ background: 'radial-gradient(circle, rgba(242,78,107,0.12) 0%, transparent 70%)' }} />
         <div className="absolute right-[10%] top-[10%] h-56 w-56 rounded-full sm:h-80 sm:w-80" style={{ background: 'radial-gradient(circle, rgba(251,146,60,0.14) 0%, transparent 70%)' }} />
@@ -44,10 +44,10 @@ export default function HeroSection() {
 
           <motion.h1
             variants={fadeUpVariant}
-            className="text-balance text-[2.35rem] font-black leading-[0.98] text-foreground sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.35rem] 2xl:text-[6rem]"
+            className="text-balance text-[2rem] font-black leading-[0.98] text-foreground sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.35rem] 2xl:text-[6rem]"
           >
             Trasformiamo la conformità in
-            <span className="relative mt-2 block text-transparent bg-clip-text bg-gradient-to-r from-primary via-rose-500 to-orange-400 bg-[length:200%_auto]" style={{ animation: reduceMotion ? "none" : "gradient-shift 7s ease-in-out infinite" }}>
+            <span className="relative mt-2 block text-transparent bg-clip-text bg-gradient-to-r from-primary via-rose-500 to-orange-400 bg-[length:200%_auto]" style={{ animation: reduceMotion ? "none" : "gradient-shift 5s ease-in-out 1 forwards" }}>
               motore di crescita.
             </span>
           </motion.h1>

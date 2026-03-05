@@ -16,14 +16,14 @@ export default function FinalCTA() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section id="cta" className="relative z-10 overflow-hidden border-t border-white/55 px-4 py-20 sm:px-6 md:py-32 xl:py-36">
+    <section id="cta" className="relative z-10 overflow-hidden border-t border-white/55 px-4 py-14 sm:px-6 sm:py-20 md:py-32 xl:py-36">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(242,78,107,0.08),transparent_48%),radial-gradient(circle_at_14%_65%,rgba(59,130,246,0.06),transparent_36%),radial-gradient(circle_at_90%_60%,rgba(251,146,60,0.07),transparent_38%)]" />
         <div className="absolute left-1/2 top-[20%] h-72 w-[52rem] max-w-[96vw] -translate-x-1/2 rounded-full" style={{ background: 'radial-gradient(ellipse, rgba(255,255,255,0.7) 0%, transparent 70%)' }} />
       </div>
 
       <motion.div
-        className="container relative mx-auto max-w-5xl rounded-[1.6rem] border border-white/80 bg-white/95 p-5 text-center shadow-[0_32px_90px_-42px_rgba(15,23,42,0.34)] sm:rounded-[2.25rem] sm:p-10 md:p-14 xl:max-w-[90rem] xl:p-12 2xl:max-w-[96rem] 2xl:p-14"
+        className="container relative mx-auto max-w-5xl rounded-[1.35rem] border border-white/80 bg-white/95 p-5 text-center shadow-[0_22px_60px_-34px_rgba(15,23,42,0.28)] sm:rounded-[2rem] sm:p-8 md:p-14 xl:max-w-[90rem] xl:p-12 2xl:max-w-[96rem] 2xl:p-14"
         initial={reduceMotion ? false : { opacity: 0, y: 22 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-12%" }}
@@ -36,7 +36,7 @@ export default function FinalCTA() {
         <div className="relative z-10 xl:grid xl:grid-cols-[1.06fr_0.94fr] xl:items-center xl:gap-10 xl:text-left">
           <div>
             <p className="mb-5 text-xs font-bold uppercase tracking-[0.25em] text-primary">Pronto a iniziare?</p>
-            <h2 className="text-balance text-[2rem] font-black leading-[1.02] text-foreground sm:text-4xl md:text-6xl lg:text-7xl xl:max-w-4xl xl:text-[4.2rem] 2xl:text-[4.6rem]">
+            <h2 className="text-balance text-[1.55rem] font-black leading-[1.02] text-foreground sm:text-4xl md:text-6xl lg:text-7xl xl:max-w-4xl xl:text-[4.2rem] 2xl:text-[4.6rem]">
               Smetti di perdere opportunità per colpa della compliance.
             </h2>
             <p className="mx-auto mt-5 max-w-3xl text-sm font-medium leading-relaxed text-muted-foreground sm:mt-6 sm:text-lg md:text-xl xl:mx-0 xl:mt-7 xl:max-w-[40rem] xl:text-[1.15rem]">

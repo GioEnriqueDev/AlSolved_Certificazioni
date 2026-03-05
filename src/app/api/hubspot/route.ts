@@ -37,42 +37,6 @@ HA AMBIENTALE: ${data.ambientale}
 URL PROVENIENZA: ${data.sourceUrl || '/'}
     `.trim();
 
-        // Prepariamo il payload
-        const payload = {
-            properties: {
-                firstname: data.nome,
-                lastname: data.cognome,
-                email: data.email,
-                phone: data.telefono,
-                company: data.azienda,
-                website: data.sitoWeb,
-                city: data.città,
-                zip: data.cap,
-                address: data.indirizzo,
-                state: data.provincia,
-                messaggio_richiesta_analisi: summaryMessage,
-                certificazione_di_interesse: data.certificazione,
-                ruolo_referente: data.ruolo,
-                fonte_form: "Sito Certificazioni AlSolved",
-                pagina_invio_form: data.sourceUrl || "Sito",
-                partita_iva: data.piva,
-                anno_di_apertura: data.annoApertura,
-                settore_attivita_ateco: data.ateco,
-                iscr_registro_imprese_citta: data.registroImprese,
-                hai_piu_sedi_operative: data.sediMultiple,
-                sedi_operative_addizionali: data.doveSediMultiple,
-                numero_dipendenti_attuali: data.dipendenti,
-                fatturato_2024: data.fatturato2024,
-                fatturato_2025: data.fatturato2025,
-                sei_in_regola_con_il_durc: data.durc,
-                impresa_giovanile: data.giovanile,
-                impresa_femminile: data.femminile,
-                hai_il_certificato_di_parita_di_genere: data.paritaGenere,
-                certificazione_di_sostenibilita_ambientale: data.ambientale,
-                link_upload_visura: data.visuraUrl || ""
-            }
-        };
-
         // Inviamo i dati all'API di HubSpot
         const response = await fetch('https://api.hubapi.com/crm/v3/objects/contacts', {
             method: 'POST',
@@ -80,35 +44,30 @@ URL PROVENIENZA: ${data.sourceUrl || '/'}
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify(payload)
+            body: JSON.stringify({
+                properties: {
+                    firstname: data.nome,
+                    lastname: data.cognome,
+                    email: data.email,
+                    phone: data.telefono,
+                    company: data.azienda,
+                    website: data.sitoWeb,
+                    city: data.città,
+                    zip: data.cap,
+                    address: data.indirizzo,
+                    state: data.provincia,
+                    // Mettiamo tutte le info extra nel messaggio che hai creato (o nel campo base di Hubspot se fallisce)
+                    messaggio_richiesta_analisi: summaryMessage,
+                    // Proviamo a mappare i campi custom di testo (se falliscono Hubspot darà 400, in tal caso faremo un fallback)
+                    certificazione_interesse: data.certificazione,
+                    ruolo_referente: data.ruolo,
+                    fonte_form: "Sito Web Wizard",
+                    pagina_invio_form: data.sourceUrl || "Sito"
+                }
+            })
         });
 
         const result = await response.json();
-
-        // 1. Gestione utente già esistente (Upsert / Update)
-        if (!response.ok && result.message && result.message.includes('Contact already exists')) {
-            const match = result.message.match(/Existing ID: (\d+)/);
-            if (match && match[1]) {
-                const existingId = match[1];
-                console.log(`Contatto esistente trovato, aggiorno ID: ${existingId}`);
-
-                const updateResponse = await fetch(`https://api.hubapi.com/crm/v3/objects/contacts/${existingId}`, {
-                    method: 'PATCH',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    },
-                    body: JSON.stringify(payload)
-                });
-
-                if (!updateResponse.ok) {
-                    const updateResult = await updateResponse.json();
-                    throw new Error(`HubSpot Update Error: ${updateResult.message || 'Errore durante aggiornamento'}`);
-                }
-
-                return NextResponse.json({ success: true, redirect: 'https://calendly.com/consulenza-alsolved/prenota-una-call-' });
-            }
-        }
 
         // Se Hubspot si lamenta di proprietà inesistenti (es. messaggio_richiesta_analisi scritto in modo diverso), facciamo un fallback coi campi standard
         if (!response.ok && result.category === 'PROPERTY_DOESNT_EXIST') {
@@ -125,14 +84,13 @@ URL PROVENIENZA: ${data.sourceUrl || '/'}
                         lastname: data.cognome,
                         email: data.email,
                         phone: data.telefono,
-                        company: data.azienda
+                        company: data.azienda,
+                        message: summaryMessage // usa campo default HubSpot per le note di contatto se esiste, altrimenti si affida solo a firstname/email
                     }
                 })
             });
-
-            const fallbackResult = await fallbackResponse.json();
             if (!fallbackResponse.ok) {
-                throw new Error(`Fallback failed: ${fallbackResult.message || 'Unknown'}`);
+                throw new Error("Fallback failed");
             }
             return NextResponse.json({ success: true, redirect: 'https://calendly.com/consulenza-alsolved/prenota-una-call-' });
         }
@@ -144,8 +102,8 @@ URL PROVENIENZA: ${data.sourceUrl || '/'}
 
         return NextResponse.json({ success: true, redirect: 'https://calendly.com/consulenza-alsolved/prenota-una-call-' });
 
-    } catch (error: any) {
+    } catch (error) {
         console.error('Form submission error:', error);
-        return NextResponse.json({ success: false, error: error.message || 'Errore durante l\'invio. Riprova più tardi.' }, { status: 500 });
+        return NextResponse.json({ success: false, error: 'Errore durante l\'invio. Riprova più tardi.' }, { status: 500 });
     }
 }

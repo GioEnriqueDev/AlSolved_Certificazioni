@@ -92,6 +92,10 @@
       transform var(--motion-base) var(--ease-premium);
   }
 
+  .section-shell {
+    contain: content;
+  }
+
   html {
     scroll-padding-top: 5.25rem;
   }
@@ -336,8 +340,14 @@
 
 .animate-blob {
   animation: blob 20s infinite alternate ease-in-out;
-  will-change: transform;
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  .animate-blob {
+    will-change: transform;
+  }
+}
+
 
 .animate-marquee {
   animation: marquee 34s linear infinite;
@@ -359,27 +369,36 @@
       radial-gradient(circle at 85% 10%, rgba(var(--glow-orange), 0.05), transparent 34%);
   }
 
+  /* Reduce transition complexity on mobile for smoother scrolling */
+  a,
+  button {
+    transition:
+      color var(--motion-fast) var(--ease-premium),
+      background-color var(--motion-fast) var(--ease-premium);
+  }
+
   .glass-panel {
-    backdrop-filter: blur(10px);
-    box-shadow: 0 14px 40px -28px rgba(15, 23, 42, 0.2);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 24px -18px rgba(15, 23, 42, 0.18);
   }
 
   .glass-panel-strong {
-    backdrop-filter: blur(12px);
-    box-shadow: 0 16px 44px -28px rgba(15, 23, 42, 0.2);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 28px -20px rgba(15, 23, 42, 0.18);
   }
 
   .paper-panel {
-    box-shadow: 0 12px 34px -26px rgba(15, 23, 42, 0.14);
+    box-shadow: 0 6px 20px -18px rgba(15, 23, 42, 0.12);
   }
 
+  /* Disable grid overlay on mobile — expensive paint layer */
   .section-shell::before {
-    opacity: 0.18;
-    background-size: 28px 28px;
+    display: none;
   }
 
+  /* Disable noise layer on mobile */
   .hero-noise::after {
-    opacity: 0.04;
+    display: none;
   }
 }
 

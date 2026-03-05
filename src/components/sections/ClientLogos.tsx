@@ -27,7 +27,7 @@ const logos: Array<{ name: string; label: string; icon: LucideIcon; color: strin
 
 function LogoPill({ name, label, icon: Icon, color }: { name: string; label: string; icon: LucideIcon; color: string }) {
   return (
-    <div className="group flex shrink-0 items-center gap-3 rounded-2xl border border-white/70 bg-white/95 px-5 py-3 shadow-[0_12px_28px_-22px_rgba(15,23,42,0.24)] xl:gap-3.5 xl:px-6 xl:py-3.5">
+    <div className="group flex shrink-0 items-center gap-3 rounded-2xl border border-white/70 bg-white/95 px-5 py-3 shadow-[0_6px_16px_-14px_rgba(15,23,42,0.2)] sm:shadow-[0_12px_28px_-22px_rgba(15,23,42,0.24)] xl:gap-3.5 xl:px-6 xl:py-3.5">
       <div className={`flex size-10 items-center justify-center rounded-xl border border-white/70 bg-white/85 ${color} xl:size-11`}>
         <Icon className="h-[18px] w-[18px]" />
       </div>
@@ -44,7 +44,7 @@ export default function ClientLogos() {
   const { isMobile } = useMobileViewport();
 
   return (
-    <section className="relative z-10 w-full overflow-hidden border-y border-white/50 bg-white/60 py-12 sm:py-14 xl:py-16">
+    <section className="relative z-10 w-full overflow-hidden border-y border-white/50 bg-white/60 py-8 sm:py-14 xl:py-16">
       <div className="container mx-auto mb-7 max-w-5xl px-4 text-center sm:mb-8 sm:px-6 xl:mb-10 xl:max-w-6xl">
         <motion.p
           className="mb-3 text-xs font-bold uppercase tracking-[0.25em] text-primary"
@@ -94,7 +94,7 @@ export default function ClientLogos() {
         <div className="relative">
           <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-background to-transparent md:w-40 xl:w-56" />
           <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-background to-transparent md:w-40 xl:w-56" />
-          <div className="flex animate-marquee will-change-transform">
+          <div className="flex animate-marquee">
             {[...logos, ...logos].map((logo, index) => (
               <div key={`${logo.name}-${index}`} className="mx-2">
                 <LogoPill name={logo.name} label={logo.label} icon={logo.icon} color={logo.color} />

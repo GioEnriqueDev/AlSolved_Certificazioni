@@ -83,15 +83,14 @@ export default function NeonLogo({ className, size = "md" }: NeonLogoProps) {
           ALSOLVED
         </motion.span>
 
-        <motion.span
+        {/* Static glow — no infinite animation, fixed opacity to save GPU */}
+        <span
           aria-hidden="true"
-          className={cn("absolute inset-0 -z-0 font-bold tracking-[0.18em] text-primary/70", current.text)}
+          className={cn("absolute inset-0 -z-0 font-bold tracking-[0.18em] text-primary/70 opacity-35", current.text)}
           style={{ filter: "blur(7px)" }}
-          animate={reduceMotion ? { opacity: 0.35 } : { opacity: [0.28, 0.45, 0.34] }}
-          transition={reduceMotion ? { duration: 0 } : { duration: 4.8, repeat: Infinity, repeatType: "mirror" }}
         >
           ALSOLVED
-        </motion.span>
+        </span>
       </div>
     </div>
   );
