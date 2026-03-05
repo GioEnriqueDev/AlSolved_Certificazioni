@@ -49,3 +49,5 @@ deploy.zip
 
 # backups
 *.backup.*
+
+.vercel
