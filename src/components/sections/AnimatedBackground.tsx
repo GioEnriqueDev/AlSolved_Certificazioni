@@ -10,49 +10,35 @@ export default function AnimatedBackground() {
       className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-background"
       style={{ contain: "layout style paint" }}
     >
-      {/* SVG Gooey Filter Definition */}
-      <svg className="absolute w-0 h-0" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <filter id="gooey">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="35" result="blur" />
-            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 45 -15" result="gooey" />
-            <feBlend in="SourceGraphic" in2="gooey" />
-          </filter>
-        </defs>
-      </svg>
-
-      {/* Fluid Aurora Complex Layer */}
+      {/* Hardware-Accelerated Fluid Aurora */}
       <div
-        className="absolute inset-0 opacity-[0.85] mix-blend-multiply max-sm:opacity-60"
-        style={{ filter: "url(#gooey)" }}
+        className="absolute inset-0 opacity-80 max-sm:opacity-60 blur-[90px] max-sm:blur-[60px] transform-gpu"
+        style={{ transform: "translateZ(0)" }}
       >
         {/* Core Rose/Pink Blob */}
         <div
-          className={`absolute -top-[10%] left-[10%] h-[45vw] w-[50vw] rounded-full mix-blend-screen opacity-80 max-sm:h-[40vw] max-sm:w-[45vw] ${reduceMotion ? '' : 'animate-aurora-1'}`}
-          style={{ background: 'conic-gradient(from 180deg at 50% 50%, rgba(242,78,107,0.1) 0deg, rgba(226,29,72,0.15) 180deg, rgba(242,78,107,0.1) 360deg)' }}
+          className={`absolute -top-[10%] left-[10%] h-[45vw] w-[50vw] rounded-full max-sm:h-[40vw] max-sm:w-[45vw] ${reduceMotion ? '' : 'animate-aurora-1'}`}
+          style={{ background: 'conic-gradient(from 180deg at 50% 50%, rgba(242,78,107,0.3) 0deg, rgba(226,29,72,0.4) 180deg, rgba(242,78,107,0.3) 360deg)' }}
         />
 
         {/* Secondary Orange/Amber Blob */}
         <div
-          className={`absolute top-[20%] -right-[10%] h-[55vw] w-[45vw] rounded-full mix-blend-screen opacity-80 max-sm:h-[50vw] max-sm:w-[40vw] ${reduceMotion ? '' : 'animate-aurora-2'}`}
-          style={{ background: 'radial-gradient(ellipse at center, rgba(251,146,60,0.15) 0%, rgba(245,158,11,0.05) 70%)' }}
+          className={`absolute top-[20%] -right-[10%] h-[55vw] w-[45vw] rounded-full max-sm:h-[50vw] max-sm:w-[40vw] ${reduceMotion ? '' : 'animate-aurora-2'}`}
+          style={{ background: 'radial-gradient(ellipse at center, rgba(251,146,60,0.4) 0%, rgba(245,158,11,0.1) 70%)' }}
         />
 
         {/* Deep Blue/Indigo Accent Blob */}
         <div
-          className={`absolute -bottom-[20%] left-[20%] h-[60vw] w-[60vw] rounded-full mix-blend-screen opacity-90 max-sm:h-[50vw] max-sm:w-[50vw] ${reduceMotion ? '' : 'animate-aurora-3'}`}
-          style={{ background: 'conic-gradient(from 90deg at 50% 50%, rgba(59,130,246,0.1) 0deg, rgba(99,102,241,0.15) 180deg, rgba(59,130,246,0.1) 360deg)' }}
+          className={`absolute -bottom-[20%] left-[20%] h-[60vw] w-[60vw] rounded-full max-sm:h-[50vw] max-sm:w-[50vw] ${reduceMotion ? '' : 'animate-aurora-3'}`}
+          style={{ background: 'conic-gradient(from 90deg at 50% 50%, rgba(59,130,246,0.3) 0deg, rgba(99,102,241,0.4) 180deg, rgba(59,130,246,0.3) 360deg)' }}
         />
 
         {/* Floating Highlight Blob */}
         <div
-          className={`absolute top-[40%] left-[40%] h-[40vw] w-[40vw] rounded-full mix-blend-color-dodge opacity-60 max-sm:h-[30vw] max-sm:w-[30vw] ${reduceMotion ? '' : 'animate-aurora-4'}`}
-          style={{ background: 'radial-gradient(circle at center, rgba(255,255,255,0.12) 0%, transparent 60%)' }}
+          className={`absolute top-[40%] left-[40%] h-[40vw] w-[40vw] rounded-full opacity-60 max-sm:h-[30vw] max-sm:w-[30vw] ${reduceMotion ? '' : 'animate-aurora-4'}`}
+          style={{ background: 'radial-gradient(circle at center, rgba(255,255,255,0.4) 0%, transparent 60%)' }}
         />
       </div>
-
-      {/* Frosted Glass Diffuser Layer - Creates the Apple/premium feel */}
-      <div className="absolute inset-0 backdrop-blur-[100px] max-sm:backdrop-blur-[60px]" />
 
       {/* Light Film Noise — hidden on mobile */}
       <div
