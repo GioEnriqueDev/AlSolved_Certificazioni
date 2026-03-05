@@ -1,15 +1,14 @@
-﻿"use client";
+"use client";
 
 import { Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { motion, useReducedMotion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+import { ArrowUpRight, Clock, Mail, MapPin, Phone, Sparkles } from "lucide-react";
 import Footer from "@/components/sections/Footer";
 import StaticBackground from "@/components/sections/StaticBackground";
+import BookingCTA from "@/components/ui/BookingCTA";
 import { certifications } from "@/data/certificazioniData";
-import { useMobileViewport } from "@/hooks/useMobileViewport";
-import { Phone, Mail, MapPin, Clock, ArrowUpRight, Sparkles } from "lucide-react";
 
 const contactInfo = [
   {
@@ -33,7 +32,7 @@ const contactInfo = [
   {
     icon: Clock,
     label: "Orari",
-    value: "Lun–Ven · 9:00–18:00",
+    value: "Lun-Ven 9:00-18:00",
     href: null,
   },
 ] as const;
@@ -41,7 +40,6 @@ const contactInfo = [
 function ContattiPageContent() {
   const searchParams = useSearchParams();
   const reduceMotion = useReducedMotion();
-  const { isMobile } = useMobileViewport();
   const certId = searchParams.get("cert") ?? "";
   const selectedCert = certifications.find((cert) => cert.id === certId);
 
@@ -57,15 +55,15 @@ function ContattiPageContent() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <p className="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-primary">Contatti</p>
-            <h1 className="text-balance text-3xl font-black leading-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl xl:text-[4.9rem]">
-              Parlaci del tuo progetto e ti guidiamo noi.
+            <p className="mb-4 text-xs font-bold uppercase tracking-[0.24em] text-primary">Contatti</p>
+            <h1 className="text-balance text-3xl font-black leading-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl xl:text-[4.8rem]">
+              Attiviamo il tuo percorso di certificazione.
             </h1>
-            <p className="mx-auto mt-4 max-w-3xl text-sm font-medium leading-relaxed text-muted-foreground sm:mt-5 sm:text-lg md:text-xl xl:max-w-4xl xl:text-[1.15rem]">
-              Compila il modulo con le tue esigenze: ti ricontattiamo entro 24 ore con una valutazione preliminare gratuita e senza impegno.
+            <p className="mx-auto mt-4 max-w-3xl text-sm font-medium leading-relaxed text-muted-foreground sm:mt-5 sm:text-lg md:text-xl xl:max-w-4xl xl:text-[1.14rem]">
+              Parlaci del tuo contesto operativo: ti guidiamo su priorita, tempi e investimenti con un approccio concreto e orientato al risultato.
             </p>
             {selectedCert ? (
-              <div className="mx-auto mt-5 inline-flex max-w-full items-center gap-2 rounded-full border border-primary/20 bg-primary/8 px-4 py-2 text-sm font-semibold text-primary">
+              <div className="mx-auto mt-5 inline-flex max-w-full items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
                 <Sparkles className="size-4 shrink-0" />
                 <span className="truncate">Richiesta guidata per {selectedCert.subtitle} ({selectedCert.title})</span>
               </div>
@@ -74,61 +72,17 @@ function ContattiPageContent() {
         </div>
       </section>
 
-      <section className="relative z-10 px-4 pb-20 sm:px-6 md:pb-32">
-        <div className="container mx-auto grid max-w-[90rem] grid-cols-1 gap-5 sm:gap-6 xl:grid-cols-[1.12fr_0.88fr] xl:gap-8 2xl:max-w-[96rem] 2xl:gap-10">
-          {isMobile ? (
-            <motion.div
-              initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="-mx-1 flex snap-x snap-mandatory gap-3 overflow-x-auto px-1 pb-1 scrollbar-none"
-            >
-              <a href="tel:+393313653490" className="focus-ring flex min-w-[16rem] shrink-0 snap-start items-center gap-3 rounded-2xl border border-white/80 bg-white/95 p-4 shadow-sm">
-                <span className="inline-flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary"><Phone className="h-[18px] w-[18px]" /></span>
-                <span>
-                  <span className="block text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">Telefono</span>
-                  <span className="block text-sm font-semibold text-foreground">+39 331 365 3490</span>
-                </span>
-              </a>
-              <a href="mailto:info@alsolved.com" className="focus-ring flex min-w-[16rem] shrink-0 snap-start items-center gap-3 rounded-2xl border border-white/80 bg-white/95 p-4 shadow-sm">
-                <span className="inline-flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary"><Mail className="h-[18px] w-[18px]" /></span>
-                <span>
-                  <span className="block text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">Email</span>
-                  <span className="block text-sm font-semibold text-foreground">info@alsolved.com</span>
-                </span>
-              </a>
-            </motion.div>
-          ) : null}
-
-          <motion.div
-            initial={reduceMotion ? false : { opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.55, delay: reduceMotion ? 0 : 0.08 }}
-          >
-            <div className="rounded-[1.4rem] border border-white/80 bg-white/95 p-6 shadow-[0_20px_56px_-34px_rgba(15,23,42,0.28)] sm:rounded-[2rem] sm:p-10 text-center">
-              <h2 className="text-2xl font-black mb-4">Prenota una consulenza o richiedi informazioni</h2>
-              <p className="text-muted-foreground mb-8 text-sm sm:text-base">
-                Per poterti aiutare al meglio, ti chiediamo di compilare un rapido questionario di 3 minuti.
-                Al termine potrai fissare subito a calendario una call strategica di 15 minuti con i nostri esperti.
-              </p>
-              <Link href="/check-up" className="inline-block w-full sm:w-auto">
-                <Button size="lg" className="h-14 w-full sm:w-auto rounded-xl px-8 font-semibold text-white glow-shadow hover:glow-shadow-strong">
-                  Inizia il check-up
-                  <ArrowUpRight className="ml-2 size-5" />
-                </Button>
-              </Link>
-            </div>
-          </motion.div>
-
+      <section className="relative z-10 px-4 pb-16 sm:px-6 md:pb-20">
+        <div className="container mx-auto grid max-w-[92rem] grid-cols-1 gap-5 xl:grid-cols-[1.06fr_0.94fr] xl:gap-7 2xl:max-w-[96rem]">
           <motion.aside
-            initial={reduceMotion ? false : { opacity: 0, x: 20 }}
+            initial={reduceMotion ? false : { opacity: 0, x: -16 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.55, delay: reduceMotion ? 0 : 0.12 }}
-            className="space-y-4 sm:space-y-6 xl:sticky xl:top-28 xl:self-start"
+            transition={{ duration: 0.5 }}
+            className="space-y-4 sm:space-y-5"
           >
-            <div className="rounded-[1.4rem] border border-white/80 bg-white/95 p-4 shadow-[0_20px_56px_-34px_rgba(15,23,42,0.28)] sm:rounded-[1.75rem] sm:p-6">
-              <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">Informazioni di contatto</p>
-              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-1">
+            <div className="rounded-[1.45rem] border border-white/76 bg-white/84 p-4 shadow-[0_22px_62px_-36px_rgba(15,23,42,0.28)] backdrop-blur-xl sm:p-6 xl:rounded-[1.8rem] xl:p-7">
+              <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">Contatto diretto</p>
+              <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
                 {contactInfo.map((info) => {
                   const content = (
                     <>
@@ -149,7 +103,7 @@ function ContattiPageContent() {
                         href={info.href}
                         target={info.href.startsWith("http") ? "_blank" : undefined}
                         rel={info.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                        className="focus-ring flex items-start gap-3 rounded-2xl border border-white/75 bg-white/75 p-4 shadow-sm hover:border-primary/20"
+                        className="focus-ring flex items-start gap-3 rounded-2xl border border-white/74 bg-white/84 p-4 shadow-sm hover:border-primary/20"
                       >
                         {content}
                         <ArrowUpRight className="ml-auto mt-0.5 size-4 text-muted-foreground" />
@@ -158,7 +112,7 @@ function ContattiPageContent() {
                   }
 
                   return (
-                    <div key={info.label} className="flex items-start gap-3 rounded-2xl border border-white/75 bg-white/75 p-4 shadow-sm">
+                    <div key={info.label} className="flex items-start gap-3 rounded-2xl border border-white/74 bg-white/84 p-4 shadow-sm">
                       {content}
                     </div>
                   );
@@ -166,19 +120,33 @@ function ContattiPageContent() {
               </div>
             </div>
 
-            <div className="rounded-[1.4rem] border border-white/80 bg-white/95 p-4 shadow-[0_20px_56px_-34px_rgba(15,23,42,0.28)] sm:rounded-[1.75rem] sm:p-6">
+            <div className="rounded-[1.45rem] border border-white/76 bg-white/84 p-4 shadow-[0_22px_62px_-36px_rgba(15,23,42,0.28)] backdrop-blur-xl sm:p-6 xl:rounded-[1.8rem] xl:p-7">
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">Come lavoriamo</p>
               <ul className="space-y-3 text-sm font-medium leading-relaxed text-muted-foreground">
-                <li className="rounded-xl border border-white/70 bg-white/70 p-3"><span className="font-semibold text-foreground">1.</span> Analisi del contesto e degli obiettivi commerciali/compliance.</li>
-                <li className="rounded-xl border border-white/70 bg-white/70 p-3"><span className="font-semibold text-foreground">2.</span> Priorità certificazioni + valutazione del livello di readiness attuale.</li>
-                <li className="rounded-xl border border-white/70 bg-white/70 p-3"><span className="font-semibold text-foreground">3.</span> Roadmap operativa con tempistiche, deliverable e piano di attivazione.</li>
+                <li className="rounded-xl border border-white/72 bg-white/82 p-3">
+                  <span className="font-semibold text-foreground">1.</span> Analisi contesto, obiettivi e priorita di business.
+                </li>
+                <li className="rounded-xl border border-white/72 bg-white/82 p-3">
+                  <span className="font-semibold text-foreground">2.</span> Valutazione readiness e selezione certificazione ideale.
+                </li>
+                <li className="rounded-xl border border-white/72 bg-white/82 p-3">
+                  <span className="font-semibold text-foreground">3.</span> Piano operativo con tempi, deliverable e ownership chiare.
+                </li>
               </ul>
-              <Link href="/metodo" className="focus-ring mt-4 inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/80 px-4 py-2 text-sm font-semibold text-foreground hover:text-primary">
+              <Link href="/metodo" className="focus-ring mt-4 inline-flex items-center gap-2 rounded-full border border-white/78 bg-white/88 px-4 py-2 text-sm font-semibold text-foreground hover:text-primary">
                 Scopri il metodo ALSOLVED
                 <ArrowUpRight className="size-4" />
               </Link>
             </div>
           </motion.aside>
+
+          <motion.div
+            initial={reduceMotion ? false : { opacity: 0, x: 16 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: reduceMotion ? 0 : 0.07 }}
+          >
+            <BookingCTA />
+          </motion.div>
         </div>
       </section>
 
@@ -193,8 +161,8 @@ function ContattiPageFallback() {
       <StaticBackground />
       <section className="px-4 pb-24 pt-24 sm:px-6 md:pt-32">
         <div className="container mx-auto max-w-6xl">
-          <div className="rounded-[1.5rem] border border-white/80 bg-white/95 p-5 shadow-[0_22px_64px_-34px_rgba(15,23,42,0.28)] sm:rounded-[2rem] sm:p-8">
-            <p className="text-sm font-semibold text-muted-foreground">Caricamento modulo contatti…</p>
+          <div className="rounded-[1.5rem] border border-white/76 bg-white/86 p-5 shadow-[0_22px_64px_-34px_rgba(15,23,42,0.28)] sm:rounded-[2rem] sm:p-8">
+            <p className="text-sm font-semibold text-muted-foreground">Caricamento modulo contatti...</p>
           </div>
         </div>
       </section>

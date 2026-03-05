@@ -1,109 +1,113 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
+
+function readCity(data: Record<string, unknown>) {
+  return (data.citta as string) || (data["città"] as string) || (data["cittÃ "] as string) || "";
+}
 
 export async function POST(request: Request) {
-    try {
-        const data = await request.json();
-        const token = process.env.HUBSPOT_ACCESS_TOKEN;
+  try {
+    const data = (await request.json()) as Record<string, unknown>;
+    const token = process.env.HUBSPOT_ACCESS_TOKEN;
 
-        if (!token) {
-            console.error('HubSpot token missing');
-            return NextResponse.json({ success: false, error: 'Configurazione server mancante' }, { status: 500 });
-        }
+    if (!token) {
+      console.error("HubSpot token missing");
+      return NextResponse.json({ success: false, error: "Configurazione server mancante" }, { status: 500 });
+    }
 
-        // Costruiamo un bel messaggio riassuntivo per il campo notes / messaggio
-        const summaryMessage = `
+    const city = readCity(data);
+    const summaryMessage = `
 --- ANALISI PRELIMINARE ALSOLVED ---
-RUOLO: ${data.ruolo || 'Non specificato'}
-SEDE: ${data.indirizzo} ${data.indirizzo2 ? '(' + data.indirizzo2 + ')' : ''}, ${data.città}, ${data.provincia} ${data.cap}
-REGISTRO IMPRESE: ${data.registroImprese || 'Non specificato'}
-SEDI MULTIPLE: ${data.sediMultiple} ${data.doveSediMultiple ? '- ' + data.doveSediMultiple : ''}
-P.IVA: ${data.piva}
-ANNO APERTURA: ${data.annoApertura}
-SETTORE ATECO: ${data.ateco}
+RUOLO: ${String(data.ruolo || "Non specificato")}
+SEDE: ${String(data.indirizzo || "")} ${data.indirizzo2 ? `(${String(data.indirizzo2)})` : ""}, ${city}, ${String(data.provincia || "")} ${String(data.cap || "")}
+REGISTRO IMPRESE: ${String(data.registroImprese || "Non specificato")}
+SEDI MULTIPLE: ${String(data.sediMultiple || "Non specificato")} ${data.doveSediMultiple ? `- ${String(data.doveSediMultiple)}` : ""}
+P.IVA: ${String(data.piva || "Non specificato")}
+ANNO APERTURA: ${String(data.annoApertura || "Non specificato")}
+SETTORE ATECO: ${String(data.ateco || "Non specificato")}
 
 -- DIMENSIONI --
-DIPENDENTI: ${data.dipendenti}
-FATTURATO 2024: ${data.fatturato2024}
-FATTURATO 2025: ${data.fatturato2025}
+DIPENDENTI: ${String(data.dipendenti || "Non specificato")}
+FATTURATO 2024: ${String(data.fatturato2024 || "Non specificato")}
+FATTURATO 2025: ${String(data.fatturato2025 || "Non specificato")}
 
 -- REQUISITI E OBIETTIVI --
-DURC REGOLARE: ${data.durc}
-IMPRESA GIOVANILE: ${data.giovanile}
-IMPRESA FEMMINILE: ${data.femminile}
-OBIETTIVO CERTIFICAZIONE: ${data.certificazione}
-HA PARITA' GENERE: ${data.paritaGenere}
-HA AMBIENTALE: ${data.ambientale}
+DURC REGOLARE: ${String(data.durc || "Non specificato")}
+IMPRESA GIOVANILE: ${String(data.giovanile || "Non specificato")}
+IMPRESA FEMMINILE: ${String(data.femminile || "Non specificato")}
+OBIETTIVO CERTIFICAZIONE: ${String(data.certificazione || "Non specificato")}
+HA PARITA DI GENERE: ${String(data.paritaGenere || "Non specificato")}
+HA CERTIFICAZIONE AMBIENTALE: ${String(data.ambientale || "Non specificato")}
 
-URL PROVENIENZA: ${data.sourceUrl || '/'}
+URL PROVENIENZA: ${String(data.sourceUrl || "/")}
     `.trim();
 
-        // Inviamo i dati all'API di HubSpot
-        const response = await fetch('https://api.hubapi.com/crm/v3/objects/contacts', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify({
-                properties: {
-                    firstname: data.nome,
-                    lastname: data.cognome,
-                    email: data.email,
-                    phone: data.telefono,
-                    company: data.azienda,
-                    website: data.sitoWeb,
-                    city: data.città,
-                    zip: data.cap,
-                    address: data.indirizzo,
-                    state: data.provincia,
-                    // Mettiamo tutte le info extra nel messaggio che hai creato (o nel campo base di Hubspot se fallisce)
-                    messaggio_richiesta_analisi: summaryMessage,
-                    // Proviamo a mappare i campi custom di testo (se falliscono Hubspot darà 400, in tal caso faremo un fallback)
-                    certificazione_interesse: data.certificazione,
-                    ruolo_referente: data.ruolo,
-                    fonte_form: "Sito Web Wizard",
-                    pagina_invio_form: data.sourceUrl || "Sito"
-                }
-            })
-        });
+    const hubspotPayload = {
+      properties: {
+        firstname: String(data.nome || ""),
+        lastname: String(data.cognome || ""),
+        email: String(data.email || ""),
+        phone: String(data.telefono || ""),
+        company: String(data.azienda || ""),
+        website: String(data.sitoWeb || ""),
+        city,
+        zip: String(data.cap || ""),
+        address: String(data.indirizzo || ""),
+        state: String(data.provincia || ""),
+        messaggio_richiesta_analisi: summaryMessage,
+        certificazione_interesse: String(data.certificazione || ""),
+        ruolo_referente: String(data.ruolo || ""),
+        fonte_form: "Sito Web Wizard",
+        pagina_invio_form: String(data.sourceUrl || "Sito"),
+      },
+    };
 
-        const result = await response.json();
+    const response = await fetch("https://api.hubapi.com/crm/v3/objects/contacts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(hubspotPayload),
+    });
 
-        // Se Hubspot si lamenta di proprietà inesistenti (es. messaggio_richiesta_analisi scritto in modo diverso), facciamo un fallback coi campi standard
-        if (!response.ok && result.category === 'PROPERTY_DOESNT_EXIST') {
-            console.warn("HubSpot schema issue, falling back to standard properties...");
-            const fallbackResponse = await fetch('https://api.hubapi.com/crm/v3/objects/contacts', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify({
-                    properties: {
-                        firstname: data.nome,
-                        lastname: data.cognome,
-                        email: data.email,
-                        phone: data.telefono,
-                        company: data.azienda,
-                        message: summaryMessage // usa campo default HubSpot per le note di contatto se esiste, altrimenti si affida solo a firstname/email
-                    }
-                })
-            });
-            if (!fallbackResponse.ok) {
-                throw new Error("Fallback failed");
-            }
-            return NextResponse.json({ success: true, redirect: 'https://calendly.com/consulenza-alsolved/prenota-una-call-' });
-        }
+    const result = await response.json();
 
-        if (!response.ok) {
-            console.error('HubSpot API Error:', result);
-            throw new Error(`HubSpot Error: ${result.message}`);
-        }
+    if (!response.ok && result?.category === "PROPERTY_DOESNT_EXIST") {
+      const fallbackResponse = await fetch("https://api.hubapi.com/crm/v3/objects/contacts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          properties: {
+            firstname: String(data.nome || ""),
+            lastname: String(data.cognome || ""),
+            email: String(data.email || ""),
+            phone: String(data.telefono || ""),
+            company: String(data.azienda || ""),
+            message: summaryMessage,
+          },
+        }),
+      });
 
-        return NextResponse.json({ success: true, redirect: 'https://calendly.com/consulenza-alsolved/prenota-una-call-' });
+      if (!fallbackResponse.ok) {
+        const fallbackResult = await fallbackResponse.json();
+        console.error("HubSpot fallback error:", fallbackResult);
+        throw new Error("Fallback failed");
+      }
 
-    } catch (error) {
-        console.error('Form submission error:', error);
-        return NextResponse.json({ success: false, error: 'Errore durante l\'invio. Riprova più tardi.' }, { status: 500 });
+      return NextResponse.json({ success: true, redirect: "https://calendly.com/consulenza-alsolved/prenota-una-call-" });
     }
+
+    if (!response.ok) {
+      console.error("HubSpot API Error:", result);
+      throw new Error(`HubSpot Error: ${result?.message || "Unknown error"}`);
+    }
+
+    return NextResponse.json({ success: true, redirect: "https://calendly.com/consulenza-alsolved/prenota-una-call-" });
+  } catch (error) {
+    console.error("Form submission error:", error);
+    return NextResponse.json({ success: false, error: "Errore durante l'invio. Riprova piu tardi." }, { status: 500 });
+  }
 }

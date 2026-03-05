@@ -20,7 +20,7 @@ export default function NeonLogo({ className, size = "md" }: NeonLogoProps) {
 
   return (
     <div className={cn("relative inline-flex items-center", current.gap, className)}>
-      <span className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-primary/15 blur-xl opacity-70" />
+      <span className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-primary/18 blur-xl opacity-70" />
 
       <motion.svg
         width={current.icon}
@@ -35,8 +35,8 @@ export default function NeonLogo({ className, size = "md" }: NeonLogoProps) {
       >
         <defs>
           <linearGradient id="alsolved-stroke" x1="6" y1="6" x2="40" y2="38" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#F24E6B" />
-            <stop offset="1" stopColor="#FB923C" />
+            <stop stopColor="#007AFF" />
+            <stop offset="1" stopColor="#0EA5E9" />
           </linearGradient>
           <filter id="alsolved-glow" x="-40%" y="-40%" width="180%" height="180%">
             <feGaussianBlur stdDeviation="2" result="blur" />
@@ -78,7 +78,7 @@ export default function NeonLogo({ className, size = "md" }: NeonLogoProps) {
           initial={reduceMotion ? false : { opacity: 0, y: 4 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35, delay: reduceMotion ? 0 : 0.18 }}
-          style={{ textShadow: "0 1px 0 rgba(255,255,255,0.9), 0 10px 25px rgba(15,23,42,0.06)" }}
+          style={{ textShadow: "0 1px 0 rgba(255,255,255,0.9), 0 10px 28px rgba(15,23,42,0.08)" }}
         >
           ALSOLVED
         </motion.span>
