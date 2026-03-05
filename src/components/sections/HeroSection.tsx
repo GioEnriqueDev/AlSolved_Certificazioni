@@ -19,7 +19,7 @@ export default function HeroSection() {
 
   return (
     <section className="section-shell relative flex min-h-[85svh] items-center overflow-hidden px-4 pt-24 sm:min-h-[94svh] sm:px-6 md:pt-32 xl:min-h-[96svh]">
-      <div className="pointer-events-none absolute inset-0">
+      <div className="pointer-events-none absolute inset-0 max-sm:hidden">
         <div className="absolute left-[8%] top-[12%] h-52 w-52 rounded-full sm:h-72 sm:w-72" style={{ background: 'radial-gradient(circle, rgba(242,78,107,0.12) 0%, transparent 70%)' }} />
         <div className="absolute right-[10%] top-[10%] h-56 w-56 rounded-full sm:h-80 sm:w-80" style={{ background: 'radial-gradient(circle, rgba(251,146,60,0.14) 0%, transparent 70%)' }} />
         <div className="absolute bottom-[14%] left-1/2 h-40 w-[26rem] max-w-[92vw] -translate-x-1/2 rounded-full sm:bottom-[12%] sm:h-56 sm:w-[42rem]" style={{ background: 'radial-gradient(ellipse, rgba(59,130,246,0.12) 0%, transparent 70%)' }} />
@@ -44,7 +44,7 @@ export default function HeroSection() {
 
           <motion.h1
             variants={fadeUpVariant}
-            className="text-balance text-[2rem] font-black leading-[0.98] text-foreground sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.35rem] 2xl:text-[6rem]"
+            className="text-balance text-[2.25rem] font-black leading-[0.98] text-foreground sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.35rem] 2xl:text-[6rem]"
           >
             Trasformiamo la conformità in
             <span className="relative mt-2 block text-transparent bg-clip-text bg-gradient-to-r from-primary via-rose-500 to-orange-400 bg-[length:200%_auto]" style={{ animation: reduceMotion ? "none" : "gradient-shift 5s ease-in-out 1 forwards" }}>
@@ -84,7 +84,7 @@ export default function HeroSection() {
           transition={{ duration: 0.7, delay: reduceMotion ? 0 : 0.15, ease: [0.16, 1, 0.3, 1] }}
           className="relative mx-auto w-full max-w-xl lg:max-w-none xl:max-w-[42rem]"
         >
-          <div className="relative overflow-hidden rounded-[1.5rem] border border-white/70 bg-white/92 p-3 shadow-[0_18px_55px_-28px_rgba(15,23,42,0.16),0_6px_18px_-12px_rgba(15,23,42,0.08)] sm:rounded-[2rem] sm:p-5 xl:rounded-[2.25rem] xl:p-6">
+          <div className="relative overflow-hidden rounded-[1.25rem] border border-white/50 bg-white/70 p-4 shadow-[0_18px_55px_-28px_rgba(15,23,42,0.16),0_6px_18px_-12px_rgba(15,23,42,0.08)] backdrop-blur-xl sm:rounded-[2rem] sm:p-5 xl:rounded-[2.25rem] xl:p-6">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_10%,rgba(242,78,107,0.14),transparent_55%),radial-gradient(circle_at_10%_90%,rgba(59,130,246,0.12),transparent_48%)]" />
 
             <div className="relative grid gap-4 sm:grid-cols-2 xl:gap-5">

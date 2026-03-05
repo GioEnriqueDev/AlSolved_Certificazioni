@@ -12,25 +12,31 @@ export default function AnimatedBackground() {
     >
       {/* PS5 Wave Aurora Layer */}
       <div
-        className="absolute inset-x-0 top-0 bottom-0 flex flex-col items-center justify-center opacity-85 max-sm:opacity-65 blur-[100px] max-sm:blur-[65px] transform-gpu"
+        className="absolute inset-0 opacity-90 max-sm:opacity-75 blur-[100px] max-sm:blur-[65px] transform-gpu"
         style={{ transform: "translateZ(0)" }}
       >
-        {/* Core Rose Wave */}
+        {/* Rose / Primary — upper-left zone */}
         <div
-          className={`absolute left-[-25vw] h-[45vh] w-[150vw] rotate-[-8deg] origin-center max-sm:h-[35vh] max-sm:w-[200vw] ${reduceMotion ? '' : 'animate-wave-1'}`}
-          style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(242,78,107,0.4) 40%, rgba(226,29,72,0.45) 60%, transparent 100%)' }}
+          className={`absolute left-[-15%] top-[-10%] h-[60vh] w-[70vw] max-sm:h-[50vh] max-sm:w-[90vw] ${reduceMotion ? '' : 'animate-wave-1'}`}
+          style={{ background: 'radial-gradient(ellipse at 40% 45%, rgba(242,78,107,0.38) 0%, rgba(226,29,72,0.12) 50%, transparent 80%)' }}
         />
 
-        {/* Deep Blue Wave */}
+        {/* Blue / Indigo — center-right zone */}
         <div
-          className={`absolute right-[-25vw] top-[30%] h-[55vh] w-[150vw] rotate-[6deg] origin-center max-sm:h-[45vh] max-sm:w-[200vw] ${reduceMotion ? '' : 'animate-wave-2'}`}
-          style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(59,130,246,0.35) 40%, rgba(99,102,241,0.4) 60%, transparent 100%)' }}
+          className={`absolute right-[-10%] top-[25%] h-[65vh] w-[65vw] max-sm:h-[55vh] max-sm:w-[85vw] ${reduceMotion ? '' : 'animate-wave-2'}`}
+          style={{ background: 'radial-gradient(ellipse at 55% 50%, rgba(59,130,246,0.32) 0%, rgba(99,102,241,0.1) 55%, transparent 82%)' }}
         />
 
-        {/* Secondary Orange/Amber Highlight Wave */}
+        {/* Amber / Orange — lower-left zone */}
         <div
-          className={`absolute left-0 bottom-[10%] h-[35vh] w-[120vw] rotate-[-4deg] origin-center max-sm:h-[25vh] max-sm:w-[150vw] ${reduceMotion ? '' : 'animate-wave-3'}`}
-          style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(251,146,60,0.3) 50%, rgba(245,158,11,0.15) 80%, transparent 100%)' }}
+          className={`absolute left-[5%] top-[55%] h-[50vh] w-[55vw] max-sm:h-[40vh] max-sm:w-[75vw] ${reduceMotion ? '' : 'animate-wave-3'}`}
+          style={{ background: 'radial-gradient(ellipse at 45% 55%, rgba(251,146,60,0.28) 0%, rgba(245,158,11,0.08) 55%, transparent 80%)' }}
+        />
+
+        {/* White highlight — center, for depth & luminosity */}
+        <div
+          className="absolute left-[20%] top-[15%] h-[45vh] w-[50vw] max-sm:h-[35vh] max-sm:w-[60vw] opacity-50"
+          style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.5) 0%, transparent 65%)' }}
         />
       </div>
 
@@ -43,8 +49,8 @@ export default function AnimatedBackground() {
         }}
       />
 
-      {/* Bottom fade */}
-      <div className="absolute inset-x-0 bottom-0 h-[30vh] bg-gradient-to-t from-background via-background/80 to-transparent" />
+      {/* Bottom fade — softer than before */}
+      <div className="absolute inset-x-0 bottom-0 h-[20vh] bg-gradient-to-t from-background/80 to-transparent" />
     </div>
   );
 }

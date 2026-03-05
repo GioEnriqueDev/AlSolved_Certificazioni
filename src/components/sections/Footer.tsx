@@ -34,7 +34,7 @@ export default function Footer() {
     <footer className="relative z-10 border-t border-white/55 bg-white/50 px-4 pb-[calc(env(safe-area-inset-bottom)+2.5rem)] pt-12 sm:px-6 sm:pt-16 xl:pt-20">
       <div className="container mx-auto max-w-[90rem] 2xl:max-w-[96rem]">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-[1.12fr_0.72fr_0.72fr_1fr] xl:gap-6">
-          <div className="rounded-[1.15rem] border border-white/75 bg-white/90 p-4 shadow-sm sm:col-span-2 sm:rounded-[1.5rem] sm:p-6 lg:col-span-1 xl:rounded-[1.75rem] xl:p-7">
+          <div className="rounded-[1.25rem] border border-white/50 bg-white/70 p-4 shadow-sm backdrop-blur-xl sm:col-span-2 sm:rounded-[1.5rem] sm:p-6 lg:col-span-1 xl:rounded-[1.75rem] xl:p-7">
             <Link href="/" className="focus-ring inline-flex rounded-xl" aria-label="ALSOLVED homepage">
               <NeonLogo size="md" />
             </Link>
@@ -50,7 +50,7 @@ export default function Footer() {
             </Link>
           </div>
 
-          <div className="rounded-[1.15rem] border border-white/70 bg-white/85 p-4 shadow-sm sm:rounded-[1.5rem] sm:p-6 xl:rounded-[1.75rem] xl:p-7">
+          <div className="rounded-[1.25rem] border border-white/50 bg-white/70 p-4 shadow-sm backdrop-blur-lg sm:rounded-[1.5rem] sm:p-6 xl:rounded-[1.75rem] xl:p-7">
             <h4 className="mb-4 text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">Certificazioni chiave</h4>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
@@ -63,7 +63,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="rounded-[1.15rem] border border-white/70 bg-white/85 p-4 shadow-sm sm:rounded-[1.5rem] sm:p-6 xl:rounded-[1.75rem] xl:p-7">
+          <div className="rounded-[1.25rem] border border-white/50 bg-white/70 p-4 shadow-sm backdrop-blur-lg sm:rounded-[1.5rem] sm:p-6 xl:rounded-[1.75rem] xl:p-7">
             <h4 className="mb-4 text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">Navigazione</h4>
             <ul className="space-y-3">
               {navLinks.map((link) => (
@@ -76,7 +76,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="rounded-[1.15rem] border border-white/70 bg-white/85 p-4 shadow-sm sm:col-span-2 sm:rounded-[1.5rem] sm:p-6 lg:col-span-1 xl:rounded-[1.75rem] xl:p-7">
+          <div className="rounded-[1.25rem] border border-white/50 bg-white/70 p-4 shadow-sm backdrop-blur-xl sm:col-span-2 sm:rounded-[1.5rem] sm:p-6 lg:col-span-1 xl:rounded-[1.75rem] xl:p-7">
             <h4 className="mb-4 text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">Contatti</h4>
             <ul className="space-y-3">
               {contactLinks.map((item) => (

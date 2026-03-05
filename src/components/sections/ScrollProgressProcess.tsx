@@ -48,7 +48,7 @@ const steps = [
 function ProcessCard({ step, desktop = false }: { step: (typeof steps)[number]; desktop?: boolean }) {
   return (
     <article
-      className={`group relative flex h-full flex-col rounded-[1.5rem] border border-white/75 bg-white/95 p-5 shadow-[0_18px_44px_-28px_rgba(15,23,42,0.22)] sm:rounded-[1.75rem] sm:p-6 ${desktop ? "xl:rounded-[1.9rem] xl:p-7" : ""
+      className={`group relative flex h-full flex-col rounded-[1.25rem] border border-white/50 bg-white/70 p-5 shadow-[0_18px_44px_-28px_rgba(15,23,42,0.22)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-primary/15 sm:rounded-[1.75rem] sm:p-6 ${desktop ? "xl:rounded-[1.9rem] xl:p-7" : ""
         }`}
     >
       <div className={`absolute -top-3 left-5 sm:left-6 ${desktop ? "xl:left-7" : ""}`}>

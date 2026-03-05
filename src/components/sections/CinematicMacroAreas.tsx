@@ -85,7 +85,7 @@ export default function CinematicMacroAreas() {
           {macroAreas.map((area, index) => (
             <motion.article
               key={area.id}
-              className="group relative overflow-hidden rounded-[1.15rem] border border-white/70 bg-white/95 p-4 shadow-[0_14px_36px_-26px_rgba(15,23,42,0.22)] sm:rounded-[1.75rem] sm:p-6 md:p-8 xl:min-h-[31rem] xl:rounded-[2.15rem] xl:p-9"
+              className="group relative overflow-hidden rounded-[1.25rem] border border-white/50 bg-white/70 p-5 shadow-[0_14px_36px_-26px_rgba(15,23,42,0.22)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-primary/15 sm:rounded-[1.75rem] sm:p-6 md:p-8 xl:min-h-[31rem] xl:rounded-[2rem] xl:p-9"
               initial={reduceMotion ? false : { opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-6%" }}
@@ -116,7 +116,7 @@ export default function CinematicMacroAreas() {
                 <div className="mt-4 flex flex-wrap gap-2 sm:mt-5 xl:mt-6 xl:gap-2.5">
                   {area.chips.map((chip, chipIndex) => (
                     <Link key={chip} href={`/certificazioni/${area.links[chipIndex]}`} className="focus-ring rounded-xl">
-                      <span className="inline-flex items-center rounded-xl border border-white/80 bg-white/85 px-3 py-1.5 text-xs font-bold text-foreground shadow-sm hover:border-primary/20 hover:bg-white">
+                      <span className="inline-flex items-center rounded-xl border border-white/70 bg-white/75 px-4 py-2 text-xs font-bold text-foreground shadow-sm backdrop-blur-sm hover:border-primary/20 hover:bg-white min-h-[44px] sm:min-h-0 sm:px-3 sm:py-1.5">
                         {chip}
                       </span>
                     </Link>

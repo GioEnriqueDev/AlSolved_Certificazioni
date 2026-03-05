@@ -23,7 +23,7 @@ export default function FinalCTA() {
       </div>
 
       <motion.div
-        className="container relative mx-auto max-w-5xl rounded-[1.35rem] border border-white/80 bg-white/95 p-5 text-center shadow-[0_22px_60px_-34px_rgba(15,23,42,0.28)] sm:rounded-[2rem] sm:p-8 md:p-14 xl:max-w-[90rem] xl:p-12 2xl:max-w-[96rem] 2xl:p-14"
+        className="container relative mx-auto max-w-5xl rounded-[1.25rem] border border-white/50 bg-white/70 p-5 text-center shadow-[0_22px_60px_-34px_rgba(15,23,42,0.28)] backdrop-blur-xl sm:rounded-[2rem] sm:p-8 md:p-14 xl:max-w-[90rem] xl:p-12 2xl:max-w-[96rem] 2xl:p-14"
         initial={reduceMotion ? false : { opacity: 0, y: 22 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-12%" }}
@@ -36,7 +36,7 @@ export default function FinalCTA() {
         <div className="relative z-10 xl:grid xl:grid-cols-[1.06fr_0.94fr] xl:items-center xl:gap-10 xl:text-left">
           <div>
             <p className="mb-5 text-xs font-bold uppercase tracking-[0.25em] text-primary">Pronto a iniziare?</p>
-            <h2 className="text-balance text-[1.55rem] font-black leading-[1.02] text-foreground sm:text-4xl md:text-6xl lg:text-7xl xl:max-w-4xl xl:text-[4.2rem] 2xl:text-[4.6rem]">
+            <h2 className="text-balance text-[1.75rem] font-black leading-[1.02] text-foreground sm:text-4xl md:text-6xl lg:text-7xl xl:max-w-4xl xl:text-[4.2rem] 2xl:text-[4.6rem]">
               Smetti di perdere opportunità per colpa della compliance.
             </h2>
             <p className="mx-auto mt-5 max-w-3xl text-sm font-medium leading-relaxed text-muted-foreground sm:mt-6 sm:text-lg md:text-xl xl:mx-0 xl:mt-7 xl:max-w-[40rem] xl:text-[1.15rem]">
