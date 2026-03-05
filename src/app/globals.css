@@ -163,31 +163,8 @@
     position: relative;
   }
 
-  .section-shell::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background-image:
-      linear-gradient(rgba(15, 23, 42, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
-    background-size: 36px 36px;
-    mask-image: radial-gradient(circle at center, black 38%, transparent 100%);
-    opacity: 0.4;
-  }
-
   .hero-noise {
     position: relative;
-  }
-
-  .hero-noise::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.08;
-    mix-blend-mode: multiply;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
   .pill-chip {
@@ -244,11 +221,6 @@
 @media (min-width: 1280px) {
   html {
     scroll-padding-top: 6rem;
-  }
-
-  .section-shell::before {
-    background-size: 40px 40px;
-    opacity: 0.34;
   }
 
   .pill-chip {
@@ -408,6 +380,7 @@
       background-color var(--motion-fast) var(--ease-premium);
   }
 
+  /* Disable legacy elements on mobile to save performance */
   .glass-panel {
     backdrop-filter: blur(8px);
     box-shadow: 0 8px 24px -18px rgba(15, 23, 42, 0.18);
@@ -420,16 +393,6 @@
 
   .paper-panel {
     box-shadow: 0 6px 20px -18px rgba(15, 23, 42, 0.12);
-  }
-
-  /* Disable grid overlay on mobile — expensive paint layer */
-  .section-shell::before {
-    display: none;
-  }
-
-  /* Disable noise layer on mobile */
-  .hero-noise::after {
-    display: none;
   }
 }
 
