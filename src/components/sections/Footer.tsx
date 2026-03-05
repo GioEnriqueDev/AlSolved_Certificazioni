@@ -1,8 +1,8 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import { Mail, Phone, MapPin, ArrowUpRight } from "lucide-react";
 import NeonLogo from "@/components/ui/NeonLogo";
 
 const quickLinks = [
@@ -34,11 +34,11 @@ export default function Footer() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <footer className="relative z-10 border-t border-white/62 bg-white/52 px-4 pb-[calc(env(safe-area-inset-bottom)+2.5rem)] pt-12 sm:px-6 sm:pt-16 xl:pt-20">
-      <div className="container mx-auto max-w-[92rem] 2xl:max-w-[96rem]">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-[1.1fr_0.72fr_0.72fr_1fr] xl:gap-6">
+    <footer className="relative z-10 border-t border-white/55 bg-white/50 px-4 pb-[calc(env(safe-area-inset-bottom)+2.5rem)] pt-12 sm:px-6 sm:pt-16 xl:pt-20">
+      <div className="container mx-auto max-w-[90rem] 2xl:max-w-[96rem]">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-[1.12fr_0.72fr_0.72fr_1fr] xl:gap-6">
           <motion.div
-            className="rounded-[1.35rem] border border-white/74 bg-white/78 p-4 shadow-sm backdrop-blur-xl sm:col-span-2 sm:rounded-[1.55rem] sm:p-6 lg:col-span-1 xl:rounded-[1.8rem] xl:p-7"
+            className="rounded-[1.25rem] border border-white/50 bg-white/70 p-4 shadow-sm backdrop-blur-xl sm:col-span-2 sm:rounded-[1.5rem] sm:p-6 lg:col-span-1 xl:rounded-[1.75rem] xl:p-7"
             initial={reduceMotion ? false : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-5%" }}
@@ -48,11 +48,11 @@ export default function Footer() {
               <NeonLogo size="md" />
             </Link>
             <p className="mt-4 text-sm font-medium leading-relaxed text-muted-foreground">
-              Partner tecnico per certificazioni ISO e compliance. Disegniamo sistemi gestionali che aumentano affidabilita, controllo e vantaggio competitivo.
+              Partner tecnico per certificazioni ISO, compliance e audit readiness. Progettiamo sistemi che migliorano processi, riducono rischio e aumentano credibilità commerciale.
             </p>
             <Link
               href="/check-up"
-              className="focus-ring mt-5 inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/88 px-4 py-2 text-sm font-semibold text-foreground shadow-sm hover:border-primary/20 hover:text-primary"
+              className="focus-ring mt-5 inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/85 px-4 py-2 text-sm font-semibold text-foreground shadow-sm hover:border-primary/20 hover:text-primary"
             >
               Richiedi analisi preliminare
               <ArrowUpRight className="size-4" />
@@ -60,13 +60,13 @@ export default function Footer() {
           </motion.div>
 
           <motion.div
-            className="rounded-[1.35rem] border border-white/74 bg-white/78 p-4 shadow-sm backdrop-blur-lg sm:rounded-[1.55rem] sm:p-6 xl:rounded-[1.8rem] xl:p-7"
+            className="rounded-[1.25rem] border border-white/50 bg-white/70 p-4 shadow-sm backdrop-blur-lg sm:rounded-[1.5rem] sm:p-6 xl:rounded-[1.75rem] xl:p-7"
             initial={reduceMotion ? false : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-5%" }}
             transition={{ duration: 0.5, delay: reduceMotion ? 0 : 0.06, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h4 className="mb-4 text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">Certificazioni Chiave</h4>
+            <h4 className="mb-4 text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">Certificazioni chiave</h4>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.href}>
@@ -79,7 +79,7 @@ export default function Footer() {
           </motion.div>
 
           <motion.div
-            className="rounded-[1.35rem] border border-white/74 bg-white/78 p-4 shadow-sm backdrop-blur-lg sm:rounded-[1.55rem] sm:p-6 xl:rounded-[1.8rem] xl:p-7"
+            className="rounded-[1.25rem] border border-white/50 bg-white/70 p-4 shadow-sm backdrop-blur-lg sm:rounded-[1.5rem] sm:p-6 xl:rounded-[1.75rem] xl:p-7"
             initial={reduceMotion ? false : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-5%" }}
@@ -98,7 +98,7 @@ export default function Footer() {
           </motion.div>
 
           <motion.div
-            className="rounded-[1.35rem] border border-white/74 bg-white/78 p-4 shadow-sm backdrop-blur-xl sm:col-span-2 sm:rounded-[1.55rem] sm:p-6 lg:col-span-1 xl:rounded-[1.8rem] xl:p-7"
+            className="rounded-[1.25rem] border border-white/50 bg-white/70 p-4 shadow-sm backdrop-blur-xl sm:col-span-2 sm:rounded-[1.5rem] sm:p-6 lg:col-span-1 xl:rounded-[1.75rem] xl:p-7"
             initial={reduceMotion ? false : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-5%" }}
@@ -112,7 +112,7 @@ export default function Footer() {
                     href={item.href}
                     target={item.href.startsWith("http") ? "_blank" : undefined}
                     rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="focus-ring flex items-start gap-3 rounded-xl border border-white/72 bg-white/82 p-3 hover:border-primary/20"
+                    className="focus-ring flex items-start gap-3 rounded-xl border border-white/70 bg-white/70 p-3 hover:border-primary/20"
                     aria-label={`${item.label}: ${item.value}`}
                   >
                     <span className="mt-0.5 inline-flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
@@ -130,7 +130,7 @@ export default function Footer() {
           </motion.div>
         </div>
 
-        <div className="mt-6 flex flex-col items-center justify-between gap-5 border-t border-white/74 pt-5 text-center text-xs font-medium text-muted-foreground sm:mt-8 sm:gap-4 sm:pt-6 md:flex-row md:text-left">
+        <div className="mt-6 flex flex-col items-center justify-between gap-5 border-t border-white/70 pt-5 text-center text-xs font-medium text-muted-foreground sm:mt-8 sm:gap-4 sm:pt-6 md:flex-row md:text-left">
           <p>© {new Date().getFullYear()} ALSOLVED S.r.l. Tutti i diritti riservati.</p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/contatti" className="focus-ring rounded-md hover:text-foreground">Privacy e cookie su richiesta</Link>
