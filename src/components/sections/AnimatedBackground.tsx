@@ -10,50 +10,49 @@ export default function AnimatedBackground() {
       className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-background"
       style={{ contain: "layout style paint" }}
     >
-      {/* GPU Aurora Mesh — smaller blobs, no permanent will-change */}
-      <div className="absolute inset-0 overflow-hidden opacity-90">
-        {/* Primary Blob */}
+      {/* SVG Gooey Filter Definition */}
+      <svg className="absolute w-0 h-0" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="gooey">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="35" result="blur" />
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 45 -15" result="gooey" />
+            <feBlend in="SourceGraphic" in2="gooey" />
+          </filter>
+        </defs>
+      </svg>
+
+      {/* Fluid Aurora Complex Layer */}
+      <div
+        className="absolute inset-0 opacity-[0.85] mix-blend-multiply max-sm:opacity-60"
+        style={{ filter: "url(#gooey)" }}
+      >
+        {/* Core Rose/Pink Blob */}
         <div
-          className={`absolute -top-[20%] -left-[10%] h-[40vw] w-[50vw] rounded-full max-sm:h-[35vw] max-sm:w-[40vw] ${reduceMotion ? '' : 'animate-blob'}`}
-          style={{
-            background: 'radial-gradient(circle, rgba(59,130,246,0.12) 0%, rgba(59,130,246,0) 65%)',
-            animationDuration: '24s',
-          }}
+          className={`absolute -top-[10%] left-[10%] h-[45vw] w-[50vw] rounded-full mix-blend-screen opacity-80 max-sm:h-[40vw] max-sm:w-[45vw] ${reduceMotion ? '' : 'animate-aurora-1'}`}
+          style={{ background: 'conic-gradient(from 180deg at 50% 50%, rgba(242,78,107,0.1) 0deg, rgba(226,29,72,0.15) 180deg, rgba(242,78,107,0.1) 360deg)' }}
         />
-        {/* Secondary Blob */}
+
+        {/* Secondary Orange/Amber Blob */}
         <div
-          className={`absolute top-[10%] -right-[15%] h-[50vw] w-[45vw] rounded-full max-sm:h-[40vw] max-sm:w-[35vw] ${reduceMotion ? '' : 'animate-blob'}`}
-          style={{
-            background: 'radial-gradient(circle, rgba(99,102,241,0.12) 0%, rgba(99,102,241,0) 65%)',
-            animationDuration: '28s',
-            animationDelay: '2s',
-            animationDirection: 'reverse',
-          }}
+          className={`absolute top-[20%] -right-[10%] h-[55vw] w-[45vw] rounded-full mix-blend-screen opacity-80 max-sm:h-[50vw] max-sm:w-[40vw] ${reduceMotion ? '' : 'animate-aurora-2'}`}
+          style={{ background: 'radial-gradient(ellipse at center, rgba(251,146,60,0.15) 0%, rgba(245,158,11,0.05) 70%)' }}
         />
-        {/* Accent Blob */}
+
+        {/* Deep Blue/Indigo Accent Blob */}
         <div
-          className={`absolute -bottom-[20%] left-[10%] h-[45vw] w-[55vw] rounded-full max-sm:h-[35vw] max-sm:w-[40vw] ${reduceMotion ? '' : 'animate-blob'}`}
-          style={{
-            background: 'radial-gradient(circle, rgba(226,29,72,0.1) 0%, rgba(226,29,72,0) 65%)',
-            animationDuration: '22s',
-            animationDelay: '4s',
-          }}
+          className={`absolute -bottom-[20%] left-[20%] h-[60vw] w-[60vw] rounded-full mix-blend-screen opacity-90 max-sm:h-[50vw] max-sm:w-[50vw] ${reduceMotion ? '' : 'animate-aurora-3'}`}
+          style={{ background: 'conic-gradient(from 90deg at 50% 50%, rgba(59,130,246,0.1) 0deg, rgba(99,102,241,0.15) 180deg, rgba(59,130,246,0.1) 360deg)' }}
+        />
+
+        {/* Floating Highlight Blob */}
+        <div
+          className={`absolute top-[40%] left-[40%] h-[40vw] w-[40vw] rounded-full mix-blend-color-dodge opacity-60 max-sm:h-[30vw] max-sm:w-[30vw] ${reduceMotion ? '' : 'animate-aurora-4'}`}
+          style={{ background: 'radial-gradient(circle at center, rgba(255,255,255,0.12) 0%, transparent 60%)' }}
         />
       </div>
 
-      {/* Grid Topografica — hidden on mobile via CSS */}
-      <div
-        className="absolute inset-0 opacity-40 mix-blend-darken max-sm:hidden"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(15, 23, 42, 0.05) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(15, 23, 42, 0.05) 1px, transparent 1px)
-          `,
-          backgroundSize: '40px 40px',
-          maskImage: 'radial-gradient(circle at center, black 40%, transparent 80%)',
-          WebkitMaskImage: 'radial-gradient(circle at center, black 40%, transparent 80%)'
-        }}
-      />
+      {/* Frosted Glass Diffuser Layer - Creates the Apple/premium feel */}
+      <div className="absolute inset-0 backdrop-blur-[100px] max-sm:backdrop-blur-[60px]" />
 
       {/* Light Film Noise — hidden on mobile */}
       <div

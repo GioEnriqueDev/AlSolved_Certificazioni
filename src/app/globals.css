@@ -322,7 +322,37 @@
   }
 }
 
-@keyframes blob {
+@keyframes blob-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes blob-morph {
+
+  0%,
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+
+  25% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+
+  50% {
+    border-radius: 50% 60% 30% 40% / 40% 40% 70% 50%;
+  }
+
+  75% {
+    border-radius: 40% 50% 50% 60% / 60% 30% 50% 40%;
+  }
+}
+
+@keyframes blob-drift-1 {
 
   0%,
   100% {
@@ -330,21 +360,69 @@
   }
 
   33% {
-    transform: translate(4vw, -6vh) scale(1.05);
+    transform: translate(8vw, -10vh) scale(1.1);
   }
 
   66% {
-    transform: translate(-3vw, 4vh) scale(0.95);
+    transform: translate(-10vw, 8vh) scale(0.9);
   }
 }
 
-.animate-blob {
-  animation: blob 20s infinite alternate ease-in-out;
+@keyframes blob-drift-2 {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(-12vw, 8vh) scale(1.15);
+  }
+
+  66% {
+    transform: translate(8vw, -12vh) scale(0.85);
+  }
+}
+
+@keyframes blob-drift-3 {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(10vw, 12vh) scale(0.95);
+  }
+
+  66% {
+    transform: translate(-8vw, -10vh) scale(1.05);
+  }
+}
+
+.animate-aurora-1 {
+  animation: blob-morph 15s ease-in-out infinite, blob-spin 25s linear infinite, blob-drift-1 20s ease-in-out infinite alternate;
+}
+
+.animate-aurora-2 {
+  animation: blob-morph 18s ease-in-out infinite alternate, blob-spin 30s linear infinite reverse, blob-drift-2 24s ease-in-out infinite alternate;
+}
+
+.animate-aurora-3 {
+  animation: blob-morph 16s ease-in-out infinite alternate, blob-spin 28s linear infinite, blob-drift-3 22s ease-in-out infinite alternate;
+}
+
+.animate-aurora-4 {
+  animation: blob-morph 20s ease-in-out infinite, blob-spin 35s linear infinite reverse, blob-drift-1 26s ease-in-out infinite alternate-reverse;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .animate-blob {
-    will-change: transform;
+
+  .animate-aurora-1,
+  .animate-aurora-2,
+  .animate-aurora-3,
+  .animate-aurora-4 {
+    will-change: transform, border-radius;
   }
 }
 
