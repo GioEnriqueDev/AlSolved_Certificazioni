@@ -41,13 +41,11 @@ export const SplitText = ({
     const child: { hidden: Variant; visible: Variant } = {
         hidden: {
             opacity: 0,
-            y: 20,
-            filter: "blur(10px)",
+            y: 10,
         },
         visible: {
             opacity: 1,
             y: 0,
-            filter: "blur(0px)",
             transition: {
                 duration: duration,
                 ease: "easeOut",
@@ -67,9 +65,10 @@ export const SplitText = ({
                 <motion.span
                     key={i}
                     variants={child}
-                    className="inline-block mr-[0.25em] last:mr-0"
+                    className="inline-block relative"
                 >
                     {word}
+                    {i !== words.length - 1 && "\u00A0"}
                 </motion.span>
             ))}
         </motion.div>
