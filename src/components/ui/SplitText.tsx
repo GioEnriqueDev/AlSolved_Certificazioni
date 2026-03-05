@@ -1,7 +1,6 @@
 "use client";
 
-import { motion, useInView, useAnimation, Variant } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { motion, Variant } from "framer-motion";
 
 type SplitTextProps = {
     text: string;
@@ -13,23 +12,13 @@ type SplitTextProps = {
 export const SplitText = ({
     text,
     className = "",
-    delay = 0.1,
-    duration = 0.5,
+    delay = 0.08,
+    duration = 0.6,
 }: SplitTextProps) => {
-    const controls = useAnimation();
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, margin: "-10%" });
-
-    useEffect(() => {
-        if (isInView) {
-            controls.start("visible");
-        }
-    }, [isInView, controls]);
-
     const words = text.split(" ");
 
-    const container: { hidden: Variant; visible: Variant } = {
-        hidden: { opacity: 0 },
+    const container = {
+        hidden: { opacity: 1 },
         visible: {
             opacity: 1,
             transition: {
@@ -41,36 +30,35 @@ export const SplitText = ({
     const child: { hidden: Variant; visible: Variant } = {
         hidden: {
             opacity: 0,
-            y: 10,
+            y: 20,
         },
         visible: {
             opacity: 1,
             y: 0,
             transition: {
                 duration: duration,
-                ease: "easeOut",
+                ease: [0.16, 1, 0.3, 1],
             },
         },
     };
 
     return (
-        <motion.div
-            ref={ref}
+        <motion.span
             initial="hidden"
-            animate={controls}
+            whileInView="visible"
+            viewport={{ once: true, margin: "-5%" }}
             variants={container}
-            className={`inline-block overflow-hidden ${className}`}
+            className={`inline-flex flex-wrap ${className}`}
         >
             {words.map((word, i) => (
                 <motion.span
                     key={i}
                     variants={child}
-                    className="inline-block relative"
+                    className="inline-block relative mr-[0.25em] last:mr-0"
                 >
                     {word}
-                    {i !== words.length - 1 && "\u00A0"}
                 </motion.span>
             ))}
-        </motion.div>
+        </motion.span>
     );
 };

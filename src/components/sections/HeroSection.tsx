@@ -46,33 +46,28 @@ export default function HeroSection() {
 
           <motion.h1
             variants={fadeUpVariant}
-            className="text-balance text-[2.25rem] font-black leading-[0.98] text-foreground sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.35rem] 2xl:text-[6rem] flex flex-col gap-1 sm:gap-2"
+            className="text-balance text-[2.25rem] font-black leading-[0.98] text-foreground sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.35rem] 2xl:text-[6rem] flex flex-col items-start gap-1 sm:gap-2"
           >
             {reduceMotion ? (
               <>
                 <span>Trasformiamo</span>
                 <span>la conformità in</span>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-rose-500 to-orange-400">
-                  motore di <br /> crescita.
+                  motore di
+                </span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-rose-500 to-orange-400">
+                  crescita.
                 </span>
               </>
             ) : (
               <>
-                <div className="block">
-                  <SplitText text="Trasformiamo" delay={0.06} duration={0.6} />
+                <SplitText text="Trasformiamo" delay={0.1} />
+                <SplitText text="la conformità in" delay={0.1} />
+                <div className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-rose-500 to-orange-400 animate-gradient-shift pb-1">
+                  <SplitText text="motore di" delay={0.1} />
                 </div>
-                <div className="block">
-                  <SplitText text="la conformità in" delay={0.06} duration={0.6} />
-                </div>
-                <div className="relative mt-1 sm:mt-2 block">
-                  <div className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-rose-500 to-orange-400 bg-[length:200%_auto] animate-gradient-slow">
-                    <div className="block">
-                      <SplitText text="motore di" delay={0.08} duration={0.7} />
-                    </div>
-                    <div className="block">
-                      <SplitText text="crescita." delay={0.08} duration={0.75} />
-                    </div>
-                  </div>
+                <div className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-rose-500 to-orange-400 animate-gradient-shift pb-1">
+                  <SplitText text="crescita." delay={0.1} />
                 </div>
               </>
             )}
