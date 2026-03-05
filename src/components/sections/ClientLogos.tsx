@@ -56,10 +56,10 @@ export default function ClientLogos() {
         </motion.p>
         <motion.h3
           className="text-balance text-lg font-bold tracking-tight text-foreground sm:text-2xl md:text-3xl xl:text-[2.15rem]"
-          initial={reduceMotion ? false : { opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 14, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.08 }}
+          transition={{ delay: 0.08, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           Certificazioni riconosciute a livello globale, implementate in modo pragmatico
         </motion.h3>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ShieldCheck, Leaf, Settings2, HeartHandshake } from "lucide-react";
+import FadeIn from "@/components/animations/FadeIn";
 
 const macroAreas = [
   {
@@ -86,10 +87,10 @@ export default function CinematicMacroAreas() {
             <motion.article
               key={area.id}
               className="group relative overflow-hidden rounded-[1.25rem] border border-white/50 bg-white/70 p-5 shadow-[0_14px_36px_-26px_rgba(15,23,42,0.22)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-primary/15 sm:rounded-[1.75rem] sm:p-6 md:p-8 xl:min-h-[31rem] xl:rounded-[2rem] xl:p-9"
-              initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-6%" }}
-              transition={{ duration: 0.55, delay: reduceMotion ? 0 : index * 0.06, ease: [0.16, 1, 0.3, 1] }}
+              initial={reduceMotion ? false : { opacity: 0, y: 28, scale: 0.97 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-8%" }}
+              transition={{ duration: 0.6, delay: reduceMotion ? 0 : index * 0.08, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="pointer-events-none absolute -right-16 -top-20 h-72 w-72 rounded-full opacity-70 transition-opacity duration-500 group-hover:opacity-100" style={{ background: `radial-gradient(circle, ${area.glow} 0%, transparent 70%)` }} />
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent" />

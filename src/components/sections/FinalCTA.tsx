@@ -24,10 +24,10 @@ export default function FinalCTA() {
 
       <motion.div
         className="container relative mx-auto max-w-5xl rounded-[1.25rem] border border-white/50 bg-white/70 p-5 text-center shadow-[0_22px_60px_-34px_rgba(15,23,42,0.28)] backdrop-blur-xl sm:rounded-[2rem] sm:p-8 md:p-14 xl:max-w-[90rem] xl:p-12 2xl:max-w-[96rem] 2xl:p-14"
-        initial={reduceMotion ? false : { opacity: 0, y: 22 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-12%" }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        initial={reduceMotion ? false : { opacity: 0, y: 28, scale: 0.97 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true, margin: "-10%" }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
       >
         <div className="pointer-events-none absolute inset-0 rounded-[1.6rem] ring-1 ring-white/65 sm:rounded-[2.25rem]" />
         <div className="pointer-events-none absolute right-0 top-0 h-64 w-64 translate-x-1/4 -translate-y-1/4 rounded-full" style={{ background: 'radial-gradient(circle, rgba(242,78,107,0.12) 0%, transparent 70%)' }} />
@@ -60,11 +60,18 @@ export default function FinalCTA() {
             </div>
 
             <div className="-mx-1 mt-5 flex snap-x snap-mandatory items-center gap-2 overflow-x-auto px-1 pb-1 scrollbar-none sm:mx-0 sm:flex-wrap sm:justify-center sm:gap-3 sm:overflow-visible sm:px-0 sm:pb-0 xl:mt-6 xl:justify-start">
-              {trustPills.map((pill) => (
-                <span key={pill.label} className="pill-chip shrink-0 snap-start whitespace-nowrap bg-white/85 text-muted-foreground">
+              {trustPills.map((pill, index) => (
+                <motion.span
+                  key={pill.label}
+                  className="pill-chip shrink-0 snap-start whitespace-nowrap bg-white/85 text-muted-foreground"
+                  initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: reduceMotion ? 0 : 0.2 + index * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                >
                   <pill.icon className="size-3.5 text-primary" />
                   <span>{pill.label}</span>
-                </span>
+                </motion.span>
               ))}
             </div>
           </div>

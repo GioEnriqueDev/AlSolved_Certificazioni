@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
 import { Mail, Phone, MapPin, ArrowUpRight } from "lucide-react";
 import NeonLogo from "@/components/ui/NeonLogo";
 
@@ -30,11 +31,19 @@ const contactLinks = [
 ] as const;
 
 export default function Footer() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <footer className="relative z-10 border-t border-white/55 bg-white/50 px-4 pb-[calc(env(safe-area-inset-bottom)+2.5rem)] pt-12 sm:px-6 sm:pt-16 xl:pt-20">
       <div className="container mx-auto max-w-[90rem] 2xl:max-w-[96rem]">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-[1.12fr_0.72fr_0.72fr_1fr] xl:gap-6">
-          <div className="rounded-[1.25rem] border border-white/50 bg-white/70 p-4 shadow-sm backdrop-blur-xl sm:col-span-2 sm:rounded-[1.5rem] sm:p-6 lg:col-span-1 xl:rounded-[1.75rem] xl:p-7">
+          <motion.div
+            className="rounded-[1.25rem] border border-white/50 bg-white/70 p-4 shadow-sm backdrop-blur-xl sm:col-span-2 sm:rounded-[1.5rem] sm:p-6 lg:col-span-1 xl:rounded-[1.75rem] xl:p-7"
+            initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-5%" }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          >
             <Link href="/" className="focus-ring inline-flex rounded-xl" aria-label="ALSOLVED homepage">
               <NeonLogo size="md" />
             </Link>
@@ -48,9 +57,15 @@ export default function Footer() {
               Richiedi analisi preliminare
               <ArrowUpRight className="size-4" />
             </Link>
-          </div>
+          </motion.div>
 
-          <div className="rounded-[1.25rem] border border-white/50 bg-white/70 p-4 shadow-sm backdrop-blur-lg sm:rounded-[1.5rem] sm:p-6 xl:rounded-[1.75rem] xl:p-7">
+          <motion.div
+            className="rounded-[1.25rem] border border-white/50 bg-white/70 p-4 shadow-sm backdrop-blur-lg sm:rounded-[1.5rem] sm:p-6 xl:rounded-[1.75rem] xl:p-7"
+            initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-5%" }}
+            transition={{ duration: 0.5, delay: reduceMotion ? 0 : 0.06, ease: [0.16, 1, 0.3, 1] }}
+          >
             <h4 className="mb-4 text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">Certificazioni chiave</h4>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
@@ -61,9 +76,15 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
-          <div className="rounded-[1.25rem] border border-white/50 bg-white/70 p-4 shadow-sm backdrop-blur-lg sm:rounded-[1.5rem] sm:p-6 xl:rounded-[1.75rem] xl:p-7">
+          <motion.div
+            className="rounded-[1.25rem] border border-white/50 bg-white/70 p-4 shadow-sm backdrop-blur-lg sm:rounded-[1.5rem] sm:p-6 xl:rounded-[1.75rem] xl:p-7"
+            initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-5%" }}
+            transition={{ duration: 0.5, delay: reduceMotion ? 0 : 0.12, ease: [0.16, 1, 0.3, 1] }}
+          >
             <h4 className="mb-4 text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">Navigazione</h4>
             <ul className="space-y-3">
               {navLinks.map((link) => (
@@ -74,9 +95,15 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
-          <div className="rounded-[1.25rem] border border-white/50 bg-white/70 p-4 shadow-sm backdrop-blur-xl sm:col-span-2 sm:rounded-[1.5rem] sm:p-6 lg:col-span-1 xl:rounded-[1.75rem] xl:p-7">
+          <motion.div
+            className="rounded-[1.25rem] border border-white/50 bg-white/70 p-4 shadow-sm backdrop-blur-xl sm:col-span-2 sm:rounded-[1.5rem] sm:p-6 lg:col-span-1 xl:rounded-[1.75rem] xl:p-7"
+            initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-5%" }}
+            transition={{ duration: 0.5, delay: reduceMotion ? 0 : 0.18, ease: [0.16, 1, 0.3, 1] }}
+          >
             <h4 className="mb-4 text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">Contatti</h4>
             <ul className="space-y-3">
               {contactLinks.map((item) => (
@@ -100,7 +127,7 @@ export default function Footer() {
               ))}
             </ul>
             <p className="mt-4 text-xs font-medium text-muted-foreground">P.IVA 13090841001</p>
-          </div>
+          </motion.div>
         </div>
 
         <div className="mt-6 flex flex-col items-center justify-between gap-5 border-t border-white/70 pt-5 text-center text-xs font-medium text-muted-foreground sm:mt-8 sm:gap-4 sm:pt-6 md:flex-row md:text-left">
