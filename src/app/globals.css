@@ -311,48 +311,92 @@
   }
 }
 
-@keyframes wave-drift {
-
-  0%,
-  100% {
-    transform: translateY(0) scaleY(1);
+@keyframes aurora-1 {
+  0% {
+    transform: translateX(-15%) translateY(-5%) rotate(-15deg) scale(1) skewX(10deg);
+    opacity: 0.6;
   }
 
   50% {
-    transform: translateY(6vh) scaleY(1.05);
+    transform: translateX(5%) translateY(10%) rotate(0deg) scale(1.05) skewX(-15deg);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: translateX(-15%) translateY(-5%) rotate(-15deg) scale(1) skewX(10deg);
+    opacity: 0.6;
   }
 }
 
-@keyframes wave-drift-reverse {
-
-  0%,
-  100% {
-    transform: translateY(0) scaleY(1);
+@keyframes aurora-2 {
+  0% {
+    transform: translateX(10%) translateY(5%) rotate(15deg) scale(1.1) skewX(-10deg);
+    opacity: 0.8;
   }
 
   50% {
-    transform: translateY(-4vh) scaleY(0.95);
+    transform: translateX(-5%) translateY(-10%) rotate(5deg) scale(1) skewX(15deg);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translateX(10%) translateY(5%) rotate(15deg) scale(1.1) skewX(-10deg);
+    opacity: 0.8;
   }
 }
 
-@keyframes wave-breathe {
-
-  0%,
-  100% {
-    opacity: 0.55;
+@keyframes aurora-3 {
+  0% {
+    transform: translateX(-10%) translateY(0%) rotate(-5deg) scale(1.05) skewX(5deg);
+    opacity: 0.7;
   }
 
   50% {
-    opacity: 0.85;
+    transform: translateX(10%) translateY(-5%) rotate(-15deg) scale(0.95) skewX(-5deg);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: translateX(-10%) translateY(0%) rotate(-5deg) scale(1.05) skewX(5deg);
+    opacity: 0.7;
   }
 }
 
-.animate-wave-1 {
-  animation: wave-drift 14s ease-in-out infinite, wave-breathe 12s ease-in-out infinite;
+@keyframes aurora-4 {
+  0% {
+    transform: translateX(5%) translateY(10%) rotate(25deg) scale(1) skewX(-15deg);
+    opacity: 0.6;
+  }
+
+  50% {
+    transform: translateX(-15%) translateY(-5%) rotate(10deg) scale(1.1) skewX(10deg);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translateX(5%) translateY(10%) rotate(25deg) scale(1) skewX(-15deg);
+    opacity: 0.6;
+  }
 }
 
-.animate-wave-2 {
-  animation: wave-drift-reverse 18s ease-in-out infinite, wave-breathe 15s ease-in-out infinite alternate;
+.animate-aurora-1 {
+  animation: aurora-1 18s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-aurora-2 {
+  animation: aurora-2 22s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-aurora-3 {
+  animation: aurora-3 25s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+.animate-aurora-4 {
+  animation: aurora-4 20s ease-in-out infinite alternate;
+  will-change: transform, opacity;
 }
 
 .animate-wave-3 {

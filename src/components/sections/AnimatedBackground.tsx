@@ -15,28 +15,34 @@ export default function AnimatedBackground() {
         className="absolute inset-0 opacity-90 max-sm:opacity-75 blur-[100px] max-sm:blur-[65px] transform-gpu"
         style={{ transform: "translateZ(0)" }}
       >
-        {/* Rose / Primary — upper-left zone */}
+        {/* Rose / Primary Ribbon */}
         <div
-          className={`absolute left-[-15%] top-[-10%] h-[60vh] w-[70vw] max-sm:h-[50vh] max-sm:w-[90vw] ${reduceMotion ? '' : 'animate-wave-1'}`}
-          style={{ background: 'radial-gradient(ellipse at 40% 45%, rgba(242,78,107,0.38) 0%, rgba(226,29,72,0.12) 50%, transparent 80%)' }}
+          className={`absolute left-[-20%] top-[-5%] h-[35vh] w-[140vw] max-sm:h-[25vh] rounded-[100%] max-sm:w-[150vw] ${reduceMotion ? '' : 'animate-aurora-1'}`}
+          style={{ background: 'linear-gradient(90deg, rgba(242,78,107,0), rgba(242,78,107,0.35), rgba(226,29,72,0.15), rgba(242,78,107,0))' }}
         />
 
-        {/* Blue / Indigo — center-right zone */}
+        {/* Blue / Indigo Ribbon */}
         <div
-          className={`absolute right-[-10%] top-[25%] h-[65vh] w-[65vw] max-sm:h-[55vh] max-sm:w-[85vw] ${reduceMotion ? '' : 'animate-wave-2'}`}
-          style={{ background: 'radial-gradient(ellipse at 55% 50%, rgba(59,130,246,0.32) 0%, rgba(99,102,241,0.1) 55%, transparent 82%)' }}
+          className={`absolute right-[-20%] top-[20%] h-[45vh] w-[150vw] max-sm:h-[35vh] rounded-[100%] max-sm:w-[160vw] ${reduceMotion ? '' : 'animate-aurora-2'}`}
+          style={{ background: 'linear-gradient(90deg, rgba(59,130,246,0), rgba(59,130,246,0.3), rgba(99,102,241,0.12), rgba(59,130,246,0))' }}
         />
 
-        {/* Amber / Orange — lower-left zone */}
+        {/* Cyan / Teal Ribbon (Aurora Borealis classic color) */}
         <div
-          className={`absolute left-[5%] top-[55%] h-[50vh] w-[55vw] max-sm:h-[40vh] max-sm:w-[75vw] ${reduceMotion ? '' : 'animate-wave-3'}`}
-          style={{ background: 'radial-gradient(ellipse at 45% 55%, rgba(251,146,60,0.28) 0%, rgba(245,158,11,0.08) 55%, transparent 80%)' }}
+          className={`absolute left-[0%] top-[40%] h-[25vh] w-[130vw] max-sm:h-[20vh] rounded-[100%] max-sm:w-[140vw] ${reduceMotion ? '' : 'animate-aurora-4'}`}
+          style={{ background: 'linear-gradient(90deg, rgba(6,182,212,0), rgba(6,182,212,0.22), rgba(14,165,233,0.1), rgba(6,182,212,0))' }}
+        />
+
+        {/* Amber / Orange Ribbon */}
+        <div
+          className={`absolute left-[-10%] top-[60%] h-[30vh] w-[140vw] max-sm:h-[25vh] rounded-[100%] max-sm:w-[150vw] ${reduceMotion ? '' : 'animate-aurora-3'}`}
+          style={{ background: 'linear-gradient(90deg, rgba(251,146,60,0), rgba(251,146,60,0.25), rgba(245,158,11,0.08), rgba(251,146,60,0))' }}
         />
 
         {/* White highlight — center, for depth & luminosity */}
         <div
-          className="absolute left-[20%] top-[15%] h-[45vh] w-[50vw] max-sm:h-[35vh] max-sm:w-[60vw] opacity-50"
-          style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.5) 0%, transparent 65%)' }}
+          className="absolute left-[20%] top-[25%] h-[40vh] w-[60vw] max-sm:h-[30vh] max-sm:w-[80vw] opacity-40 rounded-[100%]"
+          style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.45) 0%, transparent 70%)' }}
         />
       </div>
 
