@@ -6,11 +6,13 @@ import { ArrowRight, BadgeCheck, Clock3, Sparkles, TrendingUp, ShieldCheck, Scan
 import { Button } from "@/components/ui/button";
 import { childFadeVariant, fadeUpVariant, staggerContainer } from "@/lib/animations";
 import { useMobileViewport } from "@/hooks/useMobileViewport";
+import CountUp from "@/components/ui/CountUp";
+import { SplitText } from "@/components/ui/SplitText";
 
 const stats = [
-  { label: "Aziende affiancate", value: "50+", icon: BadgeCheck },
-  { label: "Analisi iniziale", value: "15 min", icon: Clock3 },
-  { label: "Tempo feedback", value: "48h", icon: TrendingUp },
+  { label: "Aziende affiancate", value: "50+", numValue: 50, suffix: "+", icon: BadgeCheck },
+  { label: "Analisi iniziale", value: "15 min", numValue: 15, suffix: " min", icon: Clock3 },
+  { label: "Tempo feedback", value: "48h", numValue: 48, suffix: "h", icon: TrendingUp },
 ];
 
 export default function HeroSection() {
@@ -46,10 +48,16 @@ export default function HeroSection() {
             variants={fadeUpVariant}
             className="text-balance text-[2.25rem] font-black leading-[0.98] text-foreground sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.35rem] 2xl:text-[6rem]"
           >
-            Trasformiamo la conformità in
-            <span className="relative mt-2 block text-transparent bg-clip-text bg-gradient-to-r from-primary via-rose-500 to-orange-400 bg-[length:200%_auto]" style={{ animation: reduceMotion ? "none" : "gradient-shift 5s ease-in-out 1 forwards" }}>
-              motore di crescita.
-            </span>
+            {reduceMotion ? (
+              <>Trasformiamo la conformità in <span className="relative mt-2 block text-transparent bg-clip-text bg-gradient-to-r from-primary via-rose-500 to-orange-400">motore di crescita.</span></>
+            ) : (
+              <>
+                <SplitText text="Trasformiamo la conformità in" delay={0.06} duration={0.5} />
+                <span className="relative mt-2 block">
+                  <SplitText text="motore di crescita." className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-rose-500 to-orange-400 bg-[length:200%_auto]" delay={0.08} duration={0.6} />
+                </span>
+              </>
+            )}
           </motion.h1>
 
           <motion.p variants={childFadeVariant} className="max-w-2xl text-[15px] leading-relaxed text-muted-foreground sm:text-lg md:text-xl xl:max-w-[42rem] xl:text-[1.25rem]">
@@ -135,7 +143,9 @@ export default function HeroSection() {
                   <div className="mb-2 inline-flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary sm:mb-3 sm:size-10 sm:rounded-xl">
                     <stat.icon className="size-4 sm:size-5" />
                   </div>
-                  <p className="text-xl font-black tracking-tight text-foreground sm:text-2xl xl:text-[1.9rem]">{stat.value}</p>
+                  <p className="text-xl font-black tracking-tight text-foreground sm:text-2xl xl:text-[1.9rem]">
+                    {reduceMotion ? stat.value : <CountUp to={stat.numValue} suffix={stat.suffix} duration={1.8} delay={0.4 + index * 0.15} />}
+                  </p>
                   <p className="mt-0.5 text-xs font-semibold text-muted-foreground sm:mt-1 sm:text-sm xl:text-[0.95rem]">{stat.label}</p>
                 </motion.div>
               ))}
