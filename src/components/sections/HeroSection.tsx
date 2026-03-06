@@ -26,7 +26,7 @@ export default function HeroSection() {
         <div className="absolute bottom-[14%] left-1/2 h-40 w-[26rem] max-w-[92vw] -translate-x-1/2 rounded-full sm:bottom-[12%] sm:h-56 sm:w-[42rem]" style={{ background: 'radial-gradient(ellipse, rgba(59,130,246,0.12) 0%, transparent 70%)' }} />
       </div>
 
-      <div className="container relative z-10 mx-auto grid w-full max-w-[90rem] grid-cols-1 gap-7 py-10 max-[375px]:py-6 sm:gap-10 sm:py-14 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-center xl:gap-14 2xl:max-w-[96rem] 2xl:gap-16 2xl:py-16">
+      <div className="container relative z-10 mx-auto grid w-full max-w-[90rem] grid-cols-1 gap-7 py-10 max-[375px]:py-6 sm:gap-10 sm:py-14 lg:max-w-[85rem] lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-center xl:max-w-[100rem] xl:gap-14 2xl:max-w-[110rem] 2xl:gap-20 2xl:py-16">
         <motion.div
           variants={heroStaggerContainer}
           initial={reduceMotion ? false : "hidden"}

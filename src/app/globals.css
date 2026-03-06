@@ -1,4 +1,4 @@
-﻿@tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -98,6 +98,20 @@
 
   html {
     scroll-padding-top: 5.25rem;
+  }
+
+  /* ── Desktop zoom scaling ─────────────────────────────── */
+  /* Scales ALL units (px, rem, borders, shadows) uniformly */
+  @media (min-width: 1280px) {
+    html {
+      zoom: 0.82;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    html {
+      zoom: 0.75;
+    }
   }
 
   main {
@@ -237,13 +251,7 @@
 
 @media (min-width: 1280px) {
   html {
-    scroll-padding-top: 6rem;
-  }
-
-  .pill-chip {
-    padding-inline: 0.95rem;
-    padding-block: 0.45rem;
-    font-size: 0.8rem;
+    scroll-padding-top: 7.5rem;
   }
 }
 
