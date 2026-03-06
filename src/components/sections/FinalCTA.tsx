@@ -52,9 +52,9 @@ export default function FinalCTA() {
                   <ArrowRight className="size-4" />
                 </Button>
               </Link>
-              <Link href="#assets-futuri" className="focus-ring w-full rounded-full">
+              <Link href="/certificazioni" className="focus-ring w-full rounded-full">
                 <Button variant="outline" size="lg" className="h-[52px] w-full rounded-full border-white/70 bg-white/95 px-6 text-[15px] font-semibold shadow-sm hover:bg-white sm:h-14 sm:px-8 sm:text-base">
-                  Scarica Checklist (PDF)
+                  Esplora i servizi
                 </Button>
               </Link>
             </div>

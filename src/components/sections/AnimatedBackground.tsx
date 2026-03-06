@@ -2,6 +2,7 @@
 
 import { useReducedMotion, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { useMobileViewport } from "@/hooks/useMobileViewport";
 
 export default function AnimatedBackground() {
@@ -48,6 +49,19 @@ export default function AnimatedBackground() {
       className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-background"
       style={{ contain: "layout style paint" }}
     >
+      {/* High-Res Cinematic Photographic Backing */}
+      <div className="absolute inset-0 max-sm:hidden opacity-[0.035] mix-blend-luminosity">
+        <Image
+          src="/bg-corporate-glass.png"
+          alt=""
+          fill
+          sizes="100vw"
+          quality={85}
+          className="object-cover"
+          priority
+        />
+      </div>
+
       <svg
         className="absolute inset-0 h-full w-full opacity-60 sm:opacity-75"
         preserveAspectRatio="none"
