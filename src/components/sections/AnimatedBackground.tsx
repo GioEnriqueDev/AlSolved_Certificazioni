@@ -49,14 +49,14 @@ export default function AnimatedBackground() {
       className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-background"
       style={{ contain: "layout style paint" }}
     >
-      {/* High-Res Cinematic Photographic Backing */}
-      <div className="absolute inset-0 max-sm:hidden opacity-[0.035] mix-blend-luminosity">
+      {/* High-Res Cinematic Photographic Backing (Light Theme Optimized) */}
+      <div className="absolute inset-0 max-sm:hidden opacity-[0.25] mix-blend-multiply">
         <Image
-          src="/bg-corporate-glass.png"
+          src="/bg-light-glass.png"
           alt=""
           fill
           sizes="100vw"
-          quality={85}
+          quality={90}
           className="object-cover"
           priority
         />
