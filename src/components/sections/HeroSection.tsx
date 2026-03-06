@@ -20,14 +20,14 @@ export default function HeroSection() {
   const { isMobile } = useMobileViewport();
 
   return (
-    <section className="section-shell relative flex min-h-[85svh] items-center overflow-hidden px-4 pt-24 sm:min-h-[94svh] sm:px-6 md:pt-32 xl:min-h-[96svh]">
+    <section className="section-shell relative flex min-h-[85svh] items-center overflow-hidden px-4 md:px-6 pt-24 max-[375px]:pt-20 sm:min-h-[94svh] md:pt-32 xl:min-h-[96svh]">
       <div className="pointer-events-none absolute inset-0 max-sm:hidden">
         <div className="absolute left-[8%] top-[12%] h-52 w-52 rounded-full sm:h-72 sm:w-72" style={{ background: 'radial-gradient(circle, rgba(242,78,107,0.12) 0%, transparent 70%)' }} />
         <div className="absolute right-[10%] top-[10%] h-56 w-56 rounded-full sm:h-80 sm:w-80" style={{ background: 'radial-gradient(circle, rgba(251,146,60,0.14) 0%, transparent 70%)' }} />
         <div className="absolute bottom-[14%] left-1/2 h-40 w-[26rem] max-w-[92vw] -translate-x-1/2 rounded-full sm:bottom-[12%] sm:h-56 sm:w-[42rem]" style={{ background: 'radial-gradient(ellipse, rgba(59,130,246,0.12) 0%, transparent 70%)' }} />
       </div>
 
-      <div className="container relative z-10 mx-auto grid max-w-[90rem] grid-cols-1 gap-7 py-10 sm:gap-10 sm:py-14 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-center xl:gap-14 2xl:max-w-[96rem] 2xl:gap-16 2xl:py-16">
+      <div className="container relative z-10 mx-auto grid w-full max-w-[90rem] grid-cols-1 gap-7 py-10 max-[375px]:py-6 sm:gap-10 sm:py-14 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-center xl:gap-14 2xl:max-w-[96rem] 2xl:gap-16 2xl:py-16">
         <motion.div
           variants={staggerContainer}
           initial={reduceMotion ? false : "hidden"}
@@ -79,10 +79,10 @@ export default function HeroSection() {
           </motion.p>
 
           <motion.div variants={childFadeVariant} className="flex flex-col gap-3 sm:flex-row sm:items-center xl:gap-4">
-            <Link href="/check-up" className="focus-ring rounded-full sm:w-auto w-full">
-              <Button size="lg" className="h-[52px] w-full rounded-full px-6 text-[15px] font-semibold text-white glow-shadow hover:glow-shadow-strong sm:h-14 sm:w-auto sm:px-7 sm:text-base">
+            <Link href="/check-up" className="focus-ring rounded-full sm:w-auto w-full group">
+              <Button size="lg" className="h-[52px] w-full rounded-full px-6 text-[15px] font-semibold text-white glow-shadow transition-all duration-300 ease-out group-hover:scale-[1.03] group-hover:glow-shadow-strong sm:h-14 sm:w-auto sm:px-7 sm:text-base">
                 Fai check-up e prenota call
-                <ArrowRight className="size-4" />
+                <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Button>
             </Link>
             <Link href="#assets-futuri" className="focus-ring rounded-full sm:w-auto w-full">

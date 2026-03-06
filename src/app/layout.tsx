@@ -10,15 +10,36 @@ const sora = Sora({ subsets: ["latin"], variable: "--font-sora" });
 export const metadata: Metadata = {
   title: "ALSOLVED - Certificazioni & Compliance. Risolto.",
   description: "Il partner tecnologico per le aziende moderne. Certificazioni ISO, automazione della compliance e audit strategici.",
+  keywords: ["certificazioni iso", "compliance aziendale", "iso 9001", "iso 27001", "sistemi di gestione", "audit", "alsolved"],
+  authors: [{ name: "AlSolved" }],
+  creator: "AlSolved",
+  metadataBase: new URL("https://www.alsolvedcertificazioni.com"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "it_IT",
     url: "https://www.alsolvedcertificazioni.com",
-    title: "ALSOLVED - Certificazioni & Compliance. Risolto.",
-    description: "Il partner tecnologico per le aziende moderne.",
+    title: "ALSOLVED - Certificazioni & Compliance",
+    description: "Il partner tecnologico per le aziende moderne. Riduciamo il carico operativo per il tuo team portandoti in auditing velocemente.",
     siteName: "ALSOLVED",
+    images: [
+      {
+        url: "/icon.png", // Usa l'icona esistente come prima fallback o un og-image se l'avremo
+        width: 1200,
+        height: 630,
+        alt: "ALSOLVED - Certificazioni & Compliance",
+      },
+    ],
   },
-  metadataBase: new URL("https://www.alsolvedcertificazioni.com"),
+  twitter: {
+    card: "summary_large_image",
+    title: "ALSOLVED - Certificazioni & Compliance",
+    description: "Il partner tecnologico per le aziende moderne. Certificazioni ISO, automazione della compliance e audit strategici.",
+    images: ["/icon.png"],
+    creator: "@alsolved",
+  },
   appleWebApp: {
     capable: true,
     title: "AlSolved",

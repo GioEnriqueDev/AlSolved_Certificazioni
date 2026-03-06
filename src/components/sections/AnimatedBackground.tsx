@@ -2,18 +2,28 @@
 
 import { useReducedMotion, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useMobileViewport } from "@/hooks/useMobileViewport";
 
 export default function AnimatedBackground() {
   const reduceMotion = !!useReducedMotion();
+  const { isMobile, ready } = useMobileViewport();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
+  if (!mounted || !ready) {
     return (
       <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-background" />
+    );
+  }
+
+  if (isMobile) {
+    return (
+      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-background">
+        <div className="absolute inset-x-0 bottom-0 h-[35vh] bg-gradient-to-t from-background via-background/70 to-transparent" />
+      </div>
     );
   }
 
