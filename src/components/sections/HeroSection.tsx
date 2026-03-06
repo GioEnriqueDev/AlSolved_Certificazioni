@@ -75,6 +75,11 @@ export default function HeroSection() {
                 <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Button>
             </Link>
+            <Link href="#servizi" className="focus-ring rounded-full sm:w-auto w-full">
+              <Button variant="outline" size="lg" className="h-[52px] w-full rounded-full border-white/70 bg-white/95 px-6 text-[15px] font-semibold shadow-sm hover:bg-white sm:h-14 sm:w-auto sm:px-7 sm:text-base transition-colors">
+                Esplora i servizi
+              </Button>
+            </Link>
           </motion.div>
 
           <motion.div variants={childFadeVariant} className="-mx-1 flex snap-x snap-mandatory items-center gap-2 overflow-x-auto px-1 pb-1 pt-1 text-xs font-semibold text-muted-foreground scrollbar-none sm:mx-0 sm:flex-wrap sm:gap-3 sm:overflow-visible sm:px-0 sm:pb-0 sm:text-sm">
