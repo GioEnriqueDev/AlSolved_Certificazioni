@@ -82,34 +82,6 @@ export default function AnimatedBackground() {
           </linearGradient>
         </defs>
 
-        {/* Deep Background Glowing Orbs (Volumetric Light) */}
-        <g filter="url(#aurora-glow)" className="opacity-40">
-          <motion.circle
-            cx="20%"
-            cy="30%"
-            r="400"
-            fill="url(#sony-wave-1)"
-            animate={reduceMotion ? {} : {
-              cx: ["20%", "25%", "20%"],
-              cy: ["30%", "25%", "30%"],
-              scale: [1, 1.1, 1],
-            }}
-            transition={{ duration: 15, ease: "easeInOut", repeat: Infinity }}
-          />
-          <motion.circle
-            cx="80%"
-            cy="70%"
-            r="500"
-            fill="url(#sony-wave-2)"
-            animate={reduceMotion ? {} : {
-              cx: ["80%", "75%", "80%"],
-              cy: ["70%", "75%", "70%"],
-              scale: [1, 1.15, 1],
-            }}
-            transition={{ duration: 18, ease: "easeInOut", repeat: Infinity, delay: 2 }}
-          />
-        </g>
-
         {/* Cinematic Sony PS5 Style Flowing Ribbons */}
         <g filter="url(#aurora-glow)">
           {/* Blue Ribbon Layer */}
@@ -195,25 +167,15 @@ export default function AnimatedBackground() {
         </g>
       </svg>
 
-      {/* Cinematic Film Grain Noise */}
-      <motion.div
-        className="absolute inset-0 max-sm:hidden opacity-[0.025]"
+      {/* Architectural Premium Grid */}
+      <div className="absolute inset-0 max-sm:hidden bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+
+      {/* Surface Noise (Very subtle static) */}
+      <div
+        className="absolute inset-0 opacity-[0.015] max-sm:hidden"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-          width: "110%",
-          height: "110%",
-          top: "-5%",
-          left: "-5%",
-        }}
-        animate={{
-          x: ["0%", "-1%", "1%", "-2%", "0%"],
-          y: ["0%", "2%", "-1%", "1%", "0%"],
-        }}
-        transition={{
-          repeat: Infinity,
-          duration: 0.2, // Ultra-fast framerate jump
-          ease: "linear",
-          repeatType: "loop",
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          transform: "translateZ(0)",
         }}
       />
 
