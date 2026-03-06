@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, BadgeCheck, Clock3, Sparkles, TrendingUp, ShieldCheck, ScanSearch } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { childFadeVariant, fadeUpVariant, staggerContainer } from "@/lib/animations";
+import { childFadeVariant, fadeUpVariant, staggerContainer, heroTextVariant, heroStaggerContainer } from "@/lib/animations";
 import { useMobileViewport } from "@/hooks/useMobileViewport";
 import CountUp from "@/components/ui/CountUp";
 
@@ -28,7 +28,7 @@ export default function HeroSection() {
 
       <div className="container relative z-10 mx-auto grid w-full max-w-[90rem] grid-cols-1 gap-7 py-10 max-[375px]:py-6 sm:gap-10 sm:py-14 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-center xl:gap-14 2xl:max-w-[96rem] 2xl:gap-16 2xl:py-16">
         <motion.div
-          variants={staggerContainer}
+          variants={heroStaggerContainer}
           initial={reduceMotion ? false : "hidden"}
           animate="visible"
           className="space-y-5 sm:space-y-7 xl:space-y-8"
@@ -43,19 +43,24 @@ export default function HeroSection() {
             </span>
           </motion.div>
 
+          {/* Stile Apple Vetrina: Overflow y-clip per reveal dal basso della singola riga */}
           <h1 className="text-balance text-[2.25rem] font-black leading-[0.98] text-foreground sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.35rem] 2xl:text-[6rem] flex flex-col items-start gap-1 sm:gap-2">
-            <motion.span variants={fadeUpVariant} className="block">Trasformiamo</motion.span>
-            <motion.span variants={fadeUpVariant} className="block">la conformità in</motion.span>
-            <motion.span variants={fadeUpVariant} className="block pb-2">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-rose-500 to-orange-400 animate-gradient-shift">
-                motore di
-              </span>
-            </motion.span>
-            <motion.span variants={fadeUpVariant} className="block pb-2">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-rose-500 to-orange-400 animate-gradient-shift">
-                crescita.
-              </span>
-            </motion.span>
+            <div className="overflow-hidden pb-1"><motion.span variants={heroTextVariant} className="block origin-bottom">Trasformiamo</motion.span></div>
+            <div className="overflow-hidden pb-1"><motion.span variants={heroTextVariant} className="block origin-bottom">la conformità in</motion.span></div>
+            <div className="overflow-hidden pb-2 -mt-1">
+              <motion.span variants={heroTextVariant} className="block origin-bottom">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-rose-500 to-orange-400 animate-gradient-shift">
+                  motore di
+                </span>
+              </motion.span>
+            </div>
+            <div className="overflow-hidden pb-2 -mt-1">
+              <motion.span variants={heroTextVariant} className="block origin-bottom">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-rose-500 to-orange-400 animate-gradient-shift">
+                  crescita.
+                </span>
+              </motion.span>
+            </div>
           </h1>
 
           <motion.p variants={childFadeVariant} className="max-w-2xl text-[15px] leading-relaxed text-muted-foreground sm:text-lg md:text-xl xl:max-w-[42rem] xl:text-[1.25rem]">
@@ -63,7 +68,7 @@ export default function HeroSection() {
             Niente burocrazia sterile: solo processi utili e audit-ready.
           </motion.p>
 
-          <motion.div variants={childFadeVariant} className="flex flex-col gap-3 sm:flex-row sm:items-center xl:gap-4">
+          <motion.div variants={childFadeVariant} className="flex flex-col gap-3 sm:flex-row sm:items-center xl:gap-4 pt-2">
             <Link href="/check-up" className="focus-ring rounded-full sm:w-auto w-full group">
               <Button size="lg" className="h-[52px] w-full rounded-full px-6 text-[15px] font-semibold text-white glow-shadow transition-all duration-300 ease-out group-hover:scale-[1.03] group-hover:glow-shadow-strong sm:h-14 sm:w-auto sm:px-7 sm:text-base">
                 Fai check-up e prenota call
@@ -77,7 +82,7 @@ export default function HeroSection() {
             </Link>
           </motion.div>
 
-          <motion.div variants={childFadeVariant} className="-mx-1 flex snap-x snap-mandatory items-center gap-2 overflow-x-auto px-1 pb-1 text-xs font-semibold text-muted-foreground scrollbar-none sm:mx-0 sm:flex-wrap sm:gap-3 sm:overflow-visible sm:px-0 sm:pb-0 sm:text-sm">
+          <motion.div variants={childFadeVariant} className="-mx-1 flex snap-x snap-mandatory items-center gap-2 overflow-x-auto px-1 pb-1 pt-1 text-xs font-semibold text-muted-foreground scrollbar-none sm:mx-0 sm:flex-wrap sm:gap-3 sm:overflow-visible sm:px-0 sm:pb-0 sm:text-sm">
             <span className="pill-chip shrink-0 snap-start whitespace-nowrap"><Sparkles className="size-3.5 text-primary" /> Consulenza iniziale gratuita</span>
             <span className="pill-chip shrink-0 snap-start whitespace-nowrap"><ShieldCheck className="size-3.5 text-primary" /> Affiancamento fino all’audit</span>
             <span className="pill-chip shrink-0 snap-start whitespace-nowrap"><ScanSearch className="size-3.5 text-primary" /> Roadmap chiara in 48h</span>

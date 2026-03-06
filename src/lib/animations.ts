@@ -1,15 +1,15 @@
 ﻿import { Variants } from "framer-motion";
 
-export const premiumEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
+export const appleEase: [number, number, number, number] = [0.19, 1, 0.22, 1];
 
 export const transitions = {
-  slow: { duration: 0.85, ease: premiumEase },
-  base: { duration: 0.6, ease: premiumEase },
-  fast: { duration: 0.35, ease: premiumEase },
+  slow: { duration: 1.2, ease: appleEase },
+  base: { duration: 0.8, ease: appleEase },
+  fast: { duration: 0.4, ease: appleEase },
 };
 
 export const fadeUpVariant: Variants = {
-  hidden: { opacity: 0, y: 24, scale: 0.985 },
+  hidden: { opacity: 0, y: 30, scale: 0.98 },
   visible: {
     opacity: 1,
     y: 0,
@@ -18,12 +18,36 @@ export const fadeUpVariant: Variants = {
   },
 };
 
+export const heroTextVariant: Variants = {
+  hidden: { opacity: 0.01, y: 50, rotateX: 15 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    transition: {
+      duration: 1.1,
+      ease: [0.19, 1, 0.22, 1],
+    },
+  },
+};
+
 export const slideUpVariant: Variants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
     y: 0,
     transition: transitions.base,
+  },
+};
+
+export const heroStaggerContainer: Variants = {
+  hidden: { opacity: 1 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
+    },
   },
 };
 
