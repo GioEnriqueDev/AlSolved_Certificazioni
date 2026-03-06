@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { childFadeVariant, fadeUpVariant, staggerContainer } from "@/lib/animations";
 import { useMobileViewport } from "@/hooks/useMobileViewport";
 import CountUp from "@/components/ui/CountUp";
-import { SplitText } from "@/components/ui/SplitText";
 
 const stats = [
   { label: "Aziende affiancate", value: "50+", numValue: 50, suffix: "+", icon: BadgeCheck },
@@ -44,34 +43,20 @@ export default function HeroSection() {
             </span>
           </motion.div>
 
-          <motion.h1
-            variants={fadeUpVariant}
-            className="text-balance text-[2.25rem] font-black leading-[0.98] text-foreground sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.35rem] 2xl:text-[6rem] flex flex-col items-start gap-1 sm:gap-2"
-          >
-            {reduceMotion ? (
-              <>
-                <span>Trasformiamo</span>
-                <span>la conformità in</span>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-rose-500 to-orange-400">
-                  motore di
-                </span>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-rose-500 to-orange-400">
-                  crescita.
-                </span>
-              </>
-            ) : (
-              <>
-                <SplitText text="Trasformiamo" delay={0.1} />
-                <SplitText text="la conformità in" delay={0.1} />
-                <div className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-rose-500 to-orange-400 animate-gradient-shift pb-1">
-                  <SplitText text="motore di" delay={0.1} />
-                </div>
-                <div className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-rose-500 to-orange-400 animate-gradient-shift pb-1">
-                  <SplitText text="crescita." delay={0.1} />
-                </div>
-              </>
-            )}
-          </motion.h1>
+          <h1 className="text-balance text-[2.25rem] font-black leading-[0.98] text-foreground sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.35rem] 2xl:text-[6rem] flex flex-col items-start gap-1 sm:gap-2">
+            <motion.span variants={fadeUpVariant} className="block">Trasformiamo</motion.span>
+            <motion.span variants={fadeUpVariant} className="block">la conformità in</motion.span>
+            <motion.span variants={fadeUpVariant} className="block pb-2">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-rose-500 to-orange-400 animate-gradient-shift">
+                motore di
+              </span>
+            </motion.span>
+            <motion.span variants={fadeUpVariant} className="block pb-2">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-rose-500 to-orange-400 animate-gradient-shift">
+                crescita.
+              </span>
+            </motion.span>
+          </h1>
 
           <motion.p variants={childFadeVariant} className="max-w-2xl text-[15px] leading-relaxed text-muted-foreground sm:text-lg md:text-xl xl:max-w-[42rem] xl:text-[1.25rem]">
             Costruiamo sistemi ISO e compliance che aiutano la tua azienda a vincere gare, ridurre rischio operativo e presentarsi come partner affidabile.
